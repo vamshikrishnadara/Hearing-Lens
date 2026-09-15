@@ -1,0 +1,1001 @@
+respondent_id,comment_text,hearing_date,ward,role,language,housing_tenure,school,validation_theme
+SYN-0001,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials. I live at 101 Public Square Road, Apt 2B.",2026-09-12,6,Parent,Polish,Renter,Community School A,classroom_resources
+SYN-0002,Please explain how the safety budget will be used at each school.,2026-09-02,8,Resident,English,Renter,Community School C,school_safety
+SYN-0003,Students are waiting too long for mental-health support.,2026-09-07,10,Parent,English,Renter,Community School A,mental_health
+SYN-0004,Will the district publish route performance and missed-pickup data?,2026-09-02,10,Resident,English,Renter,Community School B,transportation
+SYN-0005,Families need interpretation and disability accommodations at every meeting.,2026-09-02,10,Parent,English,Owner,Community School C,accessibility
+SYN-0006,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow. Contact Taylor Parker at sample.person6@example.org or 312-555-1006.",2026-09-12,20,Student,English,Renter,Community School D,communication
+SYN-0007,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Parent,Mandarin,Other,Community School B,classroom_resources
+SYN-0008,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,7,Parent,English,Renter,Community School B,school_safety
+SYN-0009,Students are waiting too long for mental-health support.,2026-09-12,7,Parent,Spanish,Renter,Community School A,mental_health
+SYN-0010,The current bus schedule causes students to arrive late.,2026-09-07,7,Parent,English,Owner,Community School D,transportation
+SYN-0011,Meeting materials should be accessible before the public hearing.,2026-09-07,7,Parent,English,Renter,Community School C,accessibility
+SYN-0012,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Parent,English,Renter,Community School B,communication
+SYN-0013,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable?",2026-09-12,10,Teacher,English,Owner,Community School B,classroom_resources
+SYN-0014,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,8,Parent,English,Owner,Community School C,school_safety
+SYN-0015,The district should fund trauma-informed services throughout the year.,2026-09-02,8,Resident,English,Renter,Community School D,mental_health
+SYN-0016,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,6,Parent,English,Renter,Community School B,transportation
+SYN-0017,"After attending multiple hearings, I am increasingly concerned. Why was the accessibility plan not included with the proposal?",2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0018,"After attending multiple hearings, I am increasingly concerned. Who is responsible for answering questions submitted at the hearing?",2026-09-12,6,Parent,English,Owner,Community School B,communication
+SYN-0019,Class sizes are too large and students need more classroom materials.,2026-09-12,6,Resident,English,Renter,Community School A,classroom_resources
+SYN-0020,Will families be included when the new safety procedures are reviewed?,2026-09-02,7,Parent,Spanish,Owner,Community School A,school_safety
+SYN-0021,How many additional clinicians will this proposal place in schools?,2026-09-07,8,Resident,English,Renter,Community School B,mental_health
+SYN-0022,Long travel times are making after-school participation difficult.,2026-09-12,8,Parent,English,Owner,Community School D,transportation
+SYN-0023,"After attending multiple hearings, I am increasingly concerned. Families need interpretation and disability accommodations at every meeting. I live at 123 Learning Street, Apt 24A.",2026-09-12,10,Parent,Spanish,Renter,Community School B,accessibility
+SYN-0024,Regular multilingual updates would make this process easier to follow.,2026-09-07,10,Resident,English,Owner,Community School D,communication
+SYN-0025,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable?",2026-09-12,8,Community organizer,Spanish,Renter,Community School A,classroom_resources
+SYN-0026,"After attending multiple hearings, I am increasingly concerned. Will families be included when the new safety procedures are reviewed? I live at 126 Public Square Road, Apt 27B.",2026-09-12,8,Resident,Spanish,Renter,Community School D,school_safety
+SYN-0027,The district should fund trauma-informed services throughout the year.,2026-09-02,20,Parent,English,Renter,Community School A,mental_health
+SYN-0028,Will the district publish route performance and missed-pickup data?,2026-09-07,10,Student,English,Other,Community School A,transportation
+SYN-0029,Why was the accessibility plan not included with the proposal? Contact Taylor Parker at sample.person29@example.org or 312-555-1029.,2026-09-02,8,Parent,English,Renter,Community School A,accessibility
+SYN-0030,"Regular multilingual updates would make this process easier to follow. I live at 130 Community Avenue, Apt 1A.",2026-09-07,10,Parent,English,Owner,Community School A,communication
+SYN-0031,Class sizes are too large and students need more classroom materials.,2026-09-12,8,Teacher,English,Renter,Community School A,classroom_resources
+SYN-0032,Students need a safer arrival plan and trained staff at dismissal. Contact Morgan Quinn at sample.person32@example.org or 312-555-1032.,2026-09-07,8,Resident,English,Renter,Community School C,school_safety
+SYN-0033,The district should fund trauma-informed services throughout the year.,2026-09-02,5,Parent,English,Renter,Community School D,mental_health
+SYN-0034,Long travel times are making after-school participation difficult.,2026-09-07,7,Parent,English,Renter,Community School B,transportation
+SYN-0035,Why was the accessibility plan not included with the proposal?,2026-09-12,7,Parent,English,Renter,Community School A,accessibility
+SYN-0036,Regular multilingual updates would make this process easier to follow.,2026-09-02,8,Resident,Spanish,Renter,Community School B,communication
+SYN-0037,The proposal should add counselors instead of cutting school staff.,2026-09-07,6,Parent,English,Renter,Community School D,classroom_resources
+SYN-0038,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,10,Resident,Spanish,Owner,Community School C,school_safety
+SYN-0039,How many additional clinicians will this proposal place in schools?,2026-09-12,10,Teacher,English,Other,Community School C,mental_health
+SYN-0040,"Families need clear transportation updates before routes change. I live at 140 Community Avenue, Apt 11C.",2026-09-12,8,Teacher,English,Renter,Community School D,transportation
+SYN-0041,Families need interpretation and disability accommodations at every meeting.,2026-09-02,7,Parent,Mandarin,Renter,Community School C,accessibility
+SYN-0042,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,20,Parent,English,Renter,Community School B,communication
+SYN-0043,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,8,Resident,English,Renter,Community School A,classroom_resources
+SYN-0044,Will families be included when the new safety procedures are reviewed?,2026-09-07,6,Student,English,Renter,Community School D,school_safety
+SYN-0045,Students are waiting too long for mental-health support. Contact Taylor Brooks at sample.person45@example.org or 312-555-1045.,2026-09-07,6,Resident,English,Owner,Community School D,mental_health
+SYN-0046,The current bus schedule causes students to arrive late.,2026-09-02,8,Resident,English,Other,Community School A,transportation
+SYN-0047,Families need interpretation and disability accommodations at every meeting.,2026-09-07,8,Community organizer,English,Renter,Community School A,accessibility
+SYN-0048,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,10,Parent,English,Owner,Community School A,communication
+SYN-0049,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,8,Parent,English,Renter,Community School C,classroom_resources
+SYN-0050,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,8,Teacher,English,Renter,Community School C,school_safety
+SYN-0051,"How many additional clinicians will this proposal place in schools? I live at 151 Public Square Road, Apt 22A.",2026-09-02,10,Parent,English,Owner,Community School A,mental_health
+SYN-0052,The current bus schedule causes students to arrive late.,2026-09-02,20,Student,English,Other,Community School D,transportation
+SYN-0053,Families need interpretation and disability accommodations at every meeting.,2026-09-12,20,Student,English,Renter,Community School D,accessibility
+SYN-0054,Regular multilingual updates would make this process easier to follow.,2026-09-07,5,Parent,English,Renter,Community School B,communication
+SYN-0055,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,10,Parent,Spanish,Renter,Community School C,classroom_resources
+SYN-0056,"After attending multiple hearings, I am increasingly concerned. Students need a safer arrival plan and trained staff at dismissal.",2026-09-12,10,Teacher,English,Renter,Community School D,school_safety
+SYN-0057,How many additional clinicians will this proposal place in schools?,2026-09-07,7,Parent,English,Renter,Community School B,mental_health
+SYN-0058,The current bus schedule causes students to arrive late.,2026-09-02,8,Student,English,Renter,Community School B,transportation
+SYN-0059,Why was the accessibility plan not included with the proposal?,2026-09-02,8,Parent,English,Owner,Community School C,accessibility
+SYN-0060,Regular multilingual updates would make this process easier to follow. Contact Avery Reed at sample.person60@example.org or 312-555-1060.,2026-09-02,6,Parent,English,Owner,Community School C,communication
+SYN-0061,Why are classroom positions being reduced when enrollment is stable?,2026-09-12,8,Parent,English,Owner,Community School D,classroom_resources
+SYN-0062,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,7,Parent,English,Owner,Community School B,school_safety
+SYN-0063,How many additional clinicians will this proposal place in schools?,2026-09-12,10,Parent,English,Renter,Community School C,mental_health
+SYN-0064,Long travel times are making after-school participation difficult.,2026-09-12,10,Parent,English,Renter,Community School D,transportation
+SYN-0065,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,8,Parent,English,Renter,Community School C,accessibility
+SYN-0066,Who is responsible for answering questions submitted at the hearing?,2026-09-12,10,Student,English,Renter,Community School B,communication
+SYN-0067,"The proposal should add counselors instead of cutting school staff. I live at 167 Learning Street, Apt 8B.",2026-09-07,8,Parent,English,Owner,Community School B,classroom_resources
+SYN-0068,Please explain how the safety budget will be used at each school.,2026-09-02,7,Parent,English,Owner,Community School C,school_safety
+SYN-0069,How many additional clinicians will this proposal place in schools?,2026-09-02,10,Parent,English,Owner,Community School A,mental_health
+SYN-0070,The current bus schedule causes students to arrive late.,2026-09-02,6,Parent,English,Renter,Community School D,transportation
+SYN-0071,Meeting materials should be accessible before the public hearing.,2026-09-12,6,Student,English,Owner,Community School C,accessibility
+SYN-0072,"After attending multiple hearings, I am increasingly concerned. Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,8,Parent,English,Renter,Community School B,communication
+SYN-0073,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials. I live at 173 Civic Way, Apt 14C.",2026-09-12,6,Parent,English,Renter,Community School A,classroom_resources
+SYN-0074,"After attending multiple hearings, I am increasingly concerned. Broken exterior lighting has been reported repeatedly without a response.",2026-09-12,5,Teacher,English,Renter,Community School A,school_safety
+SYN-0075,How many additional clinicians will this proposal place in schools?,2026-09-02,8,Teacher,English,Renter,Community School A,mental_health
+SYN-0076,Long travel times are making after-school participation difficult.,2026-09-07,8,Parent,English,Other,Community School D,transportation
+SYN-0077,The online form must work with keyboards and screen readers.,2026-09-07,10,Resident,English,Owner,Community School B,accessibility
+SYN-0078,Families received the notice too late to prepare meaningful comments.,2026-09-07,8,Parent,English,Renter,Community School D,communication
+SYN-0079,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0080,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,8,Parent,English,Renter,Community School B,school_safety
+SYN-0081,How many additional clinicians will this proposal place in schools?,2026-09-12,7,Parent,English,Renter,Community School C,mental_health
+SYN-0082,Will the district publish route performance and missed-pickup data?,2026-09-07,7,Community organizer,Polish,Renter,Community School A,transportation
+SYN-0083,Why was the accessibility plan not included with the proposal?,2026-09-07,6,Parent,English,Renter,Community School B,accessibility
+SYN-0084,Regular multilingual updates would make this process easier to follow.,2026-09-12,5,Community organizer,English,Renter,Community School B,communication
+SYN-0085,The proposal should add counselors instead of cutting school staff.,2026-09-02,7,Parent,Spanish,Renter,Community School C,classroom_resources
+SYN-0086,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,8,Resident,English,Renter,Community School A,school_safety
+SYN-0087,Students are waiting too long for mental-health support.,2026-09-12,10,Parent,Spanish,Renter,Community School B,mental_health
+SYN-0088,Families need clear transportation updates before routes change.,2026-09-02,8,Parent,English,Owner,Community School A,transportation
+SYN-0089,Why was the accessibility plan not included with the proposal?,2026-09-12,10,Parent,English,Renter,Community School C,accessibility
+SYN-0090,"Regular multilingual updates would make this process easier to follow. I live at 190 Public Square Road, Apt 1B.",2026-09-07,8,Resident,English,Owner,Community School C,communication
+SYN-0091,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,7,Parent,English,Renter,Community School B,classroom_resources
+SYN-0092,Will families be included when the new safety procedures are reviewed?,2026-09-07,7,Parent,Spanish,Owner,Community School B,school_safety
+SYN-0093,How many additional clinicians will this proposal place in schools?,2026-09-12,7,Parent,English,Other,Community School A,mental_health
+SYN-0094,Families need clear transportation updates before routes change.,2026-09-12,10,Parent,English,Renter,Community School C,transportation
+SYN-0095,Why was the accessibility plan not included with the proposal?,2026-09-02,10,Parent,English,Owner,Community School C,accessibility
+SYN-0096,Families received the notice too late to prepare meaningful comments.,2026-09-07,10,Teacher,English,Owner,Community School A,communication
+SYN-0097,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,7,Teacher,Polish,Owner,Community School A,classroom_resources
+SYN-0098,Will families be included when the new safety procedures are reviewed?,2026-09-02,8,Parent,Spanish,Renter,Community School C,school_safety
+SYN-0099,Every school needs reliable access to social workers and counselors. Contact Jordan Hayes at sample.person99@example.org or 312-555-1099.,2026-09-02,6,Parent,English,Renter,Community School B,mental_health
+SYN-0100,"Families need clear transportation updates before routes change. I live at 200 Civic Way, Apt 11C.",2026-09-12,6,Teacher,English,Renter,Community School B,transportation
+SYN-0101,Why was the accessibility plan not included with the proposal?,2026-09-07,8,Resident,English,Renter,Community School C,accessibility
+SYN-0102,Families received the notice too late to prepare meaningful comments.,2026-09-02,7,Resident,English,Renter,Community School D,communication
+SYN-0103,Class sizes are too large and students need more classroom materials.,2026-09-02,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0104,Will families be included when the new safety procedures are reviewed?,2026-09-07,6,Parent,English,Renter,Community School C,school_safety
+SYN-0105,Students are waiting too long for mental-health support. Contact Avery Reed at sample.person105@example.org or 312-555-1105.,2026-09-12,5,Parent,English,Renter,Community School D,mental_health
+SYN-0106,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,10,Teacher,English,Renter,Community School A,transportation
+SYN-0107,"After attending multiple hearings, I am increasingly concerned. Families need interpretation and disability accommodations at every meeting.",2026-09-12,10,Parent,English,Other,Community School B,accessibility
+SYN-0108,Families received the notice too late to prepare meaningful comments.,2026-09-12,5,Community organizer,English,Owner,Community School B,communication
+SYN-0109,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Resident,English,Other,Community School D,classroom_resources
+SYN-0110,Will families be included when the new safety procedures are reviewed?,2026-09-02,8,Parent,English,Renter,Community School C,school_safety
+SYN-0111,The district should fund trauma-informed services throughout the year.,2026-09-12,10,Parent,English,Renter,Community School C,mental_health
+SYN-0112,"Families need clear transportation updates before routes change. I live at 212 Learning Street, Apt 23B.",2026-09-02,8,Parent,English,Renter,Community School A,transportation
+SYN-0113,Why was the accessibility plan not included with the proposal?,2026-09-02,5,Parent,English,Owner,Community School B,accessibility
+SYN-0114,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,7,Community organizer,Mandarin,Renter,Community School C,communication
+SYN-0115,Class sizes are too large and students need more classroom materials.,2026-09-02,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0116,"Please explain how the safety budget will be used at each school. I live at 216 Community Avenue, Apt 27A.",2026-09-07,7,Teacher,English,Renter,Community School B,school_safety
+SYN-0117,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,6,Parent,English,Renter,Community School B,mental_health
+SYN-0118,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,10,Parent,English,Owner,Community School D,transportation
+SYN-0119,Why was the accessibility plan not included with the proposal?,2026-09-02,6,Parent,English,Renter,Community School A,accessibility
+SYN-0120,Regular multilingual updates would make this process easier to follow.,2026-09-07,7,Parent,English,Renter,Community School D,communication
+SYN-0121,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Parent,English,Renter,Community School D,classroom_resources
+SYN-0122,Will families be included when the new safety procedures are reviewed?,2026-09-12,10,Community organizer,Mandarin,Owner,Community School A,school_safety
+SYN-0123,"Every school needs reliable access to social workers and counselors. I live at 223 Community Avenue, Apt 4B.",2026-09-07,6,Parent,Spanish,Owner,Community School D,mental_health
+SYN-0124,"After attending multiple hearings, I am increasingly concerned. Will the district publish route performance and missed-pickup data?",2026-09-12,10,Teacher,English,Owner,Community School B,transportation
+SYN-0125,Families need interpretation and disability accommodations at every meeting.,2026-09-02,20,Parent,Spanish,Renter,Community School C,accessibility
+SYN-0126,Who is responsible for answering questions submitted at the hearing?,2026-09-07,8,Teacher,English,Other,Community School B,communication
+SYN-0127,Class sizes are too large and students need more classroom materials.,2026-09-07,7,Resident,English,Renter,Community School C,classroom_resources
+SYN-0128,Please explain how the safety budget will be used at each school.,2026-09-07,6,Parent,English,Owner,Community School A,school_safety
+SYN-0129,Every school needs reliable access to social workers and counselors.,2026-09-07,8,Community organizer,English,Renter,Community School A,mental_health
+SYN-0130,Long travel times are making after-school participation difficult.,2026-09-07,8,Resident,English,Renter,Community School A,transportation
+SYN-0131,The online form must work with keyboards and screen readers.,2026-09-12,10,Parent,English,Owner,Community School B,accessibility
+SYN-0132,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow. I live at 232 Civic Way, Apt 13B.",2026-09-12,20,Parent,English,Renter,Community School C,communication
+SYN-0133,Class sizes are too large and students need more classroom materials.,2026-09-02,8,Parent,Mandarin,Renter,Community School C,classroom_resources
+SYN-0134,"Students need a safer arrival plan and trained staff at dismissal. I live at 234 Civic Way, Apt 15A.",2026-09-02,8,Resident,English,Owner,Community School C,school_safety
+SYN-0135,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors. Contact Avery Parker at sample.person135@example.org or 312-555-1135.",2026-09-12,7,Resident,English,Renter,Community School C,mental_health
+SYN-0136,The current bus schedule causes students to arrive late.,2026-09-02,20,Teacher,English,Renter,Community School C,transportation
+SYN-0137,Why was the accessibility plan not included with the proposal?,2026-09-12,6,Parent,English,Renter,Community School A,accessibility
+SYN-0138,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,8,Parent,English,Owner,Community School D,communication
+SYN-0139,Class sizes are too large and students need more classroom materials.,2026-09-12,5,Parent,English,Owner,Community School C,classroom_resources
+SYN-0140,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,20,Parent,English,Renter,Community School B,school_safety
+SYN-0141,The district should fund trauma-informed services throughout the year.,2026-09-07,10,Resident,English,Owner,Community School B,mental_health
+SYN-0142,Long travel times are making after-school participation difficult.,2026-09-07,8,Parent,English,Renter,Community School C,transportation
+SYN-0143,Families need interpretation and disability accommodations at every meeting.,2026-09-07,20,Parent,Mandarin,Renter,Community School A,accessibility
+SYN-0144,Families received the notice too late to prepare meaningful comments.,2026-09-07,10,Teacher,English,Renter,Community School C,communication
+SYN-0145,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,7,Community organizer,English,Renter,Community School A,classroom_resources
+SYN-0146,"After attending multiple hearings, I am increasingly concerned. Broken exterior lighting has been reported repeatedly without a response.",2026-09-12,8,Resident,Spanish,Owner,Community School D,school_safety
+SYN-0147,How many additional clinicians will this proposal place in schools?,2026-09-07,10,Parent,Spanish,Renter,Community School A,mental_health
+SYN-0148,Will the district publish route performance and missed-pickup data?,2026-09-07,20,Teacher,English,Renter,Community School D,transportation
+SYN-0149,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0150,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,6,Parent,English,Renter,Community School C,communication
+SYN-0151,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials.",2026-09-12,20,Student,English,Renter,Community School D,classroom_resources
+SYN-0152,"After attending multiple hearings, I am increasingly concerned. Broken exterior lighting has been reported repeatedly without a response. I live at 252 Learning Street, Apt 3C.",2026-09-12,10,Parent,Spanish,Other,Community School D,school_safety
+SYN-0153,How many additional clinicians will this proposal place in schools? Contact Jordan Hayes at sample.person153@example.org or 312-555-1153.,2026-09-12,6,Resident,English,Renter,Community School C,mental_health
+SYN-0154,Long travel times are making after-school participation difficult.,2026-09-02,8,Resident,English,Renter,Community School C,transportation
+SYN-0155,Why was the accessibility plan not included with the proposal?,2026-09-02,20,Parent,English,Renter,Community School B,accessibility
+SYN-0156,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Parent,English,Renter,Community School D,communication
+SYN-0157,Class sizes are too large and students need more classroom materials.,2026-09-12,6,Parent,English,Renter,Community School A,classroom_resources
+SYN-0158,"After attending multiple hearings, I am increasingly concerned. Students need a safer arrival plan and trained staff at dismissal.",2026-09-12,8,Resident,English,Owner,Community School C,school_safety
+SYN-0159,Every school needs reliable access to social workers and counselors.,2026-09-02,6,Teacher,English,Renter,Community School D,mental_health
+SYN-0160,Long travel times are making after-school participation difficult.,2026-09-07,5,Parent,English,Owner,Community School D,transportation
+SYN-0161,"Families need interpretation and disability accommodations at every meeting. I live at 261 Civic Way, Apt 12B.",2026-09-12,8,Resident,English,Renter,Community School D,accessibility
+SYN-0162,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,10,Parent,Spanish,Renter,Community School A,communication
+SYN-0163,Class sizes are too large and students need more classroom materials.,2026-09-07,6,Resident,English,Renter,Community School B,classroom_resources
+SYN-0164,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,5,Parent,English,Other,Community School D,school_safety
+SYN-0165,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,10,Parent,English,Owner,Community School A,mental_health
+SYN-0166,Will the district publish route performance and missed-pickup data?,2026-09-02,10,Resident,Spanish,Renter,Community School C,transportation
+SYN-0167,Why was the accessibility plan not included with the proposal?,2026-09-02,6,Teacher,English,Owner,Community School B,accessibility
+SYN-0168,Regular multilingual updates would make this process easier to follow.,2026-09-07,20,Parent,English,Owner,Community School A,communication
+SYN-0169,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0170,"Broken exterior lighting has been reported repeatedly without a response. I live at 270 Public Square Road, Apt 21C.",2026-09-07,5,Student,Mandarin,Owner,Community School D,school_safety
+SYN-0171,"Students are waiting too long for mental-health support. I live at 271 Public Square Road, Apt 22A.",2026-09-12,20,Parent,English,Renter,Community School A,mental_health
+SYN-0172,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Parent,English,Owner,Community School C,transportation
+SYN-0173,Families need interpretation and disability accommodations at every meeting.,2026-09-02,8,Parent,Spanish,Other,Community School B,accessibility
+SYN-0174,Who is responsible for answering questions submitted at the hearing?,2026-09-07,8,Parent,English,Other,Community School D,communication
+SYN-0175,The proposal should add counselors instead of cutting school staff.,2026-09-12,8,Teacher,English,Other,Community School A,classroom_resources
+SYN-0176,Please explain how the safety budget will be used at each school.,2026-09-12,7,Parent,English,Renter,Community School B,school_safety
+SYN-0177,"The district should fund trauma-informed services throughout the year. I live at 277 Public Square Road, Apt 28C.",2026-09-07,10,Teacher,English,Renter,Community School C,mental_health
+SYN-0178,Long travel times are making after-school participation difficult.,2026-09-07,7,Community organizer,English,Owner,Community School D,transportation
+SYN-0179,Meeting materials should be accessible before the public hearing.,2026-09-07,20,Student,English,Renter,Community School B,accessibility
+SYN-0180,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow.",2026-09-12,10,Parent,English,Renter,Community School D,communication
+SYN-0181,The proposal should add counselors instead of cutting school staff.,2026-09-02,6,Parent,English,Renter,Community School C,classroom_resources
+SYN-0182,Will families be included when the new safety procedures are reviewed?,2026-09-02,10,Resident,Polish,Renter,Community School C,school_safety
+SYN-0183,The district should fund trauma-informed services throughout the year. Contact Riley Quinn at sample.person183@example.org or 312-555-1183.,2026-09-12,10,Parent,English,Renter,Community School B,mental_health
+SYN-0184,The current bus schedule causes students to arrive late.,2026-09-02,8,Parent,English,Renter,Community School A,transportation
+SYN-0185,Meeting materials should be accessible before the public hearing.,2026-09-02,7,Teacher,English,Renter,Community School D,accessibility
+SYN-0186,"After attending multiple hearings, I am increasingly concerned. Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,8,Resident,English,Owner,Community School A,communication
+SYN-0187,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,20,Teacher,English,Renter,Community School D,classroom_resources
+SYN-0188,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,5,Parent,English,Owner,Community School A,school_safety
+SYN-0189,Every school needs reliable access to social workers and counselors.,2026-09-12,8,Parent,English,Renter,Community School C,mental_health
+SYN-0190,The current bus schedule causes students to arrive late.,2026-09-07,6,Parent,English,Renter,Community School C,transportation
+SYN-0191,Families need interpretation and disability accommodations at every meeting.,2026-09-12,5,Parent,English,Other,Community School C,accessibility
+SYN-0192,"Please publish decisions, supporting data, and meeting dates in one place. I live at 292 Learning Street, Apt 13B.",2026-09-02,7,Parent,Spanish,Renter,Community School A,communication
+SYN-0193,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,10,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0194,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,7,Parent,English,Renter,Community School A,school_safety
+SYN-0195,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,20,Resident,English,Renter,Community School B,mental_health
+SYN-0196,"Long travel times are making after-school participation difficult. I live at 296 Civic Way, Apt 17A.",2026-09-02,5,Student,Polish,Renter,Community School A,transportation
+SYN-0197,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0198,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,10,Teacher,English,Renter,Community School B,communication
+SYN-0199,The proposal should add counselors instead of cutting school staff.,2026-09-07,5,Teacher,English,Renter,Community School A,classroom_resources
+SYN-0200,Will families be included when the new safety procedures are reviewed?,2026-09-02,6,Parent,Spanish,Other,Community School B,school_safety
+SYN-0201,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,20,Parent,English,Owner,Community School A,mental_health
+SYN-0202,Will the district publish route performance and missed-pickup data?,2026-09-07,8,Teacher,English,Renter,Community School A,transportation
+SYN-0203,Meeting materials should be accessible before the public hearing. Contact Riley Parker at sample.person203@example.org or 312-555-1203.,2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0204,Families received the notice too late to prepare meaningful comments.,2026-09-02,6,Teacher,English,Renter,Community School D,communication
+SYN-0205,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0206,"After attending multiple hearings, I am increasingly concerned. Will families be included when the new safety procedures are reviewed? Contact Riley Lane at sample.person206@example.org or 312-555-1206.",2026-09-12,8,Teacher,English,Renter,Community School A,school_safety
+SYN-0207,Every school needs reliable access to social workers and counselors.,2026-09-02,20,Community organizer,English,Owner,Community School C,mental_health
+SYN-0208,Will the district publish route performance and missed-pickup data?,2026-09-12,5,Parent,English,Owner,Community School C,transportation
+SYN-0209,The online form must work with keyboards and screen readers.,2026-09-07,20,Resident,English,Renter,Community School A,accessibility
+SYN-0210,Who is responsible for answering questions submitted at the hearing?,2026-09-12,8,Resident,English,Renter,Community School B,communication
+SYN-0211,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,6,Parent,English,Renter,Community School D,classroom_resources
+SYN-0212,"After attending multiple hearings, I am increasingly concerned. Broken exterior lighting has been reported repeatedly without a response.",2026-09-12,6,Parent,English,Renter,Community School B,school_safety
+SYN-0213,Every school needs reliable access to social workers and counselors.,2026-09-02,7,Resident,English,Owner,Community School A,mental_health
+SYN-0214,"After attending multiple hearings, I am increasingly concerned. Will the district publish route performance and missed-pickup data?",2026-09-12,8,Teacher,English,Renter,Community School A,transportation
+SYN-0215,The online form must work with keyboards and screen readers.,2026-09-12,5,Resident,English,Renter,Community School B,accessibility
+SYN-0216,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,8,Parent,English,Renter,Community School C,communication
+SYN-0217,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,6,Resident,English,Renter,Community School B,classroom_resources
+SYN-0218,Please explain how the safety budget will be used at each school.,2026-09-12,10,Parent,English,Renter,Community School A,school_safety
+SYN-0219,Students are waiting too long for mental-health support.,2026-09-12,8,Parent,English,Other,Community School A,mental_health
+SYN-0220,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,5,Student,English,Owner,Community School A,transportation
+SYN-0221,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing. I live at 321 Community Avenue, Apt 12B.",2026-09-12,8,Teacher,English,Renter,Community School D,accessibility
+SYN-0222,Families received the notice too late to prepare meaningful comments.,2026-09-07,20,Parent,English,Renter,Community School A,communication
+SYN-0223,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials. Contact Riley Hayes at sample.person223@example.org or 312-555-1223.",2026-09-12,10,Parent,English,Renter,Community School D,classroom_resources
+SYN-0224,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,7,Parent,Spanish,Renter,Community School C,school_safety
+SYN-0225,Every school needs reliable access to social workers and counselors.,2026-09-02,7,Resident,English,Owner,Community School C,mental_health
+SYN-0226,The current bus schedule causes students to arrive late.,2026-09-02,8,Parent,Mandarin,Renter,Community School D,transportation
+SYN-0227,Why was the accessibility plan not included with the proposal?,2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0228,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,7,Resident,English,Renter,Community School C,communication
+SYN-0229,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,5,Parent,English,Renter,Community School C,classroom_resources
+SYN-0230,"After attending multiple hearings, I am increasingly concerned. Broken exterior lighting has been reported repeatedly without a response.",2026-09-12,10,Community organizer,English,Renter,Community School A,school_safety
+SYN-0231,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,7,Parent,English,Owner,Community School D,mental_health
+SYN-0232,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Teacher,English,Renter,Community School B,transportation
+SYN-0233,Why was the accessibility plan not included with the proposal?,2026-09-12,8,Parent,English,Owner,Community School D,accessibility
+SYN-0234,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,20,Resident,English,Renter,Community School B,communication
+SYN-0235,The proposal should add counselors instead of cutting school staff.,2026-09-02,10,Parent,Spanish,Renter,Community School B,classroom_resources
+SYN-0236,"Students need a safer arrival plan and trained staff at dismissal. I live at 336 Learning Street, Apt 27A.",2026-09-07,8,Resident,English,Owner,Community School B,school_safety
+SYN-0237,Students are waiting too long for mental-health support.,2026-09-12,8,Parent,English,Renter,Community School A,mental_health
+SYN-0238,Long travel times are making after-school participation difficult.,2026-09-07,20,Parent,English,Other,Community School D,transportation
+SYN-0239,"After attending multiple hearings, I am increasingly concerned. Why was the accessibility plan not included with the proposal?",2026-09-12,20,Parent,English,Renter,Community School A,accessibility
+SYN-0240,Who is responsible for answering questions submitted at the hearing?,2026-09-12,5,Parent,Polish,Renter,Community School A,communication
+SYN-0241,The proposal should add counselors instead of cutting school staff.,2026-09-02,6,Parent,English,Owner,Community School D,classroom_resources
+SYN-0242,Will families be included when the new safety procedures are reviewed?,2026-09-07,7,Teacher,English,Renter,Community School B,school_safety
+SYN-0243,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,7,Parent,English,Owner,Community School A,mental_health
+SYN-0244,Will the district publish route performance and missed-pickup data?,2026-09-12,8,Resident,English,Renter,Community School B,transportation
+SYN-0245,The online form must work with keyboards and screen readers.,2026-09-12,10,Resident,Polish,Owner,Community School A,accessibility
+SYN-0246,"After attending multiple hearings, I am increasingly concerned. Who is responsible for answering questions submitted at the hearing?",2026-09-12,8,Resident,English,Renter,Community School D,communication
+SYN-0247,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,10,Parent,Polish,Renter,Community School D,classroom_resources
+SYN-0248,Will families be included when the new safety procedures are reviewed?,2026-09-12,10,Parent,English,Renter,Community School B,school_safety
+SYN-0249,Every school needs reliable access to social workers and counselors.,2026-09-12,8,Parent,Spanish,Renter,Community School D,mental_health
+SYN-0250,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Student,English,Renter,Community School D,transportation
+SYN-0251,Families need interpretation and disability accommodations at every meeting.,2026-09-07,10,Student,English,Renter,Community School C,accessibility
+SYN-0252,Regular multilingual updates would make this process easier to follow.,2026-09-12,7,Teacher,English,Renter,Community School C,communication
+SYN-0253,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable?",2026-09-12,6,Teacher,Spanish,Renter,Community School D,classroom_resources
+SYN-0254,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,8,Teacher,English,Owner,Community School B,school_safety
+SYN-0255,Students are waiting too long for mental-health support. Contact Morgan Parker at sample.person255@example.org or 312-555-1255.,2026-09-02,7,Resident,English,Renter,Community School C,mental_health
+SYN-0256,Families need clear transportation updates before routes change.,2026-09-07,8,Resident,Spanish,Owner,Community School B,transportation
+SYN-0257,The online form must work with keyboards and screen readers.,2026-09-12,6,Parent,English,Renter,Community School C,accessibility
+SYN-0258,"Please publish decisions, supporting data, and meeting dates in one place. I live at 358 Civic Way, Apt 19B.",2026-09-07,20,Parent,English,Owner,Community School C,communication
+SYN-0259,Class sizes are too large and students need more classroom materials.,2026-09-02,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0260,Will families be included when the new safety procedures are reviewed?,2026-09-07,8,Parent,Mandarin,Other,Community School B,school_safety
+SYN-0261,How many additional clinicians will this proposal place in schools?,2026-09-07,6,Parent,Spanish,Renter,Community School D,mental_health
+SYN-0262,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,20,Student,English,Owner,Community School D,transportation
+SYN-0263,Meeting materials should be accessible before the public hearing.,2026-09-12,7,Parent,Spanish,Renter,Community School D,accessibility
+SYN-0264,Families received the notice too late to prepare meaningful comments.,2026-09-02,6,Teacher,English,Renter,Community School A,communication
+SYN-0265,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,6,Resident,English,Other,Community School B,classroom_resources
+SYN-0266,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,8,Parent,English,Renter,Community School A,school_safety
+SYN-0267,Students are waiting too long for mental-health support.,2026-09-12,20,Parent,English,Owner,Community School C,mental_health
+SYN-0268,Will the district publish route performance and missed-pickup data?,2026-09-07,8,Parent,English,Renter,Community School B,transportation
+SYN-0269,Families need interpretation and disability accommodations at every meeting.,2026-09-02,8,Parent,English,Renter,Community School A,accessibility
+SYN-0270,Regular multilingual updates would make this process easier to follow.,2026-09-02,20,Community organizer,English,Other,Community School B,communication
+SYN-0271,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Resident,Spanish,Renter,Community School D,classroom_resources
+SYN-0272,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,6,Parent,English,Other,Community School B,school_safety
+SYN-0273,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,20,Parent,English,Other,Community School D,mental_health
+SYN-0274,Will the district publish route performance and missed-pickup data?,2026-09-12,7,Parent,English,Renter,Community School A,transportation
+SYN-0275,Families need interpretation and disability accommodations at every meeting.,2026-09-07,7,Parent,Mandarin,Owner,Community School C,accessibility
+SYN-0276,Who is responsible for answering questions submitted at the hearing?,2026-09-12,8,Parent,English,Owner,Community School C,communication
+SYN-0277,The proposal should add counselors instead of cutting school staff.,2026-09-02,10,Parent,English,Owner,Community School C,classroom_resources
+SYN-0278,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,10,Parent,English,Renter,Community School B,school_safety
+SYN-0279,The district should fund trauma-informed services throughout the year.,2026-09-02,8,Parent,Mandarin,Renter,Community School C,mental_health
+SYN-0280,The current bus schedule causes students to arrive late.,2026-09-12,8,Parent,English,Owner,Community School D,transportation
+SYN-0281,Why was the accessibility plan not included with the proposal?,2026-09-07,7,Teacher,English,Renter,Community School C,accessibility
+SYN-0282,Families received the notice too late to prepare meaningful comments.,2026-09-02,10,Resident,English,Renter,Community School D,communication
+SYN-0283,Class sizes are too large and students need more classroom materials.,2026-09-02,7,Resident,English,Renter,Community School A,classroom_resources
+SYN-0284,Will families be included when the new safety procedures are reviewed?,2026-09-02,7,Parent,English,Renter,Community School A,school_safety
+SYN-0285,How many additional clinicians will this proposal place in schools?,2026-09-07,5,Resident,English,Owner,Community School C,mental_health
+SYN-0286,"Families need clear transportation updates before routes change. I live at 386 Civic Way, Apt 17A.",2026-09-02,7,Student,Mandarin,Owner,Community School C,transportation
+SYN-0287,Meeting materials should be accessible before the public hearing. Contact Taylor Hayes at sample.person287@example.org or 312-555-1287.,2026-09-07,8,Teacher,English,Renter,Community School A,accessibility
+SYN-0288,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Teacher,English,Renter,Community School C,communication
+SYN-0289,"The proposal should add counselors instead of cutting school staff. I live at 389 Learning Street, Apt 20A.",2026-09-07,8,Student,English,Renter,Community School D,classroom_resources
+SYN-0290,Please explain how the safety budget will be used at each school.,2026-09-07,20,Resident,Mandarin,Renter,Community School B,school_safety
+SYN-0291,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,7,Resident,Mandarin,Owner,Community School A,mental_health
+SYN-0292,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Parent,English,Renter,Community School D,transportation
+SYN-0293,Why was the accessibility plan not included with the proposal? Contact Morgan Parker at sample.person293@example.org or 312-555-1293.,2026-09-07,10,Parent,English,Renter,Community School D,accessibility
+SYN-0294,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow.",2026-09-12,10,Parent,English,Renter,Community School A,communication
+SYN-0295,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable?",2026-09-12,7,Parent,English,Owner,Community School A,classroom_resources
+SYN-0296,Please explain how the safety budget will be used at each school.,2026-09-12,10,Parent,English,Renter,Community School D,school_safety
+SYN-0297,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,10,Teacher,English,Renter,Community School B,mental_health
+SYN-0298,Families need clear transportation updates before routes change.,2026-09-07,20,Student,English,Renter,Community School C,transportation
+SYN-0299,Why was the accessibility plan not included with the proposal?,2026-09-07,8,Parent,English,Renter,Community School D,accessibility
+SYN-0300,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow.",2026-09-12,20,Resident,Mandarin,Renter,Community School D,communication
+SYN-0301,Why are classroom positions being reduced when enrollment is stable?,2026-09-12,10,Resident,English,Owner,Community School C,classroom_resources
+SYN-0302,Will families be included when the new safety procedures are reviewed?,2026-09-02,10,Resident,English,Renter,Community School B,school_safety
+SYN-0303,Every school needs reliable access to social workers and counselors.,2026-09-02,8,Parent,English,Owner,Community School D,mental_health
+SYN-0304,Will the district publish route performance and missed-pickup data?,2026-09-07,20,Parent,English,Owner,Community School B,transportation
+SYN-0305,"Families need interpretation and disability accommodations at every meeting. I live at 405 Community Avenue, Apt 6B.",2026-09-07,10,Parent,English,Owner,Community School D,accessibility
+SYN-0306,Who is responsible for answering questions submitted at the hearing?,2026-09-02,7,Teacher,English,Renter,Community School D,communication
+SYN-0307,Class sizes are too large and students need more classroom materials.,2026-09-12,6,Parent,English,Owner,Community School A,classroom_resources
+SYN-0308,"After attending multiple hearings, I am increasingly concerned. Will families be included when the new safety procedures are reviewed?",2026-09-12,8,Parent,English,Renter,Community School C,school_safety
+SYN-0309,How many additional clinicians will this proposal place in schools? Contact Morgan Parker at sample.person309@example.org or 312-555-1309.,2026-09-07,10,Teacher,English,Renter,Community School B,mental_health
+SYN-0310,Will the district publish route performance and missed-pickup data?,2026-09-02,7,Resident,English,Renter,Community School A,transportation
+SYN-0311,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers. Contact Riley Hayes at sample.person311@example.org or 312-555-1311.",2026-09-12,10,Parent,English,Renter,Community School B,accessibility
+SYN-0312,Regular multilingual updates would make this process easier to follow.,2026-09-02,5,Teacher,English,Renter,Community School C,communication
+SYN-0313,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0314,Broken exterior lighting has been reported repeatedly without a response. Contact Taylor Quinn at sample.person314@example.org or 312-555-1314.,2026-09-12,10,Teacher,English,Renter,Community School A,school_safety
+SYN-0315,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,8,Parent,English,Renter,Community School D,mental_health
+SYN-0316,The current bus schedule causes students to arrive late.,2026-09-07,10,Teacher,English,Renter,Community School C,transportation
+SYN-0317,The online form must work with keyboards and screen readers.,2026-09-07,10,Parent,English,Renter,Community School B,accessibility
+SYN-0318,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,6,Parent,English,Renter,Community School C,communication
+SYN-0319,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0320,Please explain how the safety budget will be used at each school.,2026-09-07,7,Community organizer,English,Owner,Community School A,school_safety
+SYN-0321,Every school needs reliable access to social workers and counselors.,2026-09-12,10,Parent,English,Renter,Community School B,mental_health
+SYN-0322,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,10,Parent,Spanish,Renter,Community School A,transportation
+SYN-0323,Why was the accessibility plan not included with the proposal? Contact Riley Lane at sample.person323@example.org or 312-555-1323.,2026-09-07,8,Resident,English,Owner,Community School B,accessibility
+SYN-0324,Regular multilingual updates would make this process easier to follow.,2026-09-12,7,Teacher,English,Owner,Community School A,communication
+SYN-0325,The proposal should add counselors instead of cutting school staff.,2026-09-02,10,Student,English,Renter,Community School B,classroom_resources
+SYN-0326,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,6,Parent,English,Renter,Community School D,school_safety
+SYN-0327,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,5,Resident,English,Owner,Community School A,mental_health
+SYN-0328,The current bus schedule causes students to arrive late.,2026-09-07,10,Parent,English,Owner,Community School C,transportation
+SYN-0329,The online form must work with keyboards and screen readers.,2026-09-07,7,Parent,English,Renter,Community School B,accessibility
+SYN-0330,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow.",2026-09-12,6,Student,English,Renter,Community School B,communication
+SYN-0331,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,5,Teacher,English,Owner,Community School C,classroom_resources
+SYN-0332,Please explain how the safety budget will be used at each school.,2026-09-02,7,Parent,English,Renter,Community School C,school_safety
+SYN-0333,The district should fund trauma-informed services throughout the year.,2026-09-12,8,Teacher,English,Renter,Community School A,mental_health
+SYN-0334,"The current bus schedule causes students to arrive late. I live at 434 Public Square Road, Apt 5C.",2026-09-07,7,Parent,English,Renter,Community School A,transportation
+SYN-0335,"Why was the accessibility plan not included with the proposal? Contact Avery Reed at sample.person335@example.org or 312-555-1335. I live at 435 Community Avenue, Apt 6C.",2026-09-02,8,Resident,English,Renter,Community School A,accessibility
+SYN-0336,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,8,Parent,English,Renter,Community School C,communication
+SYN-0337,"Please protect funding for teachers, books, and after-school tutoring. I live at 437 Learning Street, Apt 8B.",2026-09-07,10,Teacher,English,Renter,Community School C,classroom_resources
+SYN-0338,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,10,Resident,English,Renter,Community School B,school_safety
+SYN-0339,The district should fund trauma-informed services throughout the year.,2026-09-02,7,Parent,English,Owner,Community School D,mental_health
+SYN-0340,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,6,Parent,English,Other,Community School C,transportation
+SYN-0341,Meeting materials should be accessible before the public hearing.,2026-09-07,5,Resident,English,Renter,Community School D,accessibility
+SYN-0342,Families received the notice too late to prepare meaningful comments.,2026-09-02,6,Parent,English,Renter,Community School A,communication
+SYN-0343,The proposal should add counselors instead of cutting school staff.,2026-09-07,6,Teacher,English,Other,Community School A,classroom_resources
+SYN-0344,Will families be included when the new safety procedures are reviewed?,2026-09-12,7,Parent,English,Owner,Community School D,school_safety
+SYN-0345,How many additional clinicians will this proposal place in schools?,2026-09-02,10,Student,English,Owner,Community School A,mental_health
+SYN-0346,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,10,Parent,English,Renter,Community School A,transportation
+SYN-0347,Families need interpretation and disability accommodations at every meeting.,2026-09-12,10,Community organizer,English,Renter,Community School A,accessibility
+SYN-0348,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow. Contact Morgan Hayes at sample.person348@example.org or 312-555-1348.",2026-09-12,20,Parent,English,Renter,Community School C,communication
+SYN-0349,"Please protect funding for teachers, books, and after-school tutoring. I live at 449 Community Avenue, Apt 20B.",2026-09-07,10,Resident,Mandarin,Owner,Community School C,classroom_resources
+SYN-0350,Please explain how the safety budget will be used at each school.,2026-09-07,8,Teacher,English,Renter,Community School D,school_safety
+SYN-0351,How many additional clinicians will this proposal place in schools?,2026-09-07,7,Resident,English,Renter,Community School C,mental_health
+SYN-0352,The current bus schedule causes students to arrive late.,2026-09-07,6,Parent,English,Owner,Community School C,transportation
+SYN-0353,"After attending multiple hearings, I am increasingly concerned. Families need interpretation and disability accommodations at every meeting.",2026-09-12,7,Student,Mandarin,Renter,Community School B,accessibility
+SYN-0354,Families received the notice too late to prepare meaningful comments.,2026-09-02,8,Resident,Polish,Renter,Community School B,communication
+SYN-0355,The proposal should add counselors instead of cutting school staff.,2026-09-07,7,Community organizer,English,Owner,Community School B,classroom_resources
+SYN-0356,"Will families be included when the new safety procedures are reviewed? I live at 456 Community Avenue, Apt 27C.",2026-09-02,10,Parent,English,Renter,Community School C,school_safety
+SYN-0357,Students are waiting too long for mental-health support.,2026-09-02,10,Resident,Mandarin,Owner,Community School A,mental_health
+SYN-0358,Will the district publish route performance and missed-pickup data?,2026-09-07,20,Parent,English,Renter,Community School B,transportation
+SYN-0359,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,7,Student,English,Renter,Community School A,accessibility
+SYN-0360,Families received the notice too late to prepare meaningful comments.,2026-09-12,10,Resident,English,Owner,Community School B,communication
+SYN-0361,Class sizes are too large and students need more classroom materials. Contact Avery Lane at sample.person361@example.org or 312-555-1361.,2026-09-02,6,Resident,English,Owner,Community School C,classroom_resources
+SYN-0362,Please explain how the safety budget will be used at each school.,2026-09-02,6,Student,English,Renter,Community School C,school_safety
+SYN-0363,"Students are waiting too long for mental-health support. I live at 463 Learning Street, Apt 4A.",2026-09-07,7,Teacher,English,Owner,Community School B,mental_health
+SYN-0364,Long travel times are making after-school participation difficult.,2026-09-07,7,Parent,English,Renter,Community School D,transportation
+SYN-0365,Meeting materials should be accessible before the public hearing.,2026-09-07,20,Parent,English,Renter,Community School A,accessibility
+SYN-0366,Regular multilingual updates would make this process easier to follow.,2026-09-02,8,Parent,Mandarin,Renter,Community School A,communication
+SYN-0367,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,8,Parent,English,Renter,Community School D,classroom_resources
+SYN-0368,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,8,Resident,English,Renter,Community School B,school_safety
+SYN-0369,The district should fund trauma-informed services throughout the year. Contact Jordan Hayes at sample.person369@example.org or 312-555-1369.,2026-09-07,10,Teacher,Spanish,Renter,Community School D,mental_health
+SYN-0370,Will the district publish route performance and missed-pickup data?,2026-09-07,8,Parent,Polish,Renter,Community School A,transportation
+SYN-0371,"After attending multiple hearings, I am increasingly concerned. Families need interpretation and disability accommodations at every meeting. Contact Casey Brooks at sample.person371@example.org or 312-555-1371.",2026-09-12,8,Teacher,English,Owner,Community School A,accessibility
+SYN-0372,Who is responsible for answering questions submitted at the hearing? Contact Taylor Hayes at sample.person372@example.org or 312-555-1372.,2026-09-02,8,Resident,English,Renter,Community School C,communication
+SYN-0373,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,10,Student,English,Owner,Community School C,classroom_resources
+SYN-0374,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,6,Parent,English,Renter,Community School C,school_safety
+SYN-0375,Students are waiting too long for mental-health support. Contact Jordan Hayes at sample.person375@example.org or 312-555-1375.,2026-09-07,6,Student,English,Renter,Community School B,mental_health
+SYN-0376,Long travel times are making after-school participation difficult.,2026-09-07,8,Resident,Mandarin,Renter,Community School D,transportation
+SYN-0377,The online form must work with keyboards and screen readers.,2026-09-02,6,Resident,English,Renter,Community School A,accessibility
+SYN-0378,Families received the notice too late to prepare meaningful comments.,2026-09-07,6,Parent,English,Renter,Community School B,communication
+SYN-0379,The proposal should add counselors instead of cutting school staff.,2026-09-02,8,Parent,English,Owner,Community School D,classroom_resources
+SYN-0380,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,8,Resident,English,Renter,Community School D,school_safety
+SYN-0381,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,7,Community organizer,English,Owner,Community School D,mental_health
+SYN-0382,Families need clear transportation updates before routes change.,2026-09-07,8,Teacher,English,Owner,Community School D,transportation
+SYN-0383,The online form must work with keyboards and screen readers.,2026-09-12,5,Parent,Spanish,Owner,Community School A,accessibility
+SYN-0384,Families received the notice too late to prepare meaningful comments.,2026-09-07,10,Resident,English,Owner,Community School D,communication
+SYN-0385,Class sizes are too large and students need more classroom materials.,2026-09-12,7,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0386,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,20,Parent,English,Renter,Community School B,school_safety
+SYN-0387,Every school needs reliable access to social workers and counselors.,2026-09-12,8,Teacher,English,Owner,Community School D,mental_health
+SYN-0388,Long travel times are making after-school participation difficult.,2026-09-02,10,Teacher,English,Renter,Community School B,transportation
+SYN-0389,Meeting materials should be accessible before the public hearing. Contact Jordan Parker at sample.person389@example.org or 312-555-1389.,2026-09-07,8,Parent,English,Renter,Community School A,accessibility
+SYN-0390,Families received the notice too late to prepare meaningful comments.,2026-09-07,6,Parent,English,Renter,Community School D,communication
+SYN-0391,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,7,Teacher,English,Renter,Community School D,classroom_resources
+SYN-0392,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,7,Community organizer,English,Renter,Community School C,school_safety
+SYN-0393,Students are waiting too long for mental-health support. Contact Casey Parker at sample.person393@example.org or 312-555-1393.,2026-09-07,10,Parent,Mandarin,Owner,Community School D,mental_health
+SYN-0394,Long travel times are making after-school participation difficult.,2026-09-02,8,Student,English,Owner,Community School B,transportation
+SYN-0395,"Families need interpretation and disability accommodations at every meeting. I live at 495 Learning Street, Apt 6C.",2026-09-02,10,Resident,English,Renter,Community School B,accessibility
+SYN-0396,Regular multilingual updates would make this process easier to follow.,2026-09-07,7,Parent,Spanish,Renter,Community School C,communication
+SYN-0397,The proposal should add counselors instead of cutting school staff. Contact Casey Lane at sample.person397@example.org or 312-555-1397.,2026-09-12,6,Parent,English,Renter,Community School A,classroom_resources
+SYN-0398,Will families be included when the new safety procedures are reviewed? Contact Morgan Hayes at sample.person398@example.org or 312-555-1398.,2026-09-12,6,Parent,English,Renter,Community School A,school_safety
+SYN-0399,Every school needs reliable access to social workers and counselors.,2026-09-12,7,Resident,English,Other,Community School A,mental_health
+SYN-0400,"The current bus schedule causes students to arrive late. I live at 500 Civic Way, Apt 11B.",2026-09-07,10,Student,Polish,Renter,Community School A,transportation
+SYN-0401,Why was the accessibility plan not included with the proposal?,2026-09-02,10,Parent,English,Renter,Community School A,accessibility
+SYN-0402,"Please publish decisions, supporting data, and meeting dates in one place. Contact Avery Quinn at sample.person402@example.org or 312-555-1402.",2026-09-12,10,Teacher,English,Renter,Community School A,communication
+SYN-0403,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0404,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,8,Parent,English,Owner,Community School B,school_safety
+SYN-0405,The district should fund trauma-informed services throughout the year.,2026-09-02,20,Parent,English,Renter,Community School A,mental_health
+SYN-0406,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,7,Parent,Spanish,Renter,Community School C,transportation
+SYN-0407,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,10,Resident,English,Renter,Community School A,accessibility
+SYN-0408,Families received the notice too late to prepare meaningful comments.,2026-09-02,10,Parent,Polish,Renter,Community School B,communication
+SYN-0409,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,8,Student,English,Renter,Community School D,classroom_resources
+SYN-0410,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,8,Parent,Spanish,Renter,Community School A,school_safety
+SYN-0411,The district should fund trauma-informed services throughout the year.,2026-09-12,6,Parent,English,Renter,Community School D,mental_health
+SYN-0412,Families need clear transportation updates before routes change.,2026-09-02,20,Parent,English,Owner,Community School C,transportation
+SYN-0413,The online form must work with keyboards and screen readers.,2026-09-02,8,Parent,English,Owner,Community School B,accessibility
+SYN-0414,"Regular multilingual updates would make this process easier to follow. I live at 514 Civic Way, Apt 25C.",2026-09-02,7,Parent,English,Owner,Community School C,communication
+SYN-0415,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials.",2026-09-12,6,Parent,English,Renter,Community School C,classroom_resources
+SYN-0416,"Please explain how the safety budget will be used at each school. I live at 516 Public Square Road, Apt 27A.",2026-09-07,5,Teacher,English,Owner,Community School A,school_safety
+SYN-0417,How many additional clinicians will this proposal place in schools?,2026-09-12,8,Parent,Spanish,Renter,Community School B,mental_health
+SYN-0418,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,7,Resident,English,Renter,Community School C,transportation
+SYN-0419,The online form must work with keyboards and screen readers.,2026-09-07,8,Teacher,English,Renter,Community School D,accessibility
+SYN-0420,Families received the notice too late to prepare meaningful comments.,2026-09-02,6,Parent,English,Owner,Community School B,communication
+SYN-0421,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring. Contact Riley Brooks at sample.person421@example.org or 312-555-1421.",2026-09-12,10,Parent,English,Owner,Community School A,classroom_resources
+SYN-0422,Will families be included when the new safety procedures are reviewed?,2026-09-07,8,Parent,English,Renter,Community School C,school_safety
+SYN-0423,The district should fund trauma-informed services throughout the year.,2026-09-02,8,Resident,English,Renter,Community School B,mental_health
+SYN-0424,The current bus schedule causes students to arrive late.,2026-09-07,5,Parent,English,Owner,Community School C,transportation
+SYN-0425,Meeting materials should be accessible before the public hearing.,2026-09-07,8,Parent,English,Owner,Community School A,accessibility
+SYN-0426,Regular multilingual updates would make this process easier to follow.,2026-09-02,6,Parent,Spanish,Renter,Community School D,communication
+SYN-0427,The proposal should add counselors instead of cutting school staff.,2026-09-12,8,Parent,English,Renter,Community School A,classroom_resources
+SYN-0428,Please explain how the safety budget will be used at each school.,2026-09-07,8,Parent,Polish,Renter,Community School D,school_safety
+SYN-0429,The district should fund trauma-informed services throughout the year.,2026-09-07,8,Student,Mandarin,Renter,Community School A,mental_health
+SYN-0430,The current bus schedule causes students to arrive late.,2026-09-07,5,Student,English,Renter,Community School C,transportation
+SYN-0431,Families need interpretation and disability accommodations at every meeting.,2026-09-07,5,Parent,English,Renter,Community School B,accessibility
+SYN-0432,Who is responsible for answering questions submitted at the hearing? Contact Jordan Brooks at sample.person432@example.org or 312-555-1432.,2026-09-12,8,Resident,English,Renter,Community School A,communication
+SYN-0433,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials. Contact Jordan Hayes at sample.person433@example.org or 312-555-1433.",2026-09-12,8,Resident,English,Renter,Community School A,classroom_resources
+SYN-0434,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,8,Parent,English,Renter,Community School C,school_safety
+SYN-0435,The district should fund trauma-informed services throughout the year.,2026-09-07,6,Resident,English,Renter,Community School C,mental_health
+SYN-0436,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,10,Parent,English,Renter,Community School B,transportation
+SYN-0437,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,8,Parent,English,Renter,Community School C,accessibility
+SYN-0438,Regular multilingual updates would make this process easier to follow.,2026-09-07,7,Parent,English,Owner,Community School D,communication
+SYN-0439,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,20,Parent,English,Renter,Community School C,classroom_resources
+SYN-0440,"Students need a safer arrival plan and trained staff at dismissal. I live at 540 Learning Street, Apt 21A.",2026-09-02,8,Parent,Polish,Owner,Community School C,school_safety
+SYN-0441,The district should fund trauma-informed services throughout the year.,2026-09-07,7,Teacher,English,Renter,Community School A,mental_health
+SYN-0442,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,6,Parent,Polish,Owner,Community School A,transportation
+SYN-0443,Why was the accessibility plan not included with the proposal?,2026-09-07,8,Teacher,Spanish,Renter,Community School A,accessibility
+SYN-0444,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,5,Student,English,Renter,Community School C,communication
+SYN-0445,"The proposal should add counselors instead of cutting school staff. I live at 545 Learning Street, Apt 26A.",2026-09-02,6,Parent,English,Renter,Community School D,classroom_resources
+SYN-0446,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,7,Student,English,Renter,Community School B,school_safety
+SYN-0447,Students are waiting too long for mental-health support.,2026-09-02,8,Parent,English,Owner,Community School D,mental_health
+SYN-0448,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Parent,Polish,Renter,Community School D,transportation
+SYN-0449,Why was the accessibility plan not included with the proposal?,2026-09-02,20,Parent,Mandarin,Renter,Community School C,accessibility
+SYN-0450,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,8,Resident,Polish,Other,Community School D,communication
+SYN-0451,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,8,Parent,English,Renter,Community School D,classroom_resources
+SYN-0452,Please explain how the safety budget will be used at each school.,2026-09-02,10,Parent,English,Renter,Community School B,school_safety
+SYN-0453,How many additional clinicians will this proposal place in schools?,2026-09-02,8,Parent,English,Owner,Community School B,mental_health
+SYN-0454,Families need clear transportation updates before routes change.,2026-09-12,8,Resident,English,Renter,Community School D,transportation
+SYN-0455,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0456,Regular multilingual updates would make this process easier to follow.,2026-09-07,7,Parent,English,Renter,Community School C,communication
+SYN-0457,The proposal should add counselors instead of cutting school staff.,2026-09-12,6,Resident,English,Renter,Community School B,classroom_resources
+SYN-0458,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,20,Parent,English,Renter,Community School D,school_safety
+SYN-0459,How many additional clinicians will this proposal place in schools?,2026-09-02,10,Resident,Mandarin,Renter,Community School A,mental_health
+SYN-0460,Families need clear transportation updates before routes change.,2026-09-07,8,Teacher,Mandarin,Renter,Community School C,transportation
+SYN-0461,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,20,Parent,English,Renter,Community School C,accessibility
+SYN-0462,Regular multilingual updates would make this process easier to follow.,2026-09-07,10,Resident,English,Renter,Community School A,communication
+SYN-0463,Class sizes are too large and students need more classroom materials.,2026-09-07,7,Resident,English,Owner,Community School B,classroom_resources
+SYN-0464,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,10,Parent,English,Renter,Community School C,school_safety
+SYN-0465,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,5,Teacher,English,Owner,Community School B,mental_health
+SYN-0466,Families need clear transportation updates before routes change.,2026-09-07,7,Parent,English,Renter,Community School C,transportation
+SYN-0467,Why was the accessibility plan not included with the proposal?,2026-09-12,6,Parent,Polish,Renter,Community School A,accessibility
+SYN-0468,Regular multilingual updates would make this process easier to follow.,2026-09-07,10,Parent,English,Renter,Community School B,communication
+SYN-0469,Class sizes are too large and students need more classroom materials.,2026-09-12,8,Resident,Polish,Owner,Community School D,classroom_resources
+SYN-0470,"Students need a safer arrival plan and trained staff at dismissal. I live at 570 Civic Way, Apt 21C.",2026-09-02,8,Resident,English,Renter,Community School A,school_safety
+SYN-0471,The district should fund trauma-informed services throughout the year.,2026-09-07,20,Parent,English,Renter,Community School C,mental_health
+SYN-0472,"After attending multiple hearings, I am increasingly concerned. Will the district publish route performance and missed-pickup data?",2026-09-12,8,Parent,English,Owner,Community School B,transportation
+SYN-0473,Why was the accessibility plan not included with the proposal?,2026-09-02,8,Parent,English,Renter,Community School D,accessibility
+SYN-0474,Regular multilingual updates would make this process easier to follow.,2026-09-12,20,Parent,English,Owner,Community School B,communication
+SYN-0475,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,20,Parent,English,Renter,Community School D,classroom_resources
+SYN-0476,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,6,Resident,Spanish,Renter,Community School D,school_safety
+SYN-0477,Students are waiting too long for mental-health support.,2026-09-07,10,Parent,English,Owner,Community School B,mental_health
+SYN-0478,"Long travel times are making after-school participation difficult. I live at 578 Community Avenue, Apt 29B.",2026-09-02,8,Parent,English,Owner,Community School A,transportation
+SYN-0479,Why was the accessibility plan not included with the proposal?,2026-09-12,7,Parent,English,Renter,Community School D,accessibility
+SYN-0480,Families received the notice too late to prepare meaningful comments.,2026-09-07,10,Resident,Spanish,Renter,Community School C,communication
+SYN-0481,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable?",2026-09-12,10,Parent,English,Owner,Community School D,classroom_resources
+SYN-0482,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,10,Resident,English,Renter,Community School C,school_safety
+SYN-0483,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,10,Resident,English,Other,Community School D,mental_health
+SYN-0484,The current bus schedule causes students to arrive late.,2026-09-02,7,Parent,English,Renter,Community School B,transportation
+SYN-0485,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,8,Parent,Mandarin,Renter,Community School A,accessibility
+SYN-0486,Who is responsible for answering questions submitted at the hearing? Contact Casey Lane at sample.person486@example.org or 312-555-1486.,2026-09-02,8,Teacher,English,Renter,Community School A,communication
+SYN-0487,The proposal should add counselors instead of cutting school staff.,2026-09-12,8,Resident,English,Owner,Community School A,classroom_resources
+SYN-0488,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,20,Parent,English,Owner,Community School C,school_safety
+SYN-0489,How many additional clinicians will this proposal place in schools?,2026-09-07,8,Teacher,English,Renter,Community School A,mental_health
+SYN-0490,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change. Contact Riley Lane at sample.person490@example.org or 312-555-1490.",2026-09-12,5,Parent,English,Renter,Community School A,transportation
+SYN-0491,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,10,Resident,English,Renter,Community School A,accessibility
+SYN-0492,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,8,Parent,English,Renter,Community School C,communication
+SYN-0493,Class sizes are too large and students need more classroom materials.,2026-09-07,8,Resident,Spanish,Renter,Community School A,classroom_resources
+SYN-0494,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,6,Parent,English,Renter,Community School A,school_safety
+SYN-0495,"After attending multiple hearings, I am increasingly concerned. How many additional clinicians will this proposal place in schools?",2026-09-12,8,Parent,English,Renter,Community School A,mental_health
+SYN-0496,Families need clear transportation updates before routes change.,2026-09-02,8,Parent,English,Renter,Community School B,transportation
+SYN-0497,Why was the accessibility plan not included with the proposal?,2026-09-02,8,Parent,English,Renter,Community School D,accessibility
+SYN-0498,Who is responsible for answering questions submitted at the hearing?,2026-09-07,7,Teacher,English,Owner,Community School B,communication
+SYN-0499,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,10,Parent,English,Other,Community School B,classroom_resources
+SYN-0500,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,7,Resident,English,Renter,Community School C,school_safety
+SYN-0501,How many additional clinicians will this proposal place in schools?,2026-09-12,8,Resident,English,Renter,Community School C,mental_health
+SYN-0502,The current bus schedule causes students to arrive late.,2026-09-07,8,Parent,English,Owner,Community School A,transportation
+SYN-0503,Families need interpretation and disability accommodations at every meeting. Contact Morgan Reed at sample.person503@example.org or 312-555-1503.,2026-09-12,10,Parent,English,Renter,Community School B,accessibility
+SYN-0504,Regular multilingual updates would make this process easier to follow.,2026-09-12,7,Parent,English,Renter,Community School B,communication
+SYN-0505,Class sizes are too large and students need more classroom materials.,2026-09-07,10,Community organizer,English,Other,Community School B,classroom_resources
+SYN-0506,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,6,Parent,English,Renter,Community School C,school_safety
+SYN-0507,Every school needs reliable access to social workers and counselors.,2026-09-07,8,Student,Mandarin,Renter,Community School C,mental_health
+SYN-0508,Will the district publish route performance and missed-pickup data?,2026-09-02,20,Parent,English,Owner,Community School C,transportation
+SYN-0509,"After attending multiple hearings, I am increasingly concerned. Why was the accessibility plan not included with the proposal? I live at 609 Public Square Road, Apt 30A.",2026-09-12,6,Parent,English,Renter,Community School A,accessibility
+SYN-0510,"Families received the notice too late to prepare meaningful comments. I live at 610 Public Square Road, Apt 1C.",2026-09-07,7,Teacher,English,Renter,Community School A,communication
+SYN-0511,"The proposal should add counselors instead of cutting school staff. I live at 611 Public Square Road, Apt 2A.",2026-09-12,6,Parent,English,Renter,Community School D,classroom_resources
+SYN-0512,Will families be included when the new safety procedures are reviewed?,2026-09-07,8,Parent,Mandarin,Owner,Community School D,school_safety
+SYN-0513,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,8,Resident,English,Owner,Community School B,mental_health
+SYN-0514,The current bus schedule causes students to arrive late.,2026-09-07,10,Resident,English,Renter,Community School C,transportation
+SYN-0515,Families need interpretation and disability accommodations at every meeting.,2026-09-07,5,Teacher,English,Renter,Community School C,accessibility
+SYN-0516,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow.",2026-09-12,7,Parent,Spanish,Renter,Community School C,communication
+SYN-0517,Class sizes are too large and students need more classroom materials.,2026-09-02,5,Resident,English,Renter,Community School A,classroom_resources
+SYN-0518,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,10,Parent,English,Renter,Community School B,school_safety
+SYN-0519,Every school needs reliable access to social workers and counselors.,2026-09-12,5,Parent,English,Other,Community School D,mental_health
+SYN-0520,The current bus schedule causes students to arrive late.,2026-09-07,10,Parent,English,Owner,Community School D,transportation
+SYN-0521,Why was the accessibility plan not included with the proposal?,2026-09-07,8,Parent,English,Renter,Community School C,accessibility
+SYN-0522,"After attending multiple hearings, I am increasingly concerned. Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,8,Parent,English,Renter,Community School B,communication
+SYN-0523,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring. Contact Riley Lane at sample.person523@example.org or 312-555-1523.",2026-09-12,10,Parent,Spanish,Renter,Community School C,classroom_resources
+SYN-0524,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,8,Parent,English,Renter,Community School C,school_safety
+SYN-0525,The district should fund trauma-informed services throughout the year.,2026-09-07,7,Parent,Spanish,Renter,Community School B,mental_health
+SYN-0526,Will the district publish route performance and missed-pickup data?,2026-09-07,7,Parent,English,Renter,Community School C,transportation
+SYN-0527,Families need interpretation and disability accommodations at every meeting.,2026-09-12,8,Parent,English,Renter,Community School C,accessibility
+SYN-0528,Who is responsible for answering questions submitted at the hearing?,2026-09-07,7,Teacher,English,Renter,Community School D,communication
+SYN-0529,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable?",2026-09-12,7,Teacher,English,Other,Community School A,classroom_resources
+SYN-0530,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,7,Parent,English,Renter,Community School D,school_safety
+SYN-0531,The district should fund trauma-informed services throughout the year.,2026-09-12,7,Parent,English,Renter,Community School D,mental_health
+SYN-0532,"After attending multiple hearings, I am increasingly concerned. Will the district publish route performance and missed-pickup data?",2026-09-12,8,Community organizer,English,Renter,Community School B,transportation
+SYN-0533,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,8,Parent,English,Renter,Community School B,accessibility
+SYN-0534,Families received the notice too late to prepare meaningful comments.,2026-09-02,7,Parent,Spanish,Owner,Community School C,communication
+SYN-0535,Class sizes are too large and students need more classroom materials.,2026-09-07,7,Parent,English,Owner,Community School B,classroom_resources
+SYN-0536,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,8,Parent,English,Owner,Community School B,school_safety
+SYN-0537,The district should fund trauma-informed services throughout the year.,2026-09-02,7,Parent,English,Owner,Community School B,mental_health
+SYN-0538,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,8,Teacher,English,Owner,Community School B,transportation
+SYN-0539,Meeting materials should be accessible before the public hearing.,2026-09-02,20,Resident,English,Renter,Community School B,accessibility
+SYN-0540,Families received the notice too late to prepare meaningful comments.,2026-09-07,6,Parent,English,Renter,Community School B,communication
+SYN-0541,The proposal should add counselors instead of cutting school staff.,2026-09-02,8,Parent,English,Owner,Community School C,classroom_resources
+SYN-0542,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,10,Community organizer,English,Renter,Community School D,school_safety
+SYN-0543,Students are waiting too long for mental-health support.,2026-09-07,8,Community organizer,English,Owner,Community School B,mental_health
+SYN-0544,The current bus schedule causes students to arrive late.,2026-09-12,8,Parent,English,Owner,Community School B,transportation
+SYN-0545,Why was the accessibility plan not included with the proposal?,2026-09-07,20,Parent,English,Renter,Community School D,accessibility
+SYN-0546,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,10,Parent,English,Other,Community School C,communication
+SYN-0547,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,20,Parent,English,Owner,Community School B,classroom_resources
+SYN-0548,"Broken exterior lighting has been reported repeatedly without a response. I live at 648 Civic Way, Apt 9B.",2026-09-02,8,Parent,English,Owner,Community School D,school_safety
+SYN-0549,The district should fund trauma-informed services throughout the year.,2026-09-12,10,Parent,English,Owner,Community School C,mental_health
+SYN-0550,Families need clear transportation updates before routes change.,2026-09-12,8,Teacher,English,Owner,Community School B,transportation
+SYN-0551,The online form must work with keyboards and screen readers.,2026-09-02,10,Parent,English,Renter,Community School B,accessibility
+SYN-0552,"Please publish decisions, supporting data, and meeting dates in one place. Contact Morgan Reed at sample.person552@example.org or 312-555-1552.",2026-09-02,8,Parent,English,Renter,Community School C,communication
+SYN-0553,"Please protect funding for teachers, books, and after-school tutoring. I live at 653 Community Avenue, Apt 14B.",2026-09-12,10,Parent,English,Renter,Community School D,classroom_resources
+SYN-0554,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,5,Student,English,Renter,Community School D,school_safety
+SYN-0555,How many additional clinicians will this proposal place in schools?,2026-09-12,6,Student,English,Renter,Community School B,mental_health
+SYN-0556,Will the district publish route performance and missed-pickup data? Contact Casey Parker at sample.person556@example.org or 312-555-1556.,2026-09-07,6,Resident,English,Owner,Community School C,transportation
+SYN-0557,Why was the accessibility plan not included with the proposal?,2026-09-07,10,Parent,English,Renter,Community School D,accessibility
+SYN-0558,Regular multilingual updates would make this process easier to follow.,2026-09-07,6,Parent,English,Renter,Community School A,communication
+SYN-0559,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,7,Student,Mandarin,Renter,Community School B,classroom_resources
+SYN-0560,"After attending multiple hearings, I am increasingly concerned. Students need a safer arrival plan and trained staff at dismissal.",2026-09-12,8,Parent,English,Renter,Community School B,school_safety
+SYN-0561,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,7,Parent,English,Renter,Community School A,mental_health
+SYN-0562,Will the district publish route performance and missed-pickup data?,2026-09-07,8,Parent,English,Owner,Community School C,transportation
+SYN-0563,Why was the accessibility plan not included with the proposal?,2026-09-07,8,Parent,English,Other,Community School D,accessibility
+SYN-0564,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,6,Parent,English,Renter,Community School C,communication
+SYN-0565,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Student,English,Owner,Community School C,classroom_resources
+SYN-0566,Will families be included when the new safety procedures are reviewed?,2026-09-12,7,Resident,Spanish,Renter,Community School A,school_safety
+SYN-0567,How many additional clinicians will this proposal place in schools?,2026-09-07,8,Resident,English,Renter,Community School D,mental_health
+SYN-0568,Long travel times are making after-school participation difficult.,2026-09-12,7,Student,Spanish,Renter,Community School A,transportation
+SYN-0569,The online form must work with keyboards and screen readers.,2026-09-02,10,Community organizer,English,Renter,Community School A,accessibility
+SYN-0570,"After attending multiple hearings, I am increasingly concerned. Families received the notice too late to prepare meaningful comments.",2026-09-12,10,Parent,English,Owner,Community School D,communication
+SYN-0571,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,7,Resident,English,Owner,Community School D,classroom_resources
+SYN-0572,Will families be included when the new safety procedures are reviewed?,2026-09-02,7,Parent,Spanish,Renter,Community School C,school_safety
+SYN-0573,The district should fund trauma-informed services throughout the year.,2026-09-12,7,Parent,Spanish,Renter,Community School B,mental_health
+SYN-0574,"The current bus schedule causes students to arrive late. I live at 674 Public Square Road, Apt 5B.",2026-09-07,7,Resident,English,Owner,Community School D,transportation
+SYN-0575,The online form must work with keyboards and screen readers.,2026-09-07,7,Resident,English,Owner,Community School B,accessibility
+SYN-0576,Regular multilingual updates would make this process easier to follow.,2026-09-02,6,Parent,English,Renter,Community School B,communication
+SYN-0577,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,10,Student,English,Renter,Community School B,classroom_resources
+SYN-0578,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,6,Parent,English,Renter,Community School A,school_safety
+SYN-0579,Students are waiting too long for mental-health support. Contact Taylor Hayes at sample.person579@example.org or 312-555-1579.,2026-09-12,7,Student,English,Renter,Community School A,mental_health
+SYN-0580,Will the district publish route performance and missed-pickup data?,2026-09-12,8,Parent,English,Renter,Community School D,transportation
+SYN-0581,"Families need interpretation and disability accommodations at every meeting. I live at 681 Public Square Road, Apt 12A.",2026-09-02,10,Parent,English,Other,Community School C,accessibility
+SYN-0582,Families received the notice too late to prepare meaningful comments.,2026-09-02,10,Teacher,English,Renter,Community School C,communication
+SYN-0583,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring. Contact Riley Parker at sample.person583@example.org or 312-555-1583.",2026-09-12,10,Resident,English,Owner,Community School A,classroom_resources
+SYN-0584,"Will families be included when the new safety procedures are reviewed? I live at 684 Community Avenue, Apt 15B.",2026-09-07,6,Student,Spanish,Renter,Community School B,school_safety
+SYN-0585,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,5,Resident,English,Renter,Community School A,mental_health
+SYN-0586,Will the district publish route performance and missed-pickup data?,2026-09-07,20,Parent,English,Renter,Community School B,transportation
+SYN-0587,Meeting materials should be accessible before the public hearing.,2026-09-02,8,Parent,English,Renter,Community School D,accessibility
+SYN-0588,Who is responsible for answering questions submitted at the hearing?,2026-09-07,6,Parent,Mandarin,Renter,Community School C,communication
+SYN-0589,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,7,Parent,Spanish,Renter,Community School B,classroom_resources
+SYN-0590,"Please explain how the safety budget will be used at each school. I live at 690 Civic Way, Apt 21B.",2026-09-02,7,Parent,English,Renter,Community School C,school_safety
+SYN-0591,Every school needs reliable access to social workers and counselors.,2026-09-02,8,Resident,English,Renter,Community School C,mental_health
+SYN-0592,"Families need clear transportation updates before routes change. I live at 692 Public Square Road, Apt 23A.",2026-09-02,8,Student,English,Renter,Community School C,transportation
+SYN-0593,Families need interpretation and disability accommodations at every meeting.,2026-09-07,10,Resident,English,Renter,Community School D,accessibility
+SYN-0594,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,10,Parent,English,Renter,Community School D,communication
+SYN-0595,"Class sizes are too large and students need more classroom materials. I live at 695 Public Square Road, Apt 26A.",2026-09-07,7,Student,English,Renter,Community School B,classroom_resources
+SYN-0596,Will families be included when the new safety procedures are reviewed?,2026-09-07,10,Teacher,English,Renter,Community School A,school_safety
+SYN-0597,The district should fund trauma-informed services throughout the year.,2026-09-02,10,Parent,English,Renter,Community School A,mental_health
+SYN-0598,The current bus schedule causes students to arrive late.,2026-09-12,6,Parent,English,Owner,Community School C,transportation
+SYN-0599,"After attending multiple hearings, I am increasingly concerned. Families need interpretation and disability accommodations at every meeting.",2026-09-12,8,Parent,English,Renter,Community School B,accessibility
+SYN-0600,Regular multilingual updates would make this process easier to follow.,2026-09-07,6,Parent,Polish,Renter,Community School B,communication
+SYN-0601,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,10,Teacher,English,Renter,Community School A,classroom_resources
+SYN-0602,Will families be included when the new safety procedures are reviewed?,2026-09-07,8,Resident,English,Renter,Community School C,school_safety
+SYN-0603,How many additional clinicians will this proposal place in schools?,2026-09-12,10,Parent,English,Renter,Community School B,mental_health
+SYN-0604,"Will the district publish route performance and missed-pickup data? I live at 704 Community Avenue, Apt 5A.",2026-09-12,6,Teacher,English,Renter,Community School A,transportation
+SYN-0605,Why was the accessibility plan not included with the proposal?,2026-09-07,7,Parent,English,Renter,Community School C,accessibility
+SYN-0606,Families received the notice too late to prepare meaningful comments.,2026-09-07,10,Community organizer,Polish,Renter,Community School C,communication
+SYN-0607,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials.",2026-09-12,8,Resident,English,Owner,Community School C,classroom_resources
+SYN-0608,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,8,Parent,English,Renter,Community School B,school_safety
+SYN-0609,Students are waiting too long for mental-health support. Contact Riley Reed at sample.person609@example.org or 312-555-1609.,2026-09-12,6,Student,English,Owner,Community School C,mental_health
+SYN-0610,Will the district publish route performance and missed-pickup data?,2026-09-02,6,Parent,English,Renter,Community School D,transportation
+SYN-0611,Meeting materials should be accessible before the public hearing.,2026-09-12,6,Parent,English,Owner,Community School B,accessibility
+SYN-0612,"After attending multiple hearings, I am increasingly concerned. Regular multilingual updates would make this process easier to follow.",2026-09-12,5,Resident,English,Renter,Community School B,communication
+SYN-0613,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,7,Parent,English,Renter,Community School B,classroom_resources
+SYN-0614,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,8,Teacher,English,Owner,Community School A,school_safety
+SYN-0615,The district should fund trauma-informed services throughout the year.,2026-09-12,8,Parent,English,Renter,Community School D,mental_health
+SYN-0616,Families need clear transportation updates before routes change.,2026-09-02,6,Resident,English,Renter,Community School D,transportation
+SYN-0617,Why was the accessibility plan not included with the proposal? Contact Taylor Quinn at sample.person617@example.org or 312-555-1617.,2026-09-07,10,Parent,Spanish,Renter,Community School C,accessibility
+SYN-0618,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,10,Teacher,English,Renter,Community School D,communication
+SYN-0619,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0620,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,20,Parent,Polish,Owner,Community School A,school_safety
+SYN-0621,Students are waiting too long for mental-health support.,2026-09-07,6,Student,English,Renter,Community School D,mental_health
+SYN-0622,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,8,Teacher,English,Renter,Community School C,transportation
+SYN-0623,Why was the accessibility plan not included with the proposal?,2026-09-07,5,Parent,Polish,Owner,Community School A,accessibility
+SYN-0624,Regular multilingual updates would make this process easier to follow.,2026-09-12,10,Teacher,English,Renter,Community School D,communication
+SYN-0625,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,8,Parent,English,Renter,Community School D,classroom_resources
+SYN-0626,"After attending multiple hearings, I am increasingly concerned. Will families be included when the new safety procedures are reviewed?",2026-09-12,6,Teacher,English,Renter,Community School B,school_safety
+SYN-0627,The district should fund trauma-informed services throughout the year.,2026-09-02,20,Parent,English,Other,Community School B,mental_health
+SYN-0628,Will the district publish route performance and missed-pickup data?,2026-09-02,20,Parent,English,Renter,Community School B,transportation
+SYN-0629,The online form must work with keyboards and screen readers.,2026-09-07,10,Resident,English,Renter,Community School A,accessibility
+SYN-0630,"After attending multiple hearings, I am increasingly concerned. Families received the notice too late to prepare meaningful comments. I live at 730 Public Square Road, Apt 1C.",2026-09-12,8,Parent,English,Renter,Community School A,communication
+SYN-0631,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,8,Parent,Polish,Renter,Community School D,classroom_resources
+SYN-0632,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,6,Parent,English,Renter,Community School A,school_safety
+SYN-0633,Students are waiting too long for mental-health support.,2026-09-12,10,Parent,English,Owner,Community School A,mental_health
+SYN-0634,Will the district publish route performance and missed-pickup data?,2026-09-07,8,Resident,English,Renter,Community School A,transportation
+SYN-0635,Families need interpretation and disability accommodations at every meeting.,2026-09-07,6,Parent,English,Renter,Community School D,accessibility
+SYN-0636,Regular multilingual updates would make this process easier to follow.,2026-09-07,8,Parent,English,Other,Community School A,communication
+SYN-0637,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials. I live at 737 Public Square Road, Apt 8C.",2026-09-12,10,Community organizer,English,Other,Community School C,classroom_resources
+SYN-0638,"Students need a safer arrival plan and trained staff at dismissal. I live at 738 Community Avenue, Apt 9A.",2026-09-07,5,Parent,English,Renter,Community School C,school_safety
+SYN-0639,The district should fund trauma-informed services throughout the year.,2026-09-07,6,Parent,Spanish,Renter,Community School B,mental_health
+SYN-0640,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,7,Resident,English,Owner,Community School D,transportation
+SYN-0641,"The online form must work with keyboards and screen readers. I live at 741 Public Square Road, Apt 12A.",2026-09-02,7,Student,English,Renter,Community School D,accessibility
+SYN-0642,Who is responsible for answering questions submitted at the hearing?,2026-09-02,5,Resident,Spanish,Renter,Community School A,communication
+SYN-0643,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,8,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0644,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,6,Resident,English,Owner,Community School B,school_safety
+SYN-0645,The district should fund trauma-informed services throughout the year.,2026-09-02,8,Teacher,English,Renter,Community School A,mental_health
+SYN-0646,Will the district publish route performance and missed-pickup data? Contact Casey Lane at sample.person646@example.org or 312-555-1646.,2026-09-07,7,Parent,English,Owner,Community School A,transportation
+SYN-0647,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,10,Resident,English,Owner,Community School B,accessibility
+SYN-0648,Who is responsible for answering questions submitted at the hearing?,2026-09-02,10,Teacher,English,Owner,Community School A,communication
+SYN-0649,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,8,Resident,English,Renter,Community School C,classroom_resources
+SYN-0650,Please explain how the safety budget will be used at each school.,2026-09-07,8,Parent,English,Owner,Community School D,school_safety
+SYN-0651,"Students are waiting too long for mental-health support. I live at 751 Community Avenue, Apt 22A.",2026-09-12,7,Parent,English,Renter,Community School C,mental_health
+SYN-0652,"After attending multiple hearings, I am increasingly concerned. Will the district publish route performance and missed-pickup data?",2026-09-12,8,Parent,English,Owner,Community School D,transportation
+SYN-0653,"After attending multiple hearings, I am increasingly concerned. Why was the accessibility plan not included with the proposal?",2026-09-12,10,Resident,English,Renter,Community School A,accessibility
+SYN-0654,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,8,Parent,Spanish,Renter,Community School B,communication
+SYN-0655,The proposal should add counselors instead of cutting school staff.,2026-09-07,10,Parent,English,Renter,Community School C,classroom_resources
+SYN-0656,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,10,Parent,English,Renter,Community School C,school_safety
+SYN-0657,How many additional clinicians will this proposal place in schools?,2026-09-12,6,Resident,English,Owner,Community School A,mental_health
+SYN-0658,Long travel times are making after-school participation difficult.,2026-09-02,10,Parent,English,Renter,Community School C,transportation
+SYN-0659,The online form must work with keyboards and screen readers.,2026-09-07,7,Community organizer,English,Renter,Community School D,accessibility
+SYN-0660,Families received the notice too late to prepare meaningful comments.,2026-09-02,7,Parent,English,Renter,Community School A,communication
+SYN-0661,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,7,Parent,English,Renter,Community School A,classroom_resources
+SYN-0662,"Broken exterior lighting has been reported repeatedly without a response. I live at 762 Community Avenue, Apt 3A.",2026-09-12,20,Student,English,Renter,Community School A,school_safety
+SYN-0663,"How many additional clinicians will this proposal place in schools? I live at 763 Community Avenue, Apt 4C.",2026-09-07,6,Parent,English,Renter,Community School D,mental_health
+SYN-0664,The current bus schedule causes students to arrive late.,2026-09-07,8,Parent,English,Renter,Community School B,transportation
+SYN-0665,Families need interpretation and disability accommodations at every meeting.,2026-09-07,10,Parent,English,Renter,Community School A,accessibility
+SYN-0666,Regular multilingual updates would make this process easier to follow.,2026-09-02,10,Parent,English,Owner,Community School C,communication
+SYN-0667,Class sizes are too large and students need more classroom materials.,2026-09-12,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0668,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,6,Resident,English,Owner,Community School C,school_safety
+SYN-0669,How many additional clinicians will this proposal place in schools?,2026-09-07,10,Parent,English,Owner,Community School D,mental_health
+SYN-0670,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,10,Student,English,Owner,Community School B,transportation
+SYN-0671,The online form must work with keyboards and screen readers.,2026-09-07,5,Parent,English,Renter,Community School C,accessibility
+SYN-0672,Regular multilingual updates would make this process easier to follow. Contact Taylor Parker at sample.person672@example.org or 312-555-1672.,2026-09-02,8,Student,Spanish,Renter,Community School A,communication
+SYN-0673,"After attending multiple hearings, I am increasingly concerned. The proposal should add counselors instead of cutting school staff.",2026-09-12,6,Parent,English,Owner,Community School C,classroom_resources
+SYN-0674,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,8,Student,Spanish,Renter,Community School D,school_safety
+SYN-0675,"After attending multiple hearings, I am increasingly concerned. How many additional clinicians will this proposal place in schools?",2026-09-12,8,Resident,English,Renter,Community School B,mental_health
+SYN-0676,Families need clear transportation updates before routes change.,2026-09-02,8,Parent,English,Renter,Community School A,transportation
+SYN-0677,"After attending multiple hearings, I am increasingly concerned. Families need interpretation and disability accommodations at every meeting.",2026-09-12,7,Parent,English,Renter,Community School C,accessibility
+SYN-0678,"After attending multiple hearings, I am increasingly concerned. Who is responsible for answering questions submitted at the hearing?",2026-09-12,10,Parent,English,Renter,Community School D,communication
+SYN-0679,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,7,Parent,English,Owner,Community School D,classroom_resources
+SYN-0680,Will families be included when the new safety procedures are reviewed?,2026-09-12,7,Parent,English,Owner,Community School B,school_safety
+SYN-0681,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,5,Resident,English,Renter,Community School C,mental_health
+SYN-0682,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,8,Parent,English,Owner,Community School C,transportation
+SYN-0683,Why was the accessibility plan not included with the proposal?,2026-09-07,7,Parent,English,Renter,Community School A,accessibility
+SYN-0684,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,7,Parent,English,Owner,Community School C,communication
+SYN-0685,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials. I live at 785 Learning Street, Apt 26A.",2026-09-12,7,Resident,English,Renter,Community School C,classroom_resources
+SYN-0686,Please explain how the safety budget will be used at each school.,2026-09-12,6,Community organizer,English,Renter,Community School D,school_safety
+SYN-0687,Students are waiting too long for mental-health support.,2026-09-12,8,Parent,English,Owner,Community School C,mental_health
+SYN-0688,Families need clear transportation updates before routes change.,2026-09-02,7,Resident,Polish,Renter,Community School A,transportation
+SYN-0689,Meeting materials should be accessible before the public hearing.,2026-09-12,10,Teacher,English,Renter,Community School D,accessibility
+SYN-0690,Who is responsible for answering questions submitted at the hearing?,2026-09-02,7,Teacher,English,Owner,Community School C,communication
+SYN-0691,Class sizes are too large and students need more classroom materials.,2026-09-12,20,Parent,English,Other,Community School A,classroom_resources
+SYN-0692,Will families be included when the new safety procedures are reviewed?,2026-09-07,7,Resident,English,Renter,Community School D,school_safety
+SYN-0693,Every school needs reliable access to social workers and counselors.,2026-09-12,6,Parent,English,Renter,Community School D,mental_health
+SYN-0694,Will the district publish route performance and missed-pickup data? Contact Morgan Parker at sample.person694@example.org or 312-555-1694.,2026-09-12,8,Parent,English,Renter,Community School A,transportation
+SYN-0695,Why was the accessibility plan not included with the proposal?,2026-09-07,5,Parent,English,Renter,Community School B,accessibility
+SYN-0696,"Please publish decisions, supporting data, and meeting dates in one place. I live at 796 Learning Street, Apt 7A.",2026-09-12,6,Parent,English,Owner,Community School A,communication
+SYN-0697,Class sizes are too large and students need more classroom materials.,2026-09-12,7,Teacher,English,Other,Community School D,classroom_resources
+SYN-0698,Please explain how the safety budget will be used at each school.,2026-09-07,7,Parent,English,Owner,Community School D,school_safety
+SYN-0699,"Students are waiting too long for mental-health support. I live at 799 Civic Way, Apt 10B.",2026-09-07,8,Parent,English,Renter,Community School D,mental_health
+SYN-0700,Long travel times are making after-school participation difficult. Contact Jordan Hayes at sample.person700@example.org or 312-555-1700.,2026-09-02,7,Teacher,English,Other,Community School B,transportation
+SYN-0701,Meeting materials should be accessible before the public hearing.,2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0702,Regular multilingual updates would make this process easier to follow.,2026-09-07,7,Resident,English,Renter,Community School C,communication
+SYN-0703,The proposal should add counselors instead of cutting school staff.,2026-09-12,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0704,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,8,Resident,English,Renter,Community School C,school_safety
+SYN-0705,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,6,Parent,English,Renter,Community School D,mental_health
+SYN-0706,Long travel times are making after-school participation difficult.,2026-09-02,7,Resident,English,Renter,Community School C,transportation
+SYN-0707,"Meeting materials should be accessible before the public hearing. I live at 807 Public Square Road, Apt 18A.",2026-09-07,8,Teacher,English,Renter,Community School D,accessibility
+SYN-0708,"After attending multiple hearings, I am increasingly concerned. Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,6,Parent,English,Owner,Community School C,communication
+SYN-0709,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Teacher,English,Other,Community School C,classroom_resources
+SYN-0710,Please explain how the safety budget will be used at each school.,2026-09-02,8,Resident,English,Renter,Community School B,school_safety
+SYN-0711,"The district should fund trauma-informed services throughout the year. I live at 811 Civic Way, Apt 22A.",2026-09-02,7,Parent,English,Renter,Community School A,mental_health
+SYN-0712,The current bus schedule causes students to arrive late.,2026-09-02,7,Parent,English,Renter,Community School B,transportation
+SYN-0713,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,8,Parent,English,Renter,Community School D,accessibility
+SYN-0714,Regular multilingual updates would make this process easier to follow.,2026-09-07,7,Student,Mandarin,Renter,Community School D,communication
+SYN-0715,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Parent,English,Owner,Community School D,classroom_resources
+SYN-0716,Broken exterior lighting has been reported repeatedly without a response. Contact Taylor Hayes at sample.person716@example.org or 312-555-1716.,2026-09-07,7,Parent,English,Renter,Community School D,school_safety
+SYN-0717,How many additional clinicians will this proposal place in schools? Contact Casey Hayes at sample.person717@example.org or 312-555-1717.,2026-09-02,7,Parent,English,Renter,Community School D,mental_health
+SYN-0718,Long travel times are making after-school participation difficult.,2026-09-07,6,Parent,English,Renter,Community School C,transportation
+SYN-0719,Why was the accessibility plan not included with the proposal?,2026-09-07,8,Teacher,English,Renter,Community School D,accessibility
+SYN-0720,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,10,Parent,English,Renter,Community School A,communication
+SYN-0721,Class sizes are too large and students need more classroom materials.,2026-09-07,5,Resident,English,Renter,Community School C,classroom_resources
+SYN-0722,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,10,Resident,English,Renter,Community School B,school_safety
+SYN-0723,The district should fund trauma-informed services throughout the year.,2026-09-02,10,Parent,English,Renter,Community School B,mental_health
+SYN-0724,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,5,Teacher,English,Renter,Community School B,transportation
+SYN-0725,The online form must work with keyboards and screen readers.,2026-09-12,10,Parent,English,Renter,Community School D,accessibility
+SYN-0726,Families received the notice too late to prepare meaningful comments.,2026-09-12,8,Parent,English,Renter,Community School C,communication
+SYN-0727,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,7,Teacher,Mandarin,Renter,Community School C,classroom_resources
+SYN-0728,Please explain how the safety budget will be used at each school.,2026-09-07,10,Parent,English,Renter,Community School C,school_safety
+SYN-0729,Every school needs reliable access to social workers and counselors.,2026-09-07,10,Parent,Mandarin,Owner,Community School C,mental_health
+SYN-0730,"Families need clear transportation updates before routes change. I live at 830 Community Avenue, Apt 11A.",2026-09-02,10,Teacher,English,Renter,Community School B,transportation
+SYN-0731,Meeting materials should be accessible before the public hearing.,2026-09-07,8,Community organizer,English,Renter,Community School C,accessibility
+SYN-0732,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Resident,English,Owner,Community School A,communication
+SYN-0733,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0734,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,8,Parent,English,Owner,Community School B,school_safety
+SYN-0735,The district should fund trauma-informed services throughout the year.,2026-09-02,5,Parent,English,Renter,Community School A,mental_health
+SYN-0736,Long travel times are making after-school participation difficult.,2026-09-07,7,Parent,English,Renter,Community School C,transportation
+SYN-0737,Meeting materials should be accessible before the public hearing. Contact Avery Brooks at sample.person737@example.org or 312-555-1737.,2026-09-02,7,Resident,Spanish,Owner,Community School A,accessibility
+SYN-0738,Families received the notice too late to prepare meaningful comments.,2026-09-02,8,Parent,English,Owner,Community School C,communication
+SYN-0739,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Parent,English,Renter,Community School A,classroom_resources
+SYN-0740,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,6,Resident,Spanish,Owner,Community School C,school_safety
+SYN-0741,How many additional clinicians will this proposal place in schools?,2026-09-07,8,Parent,English,Renter,Community School A,mental_health
+SYN-0742,Long travel times are making after-school participation difficult.,2026-09-02,7,Parent,English,Renter,Community School D,transportation
+SYN-0743,Why was the accessibility plan not included with the proposal?,2026-09-02,10,Parent,English,Renter,Community School A,accessibility
+SYN-0744,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Parent,English,Owner,Community School C,communication
+SYN-0745,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Parent,English,Renter,Community School B,classroom_resources
+SYN-0746,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,6,Resident,Spanish,Renter,Community School D,school_safety
+SYN-0747,Every school needs reliable access to social workers and counselors.,2026-09-12,20,Parent,English,Renter,Community School C,mental_health
+SYN-0748,The current bus schedule causes students to arrive late.,2026-09-02,20,Resident,English,Renter,Community School C,transportation
+SYN-0749,Meeting materials should be accessible before the public hearing.,2026-09-07,5,Resident,English,Other,Community School C,accessibility
+SYN-0750,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,7,Resident,Mandarin,Owner,Community School B,communication
+SYN-0751,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,10,Parent,English,Renter,Community School A,classroom_resources
+SYN-0752,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,6,Teacher,English,Renter,Community School D,school_safety
+SYN-0753,Every school needs reliable access to social workers and counselors.,2026-09-07,8,Teacher,English,Renter,Community School C,mental_health
+SYN-0754,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,8,Parent,English,Other,Community School C,transportation
+SYN-0755,Families need interpretation and disability accommodations at every meeting.,2026-09-12,7,Parent,Polish,Owner,Community School C,accessibility
+SYN-0756,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,7,Parent,English,Renter,Community School B,communication
+SYN-0757,The proposal should add counselors instead of cutting school staff.,2026-09-12,10,Parent,English,Renter,Community School D,classroom_resources
+SYN-0758,Will families be included when the new safety procedures are reviewed?,2026-09-12,10,Resident,English,Renter,Community School C,school_safety
+SYN-0759,How many additional clinicians will this proposal place in schools?,2026-09-02,8,Student,Spanish,Renter,Community School A,mental_health
+SYN-0760,Will the district publish route performance and missed-pickup data?,2026-09-12,8,Teacher,English,Renter,Community School B,transportation
+SYN-0761,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,10,Resident,English,Owner,Community School D,accessibility
+SYN-0762,Regular multilingual updates would make this process easier to follow.,2026-09-07,8,Student,English,Renter,Community School D,communication
+SYN-0763,"Please protect funding for teachers, books, and after-school tutoring. Contact Taylor Brooks at sample.person763@example.org or 312-555-1763.",2026-09-02,20,Student,English,Owner,Community School D,classroom_resources
+SYN-0764,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,8,Resident,English,Owner,Community School B,school_safety
+SYN-0765,The district should fund trauma-informed services throughout the year.,2026-09-02,20,Resident,English,Owner,Community School D,mental_health
+SYN-0766,Will the district publish route performance and missed-pickup data?,2026-09-07,8,Community organizer,English,Owner,Community School B,transportation
+SYN-0767,Families need interpretation and disability accommodations at every meeting.,2026-09-07,10,Parent,English,Renter,Community School B,accessibility
+SYN-0768,"Who is responsible for answering questions submitted at the hearing? I live at 868 Public Square Road, Apt 19C.",2026-09-12,8,Student,English,Renter,Community School A,communication
+SYN-0769,Class sizes are too large and students need more classroom materials.,2026-09-07,8,Parent,English,Renter,Community School C,classroom_resources
+SYN-0770,Please explain how the safety budget will be used at each school.,2026-09-02,10,Parent,English,Owner,Community School D,school_safety
+SYN-0771,How many additional clinicians will this proposal place in schools?,2026-09-12,7,Teacher,English,Renter,Community School A,mental_health
+SYN-0772,Long travel times are making after-school participation difficult.,2026-09-07,5,Parent,Polish,Renter,Community School A,transportation
+SYN-0773,Why was the accessibility plan not included with the proposal?,2026-09-07,10,Parent,English,Renter,Community School C,accessibility
+SYN-0774,"After attending multiple hearings, I am increasingly concerned. Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,8,Community organizer,English,Renter,Community School B,communication
+SYN-0775,Class sizes are too large and students need more classroom materials.,2026-09-07,7,Resident,English,Other,Community School A,classroom_resources
+SYN-0776,Will families be included when the new safety procedures are reviewed?,2026-09-02,10,Community organizer,English,Owner,Community School B,school_safety
+SYN-0777,How many additional clinicians will this proposal place in schools?,2026-09-07,8,Resident,English,Owner,Community School A,mental_health
+SYN-0778,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Parent,English,Renter,Community School C,transportation
+SYN-0779,"After attending multiple hearings, I am increasingly concerned. Meeting materials should be accessible before the public hearing.",2026-09-12,7,Student,Spanish,Other,Community School C,accessibility
+SYN-0780,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,5,Resident,English,Renter,Community School B,communication
+SYN-0781,"Class sizes are too large and students need more classroom materials. I live at 881 Civic Way, Apt 2B.",2026-09-07,8,Teacher,Polish,Owner,Community School D,classroom_resources
+SYN-0782,"After attending multiple hearings, I am increasingly concerned. Will families be included when the new safety procedures are reviewed? Contact Morgan Reed at sample.person782@example.org or 312-555-1782.",2026-09-12,20,Parent,English,Renter,Community School D,school_safety
+SYN-0783,How many additional clinicians will this proposal place in schools? Contact Morgan Brooks at sample.person783@example.org or 312-555-1783.,2026-09-07,6,Parent,Polish,Owner,Community School A,mental_health
+SYN-0784,The current bus schedule causes students to arrive late.,2026-09-07,10,Parent,English,Renter,Community School A,transportation
+SYN-0785,The online form must work with keyboards and screen readers.,2026-09-07,5,Resident,English,Renter,Community School A,accessibility
+SYN-0786,"Families received the notice too late to prepare meaningful comments. I live at 886 Learning Street, Apt 7C.",2026-09-02,5,Parent,Mandarin,Owner,Community School C,communication
+SYN-0787,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,6,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0788,Please explain how the safety budget will be used at each school.,2026-09-02,10,Resident,English,Renter,Community School C,school_safety
+SYN-0789,The district should fund trauma-informed services throughout the year. Contact Avery Quinn at sample.person789@example.org or 312-555-1789.,2026-09-12,8,Parent,English,Renter,Community School D,mental_health
+SYN-0790,Long travel times are making after-school participation difficult.,2026-09-02,20,Resident,English,Renter,Community School A,transportation
+SYN-0791,Why was the accessibility plan not included with the proposal?,2026-09-07,10,Parent,English,Renter,Community School D,accessibility
+SYN-0792,Who is responsible for answering questions submitted at the hearing?,2026-09-12,5,Parent,English,Renter,Community School C,communication
+SYN-0793,Class sizes are too large and students need more classroom materials.,2026-09-02,8,Parent,English,Owner,Community School B,classroom_resources
+SYN-0794,Please explain how the safety budget will be used at each school.,2026-09-07,8,Parent,English,Renter,Community School C,school_safety
+SYN-0795,"How many additional clinicians will this proposal place in schools? I live at 895 Learning Street, Apt 16A.",2026-09-12,7,Parent,Mandarin,Other,Community School C,mental_health
+SYN-0796,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,20,Parent,English,Renter,Community School A,transportation
+SYN-0797,Why was the accessibility plan not included with the proposal?,2026-09-02,7,Parent,English,Other,Community School A,accessibility
+SYN-0798,Families received the notice too late to prepare meaningful comments.,2026-09-07,10,Community organizer,English,Renter,Community School B,communication
+SYN-0799,"Please protect funding for teachers, books, and after-school tutoring. Contact Taylor Quinn at sample.person799@example.org or 312-555-1799.",2026-09-12,6,Resident,English,Renter,Community School A,classroom_resources
+SYN-0800,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,8,Parent,English,Renter,Community School A,school_safety
+SYN-0801,Students are waiting too long for mental-health support.,2026-09-12,10,Parent,English,Renter,Community School B,mental_health
+SYN-0802,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,7,Parent,English,Other,Community School C,transportation
+SYN-0803,The online form must work with keyboards and screen readers.,2026-09-02,8,Parent,English,Renter,Community School D,accessibility
+SYN-0804,Regular multilingual updates would make this process easier to follow.,2026-09-07,6,Student,English,Renter,Community School C,communication
+SYN-0805,Why are classroom positions being reduced when enrollment is stable?,2026-09-12,8,Parent,English,Renter,Community School C,classroom_resources
+SYN-0806,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,7,Parent,English,Other,Community School A,school_safety
+SYN-0807,Every school needs reliable access to social workers and counselors.,2026-09-07,10,Parent,English,Renter,Community School C,mental_health
+SYN-0808,Families need clear transportation updates before routes change.,2026-09-02,6,Student,English,Renter,Community School A,transportation
+SYN-0809,"The online form must work with keyboards and screen readers. I live at 909 Public Square Road, Apt 30C.",2026-09-07,10,Teacher,English,Renter,Community School D,accessibility
+SYN-0810,Regular multilingual updates would make this process easier to follow.,2026-09-02,10,Parent,English,Renter,Community School D,communication
+SYN-0811,The proposal should add counselors instead of cutting school staff.,2026-09-12,7,Parent,English,Renter,Community School A,classroom_resources
+SYN-0812,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,7,Parent,English,Renter,Community School B,school_safety
+SYN-0813,The district should fund trauma-informed services throughout the year. Contact Taylor Reed at sample.person813@example.org or 312-555-1813.,2026-09-02,8,Resident,English,Renter,Community School C,mental_health
+SYN-0814,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change. Contact Casey Brooks at sample.person814@example.org or 312-555-1814.",2026-09-12,20,Parent,English,Renter,Community School D,transportation
+SYN-0815,Why was the accessibility plan not included with the proposal?,2026-09-12,8,Parent,English,Owner,Community School A,accessibility
+SYN-0816,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,20,Parent,English,Renter,Community School C,communication
+SYN-0817,Class sizes are too large and students need more classroom materials. Contact Casey Reed at sample.person817@example.org or 312-555-1817.,2026-09-07,5,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0818,Will families be included when the new safety procedures are reviewed?,2026-09-02,6,Parent,Polish,Renter,Community School C,school_safety
+SYN-0819,Every school needs reliable access to social workers and counselors.,2026-09-02,7,Parent,Spanish,Renter,Community School D,mental_health
+SYN-0820,"Will the district publish route performance and missed-pickup data? I live at 920 Learning Street, Apt 11A.",2026-09-07,10,Student,Spanish,Renter,Community School D,transportation
+SYN-0821,Families need interpretation and disability accommodations at every meeting.,2026-09-02,6,Parent,English,Owner,Community School B,accessibility
+SYN-0822,Who is responsible for answering questions submitted at the hearing?,2026-09-07,5,Parent,Spanish,Renter,Community School A,communication
+SYN-0823,Class sizes are too large and students need more classroom materials.,2026-09-07,7,Resident,English,Renter,Community School B,classroom_resources
+SYN-0824,Will families be included when the new safety procedures are reviewed?,2026-09-12,8,Community organizer,English,Owner,Community School C,school_safety
+SYN-0825,Students are waiting too long for mental-health support. Contact Avery Brooks at sample.person825@example.org or 312-555-1825.,2026-09-02,8,Parent,English,Renter,Community School D,mental_health
+SYN-0826,Will the district publish route performance and missed-pickup data?,2026-09-02,8,Parent,English,Renter,Community School A,transportation
+SYN-0827,The online form must work with keyboards and screen readers.,2026-09-02,10,Resident,English,Owner,Community School C,accessibility
+SYN-0828,"Regular multilingual updates would make this process easier to follow. I live at 928 Public Square Road, Apt 19B.",2026-09-12,8,Parent,English,Renter,Community School A,communication
+SYN-0829,Class sizes are too large and students need more classroom materials.,2026-09-12,6,Teacher,English,Other,Community School A,classroom_resources
+SYN-0830,Broken exterior lighting has been reported repeatedly without a response.,2026-09-12,10,Resident,English,Renter,Community School C,school_safety
+SYN-0831,"After attending multiple hearings, I am increasingly concerned. Students are waiting too long for mental-health support.",2026-09-12,10,Parent,English,Renter,Community School C,mental_health
+SYN-0832,The current bus schedule causes students to arrive late.,2026-09-07,8,Resident,English,Renter,Community School B,transportation
+SYN-0833,Families need interpretation and disability accommodations at every meeting.,2026-09-07,20,Student,English,Renter,Community School D,accessibility
+SYN-0834,Regular multilingual updates would make this process easier to follow.,2026-09-02,8,Parent,English,Other,Community School D,communication
+SYN-0835,The proposal should add counselors instead of cutting school staff.,2026-09-12,10,Resident,English,Renter,Community School B,classroom_resources
+SYN-0836,Please explain how the safety budget will be used at each school.,2026-09-07,7,Resident,English,Other,Community School B,school_safety
+SYN-0837,How many additional clinicians will this proposal place in schools?,2026-09-02,20,Teacher,English,Owner,Community School D,mental_health
+SYN-0838,The current bus schedule causes students to arrive late.,2026-09-12,8,Student,English,Other,Community School C,transportation
+SYN-0839,The online form must work with keyboards and screen readers.,2026-09-07,7,Student,English,Renter,Community School D,accessibility
+SYN-0840,Regular multilingual updates would make this process easier to follow.,2026-09-02,7,Community organizer,English,Owner,Community School B,communication
+SYN-0841,Why are classroom positions being reduced when enrollment is stable?,2026-09-07,7,Resident,English,Renter,Community School C,classroom_resources
+SYN-0842,Will families be included when the new safety procedures are reviewed? Contact Jordan Quinn at sample.person842@example.org or 312-555-1842.,2026-09-07,20,Parent,Polish,Renter,Community School D,school_safety
+SYN-0843,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,7,Teacher,English,Renter,Community School C,mental_health
+SYN-0844,Families need clear transportation updates before routes change.,2026-09-02,5,Parent,English,Renter,Community School C,transportation
+SYN-0845,Families need interpretation and disability accommodations at every meeting.,2026-09-02,8,Parent,English,Renter,Community School D,accessibility
+SYN-0846,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Parent,English,Owner,Community School B,communication
+SYN-0847,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,8,Parent,English,Renter,Community School D,classroom_resources
+SYN-0848,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,20,Parent,English,Other,Community School B,school_safety
+SYN-0849,The district should fund trauma-informed services throughout the year.,2026-09-02,10,Community organizer,English,Owner,Community School B,mental_health
+SYN-0850,"After attending multiple hearings, I am increasingly concerned. Families need clear transportation updates before routes change.",2026-09-12,5,Student,English,Other,Community School C,transportation
+SYN-0851,The online form must work with keyboards and screen readers.,2026-09-12,10,Parent,English,Renter,Community School B,accessibility
+SYN-0852,Families received the notice too late to prepare meaningful comments. Contact Taylor Parker at sample.person852@example.org or 312-555-1852.,2026-09-07,10,Resident,Spanish,Renter,Community School A,communication
+SYN-0853,The proposal should add counselors instead of cutting school staff.,2026-09-02,8,Parent,English,Renter,Community School A,classroom_resources
+SYN-0854,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school.",2026-09-12,10,Parent,English,Renter,Community School A,school_safety
+SYN-0855,Students are waiting too long for mental-health support.,2026-09-07,8,Community organizer,English,Renter,Community School A,mental_health
+SYN-0856,The current bus schedule causes students to arrive late.,2026-09-02,10,Student,Polish,Renter,Community School C,transportation
+SYN-0857,Families need interpretation and disability accommodations at every meeting.,2026-09-07,7,Parent,Mandarin,Renter,Community School B,accessibility
+SYN-0858,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,7,Parent,English,Renter,Community School D,communication
+SYN-0859,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,8,Parent,English,Renter,Community School D,classroom_resources
+SYN-0860,Broken exterior lighting has been reported repeatedly without a response. Contact Avery Lane at sample.person860@example.org or 312-555-1860.,2026-09-07,7,Parent,English,Renter,Community School C,school_safety
+SYN-0861,Students are waiting too long for mental-health support. Contact Taylor Lane at sample.person861@example.org or 312-555-1861.,2026-09-07,7,Teacher,Polish,Owner,Community School B,mental_health
+SYN-0862,Families need clear transportation updates before routes change.,2026-09-07,10,Parent,English,Owner,Community School D,transportation
+SYN-0863,The online form must work with keyboards and screen readers.,2026-09-02,5,Parent,English,Renter,Community School C,accessibility
+SYN-0864,"After attending multiple hearings, I am increasingly concerned. Families received the notice too late to prepare meaningful comments.",2026-09-12,20,Parent,English,Renter,Community School B,communication
+SYN-0865,Why are classroom positions being reduced when enrollment is stable?,2026-09-02,7,Parent,English,Renter,Community School D,classroom_resources
+SYN-0866,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,8,Community organizer,Spanish,Owner,Community School C,school_safety
+SYN-0867,Every school needs reliable access to social workers and counselors.,2026-09-12,10,Parent,Polish,Renter,Community School A,mental_health
+SYN-0868,The current bus schedule causes students to arrive late.,2026-09-07,10,Student,Mandarin,Renter,Community School D,transportation
+SYN-0869,Why was the accessibility plan not included with the proposal?,2026-09-02,5,Resident,English,Owner,Community School A,accessibility
+SYN-0870,Families received the notice too late to prepare meaningful comments. Contact Morgan Lane at sample.person870@example.org or 312-555-1870.,2026-09-12,7,Student,English,Renter,Community School A,communication
+SYN-0871,"After attending multiple hearings, I am increasingly concerned. Please protect funding for teachers, books, and after-school tutoring.",2026-09-12,8,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0872,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,10,Student,English,Owner,Community School D,school_safety
+SYN-0873,How many additional clinicians will this proposal place in schools?,2026-09-07,6,Parent,Mandarin,Renter,Community School A,mental_health
+SYN-0874,The current bus schedule causes students to arrive late.,2026-09-07,10,Parent,English,Renter,Community School B,transportation
+SYN-0875,The online form must work with keyboards and screen readers.,2026-09-12,8,Parent,English,Renter,Community School B,accessibility
+SYN-0876,"After attending multiple hearings, I am increasingly concerned. Families received the notice too late to prepare meaningful comments.",2026-09-12,7,Parent,English,Renter,Community School C,communication
+SYN-0877,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,10,Resident,English,Renter,Community School D,classroom_resources
+SYN-0878,Students need a safer arrival plan and trained staff at dismissal.,2026-09-12,20,Parent,English,Renter,Community School A,school_safety
+SYN-0879,Students are waiting too long for mental-health support.,2026-09-12,10,Resident,English,Renter,Community School C,mental_health
+SYN-0880,Families need clear transportation updates before routes change.,2026-09-07,8,Resident,English,Renter,Community School D,transportation
+SYN-0881,Why was the accessibility plan not included with the proposal?,2026-09-07,6,Student,English,Renter,Community School B,accessibility
+SYN-0882,Regular multilingual updates would make this process easier to follow.,2026-09-12,6,Parent,English,Renter,Community School A,communication
+SYN-0883,"After attending multiple hearings, I am increasingly concerned. Class sizes are too large and students need more classroom materials.",2026-09-12,10,Parent,English,Renter,Community School C,classroom_resources
+SYN-0884,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,20,Parent,Spanish,Renter,Community School B,school_safety
+SYN-0885,"How many additional clinicians will this proposal place in schools? Contact Riley Parker at sample.person885@example.org or 312-555-1885. I live at 985 Community Avenue, Apt 16A.",2026-09-12,8,Resident,English,Renter,Community School D,mental_health
+SYN-0886,Will the district publish route performance and missed-pickup data?,2026-09-07,10,Parent,English,Renter,Community School D,transportation
+SYN-0887,Families need interpretation and disability accommodations at every meeting.,2026-09-02,8,Parent,English,Renter,Community School A,accessibility
+SYN-0888,Regular multilingual updates would make this process easier to follow.,2026-09-12,20,Parent,English,Owner,Community School D,communication
+SYN-0889,The proposal should add counselors instead of cutting school staff.,2026-09-07,8,Resident,English,Renter,Community School A,classroom_resources
+SYN-0890,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,5,Parent,Spanish,Owner,Community School D,school_safety
+SYN-0891,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,6,Community organizer,Mandarin,Other,Community School A,mental_health
+SYN-0892,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,6,Parent,English,Renter,Community School C,transportation
+SYN-0893,Families need interpretation and disability accommodations at every meeting.,2026-09-02,6,Community organizer,English,Owner,Community School D,accessibility
+SYN-0894,"Please publish decisions, supporting data, and meeting dates in one place. Contact Taylor Parker at sample.person894@example.org or 312-555-1894.",2026-09-07,6,Parent,English,Renter,Community School D,communication
+SYN-0895,The proposal should add counselors instead of cutting school staff. Contact Morgan Quinn at sample.person895@example.org or 312-555-1895.,2026-09-02,8,Teacher,English,Renter,Community School C,classroom_resources
+SYN-0896,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,6,Student,English,Owner,Community School C,school_safety
+SYN-0897,Every school needs reliable access to social workers and counselors.,2026-09-02,8,Parent,English,Renter,Community School B,mental_health
+SYN-0898,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,6,Student,English,Owner,Community School C,transportation
+SYN-0899,"After attending multiple hearings, I am increasingly concerned. Why was the accessibility plan not included with the proposal? I live at 999 Learning Street, Apt 30A.",2026-09-12,7,Student,English,Owner,Community School A,accessibility
+SYN-0900,Who is responsible for answering questions submitted at the hearing?,2026-09-02,8,Teacher,English,Other,Community School A,communication
+SYN-0901,"The proposal should add counselors instead of cutting school staff. Contact Taylor Quinn at sample.person901@example.org or 312-555-1901. I live at 1001 Public Square Road, Apt 2C.",2026-09-02,6,Teacher,English,Renter,Community School B,classroom_resources
+SYN-0902,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,10,Parent,English,Renter,Community School D,school_safety
+SYN-0903,Students are waiting too long for mental-health support.,2026-09-02,5,Parent,English,Renter,Community School A,mental_health
+SYN-0904,Families need clear transportation updates before routes change. Contact Casey Reed at sample.person904@example.org or 312-555-1904.,2026-09-12,10,Resident,English,Renter,Community School A,transportation
+SYN-0905,Families need interpretation and disability accommodations at every meeting.,2026-09-12,10,Parent,English,Renter,Community School B,accessibility
+SYN-0906,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,8,Parent,English,Renter,Community School B,communication
+SYN-0907,Class sizes are too large and students need more classroom materials.,2026-09-12,8,Parent,English,Other,Community School C,classroom_resources
+SYN-0908,Will families be included when the new safety procedures are reviewed?,2026-09-12,8,Student,English,Owner,Community School A,school_safety
+SYN-0909,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,10,Resident,English,Renter,Community School B,mental_health
+SYN-0910,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,10,Parent,English,Renter,Community School D,transportation
+SYN-0911,Why was the accessibility plan not included with the proposal?,2026-09-12,8,Parent,English,Renter,Community School A,accessibility
+SYN-0912,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-02,7,Parent,English,Renter,Community School C,communication
+SYN-0913,Class sizes are too large and students need more classroom materials.,2026-09-07,10,Parent,English,Renter,Community School D,classroom_resources
+SYN-0914,Students need a safer arrival plan and trained staff at dismissal.,2026-09-07,7,Parent,English,Renter,Community School B,school_safety
+SYN-0915,Every school needs reliable access to social workers and counselors.,2026-09-07,8,Parent,English,Renter,Community School A,mental_health
+SYN-0916,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,6,Parent,English,Renter,Community School C,transportation
+SYN-0917,Families need interpretation and disability accommodations at every meeting.,2026-09-07,20,Parent,English,Renter,Community School C,accessibility
+SYN-0918,Families received the notice too late to prepare meaningful comments.,2026-09-02,8,Parent,English,Renter,Community School B,communication
+SYN-0919,"Class sizes are too large and students need more classroom materials. I live at 1019 Public Square Road, Apt 20A.",2026-09-12,20,Parent,English,Renter,Community School D,classroom_resources
+SYN-0920,Will families be included when the new safety procedures are reviewed?,2026-09-07,8,Parent,English,Other,Community School A,school_safety
+SYN-0921,The district should fund trauma-informed services throughout the year.,2026-09-02,6,Parent,Spanish,Renter,Community School C,mental_health
+SYN-0922,Will the district publish route performance and missed-pickup data?,2026-09-07,7,Resident,English,Renter,Community School A,transportation
+SYN-0923,The online form must work with keyboards and screen readers.,2026-09-02,20,Parent,English,Renter,Community School B,accessibility
+SYN-0924,Who is responsible for answering questions submitted at the hearing?,2026-09-07,7,Parent,Spanish,Other,Community School D,communication
+SYN-0925,The proposal should add counselors instead of cutting school staff.,2026-09-12,8,Resident,English,Renter,Community School D,classroom_resources
+SYN-0926,Students need a safer arrival plan and trained staff at dismissal.,2026-09-02,10,Parent,English,Renter,Community School D,school_safety
+SYN-0927,"After attending multiple hearings, I am increasingly concerned. How many additional clinicians will this proposal place in schools? I live at 1027 Public Square Road, Apt 28C.",2026-09-12,8,Parent,English,Renter,Community School A,mental_health
+SYN-0928,Long travel times are making after-school participation difficult. Contact Casey Quinn at sample.person928@example.org or 312-555-1928.,2026-09-07,8,Parent,English,Renter,Community School D,transportation
+SYN-0929,The online form must work with keyboards and screen readers.,2026-09-07,7,Parent,English,Owner,Community School B,accessibility
+SYN-0930,"After attending multiple hearings, I am increasingly concerned. Who is responsible for answering questions submitted at the hearing?",2026-09-12,10,Parent,English,Renter,Community School D,communication
+SYN-0931,The proposal should add counselors instead of cutting school staff.,2026-09-12,8,Parent,English,Renter,Community School B,classroom_resources
+SYN-0932,Will families be included when the new safety procedures are reviewed? Contact Casey Brooks at sample.person932@example.org or 312-555-1932.,2026-09-07,8,Student,English,Renter,Community School A,school_safety
+SYN-0933,Students are waiting too long for mental-health support.,2026-09-07,8,Parent,English,Owner,Community School D,mental_health
+SYN-0934,Long travel times are making after-school participation difficult.,2026-09-07,10,Parent,English,Renter,Community School A,transportation
+SYN-0935,Meeting materials should be accessible before the public hearing.,2026-09-07,7,Parent,English,Owner,Community School D,accessibility
+SYN-0936,"Please publish decisions, supporting data, and meeting dates in one place. Contact Riley Brooks at sample.person936@example.org or 312-555-1936.",2026-09-12,8,Parent,English,Renter,Community School B,communication
+SYN-0937,Class sizes are too large and students need more classroom materials.,2026-09-12,10,Parent,Mandarin,Renter,Community School C,classroom_resources
+SYN-0938,Broken exterior lighting has been reported repeatedly without a response.,2026-09-07,6,Parent,English,Renter,Community School D,school_safety
+SYN-0939,How many additional clinicians will this proposal place in schools?,2026-09-02,8,Parent,English,Owner,Community School A,mental_health
+SYN-0940,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,10,Parent,English,Renter,Community School B,transportation
+SYN-0941,Families need interpretation and disability accommodations at every meeting.,2026-09-07,7,Parent,English,Renter,Community School D,accessibility
+SYN-0942,Families received the notice too late to prepare meaningful comments.,2026-09-02,10,Resident,English,Renter,Community School B,communication
+SYN-0943,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-02,7,Parent,English,Renter,Community School B,classroom_resources
+SYN-0944,"Broken exterior lighting has been reported repeatedly without a response. I live at 1044 Community Avenue, Apt 15C.",2026-09-07,10,Teacher,English,Renter,Community School D,school_safety
+SYN-0945,"After attending multiple hearings, I am increasingly concerned. The district should fund trauma-informed services throughout the year.",2026-09-12,10,Parent,English,Owner,Community School B,mental_health
+SYN-0946,Will the district publish route performance and missed-pickup data?,2026-09-07,7,Parent,English,Renter,Community School B,transportation
+SYN-0947,Families need interpretation and disability accommodations at every meeting.,2026-09-02,8,Parent,Polish,Renter,Community School A,accessibility
+SYN-0948,Families received the notice too late to prepare meaningful comments.,2026-09-07,6,Parent,English,Renter,Community School B,communication
+SYN-0949,"After attending multiple hearings, I am increasingly concerned. Why are classroom positions being reduced when enrollment is stable? I live at 1049 Public Square Road, Apt 20A.",2026-09-12,7,Parent,English,Renter,Community School A,classroom_resources
+SYN-0950,"After attending multiple hearings, I am increasingly concerned. Please explain how the safety budget will be used at each school. Contact Morgan Quinn at sample.person950@example.org or 312-555-1950.",2026-09-12,8,Parent,English,Renter,Community School D,school_safety
+SYN-0951,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors. I live at 1051 Civic Way, Apt 22B.",2026-09-12,6,Teacher,English,Renter,Community School B,mental_health
+SYN-0952,Families need clear transportation updates before routes change.,2026-09-12,7,Parent,English,Renter,Community School C,transportation
+SYN-0953,The online form must work with keyboards and screen readers.,2026-09-02,7,Parent,English,Renter,Community School B,accessibility
+SYN-0954,"After attending multiple hearings, I am increasingly concerned. Please publish decisions, supporting data, and meeting dates in one place.",2026-09-12,7,Resident,English,Renter,Community School A,communication
+SYN-0955,Class sizes are too large and students need more classroom materials.,2026-09-07,7,Parent,English,Renter,Community School A,classroom_resources
+SYN-0956,"Students need a safer arrival plan and trained staff at dismissal. I live at 1056 Learning Street, Apt 27A.",2026-09-12,6,Parent,English,Renter,Community School C,school_safety
+SYN-0957,Students are waiting too long for mental-health support.,2026-09-07,6,Community organizer,English,Renter,Community School C,mental_health
+SYN-0958,The current bus schedule causes students to arrive late.,2026-09-07,8,Parent,English,Owner,Community School B,transportation
+SYN-0959,Why was the accessibility plan not included with the proposal?,2026-09-07,6,Parent,English,Owner,Community School C,accessibility
+SYN-0960,Families received the notice too late to prepare meaningful comments.,2026-09-02,10,Parent,English,Renter,Community School D,communication
+SYN-0961,"Please protect funding for teachers, books, and after-school tutoring. Contact Jordan Lane at sample.person961@example.org or 312-555-1961.",2026-09-02,10,Parent,English,Owner,Community School B,classroom_resources
+SYN-0962,Broken exterior lighting has been reported repeatedly without a response. Contact Morgan Quinn at sample.person962@example.org or 312-555-1962.,2026-09-07,5,Resident,Spanish,Renter,Community School A,school_safety
+SYN-0963,How many additional clinicians will this proposal place in schools?,2026-09-12,8,Parent,Spanish,Renter,Community School A,mental_health
+SYN-0964,"After attending multiple hearings, I am increasingly concerned. Will the district publish route performance and missed-pickup data?",2026-09-12,10,Teacher,Spanish,Other,Community School A,transportation
+SYN-0965,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,10,Teacher,English,Renter,Community School A,accessibility
+SYN-0966,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,8,Parent,English,Renter,Community School D,communication
+SYN-0967,Why are classroom positions being reduced when enrollment is stable?,2026-09-12,8,Parent,English,Renter,Community School A,classroom_resources
+SYN-0968,Please explain how the safety budget will be used at each school.,2026-09-02,20,Parent,English,Renter,Community School B,school_safety
+SYN-0969,"After attending multiple hearings, I am increasingly concerned. Every school needs reliable access to social workers and counselors.",2026-09-12,8,Parent,English,Renter,Community School B,mental_health
+SYN-0970,Families need clear transportation updates before routes change.,2026-09-02,10,Resident,English,Renter,Community School B,transportation
+SYN-0971,Families need interpretation and disability accommodations at every meeting.,2026-09-02,10,Parent,Spanish,Renter,Community School B,accessibility
+SYN-0972,Regular multilingual updates would make this process easier to follow.,2026-09-07,8,Parent,Spanish,Owner,Community School D,communication
+SYN-0973,Class sizes are too large and students need more classroom materials.,2026-09-12,10,Parent,English,Other,Community School C,classroom_resources
+SYN-0974,"After attending multiple hearings, I am increasingly concerned. Students need a safer arrival plan and trained staff at dismissal.",2026-09-12,7,Parent,English,Other,Community School D,school_safety
+SYN-0975,The district should fund trauma-informed services throughout the year.,2026-09-12,6,Community organizer,English,Renter,Community School A,mental_health
+SYN-0976,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,7,Parent,English,Renter,Community School D,transportation
+SYN-0977,Meeting materials should be accessible before the public hearing.,2026-09-07,8,Teacher,English,Owner,Community School D,accessibility
+SYN-0978,Who is responsible for answering questions submitted at the hearing?,2026-09-02,10,Parent,Spanish,Renter,Community School D,communication
+SYN-0979,Class sizes are too large and students need more classroom materials.,2026-09-02,10,Resident,English,Owner,Community School D,classroom_resources
+SYN-0980,Broken exterior lighting has been reported repeatedly without a response.,2026-09-02,8,Resident,English,Owner,Community School B,school_safety
+SYN-0981,The district should fund trauma-informed services throughout the year.,2026-09-07,6,Teacher,English,Renter,Community School D,mental_health
+SYN-0982,Long travel times are making after-school participation difficult. Contact Casey Reed at sample.person982@example.org or 312-555-1982.,2026-09-07,8,Parent,English,Owner,Community School C,transportation
+SYN-0983,"After attending multiple hearings, I am increasingly concerned. The online form must work with keyboards and screen readers.",2026-09-12,8,Resident,English,Renter,Community School C,accessibility
+SYN-0984,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,7,Student,English,Renter,Community School D,communication
+SYN-0985,"Please protect funding for teachers, books, and after-school tutoring.",2026-09-07,20,Teacher,English,Renter,Community School D,classroom_resources
+SYN-0986,Will families be included when the new safety procedures are reviewed?,2026-09-07,6,Parent,English,Renter,Community School C,school_safety
+SYN-0987,Students are waiting too long for mental-health support.,2026-09-07,7,Resident,English,Renter,Community School C,mental_health
+SYN-0988,"After attending multiple hearings, I am increasingly concerned. The current bus schedule causes students to arrive late.",2026-09-12,7,Resident,English,Renter,Community School B,transportation
+SYN-0989,Meeting materials should be accessible before the public hearing.,2026-09-07,10,Resident,English,Renter,Community School C,accessibility
+SYN-0990,"Please publish decisions, supporting data, and meeting dates in one place.",2026-09-07,8,Resident,English,Renter,Community School B,communication
+SYN-0991,Why are classroom positions being reduced when enrollment is stable?,2026-09-12,8,Parent,Spanish,Renter,Community School B,classroom_resources
+SYN-0992,Will families be included when the new safety procedures are reviewed?,2026-09-02,7,Parent,English,Renter,Community School B,school_safety
+SYN-0993,Students are waiting too long for mental-health support.,2026-09-02,6,Community organizer,Polish,Owner,Community School D,mental_health
+SYN-0994,"After attending multiple hearings, I am increasingly concerned. Long travel times are making after-school participation difficult.",2026-09-12,10,Community organizer,English,Owner,Community School B,transportation
+SYN-0995,Families need interpretation and disability accommodations at every meeting.,2026-09-07,10,Resident,English,Renter,Community School C,accessibility
+SYN-0996,Families received the notice too late to prepare meaningful comments. Contact Riley Quinn at sample.person996@example.org or 312-555-1996.,2026-09-07,8,Teacher,English,Renter,Community School D,communication
+SYN-0997,Class sizes are too large and students need more classroom materials.,2026-09-07,10,Parent,English,Renter,Community School C,classroom_resources
+SYN-0998,"After attending multiple hearings, I am increasingly concerned. Students need a safer arrival plan and trained staff at dismissal.",2026-09-12,6,Resident,English,Other,Community School A,school_safety
+SYN-0999,"Students are waiting too long for mental-health support. I live at 1099 Public Square Road, Apt 10C.",2026-09-02,7,Student,English,Renter,Community School A,mental_health
+SYN-1000,Will the district publish route performance and missed-pickup data?,2026-09-12,8,Teacher,English,Renter,Community School D,transportation

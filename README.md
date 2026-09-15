@@ -43,7 +43,8 @@ hearing-lens/
   docs/wireframe.md          First dashboard wireframe
   docs/project_plan.md       Gate-based delivery plan
   docs/work_log.md           Completed and planned activity record
-  data/samples/              Development-only sample data location
+  data/samples/              Reproducible development fixture and data dictionary
+  scripts/                   Development-data utilities
   tests/test_ingest.py       Unit tests for the loader
 ```
 
@@ -52,3 +53,7 @@ hearing-lens/
 - The repository license and intellectual-property language must be confirmed with ChiEAC before public release.
 - The fixed weekly check-in time and Gate 0 review date must be agreed with Benjamin.
 - Test-data licenses and attribution must be recorded before public datasets are committed.
+
+## Development sample
+
+The repository includes a reproducible 1,000-row fictional hearing dataset with six planted themes, three hearing dates, skewed subgroup distributions, and controlled redaction examples. It contains no collected resident data. Run `python scripts/generate_synthetic_sample.py` to recreate it.
