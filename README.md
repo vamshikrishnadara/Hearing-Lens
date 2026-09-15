@@ -20,8 +20,9 @@ This repository currently contains the Week 1 project foundation: an input loade
 - Supports mapping the required comment column and optional date, respondent ID, and subgroup columns.
 - Drops empty comments and can remove repeated respondent IDs.
 - Reports validation problems in readable language.
+- Redacts common email, web, phone, street-address, and unit-number patterns from display text.
 
-The analytical models and final dashboard panels are not implemented yet.
+Personal-name detection, the analytical models, and the final dashboard panels are not implemented yet.
 
 ## Local setup
 
@@ -36,7 +37,9 @@ The analytical models and final dashboard panels are not implemented yet.
 hearing-lens/
   app/streamlit_app.py       Current upload and mapping interface
   pipeline/ingest.py         File loading, validation, and column mapping
+  pipeline/redact.py         Baseline contact and address redaction
   docs/schema.md             Canonical input and internal schemas
+  docs/redaction_design.md   Redaction boundary, limitations, and validation plan
   docs/wireframe.md          First dashboard wireframe
   docs/project_plan.md       Gate-based delivery plan
   docs/work_log.md           Completed and planned activity record
