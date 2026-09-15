@@ -59,23 +59,38 @@ This is a planning allocation, not a statement that ten hours were completed.
 ## September 15 2026
 
 **Reporting week:** September 15 through September 21
-**Status:** Planned
-**Actual time:** Enter after work is completed
+**Status:** Development checkpoint complete; Vamshi review pending
+**Daily session limit:** 5 hours
+**Actual time:** To be entered by Vamshi
 
-### Eleven-hour plan
+### Completed outputs
 
-| Activity | Planned time | Intended evidence |
-| --- | ---: | --- |
-| Review Day 1 output and reproduce the test run | 0.5 hour | Test result and review notes |
-| Define redaction rules, entities, and failure cases | 2.0 hours | Redaction design document |
-| Implement the first redaction module | 3.0 hours | `pipeline/redact.py` |
-| Write redaction unit tests and inspect examples | 1.5 hours | `tests/test_redact.py` and results |
-| Implement a synthetic hearing-data generator | 1.5 hours | Generator script and data dictionary |
-| Generate and validate a development sample | 1.0 hour | Sample dataset validation summary |
-| Start the methods and limitations notes | 0.75 hour | Methods draft |
-| Update the backlog and prepare the daily status | 0.75 hour | Work-log and plan updates |
-| **Total planned** | **11.0 hours** | |
+- Added Windows-1252 CSV support with a conversion notice.
+- Added XLSX sheet listing, selected-sheet loading, and missing-sheet validation.
+- Added protections against mapping one source column to multiple internal fields.
+- Implemented baseline redaction for emails, URLs, North American phone numbers, common street addresses, and unit numbers.
+- Documented the privacy boundary, baseline limitations, and validation plan.
+- Changed the dashboard preview to remove the raw comment column and display only redacted text.
+- Created a reproducible 1,000-row fictional hearing dataset with six planted themes, three hearing dates, subgroup fields, and controlled redaction examples.
+- Added the sample generator and data dictionary.
+- Expanded the automated suite from 5 tests to 22 tests; all 22 passed.
 
-### End-of-day update rule
+### Validation evidence
 
-At the end of September 15, replace planned status only for tasks that were actually completed. Record actual time separately, note any blockers, and link each completed claim to a file, test result, meeting note, or decision.
+- The sample loader processed 1,000 rows and recognized all three hearing dates.
+- Baseline redaction detected 79 emails, 79 phone numbers, 84 street addresses, and 84 unit numbers in the controlled sample.
+- The safe-preview regression test confirms the original sensitive comment text is absent from the display table.
+
+### GitHub commits
+
+- `8d8e86a` Improve CSV encoding and XLSX sheet handling
+- `a314553` Add baseline contact and address redaction
+- `8b21006` Add reproducible synthetic hearing dataset
+- `cd6c0dc` Protect raw comments in dashboard preview
+
+### Remaining work
+
+- Add personal-name and broader location detection to the redaction pipeline.
+- Install and launch Streamlit, then complete a browser-level upload test.
+- Begin the theme-clustering pipeline and its validation approach.
+- Draft the methodology and limitations page.

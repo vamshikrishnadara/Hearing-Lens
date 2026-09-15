@@ -52,9 +52,10 @@ Target: end of Week 7.
 | --- | --- | --- | --- |
 | P0 | Define input and normalized schemas | `docs/schema.md` | Draft complete |
 | P0 | Create upload and column-mapping loader | `pipeline/ingest.py` | Initial implementation complete |
-| P0 | Test validation, limits, and deduplication | `tests/test_ingest.py` | Initial tests complete |
+| P0 | Test validation, limits, and deduplication | `tests/test_ingest.py` | Expanded tests complete |
 | P0 | Define dashboard flow | `docs/wireframe.md` | Draft complete |
+| P0 | Add baseline contact and address redaction | `pipeline/redact.py` | Initial implementation complete |
 | P0 | Confirm license and ownership wording | Written decision from ChiEAC | Blocked on confirmation |
-| P1 | Create 1,000-row synthetic hearing generator | Script and data dictionary | Planned |
+| P1 | Create 1,000-row synthetic hearing generator | Script and data dictionary | Complete |
 | P1 | Select and document two public corpora | Source notes and licenses | Planned |
 | P1 | Create a project board | Issues aligned to gates | Planned |
