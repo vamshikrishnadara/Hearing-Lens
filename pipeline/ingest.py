@@ -49,6 +49,28 @@ def _rewind(source: str | Path | BinaryIO) -> None:
         source.seek(0)
 
 
+def _read_csv(
+    source: str | Path | BinaryIO, *, row_cap: int
+) -> tuple[pd.DataFrame, str]:
+    """Read common CSV encodings while keeping the original stream reusable."""
+
+    encodings = ("utf-8-sig", "utf-8", "cp1252")
+    last_error: UnicodeDecodeError | None = None
+    for encoding in encodings:
+        _rewind(source)
+        try:
+            return (
+                pd.read_csv(source, nrows=row_cap + 1, encoding=encoding),
+                encoding,
+            )
+        except UnicodeDecodeError as exc:
+            last_error = exc
+
+    raise IngestError(
+        "The CSV encoding could not be detected. Save it as UTF-8 and try again."
+    ) from last_error
+
+
 def list_excel_sheets(
     source: str | Path | BinaryIO, filename: str | None = None
 ) -> list[str]:
@@ -87,9 +109,10 @@ def load_table(
     _rewind(source)
     try:
         if extension == ".csv":
-            frame = pd.read_csv(source, nrows=row_cap + 1)
+            frame, source_encoding = _read_csv(source, row_cap=row_cap)
             selected_sheet = None
         else:
+            source_encoding = None
             selected_sheet = sheet_name or 0
             frame = pd.read_excel(
                 source,
@@ -97,10 +120,6 @@ def load_table(
                 nrows=row_cap + 1,
                 engine="openpyxl",
             )
-    except UnicodeDecodeError as exc:
-        raise IngestError(
-            "The CSV encoding could not be read. Save it as UTF-8 and try again."
-        ) from exc
     except ValueError as exc:
         raise IngestError(f"The selected sheet or table could not be read: {exc}") from exc
     except Exception as exc:
@@ -121,6 +140,10 @@ def load_table(
     if rows_omitted:
         warnings.append(
             f"The MVP analyzes the first {row_cap:,} rows; additional rows were omitted."
+        )
+    if source_encoding == "cp1252":
+        warnings.append(
+            "This CSV used Windows-1252 encoding. Exporting as UTF-8 is recommended."
         )
     unnamed = [str(column) for column in frame.columns if str(column).startswith("Unnamed:")]
     if unnamed:

@@ -26,13 +26,14 @@ This document defines the fields accepted from a user export and the normalized 
 ## Validation behavior
 
 1. Accept `.csv` and `.xlsx` files only.
-2. Use the first workbook sheet by default but allow the user to select another sheet.
-3. Require the mapped comment column to contain at least one non-empty value.
-4. Analyze at most 5,000 rows in the MVP and display a notice when rows are omitted.
-5. Drop empty comments before analysis.
-6. Deduplicate on a mapped respondent ID only when the identifier is present and non-empty.
-7. Treat subgroup fields as optional. Missing subgroup data must disable the representation panel without blocking the rest of the analysis.
-8. Never infer demographic attributes from names or text.
+2. Read UTF-8 CSV files by default and support Windows-1252 with a conversion notice.
+3. Use the first workbook sheet by default but allow the user to select another sheet.
+4. Require the mapped comment column to contain at least one non-empty value.
+5. Analyze at most 5,000 rows in the MVP and display a notice when rows are omitted.
+6. Drop empty comments before analysis.
+7. Deduplicate on a mapped respondent ID only when the identifier is present and non-empty.
+8. Treat subgroup fields as optional. Missing subgroup data must disable the representation panel without blocking the rest of the analysis.
+9. Never infer demographic attributes from names or text.
 
 ## Representation reference format
 
