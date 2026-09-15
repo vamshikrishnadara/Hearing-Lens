@@ -16,6 +16,8 @@ Each detected value is replaced with a typed marker such as `[EMAIL_ADDRESS]` or
 
 The table-level function creates a separate `redacted_comment_text` field. The original `comment_text` remains available for in-memory modeling and must never be displayed, exported, written to logs, or persisted on the server.
 
+The dashboard preview uses a display-specific table that removes the original comment column entirely and renames the redacted copy for presentation. This keeps raw text out of the component responsible for rendering the preview.
+
 ## Required second pass
 
 Pattern matching cannot reliably identify personal names or every location phrase. Before the redaction module is considered complete, it must add an entity-recognition pass for:

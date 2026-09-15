@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from pipeline.redact import redact_frame, redact_text
+from pipeline.redact import build_safe_display_frame, redact_frame, redact_text
 
 
 class RedactionTests(unittest.TestCase):
@@ -74,6 +74,24 @@ class RedactionTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "already exists"):
             redact_frame(frame)
+
+    def test_safe_display_frame_excludes_raw_comment_text(self) -> None:
+        raw_comment = "Email me at resident@example.org"
+        frame = pd.DataFrame(
+            {
+                "comment_text": [raw_comment],
+                "subgroup__ward": [10],
+            }
+        )
+
+        result = build_safe_display_frame(frame)
+
+        self.assertEqual(
+            result.frame["comment_text"].tolist(),
+            ["Email me at [EMAIL_ADDRESS]"],
+        )
+        self.assertNotIn(raw_comment, result.frame.to_string())
+        self.assertEqual(result.frame["subgroup__ward"].tolist(), [10])
 
 
 if __name__ == "__main__":

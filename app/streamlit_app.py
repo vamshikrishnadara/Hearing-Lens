@@ -5,6 +5,7 @@ from __future__ import annotations
 import streamlit as st
 
 from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_columns
+from pipeline.redact import build_safe_display_frame
 
 
 st.set_page_config(page_title="Hearing Lens", layout="wide")
@@ -71,6 +72,7 @@ if uploaded is not None:
         except IngestError as exc:
             st.error(str(exc))
         else:
+            safe_preview = build_safe_display_frame(mapped.frame)
             st.success(f"{len(mapped.frame):,} usable comments are ready for analysis.")
             if mapped.empty_comments_removed:
                 st.info(
@@ -81,4 +83,10 @@ if uploaded is not None:
                     "Removed "
                     f"{mapped.duplicate_respondents_removed:,} repeated respondent IDs."
                 )
-            st.dataframe(mapped.frame.head(20), use_container_width=True)
+            redaction_total = sum(safe_preview.entity_counts.values())
+            if redaction_total:
+                st.info(
+                    f"Redacted {redaction_total:,} contact or address values from the preview."
+                )
+            st.caption("Preview shows redacted comment text only.")
+            st.dataframe(safe_preview.frame.head(20), use_container_width=True)

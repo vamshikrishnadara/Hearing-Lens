@@ -128,3 +128,20 @@ def redact_frame(
         frame=redacted_frame,
         entity_counts=dict(sorted(aggregate.items())),
     )
+
+
+def build_safe_display_frame(
+    frame: pd.DataFrame,
+    *,
+    source_column: str = "comment_text",
+) -> FrameRedactionResult:
+    """Return a display-safe table that contains no raw comment-text column."""
+
+    result = redact_frame(frame, source_column=source_column)
+    display_frame = result.frame.drop(columns=[source_column]).rename(
+        columns={"redacted_comment_text": source_column}
+    )
+    return FrameRedactionResult(
+        frame=display_frame,
+        entity_counts=result.entity_counts,
+    )
