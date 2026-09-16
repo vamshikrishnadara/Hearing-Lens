@@ -91,7 +91,27 @@ class RedactionTests(unittest.TestCase):
             ["Email me at [EMAIL_ADDRESS]"],
         )
         self.assertNotIn(raw_comment, result.frame.to_string())
-        self.assertEqual(result.frame["subgroup__ward"].tolist(), [10])
+        self.assertEqual(list(result.frame.columns), ["comment_text"])
+        self.assertEqual(frame["subgroup__ward"].tolist(), [10])
+
+    def test_preview_excludes_identifiers_and_unredacted_metadata(self) -> None:
+        frame = pd.DataFrame(
+            {
+                "comment_text": ["Please fund more counselors."],
+                "respondent_id": ["resident@example.org"],
+                "date_or_hearing": ["Contact 312-555-0199"],
+                "subgroup__notes": ["I live at 1234 W Main Street"],
+            }
+        )
+
+        result = build_safe_display_frame(frame)
+
+        self.assertEqual(list(result.frame.columns), ["comment_text"])
+        self.assertEqual(result.frame.iloc[0, 0], "Please fund more counselors.")
+        self.assertNotIn("resident@example.org", result.frame.to_csv(index=False))
+        self.assertNotIn("312-555-0199", result.frame.to_csv(index=False))
+        self.assertNotIn("1234 W Main Street", result.frame.to_csv(index=False))
+        self.assertEqual(frame.loc[0, "respondent_id"], "resident@example.org")
 
 
 if __name__ == "__main__":

@@ -135,10 +135,14 @@ def build_safe_display_frame(
     *,
     source_column: str = "comment_text",
 ) -> FrameRedactionResult:
-    """Return a display-safe table that contains no raw comment-text column."""
+    """Return only redacted comments, excluding identifiers and mapped metadata.
+
+    This is a display boundary, not a guarantee of complete de-identification:
+    names and other values outside the baseline patterns can remain in text.
+    """
 
     result = redact_frame(frame, source_column=source_column)
-    display_frame = result.frame.drop(columns=[source_column]).rename(
+    display_frame = result.frame.loc[:, ["redacted_comment_text"]].rename(
         columns={"redacted_comment_text": source_column}
     )
     return FrameRedactionResult(

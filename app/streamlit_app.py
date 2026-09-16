@@ -14,6 +14,10 @@ st.write(
     "Upload a public-comment or community-survey export, then identify the column "
     "that contains each response. Files are processed in memory for this session."
 )
+st.warning(
+    "Development preview: use fictional test data. Personal names and some "
+    "other identifiers are not removed yet."
+)
 
 uploaded = st.file_uploader("Upload a CSV or XLSX file", type=["csv", "xlsx"])
 
@@ -86,7 +90,11 @@ if uploaded is not None:
             redaction_total = sum(safe_preview.entity_counts.values())
             if redaction_total:
                 st.info(
-                    f"Redacted {redaction_total:,} contact or address values from the preview."
+                    f"Redacted {redaction_total:,} contact or address values "
+                    "across the usable comments."
                 )
-            st.caption("Preview shows redacted comment text only.")
+            st.caption(
+                "First 20 usable comments after basic redaction. Respondent IDs "
+                "and other mapped fields are excluded from this preview."
+            )
             st.dataframe(safe_preview.frame.head(20), use_container_width=True)

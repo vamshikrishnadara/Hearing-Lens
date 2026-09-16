@@ -16,7 +16,7 @@ Each detected value is replaced with a typed marker such as `[EMAIL_ADDRESS]` or
 
 The table-level function creates a separate `redacted_comment_text` field. The original `comment_text` remains available for in-memory modeling and must never be displayed, exported, written to logs, or persisted on the server.
 
-The dashboard preview uses a display-specific table that removes the original comment column entirely and renames the redacted copy for presentation. This keeps raw text out of the component responsible for rendering the preview.
+The dashboard preview uses a display-specific table containing only the redacted comment column. Respondent IDs and all other mapped metadata are excluded because those fields may contain identifiers that have not been redacted. The original mapped table remains in memory for processing. Basic redaction can still miss personal names and other identifiers inside comments; the interface makes that limitation explicit and directs development testing to fictional data.
 
 ## Required second pass
 

@@ -27,9 +27,15 @@ Personal-name detection, the analytical models, and the final dashboard panels a
 ## Local setup
 
 1. Create and activate a Python 3.11 or later virtual environment.
-2. Install the dependencies with `pip install -r requirements.txt`.
+2. Install the dependencies with `python -m pip install -r requirements.txt`.
 3. Run the tests with `python -m unittest discover -s tests -v`.
-4. Start the current interface with `streamlit run app/streamlit_app.py`.
+4. From the repository root, start the interface with `python -m streamlit run app/streamlit_app.py`.
+
+Using `python -m streamlit` keeps the repository root available for the app's
+pipeline imports. Use fictional data while testing: the current redaction pass
+does not remove personal names or all identifiers. The preview displays only
+the comment column after basic redaction; mapped identifiers and metadata remain
+in memory for processing and are excluded from the preview.
 
 ## Repository layout
 
