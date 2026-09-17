@@ -5,7 +5,7 @@ from __future__ import annotations
 import streamlit as st
 
 from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_columns
-from pipeline.redact import build_safe_display_frame
+from pipeline.redact import RedactionError, build_safe_display_frame
 
 
 st.set_page_config(page_title="Hearing Lens", layout="wide")
@@ -15,8 +15,8 @@ st.write(
     "that contains each response. Files are processed in memory for this session."
 )
 st.warning(
-    "Development preview: use fictional test data. Personal names and some "
-    "other identifiers are not removed yet."
+    "Development preview: use fictional test data. Automatic redaction can "
+    "miss names and other identifiers; review the text before sharing it."
 )
 
 uploaded = st.file_uploader("Upload a CSV or XLSX file", type=["csv", "xlsx"])
@@ -73,10 +73,11 @@ if uploaded is not None:
                 ),
                 subgroup_columns=subgroup_columns,
             )
-        except IngestError as exc:
+            with st.spinner("Checking comments for names and contact details..."):
+                safe_preview = build_safe_display_frame(mapped.frame)
+        except (IngestError, RedactionError) as exc:
             st.error(str(exc))
         else:
-            safe_preview = build_safe_display_frame(mapped.frame)
             st.success(f"{len(mapped.frame):,} usable comments are ready for analysis.")
             if mapped.empty_comments_removed:
                 st.info(
@@ -90,11 +91,11 @@ if uploaded is not None:
             redaction_total = sum(safe_preview.entity_counts.values())
             if redaction_total:
                 st.info(
-                    f"Redacted {redaction_total:,} contact or address values "
+                    f"Redacted {redaction_total:,} name, contact, or address matches "
                     "across the usable comments."
                 )
             st.caption(
-                "First 20 usable comments after basic redaction. Respondent IDs "
+                "First 20 usable comments after automatic redaction. Respondent IDs "
                 "and other mapped fields are excluded from this preview."
             )
             st.dataframe(safe_preview.frame.head(20), use_container_width=True)
