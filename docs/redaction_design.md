@@ -18,15 +18,50 @@ The table-level function creates a separate `redacted_comment_text` field. The o
 
 The dashboard preview uses a display-specific table containing only the redacted comment column. Respondent IDs and all other mapped metadata are excluded because those fields may contain identifiers that have not been redacted. The original mapped table remains in memory for processing. Basic redaction can still miss personal names and other identifiers inside comments; the interface makes that limitation explicit and directs development testing to fictional data.
 
-## Required second pass
+## Person detection added September 17 2026
 
-Pattern matching cannot reliably identify personal names or every location phrase. Before the redaction module is considered complete, it must add an entity-recognition pass for:
+The preview now runs spaCy's `en_core_web_sm` English entity recognizer and
+replaces its `PERSON` spans with `[PERSON]`. This focused step uses spaCy
+directly alongside the existing patterns; the broader Presidio integration is
+still future work. Model setup is explicit in the README. The tested versions
+are spaCy 3.8.16 and `en_core_web_sm` 3.8.0.
 
-- Person names
-- Location names when they identify a residence or individual
-- Address formats not covered by the baseline patterns
+The process caches the model resource, not comments or results, and processes
+frames in batches of 64. No upload is sent to a hosted model. A missing model,
+missing person recognizer, or inference failure raises a sanitized error and
+prevents the preview from being displayed. Original modeling text stays in
+memory; the preview contains only redacted comments.
 
-The planned implementation uses Microsoft Presidio with spaCy and combines its spans with the deterministic patterns. Overlapping detections should use the longest supported span and one replacement marker.
+Both pattern and person spans refer to the original text. Overlapping spans
+are merged to cover their full union; the longest detection supplies the
+replacement category. Each merged span counts as one replacement. This avoids
+leaving fragments or inserting nested markers. URL punctuation is preserved.
+One narrow false-positive rule preserves the command `Email` immediately
+before an email address, including `Email me at` and `Email us at`.
+
+### Measured limitations
+
+The initial 21-case fictional check contained 18 expected name mentions and
+five name-free controls. It fully removed 16 of the 18 mentions; neither
+`Anne-Marie O'Neill` in a self-introduction nor `Elena` in a sentence about a
+daughter was recognized. No PERSON markers appeared in those five controls.
+A sixth control, `Broken exterior lighting has been reported repeatedly without
+a response.`, was then added after sample inspection exposed a false positive
+on the word `Broken`. The expanded check preserves that known failure for review.
+
+On the existing 1,000-row fictional sample, 67 of 79 planted names were fully
+removed. There were 112 PERSON replacements, including 45 false positives on
+`Broken`. Contact/address counts remained 79 emails, 79 phones, 84 street
+addresses, and 84 unit numbers. These are small development fixtures used during
+implementation, not an independent benchmark or a guarantee of privacy.
+
+Reproduce the report with `python -m scripts.validate_person_redaction`.
+Names with punctuation, contextual first names, and some two-word names can
+be missed; ordinary words can be removed incorrectly. Keep fictional-data
+testing and human review in place. Broader location detection, international
+formats, and the quote-review workflow remain unfinished.
+
+Implementation reference: [spaCy English models](https://spacy.io/models/en).
 
 ## Validation plan
 
@@ -38,7 +73,7 @@ The planned implementation uses Microsoft Presidio with spaCy and combines its s
 
 ## Known limitations
 
-- The baseline does not yet redact personal names.
+- Personal-name detection is present but incomplete, with the misses and false positives above.
 - International phone and address formats require additional coverage.
 - A location name may be ordinary public context rather than identifying information; automated removal requires conservative rules and review.
 - Free-form text can contain unexpected identifiers, so automated detection does not replace the quote-review control required before export.

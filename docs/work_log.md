@@ -94,3 +94,32 @@ This is a planning allocation, not a statement that ten hours were completed.
 - Install and launch Streamlit, then complete a browser-level upload test.
 - Begin the theme-clustering pipeline and its validation approach.
 - Draft the methodology and limitations page.
+
+## September 17 2026
+
+**Focused task:** Add and test personal-name redaction in the existing preview.
+**Status:** Initial implementation and local verification complete; Vamshi approved publication in focused commits.
+**Actual time:** Recorded separately by Vamshi in Jibble; no hours inferred here.
+
+### Completed outputs
+
+- Added local English PERSON detection with spaCy 3.8.16 and model `en_core_web_sm` 3.8.0.
+- Combined original-text name and pattern spans before replacement, including overlapping detections.
+- Added model-resource caching, batched processing, and readable errors that block preview on detection failure.
+- Updated the preview's warning and redaction summary, setup instructions, and redaction design.
+- Added fictional name cases, a reproducible validation report command, and pipeline/app regression checks.
+
+### Validation evidence
+
+- All 35 automated tests passed, including the previous 23 tests and 12 added name/app checks.
+- Streamlit's in-process runner verified PERSON markers in the preview and no preview/success message on model failure. No browser upload test was performed for this change.
+- The expanded 22-case fixture fully removed 16 of 18 expected name mentions. One of six name-free controls was incorrectly redacted.
+- The 1,000-row sample fully removed 67 of 79 planted names. Inspection found 45 false-positive removals of the word `Broken`.
+- Existing sample totals remained 79 emails, 79 phones, 84 street addresses, and 84 unit numbers.
+- Dependency consistency and whitespace checks passed.
+
+### Remaining limitations
+
+Names are not always detected, and ordinary words can be removed incorrectly. The recorded misses include a hyphenated/apostrophized full name and a contextual first name. Continue using fictional data; full privacy validation and broader location coverage are unfinished. The validation fixtures were used during development and are not an independent benchmark.
+
+The daily evidence record and detailed JSON report are saved locally outside the repository. Vamshi approved committing and pushing today's work in separate, focused steps.
