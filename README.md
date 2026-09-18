@@ -69,11 +69,6 @@ hearing-lens/
   tests/test_ingest.py       Unit tests for the loader
 ```
 
-## Decisions still requiring confirmation
-
-- The repository license and intellectual-property language must be confirmed with ChiEAC before public release.
-- The fixed weekly check-in time and Gate 0 review date must be agreed with Benjamin.
-- Test-data licenses and attribution must be recorded before public datasets are committed.
 
 ## Development sample
 
