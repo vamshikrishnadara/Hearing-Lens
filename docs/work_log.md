@@ -123,3 +123,15 @@ This is a planning allocation, not a statement that ten hours were completed.
 Names are not always detected, and ordinary words can be removed incorrectly. The recorded misses include a hyphenated/apostrophized full name and a contextual first name. Continue using fictional data; full privacy validation and broader location coverage are unfinished. The validation fixtures were used during development and are not an independent benchmark.
 
 The daily evidence record and detailed JSON report are saved locally outside the repository. Vamshi approved committing and pushing today's work in separate, focused steps.
+
+## September 18 2026
+
+**Scope:** Three small documentation tasks, each in a separate local commit.
+**Actual time:** Recorded separately by Vamshi in Jibble; no hours inferred here.
+
+### Task 1 - Upload and preview user guide
+
+- Added a walkthrough covering startup, CSV/XLSX selection, column mapping, and preview interpretation.
+- Included the sample's exact headers and the need to change the default comment-column selection.
+- Checked labels, cleaning order, row limits, and preview boundaries against the current app and ingestion source.
+- Linked the guide from the README. This task changes documentation only.

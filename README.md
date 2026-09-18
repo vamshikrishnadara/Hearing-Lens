@@ -48,6 +48,10 @@ the app. Run `python -m scripts.validate_person_redaction` for a reproducible
 report on the fictional name cases and existing 1,000-row sample. See
 `docs/redaction_design.md` for the measured limitations.
 
+## User help
+
+- [Upload and preview user guide](docs/user_guide.md)
+
 ## Repository layout
 
 ```text
