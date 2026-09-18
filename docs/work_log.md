@@ -135,3 +135,10 @@ The daily evidence record and detailed JSON report are saved locally outside the
 - Included the sample's exact headers and the need to change the default comment-column selection.
 - Checked labels, cleaning order, row limits, and preview boundaries against the current app and ingestion source.
 - Linked the guide from the README. This task changes documentation only.
+
+### Task 2 - Troubleshooting reference
+
+- Added startup, missing-model, file-format, encoding, mapping, and count troubleshooting.
+- Explained expected preview restrictions and how to record issues using fictional examples.
+- Cross-checked the described errors and recovery steps against the loader, app, redaction behavior, and existing setup instructions.
+- Linked the reference from the README. No runtime behavior changed.

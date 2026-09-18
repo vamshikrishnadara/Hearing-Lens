@@ -51,6 +51,7 @@ report on the fictional name cases and existing 1,000-row sample. See
 ## User help
 
 - [Upload and preview user guide](docs/user_guide.md)
+- [Upload and setup troubleshooting](docs/troubleshooting.md)
 
 ## Repository layout
 
