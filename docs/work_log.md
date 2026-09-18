@@ -142,3 +142,11 @@ The daily evidence record and detailed JSON report are saved locally outside the
 - Explained expected preview restrictions and how to record issues using fictional examples.
 - Cross-checked the described errors and recovery steps against the loader, app, redaction behavior, and existing setup instructions.
 - Linked the reference from the README. No runtime behavior changed.
+
+### Task 3 - Reusable manual testing checklist
+
+- Added eight manual cases with a six-row fictional CSV fixture, XLSX preparation steps, expected outcomes, and blank result fields.
+- Covered normal upload, preview boundaries, optional mappings, duplicate mapping, sheet switching, empty comments, header-only input, and the 20-row display limit.
+- The checklist is unexecuted; its unchecked boxes are not evidence that browser tests passed today.
+- Today's verification checks documentation against source, the fixture's expected cleaning counts, relative file links, and whitespace. No application code was changed.
+- Daily PDF evidence is stored locally outside the repository. Today's three commits require Vamshi's approval before pushing.

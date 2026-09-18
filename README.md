@@ -52,6 +52,7 @@ report on the fictional name cases and existing 1,000-row sample. See
 
 - [Upload and preview user guide](docs/user_guide.md)
 - [Upload and setup troubleshooting](docs/troubleshooting.md)
+- [Reusable upload and preview testing checklist](docs/manual_test_checklist.md)
 
 ## Repository layout
 
