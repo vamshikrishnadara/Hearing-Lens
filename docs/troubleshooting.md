@@ -35,7 +35,7 @@ display generation when the check cannot run.
 | --- | --- |
 | Each source column can be mapped only once | Choose different columns for comment, date, and ID; set unused optional fields to **Not provided**. |
 | No usable comments remain after empty rows are removed | Check **Comment text**. The selected column must contain nonempty responses. |
-| IDs appear where comments should be | Change **Comment text** to the response column. It defaults to the first source column, not an automatically detected comment column. |
+| IDs appear where comments should be | Change **Comment text** to the response column. It initially selects a column named exactly `comment_text` when available, otherwise the first source column. Always review the selection. |
 | Fewer usable comments than expected | Empty comments are removed first. If an ID is mapped, repeated nonempty IDs keep only their first usable row. Also check for the 5,000-row limit notice. |
 | Only 20 comments appear | The display intentionally shows the first 20 usable comments. The success count describes the full usable set within the row limit. |
 | Dates, IDs, or subgroup columns are absent from the preview | These mapped fields are intentionally excluded from the displayed table. |

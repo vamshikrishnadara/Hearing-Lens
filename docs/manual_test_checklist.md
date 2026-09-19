@@ -42,8 +42,8 @@ Save both files locally. Do not merely rename the CSV extension.
 
 For each case, record Pass, Fail, or Blocked and the observed counts/messages.
 
-- [ ] **1. CSV upload and mapping.** Upload `upload_check.csv`. Explicitly set
-  **Comment text** to `comment_text`, **Date or hearing label** to
+- [ ] **1. CSV upload and mapping.** Upload `upload_check.csv`. Confirm that
+  **Comment text** initially selects `comment_text`. Set **Date or hearing label** to
   `hearing_date`, **Respondent ID** to `respondent_id`, and subgroup to `ward`.
   Click **Validate mapping**. Expect **4 usable comments**, **1 empty comment
   removed**, and **1 repeated respondent ID removed**. Both missing-ID rows

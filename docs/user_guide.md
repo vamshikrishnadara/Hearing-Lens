@@ -40,9 +40,11 @@ For the included sample, choose:
 | Respondent ID | `respondent_id` | Optional ID used to remove repeats |
 | Subgroup fields (optional) | For example, `ward`, `role`, `language` | Optional supplied metadata |
 
-**Comment text initially selects the first column, which is `respondent_id` in
-this sample. Change it to `comment_text` before continuing.** The app does not
-automatically decide which column contains meaningful responses.
+**Comment text initially selects a column named exactly `comment_text` when
+available, so the included sample starts with the correct selection.** Otherwise,
+it selects the first source column. This is a header-based default, not a check
+of the responses. Review the selection and change it in the dropdown if needed;
+other header names must be selected manually when they are not the first column.
 
 For your own fictional file, select the corresponding headers. Leave optional
 date and ID fields at **Not provided** when absent, and leave subgroup fields

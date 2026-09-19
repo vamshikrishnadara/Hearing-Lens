@@ -18,6 +18,7 @@ This repository currently contains the Week 1 project foundation: an input loade
 - Lists workbook sheets and allows sheet selection.
 - Enforces a configurable row limit.
 - Supports mapping the required comment column and optional date, respondent ID, and subgroup columns.
+- Initially selects `comment_text` when that exact header exists; the selection remains editable.
 - Drops empty comments and can remove repeated respondent IDs.
 - Reports validation problems in readable language.
 - Redacts common email, web, phone, street-address, and unit-number patterns from display text.

@@ -150,3 +150,29 @@ The daily evidence record and detailed JSON report are saved locally outside the
 - The checklist is unexecuted; its unchecked boxes are not evidence that browser tests passed today.
 - Today's verification checks documentation against source, the fixture's expected cleaning counts, relative file links, and whitespace. No application code was changed.
 - Daily PDF evidence is stored locally outside the repository. Today's three commits require Vamshi's approval before pushing.
+
+## September 19 2026
+
+**Focused task:** Select the comment column automatically when the exact
+`comment_text` header is available, while keeping manual selection available.
+**Actual time:** Recorded separately by Vamshi in Jibble; the planned two-hour
+session is not a claim of hours worked.
+
+### Completed outputs
+
+- Updated the comment dropdown to prefer `comment_text`; files without that exact header keep the first-column default.
+- Added field help explaining the default and the ability to change it.
+- Updated the README, user guide, troubleshooting reference, and manual checklist to match the new behavior.
+- Added four app-level regression tests covering the included CSV sample, XLSX sheet selection, other headers, and manual overrides across reruns.
+
+### Validation and boundaries
+
+- All 39 automated tests passed, including the four new mapping tests.
+- App checks used Streamlit's in-process test runner with fictional in-memory uploads. No browser-level upload test was performed today.
+- Whitespace and documentation file-link checks passed.
+- This chooses a default based on an exact header, not comment contents or other possible header names. Users still need to review their mapping.
+- Existing redaction limitations remain; this task makes no claim of improved name detection or anonymity.
+
+Implementation, tests, and documentation are kept in one focused local commit.
+Push requires Vamshi's approval. A short daily evidence PDF is saved locally
+outside the repository.

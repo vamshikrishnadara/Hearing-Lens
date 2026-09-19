@@ -42,7 +42,16 @@ if uploaded is not None:
 
     columns = [str(column) for column in loaded.frame.columns]
     st.subheader("Map your columns")
-    comment_column = st.selectbox("Comment text", columns)
+    comment_column = st.selectbox(
+        "Comment text",
+        columns,
+        index=columns.index("comment_text") if "comment_text" in columns else 0,
+        help=(
+            "Select the column containing each response. A column named exactly "
+            "comment_text is selected initially when available; otherwise the "
+            "first column is selected. You can change this selection."
+        ),
+    )
 
     optional_columns = ["Not provided", *columns]
     date_choice = st.selectbox("Date or hearing label", optional_columns)
