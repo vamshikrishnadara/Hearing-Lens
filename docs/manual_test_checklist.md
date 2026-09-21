@@ -50,7 +50,7 @@ For each case, record Pass, Fail, or Blocked and the observed counts/messages.
   remain. Actual result / evidence:
 
 - [ ] **2. Preview boundary.** Using case 1, inspect the table. Expect only
-  `comment_text`, four rows, and `[EMAIL]` instead of `demo@example.org`.
+  `comment_text`, four rows, and `[EMAIL_ADDRESS]` instead of `demo@example.org`.
   IDs, date, and ward must not appear as table columns. Review other text for
   incorrect replacements; record them rather than assuming all redaction is
   correct. Actual result / evidence:
