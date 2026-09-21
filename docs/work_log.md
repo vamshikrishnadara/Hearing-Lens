@@ -176,3 +176,20 @@ session is not a claim of hours worked.
 Implementation, tests, and documentation are kept in one focused local commit.
 Push requires Vamshi's approval. A short daily evidence PDF is saved locally
 outside the repository.
+
+## September 21 2026
+
+**Task:** Execute the upload and preview checklist in the browser using fictional files.
+**Activity:** Design a Data Dashboard.
+
+- Completed all eight checklist cases in the Codex in-app browser against local application revision `2b22f2e`.
+- Verified CSV/XLSX uploads, sheet switching, automatic/manual column selection, empty-row removal, ID deduplication, mapping errors, and preview boundaries.
+- Observed 1,000 usable comments, 438 redaction matches, and a 20-comment preview for the larger sample.
+- Corrected the checklist's email marker from `[EMAIL]` to `[EMAIL_ADDRESS]` and rechecked the small CSV preview.
+- Recorded the existing false-positive removal of “Broken” as an unresolved name-detection limitation. No application code changed.
+- Saved [browser test results](upload_test_results_2026-09-21.md); fictional files, screenshots, and daily PDF evidence remain local outside the repository.
+- Final workflow outcome: eight cases passed after one checklist correction. Automated tests were not rerun for this documentation-only change; these results concern actual browser testing.
+
+Changes are separated into three local documentation commits: the checklist
+correction, browser test report, and this daily work-log update. Each push
+requires Vamshi's approval. Actual time is maintained separately in Jibble.
