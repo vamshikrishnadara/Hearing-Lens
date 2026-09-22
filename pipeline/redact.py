@@ -101,6 +101,14 @@ def _redact_detected_text(text: str, entities) -> RedactionResult:
         if entity.label_ != "PERSON":
             continue
         start, end = entity.start_char, entity.end_char
+        # Preserve the adjective in this observed opening phrase only. Do not
+        # whitelist "Broken" as a name elsewhere, or discard longer PERSON spans.
+        if (
+            text[start:end].casefold() == "broken"
+            and not text[:start].strip()
+            and re.match(r"\s+exterior\s+lighting\b", text[end:], re.IGNORECASE)
+        ):
+            continue
         # The small English model can tag the command "Email" as a person
         # before an email address (including "Email me/us at"). Exclude only
         # these contact instructions, not arbitrary names or capitalized words.
