@@ -1,0 +1,26 @@
+[
+  {
+    "text": "Broken exterior lighting has been reported repeatedly without a response.",
+    "expected_output": "Broken exterior lighting has been reported repeatedly without a response."
+  },
+  {
+    "text": "Broken exterior lighting near the entrance needs repair.",
+    "expected_output": "Broken exterior lighting near the entrance needs repair."
+  },
+  {
+    "text": "Broken exterior lighting was reported by John Smith.",
+    "expected_output": "Broken exterior lighting was reported by [PERSON]."
+  },
+  {
+    "text": "Contact Broken at resident@example.org.",
+    "expected_output": "Contact [PERSON] at [EMAIL_ADDRESS]."
+  },
+  {
+    "text": "Broken Smith spoke at the hearing.",
+    "expected_output": "[PERSON] spoke at the hearing."
+  },
+  {
+    "text": "My name is Broken and I support more counselors.",
+    "expected_output": "My name is [PERSON] and I support more counselors."
+  }
+]

@@ -54,6 +54,17 @@ def main():
             planted += 1
             if all(not re.search(r"\b" + re.escape(token) + r"\b", output) for token in match[1].split()):
                 removed += 1
+    lighting_cases = json.loads(
+        (root / "data/samples/lighting_redaction_cases.json").read_text()
+    )
+    lighting_result = redact_frame(
+        pd.DataFrame({"comment_text": [case["text"] for case in lighting_cases]})
+    )
+    lighting_checks = [
+        {"input": case["text"], "expected_output": case["expected_output"],
+         "output": output, "matches_expected": output == case["expected_output"]}
+        for case, output in zip(lighting_cases, lighting_result.frame["redacted_comment_text"])
+    ]
     print(json.dumps({
         "fixture_notice": "All examples are fictional. Small development checks, not a privacy guarantee or population benchmark.",
         "spacy_version": spacy.__version__,
@@ -68,6 +79,11 @@ def main():
                              "false_positive_Broken_replacements": false_broken,
                              "entity_counts": sample_result.entity_counts,
                              "warm_run_seconds": round(sample_seconds, 3)},
+        "lighting_regression_cases": {
+            "case_count": len(lighting_checks),
+            "matches_expected": sum(case["matches_expected"] for case in lighting_checks),
+            "cases": lighting_checks,
+        },
         "total_seconds_including_model_load": round(perf_counter() - start, 3),
     }, indent=2, ensure_ascii=False))
 
