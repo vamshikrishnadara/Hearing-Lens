@@ -193,3 +193,20 @@ outside the repository.
 Changes are separated into three local documentation commits: the checklist
 correction, browser test report, and this daily work-log update. Each push
 requires Vamshi's approval. Actual time is maintained separately in Jibble.
+
+## September 22 2026
+
+**Task:** Investigate and correct the known `Broken exterior lighting` false positive.
+**Activity:** Analyze Open-Ended Responses.
+
+- Reproduced 45 incorrect `Broken` replacements in the unchanged 1,000-row sample.
+- Added six fictional validation cases and extended the reproducible report command.
+- Added a phrase-specific exception and four regression tests; no model change or general word allowlist.
+- All 43 automated tests passed. The six focused examples now all match their expected outputs (previously three).
+- Incorrect `Broken` replacements in the sample fell to zero; planted-name coverage stayed at 67 of 79 and contact/address counts stayed unchanged.
+- Documented the before/after comparison and remaining limitations, including the different `Broken windows` context and known name misses.
+- No browser testing was performed today. JSON reports, test output, and PDF evidence are saved locally.
+
+Work is separated into three commits: validation examples/reporting, correction
+with tests, and documentation. Each push requires approval. Actual working time
+is recorded separately in Jibble.

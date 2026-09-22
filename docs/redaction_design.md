@@ -39,7 +39,7 @@ leaving fragments or inserting nested markers. URL punctuation is preserved.
 One narrow false-positive rule preserves the command `Email` immediately
 before an email address, including `Email me at` and `Email us at`.
 
-### Measured limitations
+### Initial measurements - September 17
 
 The initial 21-case fictional check contained 18 expected name mentions and
 five name-free controls. It fully removed 16 of the 18 mentions; neither
@@ -62,6 +62,38 @@ testing and human review in place. Broader location detection, international
 formats, and the quote-review workflow remain unfinished.
 
 Implementation reference: [spaCy English models](https://spacy.io/models/en).
+
+### Targeted lighting correction - September 22
+
+The initial measurements above are retained as historical evidence. A narrow
+post-detection rule now preserves a standalone PERSON span `Broken` only when
+it opens the comment (allowing leading whitespace) and is immediately followed
+by `exterior lighting`, separated by whitespace. Matching is case-insensitive
+and requires a word boundary after `lighting`. It does not change the model,
+exempt longer PERSON spans, or whitelist `Broken` elsewhere. Names and contact
+patterns later in the same comment still go through redaction.
+
+On the same 1,000-row development sample, the known false replacements of
+`Broken` fell from 45 to 0. Fully removed planted names stayed at 67 of 79;
+PERSON markers fell from 112 to 67 because the 45 false positives were removed.
+Email, phone, street-address, and unit counts remained 79, 79, 84, and 84.
+The original 22-case fixture still removes 16 of 18 expected name mentions;
+name-free controls receiving a PERSON marker fell from 1 of 6 to 0 of 6.
+
+A separate six-case [lighting fixture](../data/samples/lighting_redaction_cases.json)
+checks two adjective examples, a name later in the same comment, and three
+name contexts that must remain redacted. Exact expected outputs improved from
+3 of 6 to 6 of 6. Run the existing validation command to see both the original
+fixtures and these focused checks. All 43 automated tests passed, including
+four new tests covering real-model examples, the rule's boundaries, formatting,
+and preview counts. No browser test was performed for this correction.
+
+This is a phrase-specific development correction, not a general improvement to
+name recognition. For example, the model also tagged `Broken` in `Broken windows
+need repair.` during investigation; that different context is not addressed.
+The rule assumes the opening phrase describes lighting, so an unusual actual
+name used in that exact context could be retained. Known missed names and
+broader privacy limitations remain. See the [comparison report](redaction_validation_2026-09-22.md).
 
 ## Validation plan
 
