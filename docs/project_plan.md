@@ -2,6 +2,20 @@
 
 The MVP is organized around five live review gates. Week 8 is reserved for slippage and post-launch fixes rather than new features.
 
+## Calendar and current priority
+
+If September 14, 2026 is the agreed kickoff date, the end-of-Week-7 target is
+November 1 and the Week 8 buffer ends November 8. The official brief leaves the
+start date to kickoff agreement; these calendar dates are conditional, not an
+additional supervisor commitment. Plan against the brief's approximately 20
+hours per week and required review gates.
+
+As of September 23, prioritize Week 2 theme-engine work. The initial local
+embedding/K-means pipeline runs, but grouping coherence, required public-corpus
+validation, and the remaining theme requirements are unfinished. See the
+[theme prototype report](theme_prototype.md). Do not mark Gate 0 or another
+supervisor gate approved based solely on implementation progress.
+
 ## Gate 0 Scope and schema
 
 Target: end of Week 1.

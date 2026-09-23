@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository currently contains the Week 1 project foundation: an input loader, a first-pass column-mapping interface, schema documentation, a dashboard wireframe, an implementation plan, tests, and a work log.
+This repository contains the upload-and-preview foundation and an initial command-line theme-analysis prototype, together with schema documentation, a dashboard wireframe, tests, and a work log.
 
 ## Project principles
 
@@ -24,10 +24,12 @@ This repository currently contains the Week 1 project foundation: an input loade
 - Redacts common email, web, phone, street-address, and unit-number patterns from display text.
 - Replaces person names detected by the local English spaCy model with `[PERSON]`.
 - Blocks the preview if name detection is unavailable or fails.
+- Provides a development-only theme pipeline with local embeddings, keyword labels, counts, shares, and redacted candidate quotes.
 
 Name detection is an initial implementation with measured misses and false
-positives; it does not guarantee that a comment is anonymous. The analytical
-models and final dashboard panels are not implemented yet.
+positives; it does not guarantee that a comment is anonymous. Theme analysis is
+an initial pipeline, not yet connected to the upload interface. Sentiment,
+emotion, gaps, questions, timeline, and final dashboard panels remain unfinished.
 
 ## Local setup
 
@@ -51,6 +53,8 @@ report on the fictional name cases and existing 1,000-row sample. See
 
 ## User help
 
+- [Theme prototype setup, usage, and measured limitations](docs/theme_prototype.md)
+
 - [Upload and preview user guide](docs/user_guide.md)
 - [Upload and setup troubleshooting](docs/troubleshooting.md)
 - [Reusable upload and preview testing checklist](docs/manual_test_checklist.md)
@@ -62,6 +66,7 @@ hearing-lens/
   app/streamlit_app.py       Current upload and mapping interface
   pipeline/ingest.py         File loading, validation, and column mapping
   pipeline/redact.py         Person, contact, and address redaction
+  pipeline/themes.py         Initial local theme analysis and quote selection
   docs/schema.md             Canonical input and internal schemas
   docs/redaction_design.md   Redaction boundary, limitations, and validation plan
   docs/wireframe.md          First dashboard wireframe

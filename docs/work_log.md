@@ -210,3 +210,21 @@ requires Vamshi's approval. Actual time is maintained separately in Jibble.
 Work is separated into three commits: validation examples/reporting, correction
 with tests, and documentation. Each push requires approval. Actual working time
 is recorded separately in Jibble.
+
+## September 23 2026
+
+**Task:** Build and validate the first local theme-analysis pipeline.
+**Activity:** Analyze Open-Ended Responses.
+
+- Added MiniLM embeddings, deterministic K-means grouping, TF-IDF keyword labels, counts/shares, row assignments, and up to three redacted candidate quotes per theme.
+- Added explicit model setup and local-only inference, input checks, failure handling, and duplicate/length filtering for quotes.
+- All 55 automated tests passed, including 12 theme tests. Dependency consistency passed.
+- The 1,000-row fictional sample produced six groups and 15 candidate quotes in one measured 4.075-second run; two groups had fewer than three eligible quotes.
+- The adjusted Rand index was 0.1861; manual inspection confirmed mixed topics. This is an initial baseline, not completion of Week 2's quality benchmarks.
+- A separate six-comment library/bus fixture split into two coherent groups, each with three quotes.
+- Recorded [setup, results, and limitations](theme_prototype.md). Ground-truth sample categories were used only after clustering to evaluate results.
+- No Streamlit theme panel or browser test was added today. The two public corpora, BERTopic path, and other remaining requirements are documented.
+
+Three local commits separate implementation/tests, the validation command, and
+documentation. Push each only after approval. Daily JSON results, test output,
+and PDF evidence remain local. Actual work hours are recorded separately in Jibble.
