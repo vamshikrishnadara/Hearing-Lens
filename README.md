@@ -25,6 +25,7 @@ This repository contains the upload-and-preview foundation and an initial comman
 - Replaces person names detected by the local English spaCy model with `[PERSON]`.
 - Blocks the preview if name detection is unavailable or fails.
 - Provides a development-only theme pipeline with local embeddings, keyword labels, counts, shares, and redacted candidate quotes.
+- Uses experimental sentence weighting to reduce repeated wording's influence, with the original whole-comment method retained for comparison.
 
 Name detection is an initial implementation with measured misses and false
 positives; it does not guarantee that a comment is anonymous. Theme analysis is
@@ -54,6 +55,7 @@ report on the fictional name cases and existing 1,000-row sample. See
 ## User help
 
 - [Theme prototype setup, usage, and measured limitations](docs/theme_prototype.md)
+- [September 24 theme-grouping comparison](docs/theme_grouping_review_2026-09-24.md)
 
 - [Upload and preview user guide](docs/user_guide.md)
 - [Upload and setup troubleshooting](docs/troubleshooting.md)

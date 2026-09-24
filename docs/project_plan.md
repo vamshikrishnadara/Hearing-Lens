@@ -10,9 +10,11 @@ start date to kickoff agreement; these calendar dates are conditional, not an
 additional supervisor commitment. Plan against the brief's approximately 20
 hours per week and required review gates.
 
-As of September 23, prioritize Week 2 theme-engine work. The initial local
+As of September 24, prioritize Week 2 theme-engine work. The initial local
 embedding/K-means pipeline runs, but grouping coherence, required public-corpus
-validation, and the remaining theme requirements are unfinished. See the
+validation, and the remaining theme requirements are unfinished. Sentence
+weighting improved agreement on the fictional development sample, but several
+groups still mix topics. See the
 [theme prototype report](theme_prototype.md). Do not mark Gate 0 or another
 supervisor gate approved based solely on implementation progress.
 

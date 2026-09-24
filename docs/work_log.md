@@ -228,3 +228,22 @@ is recorded separately in Jibble.
 Three local commits separate implementation/tests, the validation command, and
 documentation. Push each only after approval. Daily JSON results, test output,
 and PDF evidence remain local. Actual work hours are recorded separately in Jibble.
+
+## September 24 2026
+
+**Task:** Refine theme grouping and compare it with the original prototype.
+**Activity:** Analyze Open-Ended Responses.
+
+- Investigated repeated introductory wording in the unchanged fictional sample.
+- Added experimental sentence-frequency weighting while retaining the original whole-comment mode for comparison. Full redacted quotes and quote eligibility rules are preserved.
+- Added seven behavioral regression tests; all 62 automated tests passed, including the real local model check.
+- Added a reproducible comparison command with the original 1,000-comment sample and a separate 24-comment fixture.
+- Development-sample ARI increased from 0.1861 to 0.2647, with six groups and 15 candidate quotes in both modes. Mixed groups and vague labels remain; this is not an accuracy percentage or independent quality certification.
+- Both methods preserved all 12 introduction/no-introduction pairs in the new fixture and produced the expected three groups there. The earlier six-comment smoke check also still passes.
+- Reviewed selected redacted quotes and recorded [results and limitations](theme_grouping_review_2026-09-24.md). Known redaction misses and the public-corpus validation gap remain.
+- No interface change or browser test was performed. Week 2 and supervisor review gates remain incomplete.
+
+Three local commits separate the improvement and regression tests, reproducible
+comparison, and documentation. Each push requires approval. Daily PDF evidence,
+JSON reports, and test output are stored locally outside the repository. Actual
+hours are recorded separately in Jibble.
