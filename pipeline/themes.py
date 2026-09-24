@@ -1,5 +1,6 @@
 """Initial local embedding/K-means themes; returns no raw comment text or metadata."""
 
+from collections import Counter
 from difflib import SequenceMatcher
 from functools import lru_cache
 from pathlib import Path
@@ -70,6 +71,27 @@ def _embed(texts):
         raise ThemeError("Theme embedding failed; no theme results were produced.") from None
 
 
+def _theme_vectors(texts, embedding_mode):
+    if embedding_mode == "whole_comment":
+        return _embed(texts)
+    # Count a sentence at most once per comment. Repeated introductions should
+    # have less influence than less-common content, without a topic-specific list.
+    sentences = [list(dict.fromkeys(re.split(r"(?<=[.!?])\s+", text))) for text in texts]
+    frequency = Counter(sentence for comment in sentences for sentence in comment)
+    unique = list(frequency)
+    encoded = _embed(unique)
+    lookup = {sentence: index for index, sentence in enumerate(unique)}
+    vectors = []
+    for comment in sentences:
+        weights = [np.log((1 + len(texts)) / (1 + frequency[sentence])) + 1 for sentence in comment]
+        vector = np.average(encoded[[lookup[sentence] for sentence in comment]], axis=0, weights=weights)
+        norm = np.linalg.norm(vector)
+        if not np.isfinite(norm) or norm <= 1e-12:
+            raise ThemeError("Theme embedding failed; no theme results were produced.")
+        vectors.append(vector / norm)
+    return np.asarray(vectors)
+
+
 def _keywords(texts, groups):
     try:
         vectorizer = TfidfVectorizer(
@@ -99,15 +121,21 @@ def _keywords(texts, groups):
     return output
 
 
-def analyze_themes(frame: pd.DataFrame, *, theme_count: int = 6) -> dict:
+def analyze_themes(
+    frame: pd.DataFrame, *, theme_count: int = 6,
+    embedding_mode: str = "sentence_weighted",
+) -> dict:
     """Analyze up to 5,000 English comments in memory; never write uploads.
 
     Assignments use zero-based input row positions, not respondent IDs. All
     textual output comes from the existing redaction boundary; missed PII can
     still remain. This function is not a privacy guarantee or a review workflow.
+    sentence_weighted is experimental; whole_comment retains the original baseline.
     """
     if isinstance(theme_count, bool) or not isinstance(theme_count, int) or not 1 <= theme_count <= 15:
         raise ThemeError("Choose between 1 and 15 themes.")
+    if embedding_mode not in ("sentence_weighted", "whole_comment"):
+        raise ThemeError("Choose sentence_weighted or whole_comment embedding mode.")
     if "comment_text" not in frame.columns:
         raise ThemeError("A comment_text column is required for theme analysis.")
     if len(frame) > 5000:
@@ -135,7 +163,9 @@ def analyze_themes(frame: pd.DataFrame, *, theme_count: int = 6) -> dict:
         notes.append(f"Excluded {len(excluded_positions)} comments with no analyzable text after redaction.")
     if np.median([len(text.split()) for text in texts]) < 8:
         notes.append("Median comment length is under eight words; theme quality may be poor.")
-    vectors = _embed(texts)
+    vectors = _theme_vectors(texts, embedding_mode)
+    if embedding_mode == "sentence_weighted":
+        notes.append("Sentence weighting is experimental: repeated substantive statements can also be downweighted.")
     count = min(theme_count, len(np.unique(vectors, axis=0)))
     try:
         labels = KMeans(n_clusters=count, random_state=42, n_init=10).fit_predict(vectors)
@@ -182,6 +212,7 @@ def analyze_themes(frame: pd.DataFrame, *, theme_count: int = 6) -> dict:
         assignments.extend({"row_position": positions[i], "theme_id": theme_id} for i in members)
     return {
         "method": "all-MiniLM-L6-v2 + KMeans + TF-IDF keywords",
+        "embedding_mode": embedding_mode,
         "requested_themes": theme_count, "analyzed_comments": len(texts),
         "empty_comments_removed": len(frame) - len(raw[raw.ne("")]),
         "excluded_row_positions": excluded_positions,

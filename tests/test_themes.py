@@ -8,10 +8,58 @@ import numpy as np
 import pandas as pd
 
 from pipeline.redact import RedactionError
-from pipeline.themes import MODEL_PATH, ThemeError, _analysis_text, _embed, _get_embedding_model, analyze_themes
+from pipeline.themes import MODEL_PATH, ThemeError, _analysis_text, _embed, _get_embedding_model, _theme_vectors, analyze_themes
 
 
 class ThemeTests(unittest.TestCase):
+    def test_common_intro_has_less_influence_than_each_topic(self):
+        texts = ['I attended. Please improve buses.', 'I attended. Please improve books.']
+        with patch('pipeline.themes._embed', return_value=np.eye(3)) as embed:
+            vectors = _theme_vectors(texts, 'sentence_weighted')
+        self.assertEqual(embed.call_args.args[0], ['I attended.', 'Please improve buses.', 'Please improve books.'])
+        self.assertGreater(vectors[0, 1], vectors[0, 0])
+        self.assertGreater(vectors[1, 2], vectors[1, 0])
+        np.testing.assert_allclose(np.linalg.norm(vectors, axis=1), 1)
+
+    def test_repeating_sentence_within_one_comment_cannot_increase_its_weight(self):
+        texts = ['I attended. Buses are late.', 'Books are needed.']
+        with patch('pipeline.themes._embed', return_value=np.eye(3)):
+            ordinary = _theme_vectors(texts, 'sentence_weighted')
+            repeated = _theme_vectors(['I attended. I attended. Buses are late.', texts[1]], 'sentence_weighted')
+        np.testing.assert_allclose(ordinary, repeated)
+
+    def test_single_sentence_vectors_and_input_order_are_preserved(self):
+        texts = ['More books.', 'More buses.', 'More books.']
+        with patch('pipeline.themes._embed', return_value=np.eye(2)) as embed:
+            result = _theme_vectors(texts, 'sentence_weighted')
+        np.testing.assert_allclose(result, [[1, 0], [0, 1], [1, 0]])
+        self.assertEqual(embed.call_args.args[0], ['More books.', 'More buses.'])
+
+    def test_whole_comment_mode_keeps_original_embedding_path(self):
+        texts = ['First sentence. Second sentence.']
+        with patch('pipeline.themes._embed', return_value=np.array([[1., 0.]])) as embed:
+            _theme_vectors(texts, 'whole_comment')
+        embed.assert_called_once_with(texts)
+
+    def test_weighting_preserves_the_complete_redacted_quote(self):
+        text = 'Thank you for listening. Please add new books to our library for children. Email resident@example.org.'
+        with patch('pipeline.themes._embed', side_effect=lambda texts: np.tile([1., 0.], (len(texts), 1))):
+            result = analyze_themes(pd.DataFrame({'comment_text': [text]}), theme_count=1)
+        self.assertEqual(result['embedding_mode'], 'sentence_weighted')
+        quote = result['themes'][0]['quotes'][0]['text']
+        self.assertEqual(quote, text.replace('resident@example.org', '[EMAIL_ADDRESS]'))
+
+    def test_zero_average_sentence_vector_blocks_results(self):
+        with patch('pipeline.themes._embed', return_value=np.array([[1., 0.], [-1., 0.]])):
+            with self.assertRaisesRegex(ThemeError, 'embedding failed'):
+                _theme_vectors(['First sentence. Opposite sentence.'], 'sentence_weighted')
+
+    def test_invalid_embedding_mode_rejected_before_model_load(self):
+        with patch('pipeline.themes._embed') as embed:
+            with self.assertRaisesRegex(ThemeError, 'embedding mode'):
+                analyze_themes(pd.DataFrame({'comment_text': ['Hello']}), embedding_mode='private-invalid-value')
+            embed.assert_not_called()
+
     def test_contact_suffixes_do_not_create_different_analysis_text(self):
         core = 'Please improve transportation for families.'
         self.assertEqual(_analysis_text(core + ' Contact [PERSON] at [EMAIL_ADDRESS].'), core)
@@ -74,14 +122,14 @@ class ThemeTests(unittest.TestCase):
 
     def test_names_and_contacts_redacted_before_labels_quotes_and_embedding(self):
         text = 'My name is John Smith and I support more books for students. Email resident@example.org.'
-        with patch('pipeline.themes._embed', return_value=np.array([[1., 0.]])) as embed:
+        with patch('pipeline.themes._embed', side_effect=lambda texts: np.tile([1., 0.], (len(texts), 1))) as embed:
             result = analyze_themes(pd.DataFrame({'comment_text': [text]}), theme_count=1)
         rendered = json.dumps(result)
         self.assertNotIn('John Smith', rendered)
         self.assertNotIn('resident@example.org', rendered)
         self.assertIn('[PERSON]', rendered)
-        self.assertNotIn('John Smith', embed.call_args.args[0][0])
-        self.assertNotIn('[EMAIL_ADDRESS]', embed.call_args.args[0][0])
+        self.assertNotIn('John Smith', ' '.join(embed.call_args.args[0]))
+        self.assertNotIn('[EMAIL_ADDRESS]', ' '.join(embed.call_args.args[0]))
 
     def test_empty_and_fully_redacted_comments_keep_input_positions(self):
         frame = pd.DataFrame({'comment_text': ['', 'resident@example.org', 'Please add more books.', None]})
