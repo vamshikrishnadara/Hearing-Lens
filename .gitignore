@@ -7,6 +7,7 @@ venv/
 .streamlit/secrets.toml
 data/uploads/
 data/results/
+data/public_samples/
 results/
 .cache/
 model_cache/
