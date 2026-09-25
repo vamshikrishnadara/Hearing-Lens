@@ -247,3 +247,22 @@ Three local commits separate the improvement and regression tests, reproducible
 comparison, and documentation. Each push requires approval. Daily PDF evidence,
 JSON reports, and test output are stored locally outside the repository. Actual
 hours are recorded separately in Jibble.
+
+## September 25 2026
+
+**Task:** Prepare the first small public corpus and review its theme results.
+**Activity:** Analyze Open-Ended Responses.
+
+- Verified the official CFPB archive and documented the published-data reuse basis and sampling limitations.
+- Added a deterministic, offline preparation utility. Selected 100 nonempty 2017 narratives from 115,311 eligible unique records, with seed 20260925 and no length/product filter. Recorded source/sample hashes and provenance locally.
+- Added a validation command that checks sample consistency and sends only comment text to the existing theme engine. Public narratives, complaint IDs, and detailed review reports remain local.
+- The unchanged pipeline assigned all 100 comments to six groups and selected ten quotes in 6.774 seconds in one local run including model loading. Only two groups have three eligible quotes.
+- Reviewed five full redacted members of each of the three largest groups and all ten selected quotes. This was assistant-assisted development review, not independent human coding or supervisor sign-off.
+- Identified all-X source masks in four keyword lists/labels, long-comment quote gaps, mixed groups, a singleton, and ordinary-word false positives in the unit-number pattern. No runtime pipeline fix was claimed or made today.
+- All 69 automated tests passed, including seven new preparation/validation checks using fictional data. Recorded [aggregate results and next fixes](cfpb_validation_2026-09-25.md).
+- No browser test or new dependency installation was needed. The federal corpus and other analytical requirements remain outstanding.
+
+Three local commits separate sample preparation/source notes/tests, the validation
+command/tests, and findings/project documentation. Each push requires approval.
+Daily evidence is saved locally outside the repository. Actual time is recorded
+separately in Jibble; no hours are inferred from the work described here.

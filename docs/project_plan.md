@@ -10,11 +10,14 @@ start date to kickoff agreement; these calendar dates are conditional, not an
 additional supervisor commitment. Plan against the brief's approximately 20
 hours per week and required review gates.
 
-As of September 24, prioritize Week 2 theme-engine work. The initial local
+As of September 25, prioritize Week 2 theme-engine work. The initial local
 embedding/K-means pipeline runs, but grouping coherence, required public-corpus
 validation, and the remaining theme requirements are unfinished. Sentence
 weighting improved agreement on the fictional development sample, but several
-groups still mix topics. See the
+groups still mix topics. The first 100-narrative CFPB run exposed source-mask
+keywords, quote shortages on long comments, and unit-pattern false positives.
+Fix these documented issues and continue public-corpus validation; the federal
+corpus is still outstanding. See the [CFPB review](cfpb_validation_2026-09-25.md) and
 [theme prototype report](theme_prototype.md). Do not mark Gate 0 or another
 supervisor gate approved based solely on implementation progress.
 
@@ -73,5 +76,5 @@ Target: end of Week 7.
 | P0 | Add baseline contact and address redaction | `pipeline/redact.py` | Initial implementation complete |
 | P0 | Confirm license and ownership wording | Written decision from ChiEAC | Blocked on confirmation |
 | P1 | Create 1,000-row synthetic hearing generator | Script and data dictionary | Complete |
-| P1 | Select and document two public corpora | Source notes and licenses | Planned |
+| P1 | Select and document two public corpora | [CFPB source notes](cfpb_source.md) | CFPB small sample prepared; federal corpus pending |
 | P1 | Create a project board | Issues aligned to gates | Planned |

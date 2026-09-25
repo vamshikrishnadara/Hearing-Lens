@@ -1,4 +1,4 @@
-# Theme-analysis prototype - updated September 24, 2026
+# Theme-analysis prototype - updated September 25, 2026
 
 This is a command-line/library development prototype. The Streamlit upload
 screen still ends at the redacted preview; it has no theme-analysis button yet.
@@ -126,9 +126,10 @@ Improve grouping coherence and keyword labels before dashboard integration.
 The [September 24 comparison](theme_grouping_review_2026-09-24.md) records a
 modest development-sample improvement, not completion of that work.
 Evaluate the brief's BERTopic approach and review three themes per required
-corpus. The two required public corpora remain outstanding; today's evidence
-does not satisfy validation on all three corpora. No browser test was performed
-because no interface behavior changed.
+corpus. A [first small CFPB run](cfpb_validation_2026-09-25.md) now includes
+inspection of three groups; broader review and the federal corpus are still
+outstanding. This does not satisfy full validation on all three corpora. No
+browser test was performed because no interface behavior changed.
 
 Reproducible JSON and test output are saved locally in
 `daily-evidence/2026-09-23/`. The initial exploratory `theme-results.json` there

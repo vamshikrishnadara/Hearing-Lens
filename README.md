@@ -56,6 +56,8 @@ report on the fictional name cases and existing 1,000-row sample. See
 
 - [Theme prototype setup, usage, and measured limitations](docs/theme_prototype.md)
 - [September 24 theme-grouping comparison](docs/theme_grouping_review_2026-09-24.md)
+- [CFPB public sample source and preparation](docs/cfpb_source.md)
+- [September 25 public-data validation findings](docs/cfpb_validation_2026-09-25.md)
 
 - [Upload and preview user guide](docs/user_guide.md)
 - [Upload and setup troubleshooting](docs/troubleshooting.md)
@@ -83,3 +85,9 @@ hearing-lens/
 ## Development sample
 
 The repository includes a reproducible 1,000-row fictional hearing dataset with six planted themes, three hearing dates, skewed subgroup distributions, and controlled redaction examples. It contains no collected resident data. Run `python scripts/generate_synthetic_sample.py` to recreate it.
+
+A separate offline utility prepares a reproducible 100-narrative CFPB public
+sample for development. Public source text and detailed reports stay local;
+the repository contains source notes, preparation/validation scripts, fictional
+tests, and aggregate findings. See the CFPB links above. This does not change
+the application's in-memory handling of user uploads.
