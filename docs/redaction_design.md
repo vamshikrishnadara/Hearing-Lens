@@ -97,6 +97,23 @@ broader privacy limitations remain. See the [comparison report](redaction_valida
 
 ## Validation plan
 
+### Unit-number correction - September 28
+
+Unit labels now require a separator or an immediately attached digit, and the
+identifier must contain a digit or be a single letter. This prevents prefixes
+such as `STE` from consuming ordinary words. Common forms such as `Apt 4B`,
+`Unit A`, `Ste. 200`, and `Apt4B` remain supported. Multi-letter-only and named
+units remain outside this rule, and contextual false positives are still possible.
+
+The 28-case fictional check now passes every expected pattern output. Confirmed
+ordinary-text matches in the fixed CFPB sample fell from 17 to zero, while all
+84 planted unit identifiers in the fictional sample remain detected. All 74
+automated tests passed. See the [full comparison and limitations](unit_redaction_review_2026-09-28.md).
+Run `python -m scripts.validate_unit_redaction` for the fictional report; an
+optional `--sample-dir` adds aggregate checks on a prepared public sample.
+
+### Ongoing checks
+
 1. Build test cases containing names, addresses, phones, email addresses, web addresses, unit numbers, and benign numbers.
 2. Confirm that detected values never appear in redacted output or entity-count summaries.
 3. Inspect at least 30 representative quotes manually at Gate 3 and again at Gate 4.

@@ -1,5 +1,8 @@
 # First CFPB theme validation - September 25, 2026
 
+Follow-up: the [September 28 unit-redaction correction](unit_redaction_review_2026-09-28.md)
+addresses the ordinary-word issue below. This report retains the original results.
+
 ## Scope and repeatability
 
 Ran the existing sentence-weighted MiniLM/K-means prototype, with six requested
