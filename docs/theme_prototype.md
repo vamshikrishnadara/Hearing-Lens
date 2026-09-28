@@ -1,4 +1,4 @@
-# Theme-analysis prototype - updated September 25, 2026
+# Theme-analysis prototype - updated September 28, 2026
 
 This is a command-line/library development prototype. The Streamlit upload
 screen still ends at the redacted preview; it has no theme-analysis button yet.
@@ -61,7 +61,9 @@ ingestion step; this module does not deduplicate respondent IDs itself.
    count when there are fewer distinct vectors. Assign every analyzed comment;
    there is no outlier detector in this version.
 5. Rank TF-IDF keywords and phrases (one to three words) within each theme,
-   suppress nested keyword duplicates, and build a label from up to three terms.
+   excluding all-X tokens of three or more letters, suppress nested keyword
+   duplicates, and build a label from up to three terms. This keyword-only filter
+   does not alter embedding input, assignments, or redacted quote text.
 6. Rank members by cosine similarity to their theme center. Select up to three
    redacted quotes of 12-60 whitespace-delimited words, filtering duplicates and
    near-duplicates using modeling text and vector similarity. If fewer qualify,
@@ -119,6 +121,40 @@ found no visible names, emails, phones, or street/unit values; the scripted
 checks found no residual planted name tokens or raw email strings among those
 selected quotes. The known broader redaction misses remain and this selected
 set does not prove privacy for other comments or uploads.
+
+## September 28 keyword cleanup
+
+A small follow-up excludes tokens consisting entirely of three or more X
+characters from the keyword vocabulary, including their use inside phrases.
+Mixed-case masks are handled after normal lowercasing; meaningful words containing
+X remain eligible. Text with no remaining keyword vocabulary keeps the existing
+generic-label fallback. This rule applies to any all-X token, not a classifier
+that understands whether a particular token was intended as a mask.
+
+On the unchanged 100-row CFPB sample, themes with all-X keywords fell from four
+to zero. Compared with commit `fae8d35`, all assignments, counts, shares, and all
+12 redacted candidate quotes were identical. Five keyword labels changed after
+the vocabulary and TF-IDF weights were recalculated:
+
+| Previous label | Updated label |
+| --- | --- |
+| xxxx / account / payment | account / payment / money |
+| xxxx / credit / report | credit / report / equifax |
+| xxxx / loan / bankruptcy | loan / bankruptcy / credit |
+| debt / xxxx / company | debt / company / letter |
+| pay bills month / untrue / day late | pay bills month / day late / false |
+
+All 77 automated tests passed, including three new keyword checks for masks and
+phrases, empty vocabulary, and meaningful X-containing words. No grouping,
+redaction, or quote-selection algorithm changed in this follow-up. Mixed groups,
+company-focused labels, and quote shortages remain; cleaner labels alone do not
+establish theme quality. No browser test was needed for this library change.
+
+Reproduce with `python -m scripts.validate_cfpb_themes --sample-dir
+data/public_samples/cfpb_2017` after preparing the sample. Local September 28
+evidence includes `cfpb-keyword-validation.json`, `keyword-comparison.json`, and
+`keyword-automated-tests.txt`. The earlier `cfpb-theme-validation.json` is the
+same-day baseline after the unit-redaction fix and before this keyword cleanup.
 
 ## Next work
 

@@ -283,3 +283,11 @@ separately in Jibble; no hours are inferred from the work described here.
 Four local commits separate validation cases/reporting, the correction and
 regression tests, technical findings, and project progress. Each push requires approval. Daily PDF
 and detailed evidence remain local outside the repository.
+
+### Additional task - Clean placeholder keywords
+
+- Excluded all-X tokens of at least three letters from theme keywords and phrases; meaningful words containing X remain eligible.
+- All 77 automated tests passed, including three new keyword regression checks.
+- On the same 100 public narratives, themes with placeholder keywords fell from four to zero. Assignments, counts, shares, and all 12 selected redacted quotes were identical to the same-day baseline.
+- Documented the changed labels and limits in the theme prototype guide. This improves keyword presentation, not clustering quality; quote shortages and mixed groups remain.
+- Prepared one additional focused commit, bringing today's total to five. This follow-up push requires separate approval. Its comparison report, test output, and evidence PDF are stored locally.

@@ -96,7 +96,9 @@ def _keywords(texts, groups):
     try:
         vectorizer = TfidfVectorizer(
             stop_words="english", ngram_range=(1, 3), max_features=5000,
-            token_pattern=r"(?u)\b[^\W\d_]{3,}\b",
+            # All-X masks are not useful labels. Filter only keyword tokens;
+            # modeling text, embeddings, assignments, and quotes are untouched.
+            token_pattern=r"(?u)\b(?![xX]{3,}\b)[^\W\d_]{3,}\b",
         )
         matrix = vectorizer.fit_transform(texts)
     except ValueError:  # Empty vocabulary, e.g. a file containing only stop words.

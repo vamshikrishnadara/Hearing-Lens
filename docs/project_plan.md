@@ -18,7 +18,9 @@ weighting improved agreement on the fictional development sample, but several
 groups still mix topics. The first 100-narrative CFPB run exposed source-mask
 keywords, quote shortages on long comments, and unit-pattern false positives.
 The [unit-prefix correction](unit_redaction_review_2026-09-28.md) addresses the
-confirmed ordinary-word errors; other redaction limits remain. Address the
+confirmed ordinary-word errors; other redaction limits remain. A subsequent
+keyword-only filter removes all-X tokens from labels without changing grouping
+or quotes. Address the
 remaining theme issues and continue public-corpus validation; the federal
 corpus is still outstanding. See the [CFPB review](cfpb_validation_2026-09-25.md) and
 [theme prototype report](theme_prototype.md). Do not mark Gate 0 or another

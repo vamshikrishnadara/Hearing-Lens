@@ -1,6 +1,7 @@
 """Behavioral checks for initial themes; fake vectors keep most tests lightweight."""
 
 import json
+import re
 from unittest.mock import patch
 import unittest
 
@@ -8,10 +9,26 @@ import numpy as np
 import pandas as pd
 
 from pipeline.redact import RedactionError
-from pipeline.themes import MODEL_PATH, ThemeError, _analysis_text, _embed, _get_embedding_model, _theme_vectors, analyze_themes
+from pipeline.themes import MODEL_PATH, ThemeError, _analysis_text, _embed, _get_embedding_model, _keywords, _theme_vectors, analyze_themes
 
 
 class ThemeTests(unittest.TestCase):
+    def test_mask_tokens_are_absent_from_keywords_and_phrases(self):
+        texts = ['XXXX credit xxxx report XXX dispute xXxX', 'XXXX credit report XXXX']
+        original = texts.copy()
+        words = _keywords(texts, [[0, 1]])[0]
+        self.assertTrue(words)
+        self.assertTrue(any('credit' in word for word in words))
+        self.assertFalse(any(re.fullmatch(r'x{3,}', token) for word in words for token in word.split()))
+        self.assertEqual(texts, original)
+
+    def test_mask_only_keyword_vocabulary_is_empty(self):
+        self.assertEqual(_keywords(['XXXX xxx xXxX and the'], [[0]]), [[]])
+
+    def test_meaningful_words_containing_x_are_preserved(self):
+        words = _keywords(['xylophone xerox tax'], [[0]])[0]
+        self.assertEqual({token for word in words for token in word.split()}, {'xylophone', 'xerox', 'tax'})
+
     def test_common_intro_has_less_influence_than_each_topic(self):
         texts = ['I attended. Please improve buses.', 'I attended. Please improve books.']
         with patch('pipeline.themes._embed', return_value=np.eye(3)) as embed:
