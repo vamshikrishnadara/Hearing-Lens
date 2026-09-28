@@ -1,0 +1,114 @@
+[
+  {
+    "text": "Please take the next step.",
+    "expected_pattern_output": "Please take the next step."
+  },
+  {
+    "text": "These steps will help families.",
+    "expected_pattern_output": "These steps will help families."
+  },
+  {
+    "text": "They should not steal money.",
+    "expected_pattern_output": "They should not steal money."
+  },
+  {
+    "text": "Stop stealing from residents.",
+    "expected_pattern_output": "Stop stealing from residents."
+  },
+  {
+    "text": "The road is steep near the school.",
+    "expected_pattern_output": "The road is steep near the school."
+  },
+  {
+    "text": "My step-mother called the office.",
+    "expected_pattern_output": "My step-mother called the office."
+  },
+  {
+    "text": "The community is united.",
+    "expected_pattern_output": "The community is united."
+  },
+  {
+    "text": "We need unit tests and a suite of tools.",
+    "expected_pattern_output": "We need unit tests and a suite of tools."
+  },
+  {
+    "text": "The apartment needs repairs.",
+    "expected_pattern_output": "The apartment needs repairs."
+  },
+  {
+    "text": "Steve asked for help.",
+    "expected_pattern_output": "Steve asked for help."
+  },
+  {
+    "text": "My address includes Apt 4B.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Apartment 12.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Unit A.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Suite B12.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes STE 200.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Ste. 200.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Apt. #4B.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes unit#B.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Apt4B.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes STE200.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Suite 12-14.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes unit A-12.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes APT\t#\t4B.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "My address includes Apartment\n12.",
+    "expected_pattern_output": "My address includes [UNIT_NUMBER]."
+  },
+  {
+    "text": "Apt 4B and Suite 20 are nearby.",
+    "expected_pattern_output": "[UNIT_NUMBER] and [UNIT_NUMBER] are nearby."
+  },
+  {
+    "text": "I need a steady income.",
+    "expected_pattern_output": "I need a steady income."
+  },
+  {
+    "text": "The service was stellar.",
+    "expected_pattern_output": "The service was stellar."
+  },
+  {
+    "text": "I left the apartment clean.",
+    "expected_pattern_output": "I left the apartment clean."
+  }
+]
