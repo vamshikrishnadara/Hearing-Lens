@@ -58,6 +58,7 @@ report on the fictional name cases and existing 1,000-row sample. See
 - [September 24 theme-grouping comparison](docs/theme_grouping_review_2026-09-24.md)
 - [CFPB public sample source and preparation](docs/cfpb_source.md)
 - [September 25 public-data validation findings](docs/cfpb_validation_2026-09-25.md)
+- [September 28 unit-redaction correction and checks](docs/unit_redaction_review_2026-09-28.md)
 
 - [Upload and preview user guide](docs/user_guide.md)
 - [Upload and setup troubleshooting](docs/troubleshooting.md)

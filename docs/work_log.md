@@ -266,3 +266,20 @@ Three local commits separate sample preparation/source notes/tests, the validati
 command/tests, and findings/project documentation. Each push requires approval.
 Daily evidence is saved locally outside the repository. Actual time is recorded
 separately in Jibble; no hours are inferred from the work described here.
+
+## September 28 2026
+
+**Task:** Correct unit-number redaction of ordinary words and verify the result.
+**Activity:** Analyze Open-Ended Responses.
+
+- Reproduced the unit-prefix problem found during the CFPB review. Final inspection confirmed 17 ordinary-text matches across 12 of the fixed 100 public narratives.
+- Added 28 fictional validation cases and a repeatable report command that prints only aggregate information for public data.
+- Tightened label/value boundaries while retaining common numeric and single-letter apartment/suite identifiers. Added support for dotted abbreviations such as Ste. 200.
+- All 74 automated tests passed, including five new regression tests. Exact pattern outcomes improved from 13/28 to 28/28; the confirmed public-data errors fell from 17 to zero.
+- All 84 planted units and existing email, phone, and street-address detections in the fictional sample remained protected. Name coverage stayed at 67/79; known misses are not resolved.
+- Reran public theme analysis and inspected all 12 selected quotes. Restored words changed group assignments and quote availability; grouping quality remains unresolved and the quote-selection algorithm was not changed.
+- Documented [comparison results and supported-format limits](unit_redaction_review_2026-09-28.md). No browser test, model change, or new dependency was needed.
+
+Four local commits separate validation cases/reporting, the correction and
+regression tests, technical findings, and project progress. Each push requires approval. Daily PDF
+and detailed evidence remain local outside the repository.

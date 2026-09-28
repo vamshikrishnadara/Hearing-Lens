@@ -10,13 +10,16 @@ start date to kickoff agreement; these calendar dates are conditional, not an
 additional supervisor commitment. Plan against the brief's approximately 20
 hours per week and required review gates.
 
-As of September 25, prioritize Week 2 theme-engine work. The initial local
+As of September 28, Week 3 analytical-core work includes unfinished theme-engine
+requirements. The initial local
 embedding/K-means pipeline runs, but grouping coherence, required public-corpus
 validation, and the remaining theme requirements are unfinished. Sentence
 weighting improved agreement on the fictional development sample, but several
 groups still mix topics. The first 100-narrative CFPB run exposed source-mask
 keywords, quote shortages on long comments, and unit-pattern false positives.
-Fix these documented issues and continue public-corpus validation; the federal
+The [unit-prefix correction](unit_redaction_review_2026-09-28.md) addresses the
+confirmed ordinary-word errors; other redaction limits remain. Address the
+remaining theme issues and continue public-corpus validation; the federal
 corpus is still outstanding. See the [CFPB review](cfpb_validation_2026-09-25.md) and
 [theme prototype report](theme_prototype.md). Do not mark Gate 0 or another
 supervisor gate approved based solely on implementation progress.
