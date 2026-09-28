@@ -80,7 +80,13 @@ _PATTERNS: tuple[tuple[str, Pattern[str]], ...] = (
     (
         "UNIT_NUMBER",
         re.compile(
-            r"\b(?:APT|APARTMENT|UNIT|SUITE|STE)\s*#?\s*[A-Z0-9-]+\b",
+            # Require a separator or a directly attached digit after the label:
+            # STE must not consume the start of "step", "steal", or "Steve".
+            # A value must contain a digit or be one letter, not ordinary prose.
+            r"\b(?:APT|APARTMENT|UNIT|SUITE|STE)"
+            r"(?:\.\s*#?\s*|\s+#?\s*|#\s*|(?=\d))"
+            r"(?:(?=[A-Z0-9-]*\d)[A-Z0-9]+(?:-[A-Z0-9]+)*|[A-Z])"
+            r"(?![\w-])",
             re.IGNORECASE,
         ),
     ),
