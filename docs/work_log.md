@@ -291,3 +291,21 @@ and detailed evidence remain local outside the repository.
 - On the same 100 public narratives, themes with placeholder keywords fell from four to zero. Assignments, counts, shares, and all 12 selected redacted quotes were identical to the same-day baseline.
 - Documented the changed labels and limits in the theme prototype guide. This improves keyword presentation, not clustering quality; quote shortages and mixed groups remain.
 - Prepared one additional focused commit, bringing today's total to five. This follow-up push requires separate approval. Its comparison report, test output, and evidence PDF are stored locally.
+
+
+## September 29 2026
+
+**Task:** Add optional automatic theme counts for small datasets and compare results.
+**Activity:** Analyze Open-Ended Responses.
+
+- Added an automatic library option for fewer than 150 input rows, comparing feasible counts from 4 through 12 using Euclidean silhouette scores.
+- Preserved the default six-group mode and manual 1-15 selection. Recorded candidate scores, the chosen count, skipped counts, and explicit one-group fallback reasons for inputs that cannot be scored.
+- Added 13 behavioral/reporting tests; all 90 automated tests passed, including the existing local-model integration check.
+- Added an aggregate-only comparison command and reran the fixed 100-comment CFPB sample. Automatic mode selected six with silhouette 0.040712; the manual result's complete themes and assignments matched September 28 exactly.
+- The 24-comment fictional fixture exposed a limitation: automatic selection split three planted topics into 12 pairs, reducing ARI from 1.0 to 0.188235. Recorded this as a limitation rather than a quality improvement.
+- Documented behavior, results, and next priorities in the [selection review](theme_selection_review_2026-09-29.md). No UI change, dependency installation, or new public-data collection was performed.
+- Remaining theme requirements and analytical-core review gates are not complete.
+
+Four focused local commits separate the implementation and regression tests,
+comparison utility and reporting checks, technical usage/findings, and project
+progress. Each push requires approval. Personal evidence remains outside the repository.

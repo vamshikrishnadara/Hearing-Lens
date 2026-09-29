@@ -10,7 +10,7 @@ start date to kickoff agreement; these calendar dates are conditional, not an
 additional supervisor commitment. Plan against the brief's approximately 20
 hours per week and required review gates.
 
-As of September 28, Week 3 analytical-core work includes unfinished theme-engine
+As of September 29, Week 3 analytical-core work includes unfinished theme-engine
 requirements. The initial local
 embedding/K-means pipeline runs, but grouping coherence, required public-corpus
 validation, and the remaining theme requirements are unfinished. Sentence
@@ -20,7 +20,11 @@ keywords, quote shortages on long comments, and unit-pattern false positives.
 The [unit-prefix correction](unit_redaction_review_2026-09-28.md) addresses the
 confirmed ordinary-word errors; other redaction limits remain. A subsequent
 keyword-only filter removes all-X tokens from labels without changing grouping
-or quotes. Address the
+or quotes. Optional [automatic counts for small files](theme_selection_review_2026-09-29.md)
+now compare feasible counts from 4 to 12. The public sample still selects six;
+the paired fictional sample is over-split, so manual selection remains important.
+BERTopic routing, tiny-cluster handling, and semantic validation remain unfinished.
+Address the
 remaining theme issues and continue public-corpus validation; the federal
 corpus is still outstanding. See the [CFPB review](cfpb_validation_2026-09-25.md) and
 [theme prototype report](theme_prototype.md). Do not mark Gate 0 or another
