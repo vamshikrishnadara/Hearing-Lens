@@ -9,6 +9,7 @@ import re
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from pipeline.redact import build_safe_display_frame
@@ -123,8 +124,44 @@ def _keywords(texts, groups):
     return output
 
 
+def _cluster_vectors(vectors, theme_count):
+    """Choose k from geometry only; keep manual clustering backward compatible."""
+    distinct = len(np.unique(vectors, axis=0))
+    automatic = theme_count == "auto"
+    selection = {
+        "mode": "automatic" if automatic else "manual",
+        "metric": "euclidean" if automatic else None,
+        "candidate_scores": [], "skipped_counts": [], "fallback_reason": None,
+    }
+    try:
+        if not automatic:
+            labels = KMeans(n_clusters=min(theme_count, distinct), random_state=42, n_init=10).fit_predict(vectors)
+        else:
+            labels, best_score = None, -np.inf
+            for count in range(4, min(12, distinct, len(vectors) - 1) + 1):
+                candidate = KMeans(n_clusters=count, random_state=42, n_init=10).fit_predict(vectors)
+                if len(set(candidate)) != count:
+                    selection["skipped_counts"].append(count)
+                    continue
+                score = float(silhouette_score(vectors, candidate, metric="euclidean"))
+                if not np.isfinite(score):
+                    selection["skipped_counts"].append(count)
+                    continue
+                selection["candidate_scores"].append({"count": count, "score": score})
+                # Ascending candidates and strict comparison prefer smaller k on exact ties.
+                if score > best_score:
+                    labels, best_score = candidate, score
+            if labels is None:
+                labels = np.zeros(len(vectors), dtype=int)
+                selection["fallback_reason"] = "No valid silhouette candidate in the 4-12 range; returned one group. Use a manual count to explore alternatives."
+    except Exception:
+        raise ThemeError("Theme clustering or selection failed; no theme results were produced.") from None
+    selection["selected_count"] = len(set(labels))
+    return labels, selection
+
+
 def analyze_themes(
-    frame: pd.DataFrame, *, theme_count: int = 6,
+    frame: pd.DataFrame, *, theme_count: int | str = 6,
     embedding_mode: str = "sentence_weighted",
 ) -> dict:
     """Analyze up to 5,000 English comments in memory; never write uploads.
@@ -134,8 +171,12 @@ def analyze_themes(
     still remain. This function is not a privacy guarantee or a review workflow.
     sentence_weighted is experimental; whole_comment retains the original baseline.
     """
-    if isinstance(theme_count, bool) or not isinstance(theme_count, int) or not 1 <= theme_count <= 15:
-        raise ThemeError("Choose between 1 and 15 themes.")
+    if not (isinstance(theme_count, str) and theme_count == "auto") and (
+        isinstance(theme_count, bool) or not isinstance(theme_count, int) or not 1 <= theme_count <= 15
+    ):
+        raise ThemeError('Choose between 1 and 15 themes, or "auto" for fewer than 150 input rows.')
+    if theme_count == "auto" and len(frame) >= 150:
+        raise ThemeError("Automatic theme selection requires fewer than 150 input rows; choose a manual count for this prototype.")
     if embedding_mode not in ("sentence_weighted", "whole_comment"):
         raise ThemeError("Choose sentence_weighted or whole_comment embedding mode.")
     if "comment_text" not in frame.columns:
@@ -168,15 +209,17 @@ def analyze_themes(
     vectors = _theme_vectors(texts, embedding_mode)
     if embedding_mode == "sentence_weighted":
         notes.append("Sentence weighting is experimental: repeated substantive statements can also be downweighted.")
-    count = min(theme_count, len(np.unique(vectors, axis=0)))
-    try:
-        labels = KMeans(n_clusters=count, random_state=42, n_init=10).fit_predict(vectors)
-    except Exception:
-        raise ThemeError("Theme clustering failed; no theme results were produced.") from None
+    labels, selection = _cluster_vectors(vectors, theme_count)
+    if selection["fallback_reason"]:
+        notes.append(selection["fallback_reason"])
+    if selection["skipped_counts"]:
+        notes.append("Some automatic candidates could not be scored; inspect theme_selection.skipped_counts.")
+    if theme_count == "auto":
+        notes.append("Automatic selection measures vector separation, not semantic accuracy; review the themes and consider a manual count.")
     # Stable display IDs: largest theme first, then first input position on ties.
     groups = [np.flatnonzero(labels == label).tolist() for label in sorted(set(labels))]
     groups.sort(key=lambda members: (-len(members), positions[members[0]]))
-    if len(groups) < theme_count:
+    if isinstance(theme_count, int) and len(groups) < theme_count:
         notes.append(f"Produced {len(groups)} themes because there are too few distinct comment vectors.")
     keywords = _keywords(texts, groups)
     themes, assignments = [], []
@@ -215,6 +258,7 @@ def analyze_themes(
     return {
         "method": "all-MiniLM-L6-v2 + KMeans + TF-IDF keywords",
         "embedding_mode": embedding_mode,
+        "theme_selection": selection,
         "requested_themes": theme_count, "analyzed_comments": len(texts),
         "empty_comments_removed": len(frame) - len(raw[raw.ne("")]),
         "excluded_row_positions": excluded_positions,
