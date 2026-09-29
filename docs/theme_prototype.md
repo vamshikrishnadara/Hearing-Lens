@@ -1,4 +1,4 @@
-# Theme-analysis prototype - updated September 28, 2026
+# Theme-analysis prototype - updated September 29, 2026
 
 This is a command-line/library development prototype. The Streamlit upload
 screen still ends at the redacted preview; it has no theme-analysis button yet.
@@ -30,6 +30,13 @@ reports must not be committed. Without the downloaded model, one real-embedding
 integration test is explicitly skipped; other tests use controlled vectors.
 
 Library entry point: `pipeline.themes.analyze_themes(frame, theme_count=6)`.
+Pass `theme_count="auto"` to select a count for fewer than 150 input rows,
+including blank rows in that limit. The default remains the manual count of six;
+manual counts 1-15 remain available for up to 5,000 input rows. Automatic mode
+is currently a library option, not a Streamlit control. The result adds
+`theme_selection` with the selected count, mode, scoring metric, candidate scores,
+skipped counts, and any fallback reason. See the [measured comparison](theme_selection_review_2026-09-29.md).
+
 The experimental default is `embedding_mode="sentence_weighted"`. Pass
 `embedding_mode="whole_comment"` to reproduce the September 23 baseline.
 The result records `embedding_mode`. The comparison command runs both modes
@@ -43,7 +50,8 @@ ingestion step; this module does not deduplicate respondent IDs itself.
 
 ## How the current version works
 
-1. Reject more than 5,000 rows and invalid theme counts (allowed range: 1-15).
+1. Reject more than 5,000 rows and invalid theme counts (manual range: 1-15).
+   Automatic mode rejects 150 or more input rows before loading the model.
    Remove empty comments; preserve input row positions for assignments.
 2. Run existing name/contact redaction before deriving any textual output.
    Remove typed markers from modeling text. Ignore standalone contact/address
@@ -57,9 +65,15 @@ ingestion step; this module does not deduplicate respondent IDs itself.
    copies of a sentence within one comment count once. No topic dictionary or
    validation category enters this calculation. The original mode embeds whole
    comments. Comments with no analyzable text after redaction are excluded.
-4. Run K-means with a fixed seed and 10 initializations. Reduce the requested
-   count when there are fewer distinct vectors. Assign every analyzed comment;
-   there is no outlier detector in this version.
+4. Run K-means with seed 42 and 10 initializations. In manual mode, reduce the
+   requested count when there are fewer distinct vectors. In automatic mode,
+   test 4 through `min(12, distinct_vectors, analyzed_comments - 1)` and select
+   the highest Euclidean silhouette score on normalized comment vectors. Smaller
+   counts win exact ties. Skip collapsed or nonfinite-scoring candidates and
+   report them; unexpected clustering/scoring failures block results with a safe
+   error. If no valid candidate exists, return one group with an explicit warning
+   and no score. This is an unscored fallback, not an inferred single topic.
+   Assign every analyzed comment; there is no outlier detector in this version.
 5. Rank TF-IDF keywords and phrases (one to three words) within each theme,
    excluding all-X tokens of three or more letters, suppress nested keyword
    duplicates, and build a label from up to three terms. This keyword-only filter
@@ -70,7 +84,7 @@ ingestion step; this module does not deduplicate respondent IDs itself.
    return fewer with an explicit warning instead of padding the result.
 
 This uses K-means for all sizes as an initial baseline. The brief's BERTopic
-path, small-file fallback distinction, tiny-cluster merging, quote-swap review,
+path, automatic routing between model families, tiny-cluster merging, quote-swap review,
 and language detection are not implemented yet. English is assumed. Long input
 sentences (or whole comments in baseline mode) may be truncated at the embedding
 model's context limit, even though the full
