@@ -13,6 +13,7 @@ from sklearn.metrics import silhouette_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from pipeline.redact import build_safe_display_frame
+from pipeline.theme_merging import merge_small_groups, MIN_THEME_SIZE
 
 
 class ThemeError(ValueError):
@@ -163,6 +164,7 @@ def _cluster_vectors(vectors, theme_count):
 def analyze_themes(
     frame: pd.DataFrame, *, theme_count: int | str = 6,
     embedding_mode: str = "sentence_weighted",
+    merge_small_themes: bool = False,
 ) -> dict:
     """Analyze up to 5,000 English comments in memory; never write uploads.
 
@@ -170,7 +172,11 @@ def analyze_themes(
     textual output comes from the existing redaction boundary; missed PII can
     still remain. This function is not a privacy guarantee or a review workflow.
     sentence_weighted is experimental; whole_comment retains the original baseline.
+    merge_small_themes optionally consolidates groups with fewer than three members.
+    Selection scores describe initial groups; theme_merging records the final count.
     """
+    if not isinstance(merge_small_themes, bool):
+        raise ThemeError("Choose true or false for small-theme merging.")
     if not (isinstance(theme_count, str) and theme_count == "auto") and (
         isinstance(theme_count, bool) or not isinstance(theme_count, int) or not 1 <= theme_count <= 15
     ):
@@ -221,6 +227,28 @@ def analyze_themes(
     groups.sort(key=lambda members: (-len(members), positions[members[0]]))
     if isinstance(theme_count, int) and len(groups) < theme_count:
         notes.append(f"Produced {len(groups)} themes because there are too few distinct comment vectors.")
+    merging = {"enabled": merge_small_themes, "initial_count": len(groups), "final_count": len(groups)}
+    if merge_small_themes:
+        try:
+            groups, details = merge_small_groups(vectors, groups)
+        except Exception:
+            raise ThemeError("Small-theme merging failed; no theme results were produced.") from None
+        paired = sorted(zip(groups, details.pop("initial_theme_ids_by_group")),
+                        key=lambda item: (-len(item[0]), positions[item[0][0]]))
+        groups = [members for members, _ in paired]
+        merging.update(details)
+        merging["final_theme_sources"] = [
+            {"theme_id": i, "initial_theme_ids": ids}
+            for i, (_, ids) in enumerate(paired, start=1)
+        ]
+        merging["retained_small_theme_ids"] = [
+            i for i, members in enumerate(groups, start=1) if len(members) < MIN_THEME_SIZE
+        ]
+        notes.append("Small-theme merging is experimental; similarity does not guarantee shared meaning. Review merged themes and minority viewpoints.")
+        if details["history"]:
+            notes.append(f"Small-theme merging reduced {merging['initial_count']} initial themes to {len(groups)}; requested counts and selection scores describe the pre-merge groups.")
+        if merging["retained_small_theme_ids"]:
+            notes.append(f"Retained {len(merging['retained_small_theme_ids'])} small themes without a qualifying merge partner; no comments were discarded.")
     keywords = _keywords(texts, groups)
     themes, assignments = [], []
     for theme_id, (members, words) in enumerate(zip(groups, keywords), start=1):
@@ -259,6 +287,7 @@ def analyze_themes(
         "method": "all-MiniLM-L6-v2 + KMeans + TF-IDF keywords",
         "embedding_mode": embedding_mode,
         "theme_selection": selection,
+        "theme_merging": merging,
         "requested_themes": theme_count, "analyzed_comments": len(texts),
         "empty_comments_removed": len(frame) - len(raw[raw.ne("")]),
         "excluded_row_positions": excluded_positions,
