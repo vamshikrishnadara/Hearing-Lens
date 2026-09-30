@@ -26,6 +26,7 @@ This repository contains the upload-and-preview foundation and an initial comman
 - Blocks the preview if name detection is unavailable or fails.
 - Provides a development-only theme pipeline with local embeddings, keyword labels, counts, shares, and redacted candidate quotes.
 - Offers optional automatic theme counts for fewer than 150 input rows, with recorded candidate scores and manual selection retained.
+- Offers experimental small-theme merging with a similarity threshold, merge history, and warnings for unmatched groups; disabled by default.
 - Uses experimental sentence weighting to reduce repeated wording's influence, with the original whole-comment method retained for comparison.
 
 Name detection is an initial implementation with measured misses and false
@@ -61,6 +62,7 @@ report on the fictional name cases and existing 1,000-row sample. See
 - [September 25 public-data validation findings](docs/cfpb_validation_2026-09-25.md)
 - [September 28 unit-redaction correction and checks](docs/unit_redaction_review_2026-09-28.md)
 - [September 29 automatic theme-count comparison and limits](docs/theme_selection_review_2026-09-29.md)
+- [September 30 small-theme merging policy and comparison](docs/small_theme_review_2026-09-30.md)
 
 - [Upload and preview user guide](docs/user_guide.md)
 - [Upload and setup troubleshooting](docs/troubleshooting.md)

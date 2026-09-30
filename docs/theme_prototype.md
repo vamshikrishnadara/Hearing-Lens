@@ -1,4 +1,4 @@
-# Theme-analysis prototype - updated September 29, 2026
+# Theme-analysis prototype - updated September 30, 2026
 
 This is a command-line/library development prototype. The Streamlit upload
 screen still ends at the redacted preview; it has no theme-analysis button yet.
@@ -37,6 +37,15 @@ is currently a library option, not a Streamlit control. The result adds
 `theme_selection` with the selected count, mode, scoring metric, candidate scores,
 skipped counts, and any fallback reason. See the [measured comparison](theme_selection_review_2026-09-29.md).
 
+Optional `merge_small_themes=True` consolidates qualifying groups of one or two
+comments after clustering, in either manual or automatic mode. It is disabled
+by default. The fixed experimental similarity threshold is 0.75; unmatched small
+groups remain with warnings. Results add `theme_merging`: enabled state, initial
+and final counts, and (when enabled) thresholds, merge history, the mapping from
+initial theme IDs to final display IDs, and retained small-theme IDs. Selection
+scores and `theme_selection.selected_count` always describe the original groups,
+not the merged output. See the [September 30 policy and comparison](small_theme_review_2026-09-30.md).
+
 The experimental default is `embedding_mode="sentence_weighted"`. Pass
 `embedding_mode="whole_comment"` to reproduce the September 23 baseline.
 The result records `embedding_mode`. The comparison command runs both modes
@@ -74,22 +83,31 @@ ingestion step; this module does not deduplicate respondent IDs itself.
    error. If no valid candidate exists, return one group with an explicit warning
    and no score. This is an unscored fallback, not an inferred single topic.
    Assign every analyzed comment; there is no outlier detector in this version.
-5. Rank TF-IDF keywords and phrases (one to three words) within each theme,
+5. If small-theme merging is enabled, repeatedly merge the highest-similarity
+   eligible pair with at least one group below three comments. All cross-pair
+   similarities between the original normalized group centers must be at least
+   0.75. This prevents similarity chains from bridging dissimilar original groups.
+   Exact ties use initial group order. Keep groups without a qualifying partner;
+   never remove comments. Reorder final display IDs by size and first input row.
+6. Rank TF-IDF keywords and phrases (one to three words) within each theme,
    excluding all-X tokens of three or more letters, suppress nested keyword
    duplicates, and build a label from up to three terms. This keyword-only filter
    does not alter embedding input, assignments, or redacted quote text.
-6. Rank members by cosine similarity to their theme center. Select up to three
+7. Rank members by cosine similarity to their theme center. Select up to three
    redacted quotes of 12-60 whitespace-delimited words, filtering duplicates and
    near-duplicates using modeling text and vector similarity. If fewer qualify,
    return fewer with an explicit warning instead of padding the result.
 
 This uses K-means for all sizes as an initial baseline. The brief's BERTopic
-path, automatic routing between model families, tiny-cluster merging, quote-swap review,
+path, automatic routing between model families, quote-swap review,
 and language detection are not implemented yet. English is assumed. Long input
 sentences (or whole comments in baseline mode) may be truncated at the embedding
 model's context limit, even though the full
 redacted comment remains available for quote length checks. These limitations
-need to be addressed before calling the Week 2 milestone complete.
+need to be addressed before calling the Week 2 milestone complete. Small-cluster
+merging is now opt-in and experimental; its threshold has not been calibrated,
+it may still combine different meanings, and small groups can remain. Labels,
+counts, shares, and quote candidates are recalculated from final memberships.
 
 Sentence weighting reduces the influence of common wording, but also reduces
 the influence of repeated substantive statements. Exact matching is case-sensitive;

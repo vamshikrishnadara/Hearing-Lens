@@ -309,3 +309,22 @@ and detailed evidence remain local outside the repository.
 Four focused local commits separate the implementation and regression tests,
 comparison utility and reporting checks, technical usage/findings, and project
 progress. Each push requires approval. Personal evidence remains outside the repository.
+
+
+## September 30 2026
+
+**Task:** Add optional handling for small theme groups and compare the results.
+**Activity:** Analyze Open-Ended Responses.
+
+- Added an opt-in merging policy for groups of one or two comments, using a fixed experimental cosine threshold of 0.75 chosen before the comparison.
+- Required all cross-pair original group centers to qualify, preventing similarity chains from bridging dissimilar initial groups. Kept groups without a qualifying partner and warned about them instead of removing comments.
+- Integrated merge history, initial/final counts, final-to-initial theme mappings, and rebuilt labels, counts, shares, assignments, and quotes. Original selection scores remain explicitly pre-merge.
+- Added 16 regression and reporting checks; all 106 automated tests passed. No new dependencies or browser tests were needed for this library-only change.
+- Compared merging on/off on the existing 100-comment CFPB sample and 24-comment fictional fixture, in automatic and manual modes. The public sample remained at six groups with the singleton retained; themes and assignments were unchanged.
+- The fictional automatic result changed from 12 groups to 11, with 10 small groups remaining. ARI increased from 0.188235 to 0.246628, but substantial over-splitting remains. Manual three stayed unchanged at ARI 1.0.
+- Verified no analyzed rows were lost or duplicated, counts/shares matched assignments, and quotes belonged to the correct final themes and matched the redacted originals within the length limit.
+- Recorded [policy, results, and limitations](small_theme_review_2026-09-30.md). Threshold calibration, broader corpus validation, BERTopic, and other analytical-core work remain outstanding; no review gate is marked complete.
+
+Four local commits separate the merge policy/tests, pipeline integration/warnings/tests,
+comparison utility/report checks, and usage/findings/project documentation. Each push
+requires approval. Personal daily evidence remains outside the repository.
