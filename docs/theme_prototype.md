@@ -1,4 +1,10 @@
-# Theme-analysis prototype - updated September 30, 2026
+# Theme-analysis prototype - legacy baseline and comparisons
+
+October 1 update: the new [analytical core](analytical_core.md) adds BERTopic routing,
+KeyBERT/MMR labels, and quote alternatives. The default `analyze_themes()` call
+retains the legacy K-means/TF-IDF behavior described below for reproducibility.
+Statements below about unimplemented BERTopic refer to that earlier baseline;
+current validation status is tracked in [gate status](gate_status.md).
 
 This is a command-line/library development prototype. The Streamlit upload
 screen still ends at the redacted preview; it has no theme-analysis button yet.

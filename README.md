@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository contains the upload-and-preview foundation and an initial command-line theme-analysis prototype, together with schema documentation, a dashboard wireframe, tests, and a work log.
+This repository contains the upload-and-preview foundation and a local analytical core for themes, sentiment, emotion, and timelines. Validation and supervisor review remain incomplete; see the gate-status checklist.
 
 ## Project principles
 
@@ -29,10 +29,14 @@ This repository contains the upload-and-preview foundation and an initial comman
 - Offers experimental small-theme merging with a similarity threshold, merge history, and warnings for unmatched groups; disabled by default.
 - Uses experimental sentence weighting to reduce repeated wording's influence, with the original whole-comment method retained for comparison.
 
+- Routes the analytical core to BERTopic for at least 150 input rows and automatic K-means for smaller files, with KeyBERT/MMR labels and explicit outliers.
+- Provides local sentiment/emotion models, counted language exclusions, theme/period summaries, and timeline chart objects.
+- Prepares blind human-label sheets and repeatable comparison reports without inventing agreement results.
+
 Name detection is an initial implementation with measured misses and false
-positives; it does not guarantee that a comment is anonymous. Theme analysis is
-an initial pipeline, not yet connected to the upload interface. Sentiment,
-emotion, gaps, questions, timeline, and final dashboard panels remain unfinished.
+positives; it does not guarantee that a comment is anonymous. The analytical core is not yet connected to the upload interface. Representation gaps,
+questions, community brief exports, and the final dashboard panels remain unfinished.
+Human validation, the federal sample, and quote-quality requirements are still pending.
 
 ## Local setup
 
@@ -96,3 +100,13 @@ sample for development. Public source text and detailed reports stay local;
 the repository contains source notes, preparation/validation scripts, fictional
 tests, and aggregate findings. See the CFPB links above. This does not change
 the application's in-memory handling of user uploads.
+
+## Analytical-core setup and validation
+
+See [setup and API usage](docs/analytical_core.md), [measured results](docs/core_validation_2026-10-01.md),
+and the [gate-status checklist](docs/gate_status.md). Install local affect weights
+with `python -m scripts.setup_affect_models`; analysis never downloads them.
+The Streamlit page remains a preview, while the analytical core is exercised
+through `pipeline.core.analyze_core` and the development validation command.
+
+Plan daily work against the [weekly delivery schedule](docs/daily_delivery_schedule.md).

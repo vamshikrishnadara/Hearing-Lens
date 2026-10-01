@@ -10,29 +10,24 @@ start date to kickoff agreement; these calendar dates are conditional, not an
 additional supervisor commitment. Plan against the brief's approximately 20
 hours per week and required review gates.
 
-As of September 30, Week 3 analytical-core work includes unfinished theme-engine
-requirements. The initial local
-embedding/K-means pipeline runs, but grouping coherence, required public-corpus
-validation, and the remaining theme requirements are unfinished. Sentence
-weighting improved agreement on the fictional development sample, but several
-groups still mix topics. The first 100-narrative CFPB run exposed source-mask
-keywords, quote shortages on long comments, and unit-pattern false positives.
-The [unit-prefix correction](unit_redaction_review_2026-09-28.md) addresses the
-confirmed ordinary-word errors; other redaction limits remain. A subsequent
-keyword-only filter removes all-X tokens from labels without changing grouping
-or quotes. Optional [automatic counts for small files](theme_selection_review_2026-09-29.md)
-now compare feasible counts from 4 to 12. The public sample still selects six;
-the paired fictional sample is over-split, so manual selection remains important.
-An [optional small-group merging policy](small_theme_review_2026-09-30.md) now
-retains unmatched groups with warnings and records all merges. It reduced the
-fictional automatic result from 12 to 11 groups, leaving substantial over-splitting;
-the public singleton remained separate. Threshold calibration, BERTopic routing,
-and semantic validation remain unfinished.
-Address the
-remaining theme issues and continue public-corpus validation; the federal
-corpus is still outstanding. See the [CFPB review](cfpb_validation_2026-09-25.md) and
-[theme prototype report](theme_prototype.md). Do not mark Gate 0 or another
-supervisor gate approved based solely on implementation progress.
+As of October 1, the local analytical core implements BERTopic/K-means routing,
+KeyBERT/MMR labels, quote alternatives, sentiment, emotion, theme/period
+aggregation, and timeline chart generation. All 133 automated tests pass, and
+two-corpus runs meet the local runtime targets. This is implementation progress,
+not gate approval or completion of every weekly criterion.
+
+Gate 0 and Gate 1 are pending review. The federal sample is blocked by the public
+API's HTTP 429 response; human labels and three-corpus coherence review remain
+pending. Three distinct quotes per theme are not achieved on the current samples.
+The [gate-status board](gate_status.md) records evidence and open requirements;
+[measured results](core_validation_2026-10-01.md) include failed quality checks.
+
+The [daily delivery schedule](daily_delivery_schedule.md) controls task selection:
+required weekly outcomes first, acceptance checks next, then refinement. Do not
+limit progress to a small feature or commit quota. The fellow explicitly authorized
+pushing today's catch-up work; future pushes follow the usual approval preference
+unless similarly authorized. Human labeling must be genuine, and no supervisor
+approval is inferred from implementation or tests. Week 8 remains buffer only.
 
 ## Gate 0 Scope and schema
 

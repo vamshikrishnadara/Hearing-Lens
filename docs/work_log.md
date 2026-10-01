@@ -328,3 +328,19 @@ progress. Each push requires approval. Personal evidence remains outside the rep
 Four local commits separate the merge policy/tests, pipeline integration/warnings/tests,
 comparison utility/report checks, and usage/findings/project documentation. Each push
 requires approval. Personal daily evidence remains outside the repository.
+
+
+## October 1 2026
+
+**Task:** Implement missing analytical-core features and establish an honest gate-status checklist.
+**Activity:** Analyze Open-Ended Responses.
+
+- Replanned daily work around the official weekly requirements and recorded Gate 0/1 as pending review.
+- Added BERTopic routing at 150 input rows, KeyBERT/MMR labels, explicit density outliers, quote alternatives, and a safe library swap operation. Kept the legacy K-means API defaults for earlier comparisons.
+- Added locally cached sentiment/emotion models, batch inference, language exclusions, truncation reporting, and aggregation by theme and period.
+- Added timeline summaries and Plotly charts with date, hearing-label, missing-value, and single-period behavior. Visually checked both synthetic chart types.
+- Added official federal sample preparation with resumable local checkpoints; download was blocked by HTTP 429. No completed federal sample is claimed.
+- Prepared 40 blind human-review rows and 20 explicit federal placeholders, with agreement evaluation that rejects invalid/stale labels and does not invent scores.
+- All 133 automated tests passed. Synthetic first/repeat core runs were 17.883/6.664 seconds; CFPB 18.188/17.243 seconds. Results were repeatable, and assignment/count/quote consistency checks passed.
+- Documented that quote shortages, language-detection errors, human validation, federal-corpus review, and gate approval remain unresolved. Synthetic BERTopic ARI was 0.232002; no semantic-quality improvement is claimed.
+- Prepared focused commits for the catch-up work. The fellow explicitly authorized today's repository pushes. Public narratives, model weights, review sheets, detailed outputs, and personal evidence stay local.
