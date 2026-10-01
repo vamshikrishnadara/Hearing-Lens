@@ -12,3 +12,5 @@ results/
 .cache/
 model_cache/
 *.log
+data/validation/*.csv
+data/validation/*.json
