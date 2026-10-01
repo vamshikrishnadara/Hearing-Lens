@@ -108,5 +108,3 @@ and the [gate-status checklist](docs/gate_status.md). Install local affect weigh
 with `python -m scripts.setup_affect_models`; analysis never downloads them.
 The Streamlit page remains a preview, while the analytical core is exercised
 through `pipeline.core.analyze_core` and the development validation command.
-
-Plan daily work against the [weekly delivery schedule](docs/daily_delivery_schedule.md).
