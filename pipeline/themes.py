@@ -165,6 +165,9 @@ def analyze_themes(
     frame: pd.DataFrame, *, theme_count: int | str = 6,
     embedding_mode: str = "sentence_weighted",
     merge_small_themes: bool = False,
+    backend: str = "kmeans",
+    keyword_method: str = "tfidf",
+    quote_pool_size: int = 3,
 ) -> dict:
     """Analyze up to 5,000 English comments in memory; never write uploads.
 
@@ -175,13 +178,20 @@ def analyze_themes(
     merge_small_themes optionally consolidates groups with fewer than three members.
     Selection scores describe initial groups; theme_merging records the final count.
     """
+    if backend not in ("auto", "kmeans", "bertopic"):
+        raise ThemeError("Choose auto, kmeans, or bertopic clustering.")
+    if keyword_method not in ("tfidf", "keybert"):
+        raise ThemeError("Choose tfidf or keybert keywords.")
+    if isinstance(quote_pool_size, bool) or not isinstance(quote_pool_size, int) or not 3 <= quote_pool_size <= 10:
+        raise ThemeError("Choose a quote pool between 3 and 10.")
+    actual_backend = ("bertopic" if len(frame) >= 150 else "kmeans") if backend == "auto" else backend
     if not isinstance(merge_small_themes, bool):
         raise ThemeError("Choose true or false for small-theme merging.")
     if not (isinstance(theme_count, str) and theme_count == "auto") and (
         isinstance(theme_count, bool) or not isinstance(theme_count, int) or not 1 <= theme_count <= 15
     ):
         raise ThemeError('Choose between 1 and 15 themes, or "auto" for fewer than 150 input rows.')
-    if theme_count == "auto" and len(frame) >= 150:
+    if actual_backend == "kmeans" and theme_count == "auto" and len(frame) >= 150:
         raise ThemeError("Automatic theme selection requires fewer than 150 input rows; choose a manual count for this prototype.")
     if embedding_mode not in ("sentence_weighted", "whole_comment"):
         raise ThemeError("Choose sentence_weighted or whole_comment embedding mode.")
@@ -215,17 +225,32 @@ def analyze_themes(
     vectors = _theme_vectors(texts, embedding_mode)
     if embedding_mode == "sentence_weighted":
         notes.append("Sentence weighting is experimental: repeated substantive statements can also be downweighted.")
-    labels, selection = _cluster_vectors(vectors, theme_count)
+    if actual_backend == "bertopic":
+        try:
+            from pipeline.topic_backend import cluster_bertopic
+            labels, selection = cluster_bertopic(texts, vectors, _get_embedding_model(),
+                target_topics=6 if theme_count == "auto" else theme_count)
+        except Exception:
+            raise ThemeError("BERTopic clustering failed; check dependencies and available resources. No theme results were produced.") from None
+        notes[0] = "Experimental BERTopic themes; unmatched comments remain explicit outliers."
+        if theme_count != "auto":
+            notes.append("BERTopic reduces toward the requested count but cannot create missing density groups; use backend=kmeans for an exact manual count.")
+    else:
+        labels, selection = _cluster_vectors(vectors, theme_count)
+    outliers = np.flatnonzero(labels == -1).tolist()
+    outlier_share = len(outliers) / len(texts)
+    if outlier_share >= .2:
+        notes.append("Outlier share is at least 20%; the project quality target is not met. Review rather than force assignments.")
     if selection["fallback_reason"]:
         notes.append(selection["fallback_reason"])
     if selection["skipped_counts"]:
         notes.append("Some automatic candidates could not be scored; inspect theme_selection.skipped_counts.")
-    if theme_count == "auto":
+    if theme_count == "auto" and actual_backend == "kmeans":
         notes.append("Automatic selection measures vector separation, not semantic accuracy; review the themes and consider a manual count.")
     # Stable display IDs: largest theme first, then first input position on ties.
-    groups = [np.flatnonzero(labels == label).tolist() for label in sorted(set(labels))]
+    groups = [np.flatnonzero(labels == label).tolist() for label in sorted(set(labels) - {-1})]
     groups.sort(key=lambda members: (-len(members), positions[members[0]]))
-    if isinstance(theme_count, int) and len(groups) < theme_count:
+    if actual_backend == "kmeans" and isinstance(theme_count, int) and len(groups) < theme_count:
         notes.append(f"Produced {len(groups)} themes because there are too few distinct comment vectors.")
     merging = {"enabled": merge_small_themes, "initial_count": len(groups), "final_count": len(groups)}
     if merge_small_themes:
@@ -249,7 +274,14 @@ def analyze_themes(
             notes.append(f"Small-theme merging reduced {merging['initial_count']} initial themes to {len(groups)}; requested counts and selection scores describe the pre-merge groups.")
         if merging["retained_small_theme_ids"]:
             notes.append(f"Retained {len(merging['retained_small_theme_ids'])} small themes without a qualifying merge partner; no comments were discarded.")
-    keywords = _keywords(texts, groups)
+    if keyword_method == "keybert":
+        try:
+            from pipeline.topic_backend import keybert_keywords
+            keywords = keybert_keywords(texts, groups, vectors, _get_embedding_model())
+        except Exception:
+            raise ThemeError("Keyword labeling failed; no theme results were produced.") from None
+    else:
+        keywords = _keywords(texts, groups)
     themes, assignments = [], []
     for theme_id, (members, words) in enumerate(zip(groups, keywords), start=1):
         center = vectors[members].mean(axis=0)
@@ -273,18 +305,24 @@ def analyze_themes(
                 continue
             selected.append({"row_position": positions[index], "text": quote})
             selected_indices.append(index)
-            if len(selected) == 3:
+            if len(selected) == quote_pool_size:
                 break
         if len(selected) < 3:
             notes.append(f"Theme {theme_id} has only {len(selected)} eligible distinct quotes of 12-60 words.")
         themes.append({
             "theme_id": theme_id, "label": " / ".join(words[:3]) or f"Theme {theme_id}",
             "keywords": words, "count": len(members), "share": len(members) / len(texts),
-            "quotes": selected,
+            "quotes": selected[:3],
+            **({"quote_alternatives": selected[3:]} if quote_pool_size > 3 else {}),
         })
         assignments.extend({"row_position": positions[i], "theme_id": theme_id} for i in members)
+    assignments.extend({"row_position": positions[i], "theme_id": 0} for i in outliers)
+    if backend != "kmeans" and not 5 <= len(themes) <= 15:
+        notes.append("Final theme count is outside the 5-15 project target.")
     return {
-        "method": "all-MiniLM-L6-v2 + KMeans + TF-IDF keywords",
+        "method": f"all-MiniLM-L6-v2 + {actual_backend} + {keyword_method} keywords",
+        "backend": actual_backend,
+        "outlier_count": len(outliers), "outlier_share": outlier_share,
         "embedding_mode": embedding_mode,
         "theme_selection": selection,
         "theme_merging": merging,
