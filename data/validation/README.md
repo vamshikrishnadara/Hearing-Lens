@@ -35,3 +35,12 @@ that exclusion; do not silently treat it as a neutral prediction.
 Public review sheets and predictions remain local. Only aggregate measured
 results, instructions, and fictional tests belong in Git. Human theme-coherence
 review of three themes per corpus is a separate requirement.
+
+## Current ready sheet — October 2
+
+All three source corpora are now available, so preparation produces 60 real
+review rows and no federal placeholders. For the current benchmark, pass
+`--synthetic data/samples/synthetic_theme_benchmark.csv` to both preparation and
+evaluation, along with the `cfpb_2017_300` and `federal_mirror_300` directories.
+The fellow cannot review today; the sheet remains blank and agreement remains
+pending. Keep prior sheets separate rather than mixing source samples.

@@ -7,8 +7,7 @@ This draft describes the local analytical core, not a deployed five-panel app.
 
 Themes use local MiniLM embeddings, K-means for small inputs, and BERTopic for
 larger ones. Keyword labels use KeyBERT/MMR. Theme ID 0 means outlier. Quotes are
-redacted original comments selected near a group center, subject to length and
-duplicate filters. A selected quote illustrates the group, not agreement by all
+redacted original comments or contiguous complete-sentence excerpts selected near a group center, subject to length and duplicate filters. Excerpts carry source offsets and are never padded or paraphrased. A selected quote illustrates the group, not agreement by all
 its members. Review quote candidates before sharing them.
 
 Sentiment is classified as negative, neutral, or positive. Emotion has seven
@@ -24,7 +23,7 @@ when no period is supplied. See [implementation details and model cards](analyti
 | --- | ---: | ---: | --- | --- |
 | Synthetic | 20 | 0 | Pending | Pending |
 | CFPB | 20 | 0 | Pending | Pending |
-| Federal | 20 | 0; sample pending | Pending | Pending |
+| Federal | 20 | 0 | Pending | Pending |
 
 The sheet is blind and must be completed by a person. The evaluation command
 checks source identity, label vocabulary, duplicate rows, coverage, and exclusions.
@@ -50,8 +49,15 @@ No agreement rate is claimed from automated tests or synthetic category labels.
    dates become categorical hearing labels rather than being silently discarded.
 8. Public development samples are convenience/development samples and do not
    establish population representation or performance on partner data.
-9. The federal corpus and human validation are incomplete. Measured performance
-   covers two local development corpora, not the deployed app or all required data.
+9. All three development corpus types are prepared. Human agreement and independent theme/quote review remain pending. Local measurements do not establish deployed-service or partner-data performance.
 
 Representation gaps, question mining, product brief export, and deployment are
 later scheduled stages and are not represented as completed here.
+
+## Current development evidence
+
+The richer fictional fixture and larger public samples are documented in
+[Week 2 validation](week2_validation_2026-10-02.md). Original samples remain as
+stress/regression data. Development ARI is not sentiment/emotion agreement, and
+changes in fixture content are not claimed as like-for-like accuracy gains.
+All 60 blind review comments are ready; no human labels have been supplied.

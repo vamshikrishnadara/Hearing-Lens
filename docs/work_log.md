@@ -344,3 +344,34 @@ requires approval. Personal daily evidence remains outside the repository.
 - All 133 automated tests passed. Synthetic first/repeat core runs were 17.883/6.664 seconds; CFPB 18.188/17.243 seconds. Results were repeatable, and assignment/count/quote consistency checks passed.
 - Documented that quote shortages, language-detection errors, human validation, federal-corpus review, and gate approval remain unresolved. Synthetic BERTopic ARI was 0.232002; no semantic-quality improvement is claimed.
 - Prepared focused commits for the catch-up work. The fellow explicitly authorized today's repository pushes. Public narratives, model weights, review sheets, detailed outputs, and personal evidence stay local.
+
+
+## October 2 2026
+
+**Task:** Close the remaining technical Weeks 1-3 gaps and verify all three corpora.
+**Activity:** Analyze Open-Ended Responses.
+
+- Prepared a 300-comment FAA sample through the public Mirrulations archive, with
+  provenance and hashes; direct agency API access remains a separate blocked route.
+  Expanded the fixed CFPB sample to 300 and retained earlier samples.
+- Added a richer 1,000-row fictional benchmark while preserving the original
+  short/repetitive stress fixture and disclosing the change in evaluation data.
+- Corrected duplicate-vector density fitting, topic reduction counts, and added
+  experimental original-space assignment refinement that preserves outliers.
+- Added source-traceable sentence excerpts, duplicate filtering, contact-tail
+  avoidance, and a context-based contact-name redaction correction.
+- Reduced unnecessary quote embedding and affect batch padding. Final repeated
+  core runtimes were 5.369s (fictional), 29.044s (CFPB), and 20.636s (FAA), using
+  four CPU threads. All main numeric checks passed; CFPB has little timing margin.
+- All 150 tests passed. Executed the final notebook on all three main corpora and
+  the original stress fixture; documented mixed groups and the old quote shortages.
+- Prepared 60 blind review rows and a local review page. The fellow cannot review
+  today; zero human labels, no agreement claim, and human theme review pending.
+- Updated the board, weekly plan, source notes, public-update drafts, and license
+  decision record. Benjamin's formal gate approval is no longer a prerequisite,
+  as reported by the fellow. No license was selected or public post claimed.
+
+See the [core validation report](core_validation_2026-10-02.md) and
+[theme review](week2_validation_2026-10-02.md). These are technical-development
+results, not full completion of all Weeks 1-3 deliverables. Changes are prepared
+as focused local commits; pushing awaits the fellow's approval.

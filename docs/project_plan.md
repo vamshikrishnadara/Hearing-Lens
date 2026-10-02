@@ -1,88 +1,49 @@
-# Hearing Lens Delivery Plan
+# Hearing Lens delivery plan
 
-The MVP is organized around five live review gates. Week 8 is reserved for slippage and post-launch fixes rather than new features.
+The weekly requirements in the project brief control daily work. Use the working
+kickoff of September 14, 2026: target delivery by Friday October 30 (end of the
+Week 7 working days); Week 7 ends November 1. November 2–8 is buffer only.
 
-## Calendar and current priority
+The fellow reported that Benjamin agreed to proceed as intended without formal
+gate approvals for now. Continue building and validating; do not wait for a gate
+meeting. Human validation and genuine pilot participation are still distinct from
+automated checks. The fellow's separate preference for approving GitHub pushes
+remains in place unless a particular push scope is explicitly authorized.
 
-If September 14, 2026 is the agreed kickoff date, the end-of-Week-7 target is
-November 1 and the Week 8 buffer ends November 8. The official brief leaves the
-start date to kickoff agreement; these calendar dates are conditional, not an
-additional supervisor commitment. Plan against the brief's approximately 20
-hours per week and required review gates.
+## Current position — October 2
 
-As of October 1, the local analytical core implements BERTopic/K-means routing,
-KeyBERT/MMR labels, quote alternatives, sentiment, emotion, theme/period
-aggregation, and timeline chart generation. All 133 automated tests pass, and
-two-corpus runs meet the local runtime targets. This is implementation progress,
-not gate approval or completion of every weekly criterion.
+The foundation, three local corpus types, theme pipeline, sentiment/emotion,
+period aggregation, and timeline are implemented. The required theme notebook
+has been executed. Larger public samples and a richer fictional fixture are
+validated alongside the original short/repetitive stress fixture, whose quote
+shortages remain disclosed.
 
-Gate 0 and Gate 1 are pending review. The federal sample is blocked by the public
-API's HTTP 429 response; human labels and three-corpus coherence review remain
-pending. Three distinct quotes per theme are not achieved on the current samples.
-The [gate-status board](gate_status.md) records evidence and open requirements;
-[measured results](core_validation_2026-10-01.md) include failed quality checks.
+Human theme review and 60 hand labels remain pending; the fellow cannot label
+comments today. Agreement must stay pending until genuine labels exist. The code
+license is undecided and does not block development. Public update drafts are
+available but are not proof of publication. See [delivery status](gate_status.md),
+[working board](project_board.md), and the dated validation reports for actual
+measurements and remaining limitations.
 
-The [daily delivery schedule](daily_delivery_schedule.md) controls task selection:
-required weekly outcomes first, acceptance checks next, then refinement. Do not
-limit progress to a small feature or commit quota. The fellow explicitly authorized
-pushing today's catch-up work; future pushes follow the usual approval preference
-unless similarly authorized. Human labeling must be genuine, and no supervisor
-approval is inferred from implementation or tests. Week 8 remains buffer only.
+## Weekly outcomes
 
-## Gate 0 Scope and schema
+| Week | Dates | Required outcome |
+| --- | --- | --- |
+| 1 | Sep 14–20 | Repository/environment, loader/schema, product statement/wireframe, three test corpus types, simple board |
+| 2 | Sep 21–27 | Redaction, keywords, embeddings, clustering, quotes, three-corpus notebook and quality checks |
+| 3 | Sep 28–Oct 4 | Sentiment/emotion, timeline, human agreement results and runtime checks |
+| 4 | Oct 5–11 | Representation gaps, question detection/ranking/matching, complete command-line pipeline |
+| 5 | Oct 12–18 | Five dashboard panels, downloads, deployed public URL |
+| 6 | Oct 19–25 | One-page DOCX/PDF community brief, methods page, pilot plan |
+| 7 | Oct 26–Nov 1 | Two pilots, critical fixes, privacy/accessibility checks, release, demo, runbook and handoff |
+| 8 | Nov 2–8 | Buffer only; no new planned features |
 
-Target: end of Week 1.
+Daily tasks should close the week's required outcomes first. Refine completed
+work when ahead; do not substitute commit counts, personal evidence PDFs, or
+feature additions for missing benchmarks. The original gate names remain milestone
+labels: scope/schema, analytical core, full pipeline, pilot-ready, and launch.
 
-- Review the product statement, schema, wireframe, and privacy boundary.
-- Demonstrate CSV and XLSX loading plus readable validation errors.
-- Confirm the repository license and ownership language.
-- Confirm weekly check-in time and the Gate 1 date.
-- Identify the federal, CFPB, and synthetic development datasets and document their licenses.
-
-## Gate 1 Analytical core
-
-Target: end of Week 3.
-
-- Demonstrate redaction, theme clustering, representative quotes, sentiment, emotion, and timeline on three development corpora.
-- Record performance and manual-validation results.
-- Write a remediation or limitation note for any agreement result below the target.
-
-## Gate 2 End-to-end pipeline
-
-Target: end of Week 4.
-
-- Demonstrate representation-gap calculations against a hand check.
-- Measure question-detector recall and false-positive rate.
-- Run every analytical stage from one command and write structured outputs.
-
-## Gate 3 Pilot ready
-
-Target: end of Week 6.
-
-- Demonstrate the complete upload-to-download flow at a public URL.
-- Verify the one-page DOCX and PDF brief.
-- Publish the methodology and limitations page.
-- Confirm two pilot partners and their data arrangements.
-
-## Gate 4 Launch and handoff
-
-Target: end of Week 7.
-
-- Complete two pilots and address critical findings.
-- Complete privacy and accessibility checks.
-- Publish version 1.0, the demo video, facilitator runbook, and final report.
-- Leave no open critical bugs and disclose known limitations.
-
-## Week 1 working backlog
-
-| Priority | Item | Evidence | Status |
-| --- | --- | --- | --- |
-| P0 | Define input and normalized schemas | `docs/schema.md` | Draft complete |
-| P0 | Create upload and column-mapping loader | `pipeline/ingest.py` | Initial implementation complete |
-| P0 | Test validation, limits, and deduplication | `tests/test_ingest.py` | Expanded tests complete |
-| P0 | Define dashboard flow | `docs/wireframe.md` | Draft complete |
-| P0 | Add baseline contact and address redaction | `pipeline/redact.py` | Initial implementation complete |
-| P0 | Confirm license and ownership wording | Written decision from ChiEAC | Blocked on confirmation |
-| P1 | Create 1,000-row synthetic hearing generator | Script and data dictionary | Complete |
-| P1 | Select and document two public corpora | [CFPB source notes](cfpb_source.md) | CFPB small sample prepared; federal corpus pending |
-| P1 | Create a project board | Issues aligned to gates | Planned |
+The [daily schedule](daily_delivery_schedule.md) supplies the working breakdown.
+Partner scheduling, publication, and license/ownership decisions are not inferred
+from repository activity. Public source texts and personal evidence stay local;
+production inputs remain user-supplied and processed in memory.

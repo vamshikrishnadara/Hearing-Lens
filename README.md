@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository contains the upload-and-preview foundation and a local analytical core for themes, sentiment, emotion, and timelines. Validation and supervisor review remain incomplete; see the gate-status checklist.
+This repository contains the upload-and-preview foundation and a local analytical core for themes, sentiment, emotion, and timelines. Human validation remains incomplete; formal gate meetings are no longer required to proceed. See the delivery-status checklist.
 
 ## Project principles
 
@@ -36,7 +36,7 @@ This repository contains the upload-and-preview foundation and a local analytica
 Name detection is an initial implementation with measured misses and false
 positives; it does not guarantee that a comment is anonymous. The analytical core is not yet connected to the upload interface. Representation gaps,
 questions, community brief exports, and the final dashboard panels remain unfinished.
-Human validation, the federal sample, and quote-quality requirements are still pending.
+All three development corpus types are available locally. Numerical theme checks pass on the main samples; human validation and qualitative review remain pending. The original short/repetitive stress sample still exposes quote shortages.
 
 ## Local setup
 
@@ -91,20 +91,32 @@ hearing-lens/
 ```
 
 
-## Development sample
+## Development samples
 
 The repository includes a reproducible 1,000-row fictional hearing dataset with six planted themes, three hearing dates, skewed subgroup distributions, and controlled redaction examples. It contains no collected resident data. Run `python scripts/generate_synthetic_sample.py` to recreate it.
 
-A separate offline utility prepares a reproducible 100-narrative CFPB public
-sample for development. Public source text and detailed reports stay local;
+Offline utilities prepare fixed 300-row CFPB and federal public samples for development. The earlier 100-row CFPB sample is retained for regression checks. An additional richer 1,000-row fictional theme benchmark is included; the original fixture remains unchanged. Public source text and detailed reports stay local;
 the repository contains source notes, preparation/validation scripts, fictional
 tests, and aggregate findings. See the CFPB links above. This does not change
 the application's in-memory handling of user uploads.
 
 ## Analytical-core setup and validation
 
-See [setup and API usage](docs/analytical_core.md), [measured results](docs/core_validation_2026-10-01.md),
+See [setup and API usage](docs/analytical_core.md), [measured results](docs/core_validation_2026-10-02.md),
 and the [gate-status checklist](docs/gate_status.md). Install local affect weights
 with `python -m scripts.setup_affect_models`; analysis never downloads them.
 The Streamlit page remains a preview, while the analytical core is exercised
 through `pipeline.core.analyze_core` and the development validation command.
+
+## Week 1–3 verification
+
+- [Executed three-corpus theme notebook](notebooks/week2_theme_validation.ipynb)
+- [Week 2 findings and limitations](docs/week2_validation_2026-10-02.md)
+- [Federal archive provenance and preparation](docs/federal_source.md)
+- [Simple project board](docs/project_board.md)
+- [Human labeling instructions](data/validation/README.md)
+- [Open license decision](docs/license_decision.md)
+
+Install `requirements-dev.txt` to rerun notebooks. Public sample files and detailed
+review packets stay local; notebooks publish aggregate checks only. Human labels
+and agreement rates are not produced by the assistant.

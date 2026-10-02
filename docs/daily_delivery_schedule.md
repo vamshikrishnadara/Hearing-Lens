@@ -1,4 +1,10 @@
-# Daily delivery schedule - October 1, 2026
+> Updated October 2: the fellow reports that Benjamin does not require formal
+> gate approval meetings for now. References below describe the original review
+> milestones; they do not block continued development. Quality benchmarks, real
+> human validation, and genuine pilot participation still apply. Current status:
+> [delivery checklist](gate_status.md).
+
+# Daily delivery schedule - updated October 2, 2026
 
 ## Planning basis
 
@@ -10,7 +16,8 @@ be ready for the Friday check-in; no weekend work is assumed.
 
 Target completion: end of Week 7, November 1, with planned handoff by Friday,
 October 30. Week 8 is a buffer for slippage/fixes, not planned new features.
-This schedule does not replace Benjamin's gate decisions or revise the brief.
+The reported waiver of formal gate approvals changes the meeting process; the
+weekly deliverables and quality requirements remain applicable.
 
 ## Operating rules
 
@@ -26,7 +33,8 @@ This schedule does not replace Benjamin's gate decisions or revise the brief.
    move work into another week, or extend the agreed deadline unilaterally.
 5. When required work and validation finish early, use remaining time for bugs,
    clarity, robustness, and review within the approved scope. Stretch features
-   remain frozen until Gate 3. Later phases require the relevant gate approval.
+   remain frozen until core deliverables are complete. Formal gate meetings are
+   not a prerequisite under Benjamin's reported instruction.
 6. Organize meaningful commits around changes, not a daily quota. Ask the fellow
    before each push. Personal daily evidence is separate from product exports
    and never substitutes for a project deliverable.
@@ -56,7 +64,7 @@ agreed with Benjamin. Finishing code alone does not pass a gate.
 
 ## Week 4: October 5-11 - gaps, questions, complete pipeline
 
-Dependent on Gate 1 approval. If it is not passed, show the conflict explicitly
+Dependent on analytical-core readiness. If validation is incomplete, show the conflict explicitly
 rather than treating these dates as evidence that the next phase has begun.
 
 | Day | Planned outcome |
@@ -98,11 +106,11 @@ User testing and hosting permissions must be arranged before the relevant day.
 
 Exit: brief in both formats in under 15 seconds, reader understanding checks,
 models/validation/limitations published, two named pilot partners and dates,
-and Gate 3 approval. Personal work-evidence PDFs are not the community brief.
+and pilot readiness. Personal work-evidence PDFs are not the community brief.
 
 ## Week 7: October 26-November 1 - pilots, launch, handoff
 
-Dependent on Gate 3 approval; pilot dates require partner agreement.
+Dependent on pilot readiness; pilot dates require partner agreement.
 
 | Day | Planned outcome |
 | --- | --- |
@@ -110,10 +118,10 @@ Dependent on Gate 3 approval; pilot dates require partner agreement.
 | Tue Oct 27 | Run second pilot; address critical failures and verify fixes against both datasets. |
 | Wed Oct 28 | Complete privacy/accessibility/performance checks and plain-language limitations; draft facilitator runbook. |
 | Thu Oct 29 | Finish runbook, record the 3-5 minute demo, and prepare the two-page final report and release checklist. |
-| Fri Oct 30 | Demonstrate Gate 4, resolve remaining critical issues, obtain release approval, publish/tag v1.0 and complete handoff. |
+| Fri Oct 30 | Demonstrate Gate 4, resolve remaining critical issues, confirm readiness, publish/tag v1.0 and complete handoff. |
 
 Exit: every Section 13 acceptance criterion demonstrated, both pilots complete,
-no open critical bugs, runbook/video/final report delivered, and Gate 4 approval.
+no open critical bugs, runbook/video/final report delivered, and release readiness.
 Do not mark launch complete merely because this date has arrived.
 
 ## Review and communication dependencies

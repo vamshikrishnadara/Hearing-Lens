@@ -1,4 +1,4 @@
-# Analytical core - October 1, 2026
+# Analytical core - October 2, 2026
 
 ## Run locally
 
@@ -34,7 +34,7 @@ The core routes by original input size: K-means below 150 rows, BERTopic at 150
 or more. K-means uses the existing silhouette-selected 4-12 range and explicit
 small-input fallback. BERTopic uses supplied local normalized embeddings, UMAP
 (seed 42, cosine, random initialization, one worker), HDBSCAN, and c-TF-IDF.
-It reduces density topics toward six by default; this is a fixed reduction
+It fits each distinct embedding vector once, then restores all original rows and counts. UMAP uses up to 10 neighbors; HDBSCAN minimum group size is 3–20 based on distinct inputs, with min_samples=1. It reduces density topics toward six by default; this is a fixed reduction
 target, not a silhouette-selected count. HDBSCAN can yield fewer topics or all
 outliers; no invented groups or forced outlier assignments are used to pass a
 benchmark. Requests for manual counts in the BERTopic path are reduction targets;
@@ -45,7 +45,7 @@ Unmatched rows use theme ID 0, with explicit count/share. Ordinary display IDs
 start at 1. Theme shares use all analyzed comments, including outliers, as the
 denominator; therefore ordinary shares may sum to less than one. An outlier
 share of at least 20%, or a final count outside 5-15, produces a quality warning.
-The option to merge qualifying small groups remains enabled in the core and
+A conservative original-embedding refinement can move assigned rows only with cosine similarity at least 0.45 and a winning margin at least 0.03. Ambiguous rows retain their density assignment, and original noise remains noise. The experimental settings were explored on development data and are not independent validation. The option to merge qualifying small groups remains enabled in the core and
 records its history. It does not merge density outliers.
 
 Labels use KeyBERT, 1-3-word candidates, and MMR diversity 0.5. Candidate vocabulary
@@ -59,7 +59,7 @@ K-means/TF-IDF for prior comparison scripts; choose the core for the new routing
 The core returns up to three selected quotes plus up to three eligible alternatives.
 `pipeline.quote_review.swap_quote()` can replace a slot only with an alternative
 from that same theme. It returns a copy and cannot inject arbitrary unredacted
-text. Length and near-duplicate restrictions are unchanged. The library supports
+text. The core uses contiguous complete-sentence excerpts when needed, with offsets into the redacted original and an explicit is_excerpt flag. Quotes remain 12–60 words, and contact-bearing sentences are avoided. Similar wording is deduplicated; semantic similarity alone is not proof that two quotes repeat the same statement. The legacy full-comment mode is retained. Excerpt embeddings are computed only for rows reached in nearest-first selection. The library supports
 review; the user-facing swap control remains dashboard work. Quote shortages
 are reported rather than padded with duplicates or invented wording.
 
@@ -67,7 +67,7 @@ are reported rather than padded with duplicates or invented wording.
 
 `pipeline.affect` uses the brief's Cardiff sentiment model and Hartmann seven-class
 emotion model. Resources load once per process through a bounded model cache;
-models use CPU and evaluation/inference mode. Batch size is 32, maximum input is
+models use CPU and evaluation/inference mode. Inputs are grouped by approximate length to reduce padding, then restored to original row order. Batch size is 32, maximum input is
 512 tokens, and truncation is counted. Exact duplicate inputs are reused only
 inside the current call, never cached across sessions or persisted. Model label
 maps are validated rather than assuming class order. Only probabilities/labels,
@@ -122,11 +122,18 @@ chart HTML only to the explicit local development output directory. This script
 must not be wired to production uploads. Source-text fingerprints prevent
 comparing human labels with predictions from a different corpus/order.
 
-See [human-label instructions](../data/validation/README.md), [measured results](core_validation_2026-10-01.md),
-and [gate status](gate_status.md). Code and tests are not supervisor approval.
+See [human-label instructions](../data/validation/README.md), [measured results](core_validation_2026-10-02.md),
+and [gate status](gate_status.md). Formal gate approval is no longer a prerequisite, per the fellow. Code and tests still do not establish human validation.
 
 Primary implementation references:
 [BERTopic API](https://maartengr.github.io/BERTopic/api/bertopic.html),
 [KeyBERT API](https://maartengr.github.io/KeyBERT/api/keybert.html),
 [Cardiff model card](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest),
 [Hartmann model card](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base).
+
+For the current benchmark, add `--synthetic data/samples/synthetic_theme_benchmark.csv`
+to core validation, label-sheet preparation, and agreement evaluation. Use the
+same corpus files for all three commands; fingerprints prevent mismatched comparisons.
+
+Core validation defaults to four CPU threads (override with `--cpu-threads`). The
+standalone Week 2 theme notebook uses two threads; these are different timing scopes.
