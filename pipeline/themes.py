@@ -14,6 +14,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 from pipeline.redact import build_safe_display_frame
 from pipeline.theme_merging import merge_small_groups, MIN_THEME_SIZE
+from pipeline.quotes import quote_spans, nearly_identical
 
 
 class ThemeError(ValueError):
@@ -168,6 +169,7 @@ def analyze_themes(
     backend: str = "kmeans",
     keyword_method: str = "tfidf",
     quote_pool_size: int = 3,
+    quote_mode: str = "full_comment",
 ) -> dict:
     """Analyze up to 5,000 English comments in memory; never write uploads.
 
@@ -178,6 +180,8 @@ def analyze_themes(
     merge_small_themes optionally consolidates groups with fewer than three members.
     Selection scores describe initial groups; theme_merging records the final count.
     """
+    if quote_mode not in ('full_comment', 'sentences'):
+        raise ThemeError('Choose full_comment or sentences for quotes.')
     if backend not in ("auto", "kmeans", "bertopic"):
         raise ThemeError("Choose auto, kmeans, or bertopic clustering.")
     if keyword_method not in ("tfidf", "keybert"):
@@ -283,6 +287,9 @@ def analyze_themes(
     else:
         keywords = _keywords(texts, groups)
     themes, assignments = [], []
+    # Enumerate spans cheaply. Encode only rows reached by nearest-first selection;
+    # encoding every sentence in every comment wastes most work after slots fill.
+    spans_by_row = [quote_spans(quote, quote_mode) for quote in quotes]
     for theme_id, (members, words) in enumerate(zip(groups, keywords), start=1):
         center = vectors[members].mean(axis=0)
         norm = np.linalg.norm(center)
@@ -292,18 +299,29 @@ def analyze_themes(
         selected = []
         selected_indices = []
         for index in nearest:
-            quote = quotes[index]
-            if not 12 <= len(quote.split()) <= 60:
+            spans = spans_by_row[index]
+            if not spans:
                 continue
+            if len(spans) == 1:
+                start, end = spans[0]
+            else:
+                span_vectors = _embed([quotes[index][a:b] for a, b in spans])
+                start, end = spans[int(np.argmax(span_vectors @ center))]
+            quote = quotes[index][start:end]
             normalized = texts[index].casefold()
-            if any(
+            if quote_mode == 'sentences' and any(nearly_identical(_analysis_text(quote), _analysis_text(q['text'])) for q in selected):
+                continue
+            if quote_mode == 'full_comment' and any(
                 SequenceMatcher(None, normalized, texts[old].casefold()).ratio() >= 0.85
                 or normalized in texts[old].casefold() or texts[old].casefold() in normalized
                 or float(vectors[index] @ vectors[old]) >= 0.97
                 for old in selected_indices
             ):
                 continue
-            selected.append({"row_position": positions[index], "text": quote})
+            selected.append({"row_position": positions[index], "text": quote,
+                **({'source_start': start, 'source_end': end,
+                    'is_excerpt': start != 0 or end != len(quotes[index])}
+                   if quote_mode == 'sentences' else {})})
             selected_indices.append(index)
             if len(selected) == quote_pool_size:
                 break
@@ -324,6 +342,7 @@ def analyze_themes(
         "backend": actual_backend,
         "outlier_count": len(outliers), "outlier_share": outlier_share,
         "embedding_mode": embedding_mode,
+        "quote_mode": quote_mode,
         "theme_selection": selection,
         "theme_merging": merging,
         "requested_themes": theme_count, "analyzed_comments": len(texts),

@@ -103,6 +103,13 @@ def _redact_detected_text(text: str, entities) -> RedactionResult:
             if entity_type == "URL":
                 end = match.start() + len(match.group().rstrip(".,;:!?"))
             spans.append((match.start(), end, entity_type))
+    # Explicit contact introductions provide evidence beyond the small NER model.
+    # Restrict this rule to a capitalized full name immediately before a detected
+    # email/phone contact; do not redact arbitrary capitalized topic phrases.
+    for match in re.finditer(r"\bContact\s+([A-Z][a-z]*(?:[-'][A-Z]?[a-z]+)?(?:\s+[A-Z][a-z]*(?:[-'][A-Z]?[a-z]+)?){1,3})\s+at\s+", text):
+        if any(start == match.end() and kind in ('EMAIL_ADDRESS', 'PHONE_NUMBER')
+               for start, _, kind in spans):
+            spans.append((match.start(1), match.end(1), 'PERSON'))
     for entity in entities:
         if entity.label_ != "PERSON":
             continue

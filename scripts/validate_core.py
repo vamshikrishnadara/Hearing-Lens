@@ -16,6 +16,7 @@ from sklearn.metrics import adjusted_rand_score
 from pipeline.core import analyze_core
 from pipeline.redact import build_safe_display_frame
 from pipeline.timeline import timeline_figures
+from pipeline.quotes import valid_source_quote
 from scripts.validate_cfpb_themes import load_sample
 
 
@@ -68,7 +69,7 @@ def run_corpus(frame, name, destination):
         'checks':{
             'unique_assignments':len(by_position)==len(assignments)==themes['analyzed_comments'],
             'membership_totals':sum(t['count'] for t in themes['themes'])+themes['outlier_count']==themes['analyzed_comments'],
-            'valid_quotes':all(by_position[q['row_position']]==tid and q['text']==safe[q['row_position']] and 12<=len(q['text'].split())<=60 for tid,q in quotes),
+            'valid_quotes':all(by_position[q['row_position']]==tid and valid_source_quote(q,safe[q['row_position']]) for tid,q in quotes),
             'five_to_fifteen_themes':5<=len(themes['themes'])<=15,
             'outliers_under_twenty_percent':themes['outlier_share']<.2,
             'three_quotes_each':bool(themes['themes']) and all(len(t['quotes'])==3 for t in themes['themes']),
@@ -86,17 +87,20 @@ def main():
     parser.add_argument('--cfpb-dir',type=Path,required=True)
     parser.add_argument('--federal-dir',type=Path)
     parser.add_argument('--output-dir',type=Path,required=True)
+    parser.add_argument('--synthetic',type=Path,default=Path('data/samples/synthetic_chicago_hearing.csv'))
+    parser.add_argument('--cpu-threads',type=int,choices=[1,2,4],default=4)
     args=parser.parse_args();args.output_dir.mkdir(parents=True,exist_ok=True)
-    torch.set_num_threads(2)
+    torch.set_num_threads(args.cpu_threads)
     root=Path(__file__).resolve().parents[1]
     public,manifest=load_sample(args.cfpb_dir)
     public=public.rename(columns={'date_received':'hearing_date'})
-    corpora={'synthetic':pd.read_csv(root/'data/samples/synthetic_chicago_hearing.csv'),'cfpb':public}
+    corpora={'synthetic':pd.read_csv(args.synthetic),'cfpb':public}
     sources={'cfpb_sha256':manifest['sample_sha256']}
     if args.federal_dir:
         federal,manifest=load_federal(args.federal_dir);corpora['federal']=federal
         sources['federal_sha256']=manifest['sample_sha256']
     summary={'notice':'Development checks; human agreement and theme review remain pending. First-run timings include model/JIT loading only for the first corpus in this process; imports and setup downloads are excluded.',
+             'cpu_threads':args.cpu_threads,
              'versions':{p:importlib.metadata.version(p) for p in ['bertopic','keybert','langid','transformers','torch','scikit-learn']},
              'sources':sources,'corpora':{},'federal_status':'provided' if args.federal_dir else 'pending sample'}
     for name,frame in corpora.items():

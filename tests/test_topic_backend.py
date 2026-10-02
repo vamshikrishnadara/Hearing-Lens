@@ -61,3 +61,28 @@ class BackendDetailsTests(unittest.TestCase):
         updated=swap_quote(original,1,0,2)
         self.assertEqual(original,before);self.assertEqual(updated['themes'][0]['quotes'][0]['row_position'],2)
         with self.assertRaises(ValueError):swap_quote(original,1,0,99)
+
+class DensityRefinementTests(unittest.TestCase):
+    def test_original_noise_stays_noise_and_clear_geometry_corrects_assignment(self):
+        from pipeline.topic_backend import refine_assignments
+        vectors=np.array([[1.,0.]]*5+[[0.,1.]]*5+[[1.,0.],[1.,0.]])
+        labels=np.array([0]*5+[1]*5+[-1,1])
+        output=refine_assignments(vectors,labels)
+        self.assertEqual(output[10],-1)
+        self.assertEqual(output[11],0)
+        self.assertEqual(output[:10].tolist(),labels[:10].tolist())
+        self.assertEqual(labels[11],1)
+
+    def test_duplicate_vectors_are_fit_once_then_all_counts_restored(self):
+        unique=np.eye(6);vectors=np.vstack([unique,unique]);texts=[f'comment {i}' for i in range(12)]
+        fake=MagicMock();fake.topics_=[0,0,0,1,1,-1]
+        fake.fit_transform.return_value=(fake.topics_,None)
+        def reduced(*args,**kwargs): fake.topics_=[0,0,0,0,0,-1]
+        fake.reduce_topics.side_effect=reduced
+        with patch('bertopic.BERTopic',return_value=fake),patch('pipeline.topic_backend.refine_assignments',side_effect=lambda v,l:l):
+            labels,meta=cluster_bertopic(texts,vectors,object(),target_topics=1)
+        self.assertEqual(len(fake.fit_transform.call_args.args[0]),6)
+        self.assertEqual(fake.reduce_topics.call_args.kwargs['nr_topics'],2)
+        self.assertEqual(len(labels),12)
+        self.assertEqual(labels[:6].tolist(),labels[6:].tolist())
+        self.assertEqual(meta['distinct_vectors_fitted'],6)
