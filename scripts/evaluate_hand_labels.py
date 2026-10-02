@@ -52,8 +52,9 @@ def main():
     parser.add_argument('--predictions-dir',type=Path,required=True)
     parser.add_argument('--cfpb-dir',type=Path,required=True)
     parser.add_argument('--federal-dir',type=Path)
+    parser.add_argument('--synthetic',type=Path,default=Path('data/samples/synthetic_chicago_hearing.csv'))
     args=parser.parse_args();root=Path(__file__).resolve().parents[1]
-    frames={'synthetic':pd.read_csv(root/'data/samples/synthetic_chicago_hearing.csv'),'cfpb':load_sample(args.cfpb_dir)[0]}
+    frames={'synthetic':pd.read_csv(args.synthetic),'cfpb':load_sample(args.cfpb_dir)[0]}
     if args.federal_dir:frames['federal']=load_federal(args.federal_dir)[0]
     safe={name:build_safe_display_frame(frame[['comment_text']]).frame.comment_text.tolist() for name,frame in frames.items()}
     predictions={}

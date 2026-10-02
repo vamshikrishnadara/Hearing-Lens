@@ -49,18 +49,23 @@ def _get_classifier(kind):
 def _predict(texts, kind):
     import torch
     tokenizer, model, labels = _get_classifier(kind)
-    scores, truncated = [], []
+    scores, truncated = [None] * len(texts), [False] * len(texts)
     try:
+        # Group similar lengths to reduce padding on CPU, then restore input order.
+        # Character length is a cheap approximation; token limits remain unchanged.
+        order = sorted(range(len(texts)), key=lambda i: (len(texts[i]), i))
         for start in range(0, len(texts), 32):
-            batch = texts[start:start+32]
+            positions = order[start:start+32]
+            batch = [texts[i] for i in positions]
             lengths = [len(ids) for ids in tokenizer(batch, truncation=False, add_special_tokens=True)['input_ids']]
             encoded = tokenizer(batch, padding=True, truncation=True, max_length=512, return_tensors='pt')
             with torch.inference_mode():
                 probabilities = torch.softmax(model(**encoded).logits, dim=-1).cpu().numpy()
             if probabilities.shape != (len(batch), len(labels)) or not np.isfinite(probabilities).all():
                 raise ValueError
-            scores.extend([{label: float(value) for label, value in zip(labels, row)} for row in probabilities])
-            truncated.extend(length > 512 for length in lengths)
+            for position, row, length in zip(positions, probabilities, lengths):
+                scores[position] = {label: float(value) for label, value in zip(labels, row)}
+                truncated[position] = length > 512
     except AffectError:
         raise
     except Exception:

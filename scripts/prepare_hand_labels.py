@@ -38,10 +38,11 @@ def main():
     parser.add_argument('--cfpb-dir',type=Path,required=True)
     parser.add_argument('--federal-dir',type=Path)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--synthetic',type=Path,default=Path('data/samples/synthetic_chicago_hearing.csv'))
     args=parser.parse_args()
     if args.output.exists():parser.error('Output exists; choose another path to preserve human work.')
     root=Path(__file__).resolve().parents[1]
-    corpora={'synthetic':pd.read_csv(root/'data/samples/synthetic_chicago_hearing.csv'),
+    corpora={'synthetic':pd.read_csv(args.synthetic),
              'cfpb':load_sample(args.cfpb_dir)[0]}
     if args.federal_dir:corpora['federal']=load_federal(args.federal_dir)[0]
     sheet=make_sheet(corpora);args.output.parent.mkdir(parents=True,exist_ok=True);sheet.to_csv(args.output,index=False)

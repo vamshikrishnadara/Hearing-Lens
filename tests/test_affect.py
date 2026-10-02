@@ -64,6 +64,26 @@ class AffectTests(unittest.TestCase):
         self.assertIsNone(result['dominant_emotion']); self.assertEqual(result['dominant_emotion_ties'],['fear','joy'])
 
 class ModelBoundaryTests(unittest.TestCase):
+    def test_length_buckets_restore_predictions_and_truncation_to_source_order(self):
+        class Tokenizer:
+            def __init__(self):self.seen=[]
+            def __call__(self,batch,**kwargs):
+                if kwargs.get('return_tensors'):
+                    self.seen.extend(batch)
+                    return {'input_ids':torch.tensor([[int(t[0])] for t in batch])}
+                return {'input_ids':[[1]*(600 if t.startswith('2') else 3) for t in batch]}
+        class Model:
+            def __call__(self,**kwargs):
+                values=kwargs['input_ids'][:,0].float()
+                return type('Output',(),{'logits':torch.stack([values,torch.zeros_like(values),-values],dim=1)})()
+        tokenizer=Tokenizer();texts=['2 long text','1','3 medium']
+        with patch('pipeline.affect._get_classifier',return_value=(tokenizer,Model(),['positive','neutral','negative'])):
+            result,truncated=_predict(texts,'sentiment')
+        self.assertEqual(tokenizer.seen,['1','3 medium','2 long text'])
+        self.assertEqual(truncated,[True,False,False])
+        self.assertGreater(result[2]['positive'],result[0]['positive'])
+        self.assertGreater(result[0]['positive'],result[1]['positive'])
+
     def test_batch_size_truncation_and_id_label_mapping(self):
         class Tokenizer:
             def __call__(self,batch,**kwargs):
