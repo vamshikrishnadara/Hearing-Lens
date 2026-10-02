@@ -1,36 +1,39 @@
-# Federal development sample - October 1, 2026
+# Federal development sample
 
-The required third corpus is not prepared yet. The official Regulations.gov API
-was reachable and returned document metadata/comment counts, but the download
-attempt hit HTTP 429 using its public DEMO_KEY. Do not repeatedly retry a rate
-limit or mark the corpus validated without a complete sample.
+The third corpus is now available locally. The direct Regulations.gov demo-key
+request returned HTTP 429, so the completed sample uses the publicly accessible
+[Mirrulations archive](https://registry.opendata.aws/mirrulations/), managed by
+Moravian University. This is an archive of Regulations.gov records, not a direct
+agency download or a new agency API key. No quota was bypassed.
 
-Selected parent document:
-[FAA-2018-1084-0001, External Marking Requirement for Small Unmanned Aircraft](https://www.regulations.gov/document/FAA-2018-1084-0001).
-This is a single federal docket with public inline comments, a development source
-rather than a Chicago participation sample. Its API listing reported 418 comments
-at the metadata check. It is chosen for reproducible access to inline comment text,
-not to optimize model outcomes. Attached-only comments are outside this initial
-sample and must be disclosed as a selection limitation.
-
-The development-only downloader uses the [official GSA API](https://open.gsa.gov/api/regulationsgov/).
-It selects the first 20 nonempty inline comments in posted-date order, strips HTML,
-preserves a source manifest/checksum locally, and verifies the docket. Ties use
-the API's returned order; later API updates can change the draw. The saved hash
-and IDs identify the exact sample actually tested, not a claim of representativeness.
+Parent: [FAA-2018-1084-0001, External Marking Requirement for Small Unmanned Aircraft](https://www.regulations.gov/document/FAA-2018-1084-0001).
+The archive listed 418 comment records. The fixed main benchmark contains the
+first 300 nonempty, unrestricted, non-withdrawn inline comments for that parent,
+in archive-key order. The earlier 100-row sample is retained separately. Selection
+uses source metadata and text availability, not model scores, quote length, or
+whether a result passes. Attachments are excluded. This convenience sample is
+not representative of Chicago participation, all federal comments, or public opinion.
 
 ```sh
-python -m scripts.prepare_federal_sample --document-id FAA-2018-1084-0001 --rows 20
+python -m scripts.prepare_federal_mirror --rows 300 --output-dir data/public_samples/federal_mirror_300
 ```
 
-The script uses `REGULATIONS_API_KEY` if configured, otherwise the documented
-public demo key. Never put a private key in a command, file tracked by Git, or
-chat message. A downloaded export is another possible input after provenance
-and schema checks. The current script checkpoints successful API responses in
-its ignored output folder, enabling a later retry without losing progress.
+Each response is saved locally with its source URL and SHA-256. The output manifest
+records selected public record IDs, the parent/docket, retrieval time, source
+hashes, selection rules, and the CSV checksum. Import verifies parent membership
+and excludes withdrawn/restricted records. A later archive revision can change
+the sample, so compare hashes before claiming reproduction.
 
-Default output is `data/public_samples/federal/`, ignored by Git. Public comment
-authors can retain rights; public visibility does not automatically make their
-writing public domain. Keep narratives, identifiers, manifests, and review
-packets local. Publish preparation code and aggregate findings only. No federal
-comment is a preloaded production input, and no agency API is called by the app.
+Main CSV SHA-256:
+`c49045c8e56baf08f27c6f8926604c1dc35aea8d3656efd70d2b1dce877dc219`.
+
+The AWS registry lists the archive with a Public Domain Mark. That listing does
+not resolve every submitter's rights or mean identifying information is safe to
+republish. Raw responses, narratives, identifiers, manifests, and detailed review
+packets remain in ignored local development folders. Only preparation code,
+source notes, and aggregate results are committed. Public samples are never
+preloaded production inputs, and the application never calls an agency API.
+
+The original direct API utility remains available for a later independently
+configured key. The mirrored sample removes the development-data access blocker;
+it does not imply a human quality review has occurred.

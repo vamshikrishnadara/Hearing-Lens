@@ -53,3 +53,21 @@ It copies public source narrative text as supplied, apart from trimming outer
 whitespace; redaction is applied during validation, not silently to the archive.
 For today's run, the sample and manifest were saved outside the repository in
 `daily-evidence/2026-09-25/public-sample/`.
+
+## Expanded benchmark, October 2
+
+The main three-corpus benchmark now uses **300** narratives with the same archive,
+year eligibility, reservoir algorithm, and seed. The earlier 100-row file is
+preserved as a separate regression sample. Increasing the draw provides more
+varied supporting text; no record was selected or rejected by model outcome or
+quote eligibility. All public narratives remain local.
+
+```sh
+python - <<'PY'
+from scripts.prepare_cfpb_sample import prepare
+prepare('data/public_samples/cfpb_archive.zip', 'data/public_samples/cfpb_2017_300', size=300)
+PY
+```
+
+The 300-row CSV SHA-256 is
+`d3f32e0f4db5dbcfeb98467368fde551594fa9ed78bc1067f48eb2c855f53ff2`.

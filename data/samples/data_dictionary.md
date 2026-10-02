@@ -40,3 +40,30 @@ python scripts/generate_synthetic_sample.py
 ```
 
 The default seed makes repeated runs identical so regression tests remain stable.
+
+## Additional theme benchmark
+
+`synthetic_theme_benchmark.csv` contains a second, explicitly fictional 1,000-row
+fixture with the same fields, six planted categories, three hearing dates, skewed
+subgroups, and contact/address probes. Its 48 authored substantive templates are
+21–25 words each, with deterministic optional context and contact additions.
+Generate it with `python -m scripts.generate_theme_benchmark` (seed 20261001).
+
+The original fixture remains unchanged as a short/repetitive-comment stress test.
+The new fixture was added because short repetitive templates cannot always supply
+three distinct eligible quotes. Results on these different fixtures must not be
+presented as a like-for-like model improvement. Neither fixture is independent
+held-out evaluation or collected resident testimony. Category metadata is never
+passed into analysis. Development settings were explored on these fixtures, so
+ARI is a development diagnostic, not a generalization claim.
+
+## Public development files
+
+CFPB: 300 narratives, fields `complaint_id`, `comment_text`, `date_received`,
+`product`, `issue`. Federal: 300 comments, fields `source_id`, `comment_text`,
+`hearing_date`. IDs and metadata are used for preparation/provenance only; themes
+use text. See `docs/cfpb_source.md` and `docs/federal_source.md` for source rules,
+hashes, and reproduction commands. Public text lives in ignored
+`data/public_samples/`, rather than publishing submitter narratives under
+`data/samples/`. This is a documented departure from the brief's suggested
+three-committed-files layout; all three corpus types are available locally.
