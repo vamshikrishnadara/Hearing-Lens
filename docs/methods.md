@@ -51,8 +51,12 @@ No agreement rate is claimed from automated tests or synthetic category labels.
    establish population representation or performance on partner data.
 9. All three development corpus types are prepared. Human agreement and independent theme/quote review remain pending. Local measurements do not establish deployed-service or partner-data performance.
 
-Representation gaps, question mining, product brief export, and deployment are
-later scheduled stages and are not represented as completed here.
+Representation-gap calculations are implemented locally as of October 5. Shares
+use known subgroup values after upstream cleaning, with missing coverage reported.
+Baselines are supplied explicitly and categories are never inferred. Small-group
+counts and derived metrics are suppressed, with complementary suppression when
+needed. See [gap methods and limits](representation_gaps.md). Question mining,
+full-pipeline integration, product brief export, and deployment remain unfinished.
 
 ## Current development evidence
 

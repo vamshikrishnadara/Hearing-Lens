@@ -10,7 +10,7 @@ meeting. Human validation and genuine pilot participation are still distinct fro
 automated checks. The fellow's separate preference for approving GitHub pushes
 remains in place unless a particular push scope is explicitly authorized.
 
-## Current position — October 2
+## Current position — October 5
 
 The foundation, three local corpus types, theme pipeline, sentiment/emotion,
 period aggregation, and timeline are implemented. The required theme notebook
@@ -18,12 +18,16 @@ has been executed. Larger public samples and a richer fictional fixture are
 validated alongside the original short/repetitive stress fixture, whose quote
 shortages remain disclosed.
 
-Human theme review and 60 hand labels remain pending; the fellow cannot label
-comments today. Agreement must stay pending until genuine labels exist. The code
+Human theme review and 60 hand labels remain pending; none have been supplied. Agreement must stay pending until genuine labels exist. The code
 license is undecided and does not block development. Public update drafts are
 available but are not proof of publication. See [delivery status](gate_status.md),
 [working board](project_board.md), and the dated validation reports for actual
 measurements and remaining limitations.
+
+The October 5 gap module is built and tested using explicit fictional baselines.
+The spreadsheet hand-check, question module/evaluation, and full-pipeline
+integration remain required this week. Continuing Week 4 development does not
+mark the earlier human validation complete.
 
 ## Weekly outcomes
 

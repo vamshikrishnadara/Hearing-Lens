@@ -123,7 +123,7 @@ must not be wired to production uploads. Source-text fingerprints prevent
 comparing human labels with predictions from a different corpus/order.
 
 See [human-label instructions](../data/validation/README.md), [measured results](core_validation_2026-10-02.md),
-and [gate status](gate_status.md). Formal gate approval is no longer a prerequisite, per the fellow. Code and tests still do not establish human validation.
+and [methodology](methods.md). Formal gate approval is no longer a prerequisite, per the fellow. Code and tests still do not establish human validation.
 
 Primary implementation references:
 [BERTopic API](https://maartengr.github.io/BERTopic/api/bertopic.html),

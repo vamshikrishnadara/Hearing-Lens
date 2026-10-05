@@ -32,7 +32,7 @@ This document defines the fields accepted from a user export and the normalized 
 5. Analyze at most 5,000 rows in the MVP and display a notice when rows are omitted.
 6. Drop empty comments before analysis.
 7. Deduplicate on a mapped respondent ID only when the identifier is present and non-empty.
-8. Treat subgroup fields as optional. Missing subgroup data must disable the representation panel without blocking the rest of the analysis.
+8. Treat subgroup fields as optional. Missing subgroup data must disable comparisons without blocking the rest of the analysis. Partial missingness is reported; shares use rows with a known value for the selected field.
 9. Never infer demographic attributes from names or text.
 
 ## Representation reference format
@@ -49,3 +49,10 @@ Group labels should be matched after trimming whitespace and normalizing capital
 ## Privacy boundary
 
 Uploads are session data, not application content. The production application must not save the raw file, raw comments, or uploaded filenames to server storage or logs. Redaction must occur before any quote is displayed or exported. Modeling may use unredacted comment text only in memory during the active run.
+
+## Representation output
+
+The local module returns tidy group rows with count, participation share, reference
+share, gap in percentage points, ratio, flag, and suppression status. Per-field
+metadata records eligible, known, and missing row counts. Suppressed metrics are
+null, not zero. See [calculation and privacy rules](representation_gaps.md).

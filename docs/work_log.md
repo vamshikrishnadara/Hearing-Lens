@@ -375,3 +375,28 @@ See the [core validation report](core_validation_2026-10-02.md) and
 [theme review](week2_validation_2026-10-02.md). These are technical-development
 results, not full completion of all Weeks 1-3 deliverables. Changes are prepared
 as focused local commits; pushing awaits the fellow's approval.
+
+
+## October 5 2026
+
+**Task:** Build Week 4 representation-gap calculations.
+**Activity:** Analyze Open-Ended Responses.
+
+- Added explicit manual/reference-CSV validation with percentage/proportion units,
+  label matching, preserved group codes, and no population or demographic inference.
+- Added per-field known/missing coverage, participation shares, percentage-point
+  gaps, ratios, strict 0.75/1.25 flags, and safe missing/invalid-reference behavior.
+- Suppressed groups below 10 rows and all their derived metrics. Added
+  complementary suppression to reduce simple subtraction disclosure; this is
+  not an anonymity guarantee for arbitrary labels or repeated releases.
+- Verified all eight role/tenure rows in the fictional 1,000-comment dataset
+  against independent rational arithmetic using explicitly fictional baselines.
+- All 173 automated tests passed, including 23 new reference/gap tests. No new
+  dependencies, user-interface changes, or real population data were introduced.
+- Documented [methods, results, and limits](representation_gaps.md). The human
+  spreadsheet check, question mining/evaluation, and full command-line integration
+  remain Week 4 tasks. Earlier human theme/affect reviews also remain pending.
+
+Four focused local commits cover references, calculations/suppression, the
+reproducible development check, and methods/project status. Each push requires
+approval. Personal daily evidence stays local outside the repository.

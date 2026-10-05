@@ -41,7 +41,7 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Current recovery window: Week 3, September 28-October 4
+## Historical recovery plan: Week 3, September 28-October 4
 
 **Planning snapshot before the October 1 catch-up implementation: at risk.** Week 3 requires sentiment, emotion, timeline, and
 60 genuinely hand-labeled comments (20 per corpus), plus the completed theme
@@ -64,8 +64,10 @@ agreed with Benjamin. Finishing code alone does not pass a gate.
 
 ## Week 4: October 5-11 - gaps, questions, complete pipeline
 
-Dependent on analytical-core readiness. If validation is incomplete, show the conflict explicitly
-rather than treating these dates as evidence that the next phase has begun.
+October 5: Week 4 development has begun at the fellow's request. Earlier human
+theme/affect validation is still pending and must remain on the closeout list.
+The gap module is implemented and numerically checked; the manual spreadsheet
+check and remaining Week 4 tasks below are not yet complete.
 
 | Day | Planned outcome |
 | --- | --- |

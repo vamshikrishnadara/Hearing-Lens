@@ -78,4 +78,4 @@ review rather than silent neutral labels. Long CFPB comments were truncated for
 affect and often do not qualify as full-comment quotes.
 
 The current implementation does not satisfy every Week 2/3 benchmark and has not
-passed Gate 1. See the [gate-status board](gate_status.md) for outstanding work.
+passed Gate 1. See [methodology](methods.md) for validation limitations.

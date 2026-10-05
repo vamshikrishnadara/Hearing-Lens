@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository contains the upload-and-preview foundation and a local analytical core for themes, sentiment, emotion, and timelines. Human validation remains incomplete; formal gate meetings are no longer required to proceed. See the delivery-status checklist.
+This repository contains the upload-and-preview foundation and a local analytical core for themes, sentiment, emotion, and timelines. Human validation remains incomplete; see the methodology for technical limitations.
 
 ## Project principles
 
@@ -32,10 +32,11 @@ This repository contains the upload-and-preview foundation and a local analytica
 - Routes the analytical core to BERTopic for at least 150 input rows and automatic K-means for smaller files, with KeyBERT/MMR labels and explicit outliers.
 - Provides local sentiment/emotion models, counted language exclusions, theme/period summaries, and timeline chart objects.
 - Prepares blind human-label sheets and repeatable comparison reports without inventing agreement results.
+- Computes representation gaps from supplied categories and explicit baselines, with small-group suppression and missing-data notices. See the [gap guide](docs/representation_gaps.md).
 
 Name detection is an initial implementation with measured misses and false
-positives; it does not guarantee that a comment is anonymous. The analytical core is not yet connected to the upload interface. Representation gaps,
-questions, community brief exports, and the final dashboard panels remain unfinished.
+positives; it does not guarantee that a comment is anonymous. The analytical core is not yet connected to the upload interface. Question mining, community brief exports, and the final dashboard panels remain unfinished.
+The representation-gap calculation module is available locally, with dashboard integration pending.
 All three development corpus types are available locally. Numerical theme checks pass on the main samples; human validation and qualitative review remain pending. The original short/repetitive stress sample still exposes quote shortages.
 
 ## Local setup
@@ -83,8 +84,6 @@ hearing-lens/
   docs/schema.md             Canonical input and internal schemas
   docs/redaction_design.md   Redaction boundary, limitations, and validation plan
   docs/wireframe.md          First dashboard wireframe
-  docs/project_plan.md       Gate-based delivery plan
-  docs/work_log.md           Completed and planned activity record
   data/samples/              Reproducible development fixture and data dictionary
   scripts/                   Development-data utilities
   tests/test_ingest.py       Unit tests for the loader
@@ -103,7 +102,7 @@ the application's in-memory handling of user uploads.
 ## Analytical-core setup and validation
 
 See [setup and API usage](docs/analytical_core.md), [measured results](docs/core_validation_2026-10-02.md),
-and the [gate-status checklist](docs/gate_status.md). Install local affect weights
+and [methodology](docs/methods.md). Install local affect weights
 with `python -m scripts.setup_affect_models`; analysis never downloads them.
 The Streamlit page remains a preview, while the analytical core is exercised
 through `pipeline.core.analyze_core` and the development validation command.
@@ -113,9 +112,7 @@ through `pipeline.core.analyze_core` and the development validation command.
 - [Executed three-corpus theme notebook](notebooks/week2_theme_validation.ipynb)
 - [Week 2 findings and limitations](docs/week2_validation_2026-10-02.md)
 - [Federal archive provenance and preparation](docs/federal_source.md)
-- [Simple project board](docs/project_board.md)
 - [Human labeling instructions](data/validation/README.md)
-- [Open license decision](docs/license_decision.md)
 
 Install `requirements-dev.txt` to rerun notebooks. Public sample files and detailed
 review packets stay local; notebooks publish aggregate checks only. Human labels
