@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hearing Lens — question review</title>
+<style>
+body{font:17px/1.55 system-ui,sans-serif;background:#f5f6f8;color:#202936;margin:0}main{max-width:850px;margin:auto;padding:30px 20px}
+h1{font-size:30px;margin-bottom:8px}header{position:sticky;top:0;background:#fff;padding:14px 20px;border-bottom:1px solid #ccd2dd;z-index:1}
+.controls{max-width:850px;margin:auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px}button,input,select{font:inherit;padding:8px;border:1px solid #8994a6;border-radius:5px}
+button{cursor:pointer;background:#234b72;color:#fff}article{background:#fff;border:1px solid #d4dce6;border-radius:8px;padding:20px;margin:18px 0}article p{white-space:pre-wrap;overflow-wrap:anywhere}
+.meta{font-size:14px;color:#586476}label{display:inline-block;margin-right:12px}.instructions{background:#e9f0f7;padding:16px;border-radius:6px}#message{color:#943215}
+input[type=file]{max-width:260px}input[type=text]{max-width:90%}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #cc8a00;outline-offset:2px}
+</style></head><body>
+<header><div class="controls"><strong id="progress" aria-live="polite"></strong><button id="save" type="button">Save my answers</button><label>Resume saved answers <input id="resume" type="file" accept=".json,application/json"></label><span id="message" role="status"></span></div></header>
+<main><h1>Which sentences ask a question?</h1>
+<p>This local review has 200 sentences from the project’s fictional and public development samples. The detector’s answers are hidden.</p>
+<div class="instructions"><b>Your choices</b><p>Choose <b>Yes</b> if the sentence asks for information or clarification, including a request written without a question mark. Choose <b>No</b> for statements, commands without an information request, or purely rhetorical wording. Choose <b>Unsure</b> if you need more context. Resolve unsure answers before the final accuracy check.</p>
+<p>Work in small batches. Click <b>Save my answers</b> before closing; answers are kept in this page’s memory only. Resume by selecting your saved JSON file. Nothing is uploaded. Automatic redaction can miss identifying details, so keep this review local.</p></div>
+<p><label>Your name <input id="reviewer" type="text" autocomplete="off"></label></p><div id="cards"></div></main>
+<script id="review-data" type="application/json">__REVIEW_DATA__</script>
+<script>
+'use strict';
+const original=JSON.parse(document.getElementById('review-data').textContent);
+let review=structuredClone(original);
+const cards=document.getElementById('cards'), reviewer=document.getElementById('reviewer'), message=document.getElementById('message');
+function progress(){const resolved=review.rows.filter(r=>r.human_question==='yes'||r.human_question==='no').length;const unsure=review.rows.filter(r=>r.human_question==='unsure').length;document.getElementById('progress').textContent=`${resolved} / ${review.rows.length} answered${unsure?`, ${unsure} unsure`:''}`;}
+function draw(){cards.replaceChildren();review.rows.forEach((row,i)=>{
+ const card=document.createElement('article');const meta=document.createElement('div');meta.className='meta';meta.textContent=`${i+1} of ${review.rows.length} · ${row.corpus}`;
+ const text=document.createElement('p');text.textContent=row.text;const label=document.createElement('label');label.textContent='Is this a question? ';
+ const select=document.createElement('select');select.id=`answer-${i}`;[['','Choose an answer'],['yes','Yes'],['no','No'],['unsure','Unsure']].forEach(([value,title])=>{const option=document.createElement('option');option.value=value;option.textContent=title;select.append(option);});
+ select.value=row.human_question;select.addEventListener('change',()=>{row.human_question=select.value;row.reviewer=reviewer.value.trim();progress();});label.append(select);
+ const notesLabel=document.createElement('label');notesLabel.textContent='Optional note ';const notes=document.createElement('input');notes.type='text';notes.value=row.notes;notes.addEventListener('input',()=>{row.notes=notes.value;});notesLabel.append(notes);card.append(meta,text,label,notesLabel);cards.append(card);
+});progress();}
+document.getElementById('save').addEventListener('click',()=>{
+ if(review.rows.some(r=>r.human_question)&&!reviewer.value.trim()){message.textContent='Enter your name before saving answers.';reviewer.focus();return;}
+ review.rows.forEach(r=>{r.reviewer=r.human_question?reviewer.value.trim():'';});
+ const blob=new Blob([JSON.stringify(review,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='Hearing_Lens_Question_Answers.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message.textContent='Answers downloaded. Keep this file to resume.';
+});
+document.getElementById('resume').addEventListener('change',async event=>{
+ const file=event.target.files[0];if(!file)return;
+ try{const imported=JSON.parse(await file.text());if(imported.schema_version!==1||imported.sample_id!==original.sample_id||!Array.isArray(imported.rows)||imported.rows.length!==original.rows.length)throw Error();
+ const byId=new Map(imported.rows.map(r=>[r.review_id,r]));if(byId.size!==original.rows.length)throw Error();
+ const rows=original.rows.map(base=>{const r=byId.get(base.review_id);if(!r)throw Error();for(const key of Object.keys(base)){if(!['human_question','reviewer','notes'].includes(key)&&r[key]!==base[key])throw Error();}if(!['','yes','no','unsure'].includes(r.human_question)||typeof r.reviewer!=='string'||typeof r.notes!=='string')throw Error();return {...base,human_question:r.human_question,reviewer:r.reviewer,notes:r.notes};});
+ const names=[...new Set(rows.filter(r=>r.human_question).map(r=>r.reviewer.trim()))];if(names.length>1)throw Error();
+ review={...original,rows};reviewer.value=names[0]||'';draw();message.textContent='Saved answers restored.';
+ }catch{message.textContent='This file does not match the review. Your current answers are unchanged.';}
+ event.target.value='';
+});
+draw();
+</script></body></html>
