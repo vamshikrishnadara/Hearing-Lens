@@ -113,6 +113,8 @@ missing data, zero baselines, valid threshold boundaries, CSV group codes and
 malformed references. The complete suite passed 173 tests, including 23 new ones.
 
 This is an independent code calculation, not the brief's human hand-computed
-spreadsheet check. That check remains scheduled for Tuesday. Question mining,
-its 200-sentence human evaluation, and full-pipeline integration remain Week 4
+spreadsheet check. An independent formula workbook was prepared and automatically
+verified on October 6; its [method and remaining human check](gap_spreadsheet_check.md)
+are documented separately. Question detection is now implemented, while
+its 200-sentence human evaluation and full-pipeline integration remain Week 4
 work. Earlier theme and 60-comment affect human reviews remain pending.

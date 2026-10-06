@@ -1,10 +1,7 @@
-> Updated October 2: the fellow reports that Benjamin does not require formal
-> gate approval meetings for now. References below describe the original review
-> milestones; they do not block continued development. Quality benchmarks, real
-> human validation, and genuine pilot participation still apply. Current status:
-> [delivery checklist](gate_status.md).
+# Daily delivery schedule
 
-# Daily delivery schedule - updated October 2, 2026
+Last status update: October 6, 2026 (Tuesday). This date records the snapshot;
+recalculate the current week from the live session date at every new work session.
 
 ## Planning basis
 
@@ -41,41 +38,46 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Historical recovery plan: Week 3, September 28-October 4
+## Current position and carryover - October 6
 
-**Planning snapshot before the October 1 catch-up implementation: at risk.** Week 3 requires sentiment, emotion, timeline, and
-60 genuinely hand-labeled comments (20 per corpus), plus the completed theme
-foundation demonstrated on all three corpora. There is no affect module or
-validation directory yet. The federal corpus and parts of Week 2 remain missing.
-The following are catch-up targets, not guaranteed two-day completion. For the
-latest implemented features and remaining blockers, use [gate status](gate_status.md).
+Today is Tuesday, October 6, in Week 4. Its planned work is due by Friday
+October 9. Wednesday-Friday work is scheduled, not overdue. Do not say Week 4
+is complete yet.
 
-| Day | Required outcome and priority | Completion evidence |
-| --- | --- | --- |
-| Thu Oct 1 | Close the main theme-engine implementation gaps (BERTopic routing, required keyword/quote behavior); prepare the federal development corpus and the three-corpus validation inputs; implement sentiment/emotion inference and theme aggregation. Prepare the 60-comment sheet as soon as inputs exist so human labeling can begin. | Working library runs, failure handling, tests, source provenance, blank human-label sheet and labeling instructions; explicit list of remaining theme criteria. |
-| Fri Oct 2 | Integrate timeline by date/hearing and its missing-date behavior; run the three-corpus checks, compare genuine human labels when available, record performance and limitations, and prepare Gate 1 demonstration. | Affect/timeline tests, three-corpus outputs, validation table, methodology draft, timed runs, live-demo checklist with actual pass/fail/pending states. |
+Monday's gap-calculation module is implemented, tested and pushed. The full
+suite now passes 190 tests. October 6 added an independent spreadsheet formula
+comparison of eight fictional gap rows, question detection and a blind 200-sentence
+review with save/resume controls and a guarded evaluator. The spreadsheet commit
+is pushed; the remaining changes await push approval. Human spreadsheet review and question labels remain
+pending. Grouping/ranking/matching and the full-pipeline command are still scheduled.
 
-The breadth of the backlog makes this window high risk. Do not call Gate 1
-complete if theme benchmarks, corpus preparation, human labels, or the demo are
-missing. Ask the fellow to confirm Gate 0 status and Benjamin's Gate 1 meeting
-and labeling availability. Prepare a factual recovery/status update if needed;
-do not send it without authorization. Any scope or schedule adjustment must be
-agreed with Benjamin. Finishing code alone does not pass a gate.
+Keep earlier carryover separate: human theme/quote review; 60 sentiment/emotion
+labels and the resulting agreement/remediation; an undecided license; and
+unverified publication of required updates. No formal gate approval is needed
+to continue under Benjamin's reported instruction. Do not mark these items
+complete because the calendar advances, and do not treat future Week 4 tasks as
+those earlier outstanding items.
 
 ## Week 4: October 5-11 - gaps, questions, complete pipeline
 
 October 5: Week 4 development has begun at the fellow's request. Earlier human
 theme/affect validation is still pending and must remain on the closeout list.
-The gap module is implemented and numerically checked; the manual spreadsheet
-check and remaining Week 4 tasks below are not yet complete.
+The gap module and question detection are implemented and numerically/behaviorally
+checked. The spreadsheet is prepared, not human-reviewed. The remaining Week 4
+tasks and human validation are not complete.
 
 | Day | Planned outcome |
 | --- | --- |
-| Mon Oct 5 | Representation calculations: supplied reference shares, percentage-point gaps, ratios, and suppression below 10 rows. |
-| Tue Oct 6 | Validate gaps against a hand calculation; implement question detection and prepare the 200-sentence human review sample. |
+| Mon Oct 5 | DONE: representation calculations, supplied-reference validation, gaps/ratios, and small-group suppression; tested and pushed. |
+| Tue Oct 6 | BUILT: eight-row spreadsheet formula comparison (pushed), question detection, 200-sentence blind review and evaluator; 190 tests pass. Human arithmetic check and labels pending; remaining pushes await approval. |
 | Wed Oct 7 | Question grouping, frequency/subgroup-spread ranking, optional agency-response matching, and top three unanswered. |
 | Thu Oct 8 | Chain modules into one command; validate complete outputs, missing-field behavior, question recall and false positives. |
 | Fri Oct 9 | Close required failures, demonstrate Gate 2, update methodology/status and prepare the weekly public update. |
+
+Human dependency before Friday: complete the spreadsheet hand-check and the
+200-sentence review, resolve uncertain labels, then measure question performance.
+The earlier 60-comment affect/theme review is separate carryover. Automated work
+cannot close these human requirements.
 
 Exit: exact gap hand-check; question recall at least 80% and false positives
 below 10%; reviewed top-three questions; all analytical output types from one
@@ -128,14 +130,34 @@ Do not mark launch complete merely because this date has arrived.
 
 ## Review and communication dependencies
 
-A gate review is a live milestone demonstration with Benjamin. He checks the
-listed benchmarks and approves progression; it is separate from permission to
-push a commit. Target gates: Gate 0 end Week 1, Gate 1 end Week 3, Gate 2 end
-Week 4, Gate 3 end Week 6, Gate 4 end Week 7. The brief specifies a regular
-30-minute check-in; gate reviews may take 45 minutes and replace that week's call.
-Approval status is currently unverified, not assumed refused or granted.
+The original brief uses gates as milestone demonstrations: scope/schema at the
+end of Week 1, analytical core at the end of Week 3, full pipeline at the end of
+Week 4, pilot readiness at the end of Week 6, and launch at the end of Week 7.
+Benjamin's formal gate approvals are not required to proceed, per the fellow's
+reported instruction. Genuine validation, user testing and pilot participation
+are still required. GitHub push approval is a separate user preference.
 
-Prepare the weekly written status and required LinkedIn post with a synthetic
-visual and required tags. Publish/send only with explicit authorization; verify
-actual prior publication rather than counting drafts as posts. The brief calls
-for weekly posts in Weeks 1-8 plus the launch post. Week 8 remains buffer only.
+Weekly reports cover work actually completed Monday-Friday. A report sent at
+the start of a new week normally summarizes the previous completed workweek;
+label any current-week work separately. On Monday October 5, the prior report
+period is September 28-October 2 (Week 3), while Week 4 is October 5-9 and has
+just begun. Never describe scheduled future work as completed or overdue.
+
+Prepare written updates and required public-post drafts locally. Send or publish
+only with explicit authorization; drafts are not evidence of publication.
+Keep personal evidence and status links out of the README and repository description.
+
+## Date handling at every work session
+
+Use the latest client/environment date in America/New_York; never carry an old
+message date forward. Week number = floor((current date - 2026-09-14) / 7) + 1.
+Week calendar ranges are Monday-Sunday; execution/report periods are Monday-Friday.
+A date before kickoff is pre-project, and a date after November 8 is beyond the
+planned buffer, not a reason to silently renumber the schedule.
+
+At session start, determine the date/week/day, consult verified completion status,
+and select the next unfinished task due in that week. Carry earlier uncompleted
+requirements on a separate list. During the week, allow time for testing and
+integration; if ahead, refine that week's work. If the deadline is at risk, state
+the specific dependency promptly without treating not-yet-due work as late.
+This is session-by-session planning, not an unattended daily automation.

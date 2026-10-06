@@ -55,8 +55,15 @@ Representation-gap calculations are implemented locally as of October 5. Shares
 use known subgroup values after upstream cleaning, with missing coverage reported.
 Baselines are supplied explicitly and categories are never inferred. Small-group
 counts and derived metrics are suppressed, with complementary suppression when
-needed. See [gap methods and limits](representation_gaps.md). Question mining,
-full-pipeline integration, product brief export, and deployment remain unfinished.
+needed. See [gap methods and limits](representation_gaps.md).
+
+Question detection is implemented as of October 6. English spaCy sentence
+splitting and terminal-question-mark/initial-wh-word/auxiliary rules identify
+candidates in redacted text. The 200-sentence blind review is prepared, with
+zero completed human labels and no recall or false-positive claim. See
+[question rules and evaluation](question_detection.md). Question grouping,
+ranking, response matching, full-pipeline integration, product brief export,
+and deployment remain unfinished.
 
 ## Current development evidence
 

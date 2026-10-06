@@ -400,3 +400,30 @@ as focused local commits; pushing awaits the fellow's approval.
 Four focused local commits cover references, calculations/suppression, the
 reproducible development check, and methods/project status. Each push requires
 approval. Personal daily evidence stays local outside the repository.
+
+## October 6 2026
+
+**Task:** Verify gap arithmetic and build question detection with a blind review.
+**Activity:** Analyze Open-Ended Responses.
+
+- Prepared an independent formula workbook from all 1,000 fictional source
+  role/tenure rows. All eight comparisons matched: exact counts/flags and numerical
+  differences below 1e-12. Changed-reference and zero-reference checks passed.
+  The workbook has not received the required human hand-check.
+- Added English spaCy sentence splitting and explainable question-mark,
+  wh-word and auxiliary detection on redacted text. Preserved exact source spans,
+  table positions and per-comment counts; no uploaded identifiers are exported.
+- Prepared a reproducible blind sample of 200 out of 6,464 sentence occurrences
+  across the three development corpora, with predictions stored separately.
+- Added local review-page save/resume controls and guarded recall/false-positive
+  evaluation. No human labels or accuracy rates were invented; all 200 are blank.
+- All 190 automated tests passed, including 17 new question/review tests.
+  Browser inspection confirmed 200 blank controls and working unsure/reset counts.
+  Separate JavaScript checks passed for saving/restoring answers and rejecting
+  changed or duplicate review rows. Native browser download/resume is unverified.
+- Question grouping, ranking, agency-response matching and full-pipeline
+  integration remain scheduled this week. Earlier human reviews remain pending.
+
+Four focused commits separate the changes. The spreadsheet commit `627c3ff` is
+pushed with approval; the remaining three await individual push approval. Personal
+PDF evidence, the review packet and workbook remain outside the repository.

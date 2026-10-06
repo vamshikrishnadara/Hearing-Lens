@@ -1,4 +1,4 @@
-# Hearing Lens working board — October 5, 2026
+# Hearing Lens working board — October 6, 2026
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
@@ -13,8 +13,11 @@ to continue, according to the fellow's report of Benjamin's instruction.
 - Blind human-label preparation and agreement evaluation.
 - Representation-gap module, reference CSV/manual validation, missing-data behavior,
   and small-group suppression; eight fictional arithmetic comparisons passed.
+- Independent spreadsheet formulas match eight fictional gap rows; human check pending.
+- Question sentence splitting/detection, blind 200-sentence review and evaluator;
+  190 tests pass. October 6 spreadsheet commit is pushed; remaining commits await approval.
 
-## Verification and closeout
+## Earlier verification and closeout still open
 
 - Numerical theme checks: passed on the three main samples; old short-comment
   stress fixture still has quote shortages, disclosed separately.
@@ -25,7 +28,13 @@ to continue, according to the fellow's report of Benjamin's instruction.
 - Code license: undecided, deferred; does not block development.
 - Weekly public posts: drafts prepared; publication not claimed.
 
-## Next scheduled work
+## Current week: October 5-9 (Week 4)
+
+Monday October 5 gap calculations are complete, tested and pushed. Tuesday's
+question detection and review preparation are built locally. Human spreadsheet
+review and 200 question labels are still pending. The remaining grouping/ranking,
+response matching and integration work is scheduled for Wednesday-Friday.
+Recompute the current date/week each session; this is an October 6 snapshot.
 
 Week 4: gap spreadsheet hand-check, question mining and human question evaluation,
 then complete command-line pipeline. Gap calculations are built; dashboard work
