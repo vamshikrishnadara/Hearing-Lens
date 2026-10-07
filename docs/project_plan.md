@@ -18,7 +18,7 @@ chat or this snapshot. Calendar weeks run Monday-Sunday, with planned work and
 weekly reports Monday-Friday. Assess weekly completion at its Friday deadline;
 future tasks inside the current week are scheduled, not overdue.
 
-## Current position — Tuesday October 6, Week 4
+## Current position — Wednesday October 7, Week 4
 
 The foundation, three local corpus types, theme pipeline, sentiment/emotion,
 period aggregation, and timeline are implemented. The required theme notebook
@@ -35,10 +35,13 @@ measurements and remaining limitations.
 The October 5 gap module is built, tested and pushed using explicit fictional baselines.
 The October 6 spreadsheet formulas match all eight fictional results; human
 hand-check remains pending. Question detection, its tests and a blind 200-sentence
-review are prepared locally. No human question labels have been supplied.
-Question grouping/ranking/matching and full-pipeline integration remain scheduled
-for October 7-9. The spreadsheet commit is pushed; today's remaining commits await
-the fellow's push approval.
+review were built and all four October 6 commits are pushed. No human question
+labels have been supplied. October 7 adds question grouping, frequency/protected
+subgroup-spread ranking, supplied-response matching and top-three priorities.
+All 222 tests pass and three-corpus development checks passed. Today's four
+commits are local and await individual push approval. Full-pipeline integration
+remains scheduled for October 8; required validation and closeout target October 9.
+The independent top-three review is prepared but has no human picks.
 The Week 4 target is Friday October 9. Continuing Week 4 development does not
 mark the earlier human validation complete.
 

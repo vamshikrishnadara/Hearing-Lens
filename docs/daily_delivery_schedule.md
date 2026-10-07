@@ -1,6 +1,6 @@
 # Daily delivery schedule
 
-Last status update: October 6, 2026 (Tuesday). This date records the snapshot;
+Last status update: October 7, 2026 (Wednesday). This date records the snapshot;
 recalculate the current week from the live session date at every new work session.
 
 ## Planning basis
@@ -38,18 +38,20 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Current position and carryover - October 6
+## Current position and carryover - October 7
 
-Today is Tuesday, October 6, in Week 4. Its planned work is due by Friday
-October 9. Wednesday-Friday work is scheduled, not overdue. Do not say Week 4
+Today is Wednesday, October 7, in Week 4. Its planned work is due by Friday
+October 9. Thursday-Friday work is scheduled, not overdue. Do not say Week 4
 is complete yet.
 
 Monday's gap-calculation module is implemented, tested and pushed. The full
-suite now passes 190 tests. October 6 added an independent spreadsheet formula
+suite now passes 222 tests. October 6 added an independent spreadsheet formula
 comparison of eight fictional gap rows, question detection and a blind 200-sentence
-review with save/resume controls and a guarded evaluator. The spreadsheet commit
-is pushed; the remaining changes await push approval. Human spreadsheet review and question labels remain
-pending. Grouping/ranking/matching and the full-pipeline command are still scheduled.
+review with save/resume controls and a guarded evaluator. All four October 6
+commits are pushed. October 7 grouping/ranking/response matching and top-three
+selection are built and tested locally; today's four pushes await individual
+approval. Human spreadsheet review, question labels and top-three review remain
+pending. The full-pipeline command is still scheduled for Thursday.
 
 Keep earlier carryover separate: human theme/quote review; 60 sentiment/emotion
 labels and the resulting agreement/remediation; an undecided license; and
@@ -69,13 +71,15 @@ tasks and human validation are not complete.
 | Day | Planned outcome |
 | --- | --- |
 | Mon Oct 5 | DONE: representation calculations, supplied-reference validation, gaps/ratios, and small-group suppression; tested and pushed. |
-| Tue Oct 6 | BUILT: eight-row spreadsheet formula comparison (pushed), question detection, 200-sentence blind review and evaluator; 190 tests pass. Human arithmetic check and labels pending; remaining pushes await approval. |
-| Wed Oct 7 | Question grouping, frequency/subgroup-spread ranking, optional agency-response matching, and top three unanswered. |
+| Tue Oct 6 | BUILT AND PUSHED: eight-row spreadsheet formula comparison, question detection, 200-sentence blind review and evaluator; 190 tests passed. Human arithmetic check and labels pending. |
+| Wed Oct 7 | BUILT LOCALLY: question grouping, frequency/protected subgroup-spread ranking, optional supplied-response matching, top-three priorities and reviewer comparison; 222 tests and three-corpus checks pass. Pushes await approval; human top-three review pending. |
 | Thu Oct 8 | Chain modules into one command; validate complete outputs, missing-field behavior, question recall and false positives. |
 | Fri Oct 9 | Close required failures, demonstrate Gate 2, update methodology/status and prepare the weekly public update. |
 
 Human dependency before Friday: complete the spreadsheet hand-check and the
 200-sentence review, resolve uncertain labels, then measure question performance.
+Also supply independent top-three picks and explain differences if needed. These
+human checks are now the main dependency for Friday's validation deadline.
 The earlier 60-comment affect/theme review is separate carryover. Automated work
 cannot close these human requirements.
 

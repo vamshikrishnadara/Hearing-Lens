@@ -1,8 +1,10 @@
 # Question detection and validation
 
-`pipeline/questions.py` implements the detection stage of Week 4. It does not
-yet group questions, rank them, match agency responses or select the top three.
-The upload UI and full-pipeline command are separate integration work.
+`pipeline/questions.py` implements the detection stage of Week 4. Its October 7
+`mine_questions` API also supports [grouping, ranking, response matching and
+potentially unanswered priorities](question_mining.md). The detection API and
+frozen 200-sentence review remain unchanged. The upload UI and full-pipeline
+command are separate integration work.
 
 ## Library use
 

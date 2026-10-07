@@ -1,4 +1,4 @@
-# Hearing Lens working board — October 6, 2026
+# Hearing Lens working board — October 7, 2026
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
@@ -15,7 +15,10 @@ to continue, according to the fellow's report of Benjamin's instruction.
   and small-group suppression; eight fictional arithmetic comparisons passed.
 - Independent spreadsheet formulas match eight fictional gap rows; human check pending.
 - Question sentence splitting/detection, blind 200-sentence review and evaluator;
-  190 tests pass. October 6 spreadsheet commit is pushed; remaining commits await approval.
+  all four October 6 commits are pushed.
+- Question grouping, frequency/protected subgroup-spread ranking, optional response
+  matching, potentially unanswered priorities and independent review comparison.
+  All 222 tests and three-corpus development checks pass; October 7 commits are local.
 
 ## Earlier verification and closeout still open
 
@@ -30,11 +33,12 @@ to continue, according to the fellow's report of Benjamin's instruction.
 
 ## Current week: October 5-9 (Week 4)
 
-Monday October 5 gap calculations are complete, tested and pushed. Tuesday's
-question detection and review preparation are built locally. Human spreadsheet
-review and 200 question labels are still pending. The remaining grouping/ranking,
-response matching and integration work is scheduled for Wednesday-Friday.
-Recompute the current date/week each session; this is an October 6 snapshot.
+Monday's gaps and Tuesday's detector/review preparation are built and pushed.
+Wednesday's grouping/ranking/response matching are built and tested locally,
+awaiting individual push approvals. Human spreadsheet review, 200 question labels
+and independent top-three picks are still pending. Full-pipeline integration is
+scheduled Thursday, followed by validation and required fixes Friday.
+Recompute the current date/week each session; this is an October 7 snapshot.
 
 Week 4: gap spreadsheet hand-check, question mining and human question evaluation,
 then complete command-line pipeline. Gap calculations are built; dashboard work

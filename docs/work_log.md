@@ -424,6 +424,35 @@ approval. Personal daily evidence stays local outside the repository.
 - Question grouping, ranking, agency-response matching and full-pipeline
   integration remain scheduled this week. Earlier human reviews remain pending.
 
-Four focused commits separate the changes. The spreadsheet commit `627c3ff` is
-pushed with approval; the remaining three await individual push approval. Personal
+Four focused commits separate the changes. All four were pushed with individual
+approval and GitHub verified at `36a8662`. Personal
 PDF evidence, the review packet and workbook remain outside the repository.
+
+## October 7 2026
+
+**Task:** Group and rank questions, match supplied responses, select follow-up priorities.
+**Activity:** Analyze Open-Ended Responses.
+
+- Added local MiniLM/complete-linkage grouping with verbatim representatives,
+  deterministic IDs, traceable assignments and distinct-comment frequency.
+- Ranked by comment frequency then visible subgroup spread. Categories need at
+  least ten supporting comments inside a question group; category labels/counts
+  and per-comment subgroup membership are not returned or used when suppressed.
+- Added optional redacted response matching, checking every distinct wording.
+  Partial matches remain eligible; no-response priorities are explicitly unverified.
+  Cosine similarity is not proof that an answer is responsive or correct.
+- Added an explicitly fictional three-response scenario. Six question groups
+  produced three possible matches; accessibility, mental-health staffing and a
+  public response log remained the top follow-up questions. Thresholds 0.55-0.70
+  gave the same result. No real agency response or human approval is implied.
+- Repeated all three development corpora. Membership, counts, representative
+  spans and top-three eligibility passed, with identical repeated outputs.
+  Three authored paraphrase pairs also grouped as expected with the local model.
+- All 222 tests passed, including 32 new grouping/ranking/matching/review checks.
+- Prepared independent top-three review material and an evaluator requiring real
+  reviewer input or explanations. No human selections have been supplied.
+
+Four focused commits are prepared locally; no October 7 push is authorized yet.
+Thursday's full-pipeline integration and Friday's validation remain scheduled.
+Human spreadsheet, question-detection, top-three and earlier theme/affect reviews
+remain pending. Personal evidence and detailed review outputs remain local.
