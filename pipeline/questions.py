@@ -3,6 +3,7 @@
 No files, network calls, demographic inference or cached user results.
 """
 from functools import lru_cache
+from collections import Counter
 import hashlib
 import re
 
@@ -12,6 +13,7 @@ from sklearn.cluster import AgglomerativeClustering
 
 from pipeline.redact import build_safe_display_frame
 from pipeline.themes import _embed, ThemeError
+from pipeline.reference import group_label, ReferenceError
 
 
 DETECTOR_VERSION = 'interrogatives-v1'
@@ -178,7 +180,48 @@ def _group_candidates(candidates, distance_threshold):
     return groups, assignments, examples, vectors
 
 
-def mine_questions(frame, *, grouping_distance=.35):
+def _subgroup_labels(frame, columns):
+    if not isinstance(frame, pd.DataFrame) or not frame.columns.is_unique:
+        raise QuestionError('Provide a mapped table with unique column names.')
+    if columns is None:
+        columns = [c for c in frame.columns if isinstance(c, str) and c.startswith('subgroup__')]
+    if (not isinstance(columns, (list, tuple)) or any(not isinstance(c, str) for c in columns)
+            or len(set(columns)) != len(columns) or any(c not in frame for c in columns)
+            or any(c in {'comment_text', 'respondent_id', 'source_row', 'date_or_hearing'} for c in columns)):
+        raise QuestionError('Select distinct supplied subgroup columns, separate from text and identifier fields.')
+    try:
+        return {field: [group_label(value).casefold() for value in frame[field]] for field in columns}
+    except ReferenceError:
+        raise QuestionError('Subgroup cells must contain single supplied categories.') from None
+
+
+def _rank_groups(groups, labels, minimum_group_size):
+    for group in groups:
+        spread, details, any_known, hidden = 0, {}, False, False
+        for field, values in labels.items():
+            observed = [values[i] for i in group['_positions'] if values[i]]
+            counts = Counter(observed)
+            visible = sum(count >= minimum_group_size for count in counts.values())
+            suppressed = any(count < minimum_group_size for count in counts.values())
+            any_known = any_known or bool(observed)
+            hidden = hidden or suppressed or len(observed) < len(group['_positions'])
+            spread += visible
+            # Never return category labels, their counts or a suppressed group's
+            # existence in a specific named category. Rank only visible breadth.
+            details[field] = {'visible_group_count': visible if observed else None,
+                              'coverage': ('complete' if len(observed) == len(group['_positions']) else
+                                           'partial' if observed else 'missing'),
+                              'small_groups_suppressed': suppressed}
+        group['subgroup_spread'] = spread if any_known else None
+        group['subgroup_spread_by_field'] = details
+        group['spread_is_lower_bound'] = hidden
+    groups.sort(key=lambda g: (-g['comment_count'], -(g['subgroup_spread'] or 0),
+                               g['representative']['text'].casefold(), g['question_group_id']))
+    for rank, group in enumerate(groups, 1):
+        group['rank'] = rank
+
+
+def mine_questions(frame, *, grouping_distance=.35, subgroup_columns=None, minimum_group_size=10):
     """Group redacted candidate questions; preserve analyze_questions' frozen API.
 
     Complete-linkage cosine clustering prevents similarity chains from joining
@@ -186,9 +229,13 @@ def mine_questions(frame, *, grouping_distance=.35):
     sentences inside one comment. It is not a count of unique people.
     """
     grouping_distance = _threshold(grouping_distance)
+    if type(minimum_group_size) is not int or minimum_group_size < 10:
+        raise QuestionError('The minimum subgroup size must be a whole number of at least 10.')
+    labels = _subgroup_labels(frame, subgroup_columns)
     detection = analyze_questions(frame)
     candidates = [r for r in detection['sentences'] if r['is_question']]
     groups, assignments, _, _ = _group_candidates(candidates, grouping_distance)
+    _rank_groups(groups, labels, minimum_group_size)
     for group in groups:
         group.pop('_variant_indices')
         group.pop('_positions')
@@ -197,6 +244,11 @@ def mine_questions(frame, *, grouping_distance=.35):
             'question_count': detection['question_count'],
             'comment_question_counts': detection['comment_question_counts'],
             'grouping_distance': grouping_distance, 'groups': groups, 'assignments': assignments,
+            'minimum_group_size': minimum_group_size,
+            'ranking': 'Distinct comment count descending; visible subgroup spread descending; wording tie-break.',
             'notice': 'English question candidates grouped by local MiniLM cosine similarity. '
                       'Frequency counts comment rows, not unique people. Semantic similarity is not '
-                      'equivalence; long sentences may be truncated by the embedding model. Review before sharing.'}
+                      'equivalence; long sentences may be truncated by the embedding model. '
+                      'Subgroup spread sums field/category pairs with at least the minimum number of '
+                      'supporting comments in this question group, without inferring missing categories. '
+                      'Small or missing categories can make this a lower bound. Review before sharing.'}
