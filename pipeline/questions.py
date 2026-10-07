@@ -21,6 +21,8 @@ WH_WORDS = frozenset('who whom whose what which when where why how'.split())
 AUXILIARIES = frozenset(
     'am is are was were do does did have has had can could shall should will would may might must'.split())
 MAX_UNIQUE_QUESTIONS = 2000
+MAX_RESPONSE_CHARACTERS = 100_000
+MAX_RESPONSE_SENTENCES = 1000
 
 
 class QuestionError(ValueError):
@@ -221,7 +223,53 @@ def _rank_groups(groups, labels, minimum_group_size):
         group['rank'] = rank
 
 
-def mine_questions(frame, *, grouping_distance=.35, subgroup_columns=None, minimum_group_size=10):
+def _response_sentences(agency_response):
+    if agency_response is None:
+        return [], 'not_provided'
+    if not isinstance(agency_response, str):
+        raise QuestionError('Supply agency response text as a string, or leave it absent.')
+    if len(agency_response) > MAX_RESPONSE_CHARACTERS:
+        raise QuestionError('Agency response text exceeds 100,000 characters. Select a smaller response excerpt; it was not truncated.')
+    if not agency_response.strip():
+        return [], 'empty'
+    safe = build_safe_display_frame(pd.DataFrame({'comment_text': [agency_response]}))
+    sentences = sentence_records(safe.frame.comment_text.tolist())
+    if len(sentences) > MAX_RESPONSE_SENTENCES:
+        raise QuestionError('Agency response text exceeds 1,000 sentences. Select a smaller response excerpt; it was not truncated.')
+    return sentences, 'available' if sentences else 'empty'
+
+
+def _match_responses(groups, examples, vectors, responses, threshold):
+    if not groups:
+        return
+    if not responses:
+        for group in groups:
+            group.update(response_match_status='not_checked', matched_wordings=None, response_matches=[])
+        return
+    response_vectors = _question_vectors([row['text'] for row in responses])
+    if vectors.shape[1] != response_vectors.shape[1]:
+        raise QuestionError('Question and response embeddings are incompatible.')
+    similarities = np.clip(vectors @ response_vectors.T, -1, 1)
+    matches = []
+    for i, example in enumerate(examples):
+        best = int(np.argmax(similarities[i]))
+        score = float(similarities[i, best])
+        matched = score >= threshold
+        response = responses[best]
+        matches.append({'question_text': example['text'], 'similarity': score,
+                        'meets_threshold': matched,
+                        'response': ({k: response[k] for k in ['text', 'sentence_index', 'source_start', 'source_end', 'text_sha256']}
+                                     if matched else None)})
+    for group in groups:
+        group_matches = [matches[i] for i in group['_variant_indices']]
+        count = sum(row['meets_threshold'] for row in group_matches)
+        group.update(response_matches=group_matches, matched_wordings=count,
+                     response_match_status=('possible_match' if count == len(group_matches) else
+                                            'partial_match' if count else 'no_match'))
+
+
+def mine_questions(frame, *, grouping_distance=.35, subgroup_columns=None, minimum_group_size=10,
+                   agency_response=None, response_threshold=.6):
     """Group redacted candidate questions; preserve analyze_questions' frozen API.
 
     Complete-linkage cosine clustering prevents similarity chains from joining
@@ -229,13 +277,17 @@ def mine_questions(frame, *, grouping_distance=.35, subgroup_columns=None, minim
     sentences inside one comment. It is not a count of unique people.
     """
     grouping_distance = _threshold(grouping_distance)
+    response_threshold = _threshold(response_threshold, allow_zero=True)
     if type(minimum_group_size) is not int or minimum_group_size < 10:
         raise QuestionError('The minimum subgroup size must be a whole number of at least 10.')
     labels = _subgroup_labels(frame, subgroup_columns)
     detection = analyze_questions(frame)
     candidates = [r for r in detection['sentences'] if r['is_question']]
-    groups, assignments, _, _ = _group_candidates(candidates, grouping_distance)
+    responses, response_status = _response_sentences(agency_response)
+    groups, assignments, examples, vectors = _group_candidates(candidates, grouping_distance)
     _rank_groups(groups, labels, minimum_group_size)
+    _match_responses(groups, examples, vectors, responses, response_threshold)
+    top = [g['question_group_id'] for g in groups if g['response_match_status'] != 'possible_match'][:3]
     for group in groups:
         group.pop('_variant_indices')
         group.pop('_positions')
@@ -245,6 +297,15 @@ def mine_questions(frame, *, grouping_distance=.35, subgroup_columns=None, minim
             'comment_question_counts': detection['comment_question_counts'],
             'grouping_distance': grouping_distance, 'groups': groups, 'assignments': assignments,
             'minimum_group_size': minimum_group_size,
+            'response_status': response_status, 'response_sentence_count': len(responses),
+            'response_threshold': response_threshold, 'top_unanswered': top,
+            'selection_status': ('no_questions' if not groups else
+                                 'response_unavailable' if not responses else
+                                 'needs_review' if top else 'all_possibly_matched'),
+            'selection_notice': 'Potentially unanswered questions only. With no usable response, these are '
+                                'unverified follow-up priorities. A cosine match can share a topic without '
+                                'answering it or can contradict it; review every possible match. Partial '
+                                'matches remain eligible. No human top-three review is claimed.',
             'ranking': 'Distinct comment count descending; visible subgroup spread descending; wording tie-break.',
             'notice': 'English question candidates grouped by local MiniLM cosine similarity. '
                       'Frequency counts comment rows, not unique people. Semantic similarity is not '
