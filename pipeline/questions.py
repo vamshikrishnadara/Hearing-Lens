@@ -1,21 +1,24 @@
 """Local, explainable English question candidates with redacted source spans.
 
-Detection only: grouping, ranking and response matching are separate stages.
 No files, network calls, demographic inference or cached user results.
 """
 from functools import lru_cache
 import hashlib
 import re
 
+import numpy as np
 import pandas as pd
+from sklearn.cluster import AgglomerativeClustering
 
 from pipeline.redact import build_safe_display_frame
+from pipeline.themes import _embed, ThemeError
 
 
 DETECTOR_VERSION = 'interrogatives-v1'
 WH_WORDS = frozenset('who whom whose what which when where why how'.split())
 AUXILIARIES = frozenset(
     'am is are was were do does did have has had can could shall should will would may might must'.split())
+MAX_UNIQUE_QUESTIONS = 2000
 
 
 class QuestionError(ValueError):
@@ -109,3 +112,91 @@ def analyze_questions(frame):
             'notice': 'English rule-based candidates, not verified questions or answers. '
                       'Offsets refer to redacted comments. Redaction can miss identifiers. '
                       'Human recall and false-positive evaluation is required.'}
+
+
+def _threshold(value, *, allow_zero=False):
+    if (isinstance(value, (bool, str)) or not isinstance(value, (int, float))
+            or not np.isfinite(value) or not (0 <= value <= 1)
+            or (value == 0 and not allow_zero)):
+        raise QuestionError('Use a finite similarity threshold between zero and one; grouping distance must be positive.')
+    return float(value)
+
+
+def _question_vectors(texts):
+    try:
+        vectors = np.asarray(_embed(texts), dtype=float)
+        if (vectors.ndim != 2 or vectors.shape[0] != len(texts)
+                or vectors.shape[1] == 0 or not np.isfinite(vectors).all()):
+            raise ValueError
+        norms = np.linalg.norm(vectors, axis=1, keepdims=True)
+        if (norms <= 1e-12).any():
+            raise ValueError
+        return vectors / norms
+    except (ThemeError, ValueError, TypeError):
+        raise QuestionError('Question embeddings are unavailable. Check the local MiniLM model setup.') from None
+
+
+def _group_candidates(candidates, distance_threshold):
+    by_text = {}
+    for row in candidates:
+        key = ' '.join(row['text'].casefold().split())
+        by_text.setdefault(key, []).append(row)
+    keys = sorted(by_text)
+    if len(keys) > MAX_UNIQUE_QUESTIONS:
+        raise QuestionError('Too many distinct question sentences for local grouping (maximum 2,000). Use a smaller input; no partial result was produced.')
+    if not keys:
+        return [], [], [], np.empty((0, 0))
+    # Embed each distinct wording once; repeats still count as source occurrences.
+    examples = [min(by_text[key], key=lambda r: (r['text'], r['row_position'], r['sentence_index'])) for key in keys]
+    vectors = _question_vectors([row['text'] for row in examples])
+    if len(keys) == 1:
+        labels = np.zeros(1, dtype=int)
+    else:
+        labels = AgglomerativeClustering(n_clusters=None, metric='cosine', linkage='complete',
+                                        distance_threshold=distance_threshold).fit_predict(vectors)
+    clusters = {}
+    for i, label in enumerate(labels):
+        clusters.setdefault(int(label), []).append(i)
+    groups, assignments = [], []
+    # IDs and ties follow sorted wording, not sklearn's incidental label numbers.
+    for number, indices in enumerate(sorted(clusters.values(), key=lambda ids: tuple(keys[i] for i in ids)), 1):
+        members = [r for i in indices for r in by_text[keys[i]]]
+        similarities = vectors[indices] @ vectors[indices].T
+        centrality = similarities.mean(axis=1)
+        center = min(range(len(indices)), key=lambda j: (-float(centrality[j]), keys[indices[j]]))
+        representative = examples[indices[center]]
+        group_id = f'q{number:03d}'
+        groups.append({'question_group_id': group_id,
+                       'representative': {k: representative[k] for k in ['text', 'row_position', 'sentence_index', 'source_start', 'source_end', 'text_sha256']},
+                       'comment_count': len({r['row_position'] for r in members}),
+                       'sentence_count': len(members), 'unique_wordings': len(indices),
+                       '_variant_indices': indices,
+                       '_positions': sorted({r['row_position'] for r in members})})
+        assignments.extend({'row_position': r['row_position'], 'sentence_index': r['sentence_index'],
+                            'question_group_id': group_id} for r in members)
+    assignments.sort(key=lambda r: (r['row_position'], r['sentence_index']))
+    return groups, assignments, examples, vectors
+
+
+def mine_questions(frame, *, grouping_distance=.35):
+    """Group redacted candidate questions; preserve analyze_questions' frozen API.
+
+    Complete-linkage cosine clustering prevents similarity chains from joining
+    distant questions. Frequency counts distinct comment rows, not repeated
+    sentences inside one comment. It is not a count of unique people.
+    """
+    grouping_distance = _threshold(grouping_distance)
+    detection = analyze_questions(frame)
+    candidates = [r for r in detection['sentences'] if r['is_question']]
+    groups, assignments, _, _ = _group_candidates(candidates, grouping_distance)
+    for group in groups:
+        group.pop('_variant_indices')
+        group.pop('_positions')
+    return {'status': 'available' if groups else 'no_questions', 'detector_version': DETECTOR_VERSION,
+            'input_rows': detection['input_rows'], 'sentence_count': detection['sentence_count'],
+            'question_count': detection['question_count'],
+            'comment_question_counts': detection['comment_question_counts'],
+            'grouping_distance': grouping_distance, 'groups': groups, 'assignments': assignments,
+            'notice': 'English question candidates grouped by local MiniLM cosine similarity. '
+                      'Frequency counts comment rows, not unique people. Semantic similarity is not '
+                      'equivalence; long sentences may be truncated by the embedding model. Review before sharing.'}
