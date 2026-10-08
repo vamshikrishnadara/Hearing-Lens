@@ -11,7 +11,7 @@ class TimelineError(ValueError):
 
 def build_timeline(frame, affect, assignments, period_column=None):
     if period_column is None:
-        period_column = next((c for c in ('hearing_date', 'date', 'hearing_id') if c in frame), None)
+        period_column = next((c for c in ('date_or_hearing', 'hearing_date', 'date', 'hearing_id') if c in frame), None)
     if period_column is not None and period_column not in frame:
         raise TimelineError('Selected period column is not available.')
     notes = []
