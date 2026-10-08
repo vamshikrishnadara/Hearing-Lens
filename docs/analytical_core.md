@@ -96,7 +96,7 @@ Pinned local revisions measured on October 1:
 
 ## Timeline
 
-Select a date/hearing column explicitly or let the module choose hearing_date,
+Select a date/hearing column explicitly or let the module choose date_or_hearing, hearing_date,
 date, then hearing_id. If every nonempty value parses, group by UTC calendar day,
 using month-first interpretation for ambiguous dates. Missing values get a visible
 missing-period group. If any nonempty value fails parsing, treat the entire column

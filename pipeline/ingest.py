@@ -50,7 +50,7 @@ def _rewind(source: str | Path | BinaryIO) -> None:
 
 
 def _read_csv(
-    source: str | Path | BinaryIO, *, row_cap: int
+    source: str | Path | BinaryIO, *, row_cap: int, preserve_text: bool = False
 ) -> tuple[pd.DataFrame, str]:
     """Read common CSV encodings while keeping the original stream reusable."""
 
@@ -60,7 +60,8 @@ def _read_csv(
         _rewind(source)
         try:
             return (
-                pd.read_csv(source, nrows=row_cap + 1, encoding=encoding),
+                pd.read_csv(source, nrows=row_cap + 1, encoding=encoding,
+                            **({'dtype': str, 'keep_default_na': False} if preserve_text else {})),
                 encoding,
             )
         except UnicodeDecodeError as exc:
@@ -95,6 +96,7 @@ def load_table(
     filename: str | None = None,
     sheet_name: str | None = None,
     row_cap: int = 5_000,
+    preserve_text: bool = False,
 ) -> LoadResult:
     """Load a CSV or XLSX file and enforce the MVP row cap."""
 
@@ -109,7 +111,7 @@ def load_table(
     _rewind(source)
     try:
         if extension == ".csv":
-            frame, source_encoding = _read_csv(source, row_cap=row_cap)
+            frame, source_encoding = _read_csv(source, row_cap=row_cap, preserve_text=preserve_text)
             selected_sheet = None
         else:
             source_encoding = None
@@ -119,6 +121,7 @@ def load_table(
                 sheet_name=selected_sheet,
                 nrows=row_cap + 1,
                 engine="openpyxl",
+                **({'dtype': str, 'keep_default_na': False} if preserve_text else {}),
             )
     except ValueError as exc:
         raise IngestError(f"The selected sheet or table could not be read: {exc}") from exc

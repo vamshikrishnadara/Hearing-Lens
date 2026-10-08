@@ -75,3 +75,18 @@ The richer fictional fixture and larger public samples are documented in
 stress/regression data. Development ARI is not sentiment/emotion agreement, and
 changes in fixture content are not claimed as like-for-like accuracy gains.
 All 60 blind review comments are ready; no human labels have been supplied.
+
+
+## Complete local workflow (October 8)
+
+The [complete pipeline](full_pipeline.md) maps and cleans input once, then combines
+all five analysis areas using the same cleaned-row positions. Mapped dates are
+recognized by the timeline. Optional reference/response inputs remain supplied,
+never inferred. The API is memory-only; the separate local command explicitly
+exports JSON and offline charts to a new folder, with a completion/hash manifest.
+It is not connected to the production upload handler.
+
+[Three-corpus integration checks](full_pipeline_validation_2026-10-08.md) pass for
+structure, source integrity and repeatability, with 243 automated tests passing.
+Expanded CFPB repeat analysis is 34.11 seconds, above the 30-second target. Human
+quality/accuracy checks remain pending; automated completion does not replace them.

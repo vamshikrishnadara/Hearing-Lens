@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository contains the upload-and-preview foundation and a local analytical core for themes, sentiment, emotion, and timelines. Human validation remains incomplete; see the methodology for technical limitations.
+This repository contains the upload-and-preview foundation and a complete local command-line workflow for themes, sentiment, emotion, timelines, representation gaps and questions. Human validation remains incomplete; see the methodology for technical limitations.
 
 ## Project principles
 
@@ -33,10 +33,12 @@ This repository contains the upload-and-preview foundation and a local analytica
 - Provides local sentiment/emotion models, counted language exclusions, theme/period summaries, and timeline chart objects.
 - Prepares blind human-label sheets and repeatable comparison reports without inventing agreement results.
 - Computes representation gaps from supplied categories and explicit baselines, with small-group suppression and missing-data notices. See the [gap guide](docs/representation_gaps.md).
+- Groups and ranks question candidates, compares supplied responses and selects potentially unanswered priorities with explicit review notices.
+- Runs all modules from one command with local JSON results and offline timeline charts. See the [complete pipeline guide](docs/full_pipeline.md).
 
 Name detection is an initial implementation with measured misses and false
-positives; it does not guarantee that a comment is anonymous. The analytical core is not yet connected to the upload interface. Question mining, community brief exports, and the final dashboard panels remain unfinished.
-The representation-gap calculation module is available locally, with dashboard integration pending.
+positives; it does not guarantee that a comment is anonymous. The analytical workflow is not yet connected to the upload interface. Community brief exports and the final dashboard panels remain unfinished.
+Representation gaps and question mining are available through the local workflow, with dashboard integration pending.
 All three development corpus types are available locally. Numerical theme checks pass on the main samples; human validation and qualitative review remain pending. The original short/repetitive stress sample still exposes quote shortages.
 
 ## Local setup
@@ -105,7 +107,8 @@ See [setup and API usage](docs/analytical_core.md), [measured results](docs/core
 and [methodology](docs/methods.md). Install local affect weights
 with `python -m scripts.setup_affect_models`; analysis never downloads them.
 The Streamlit page remains a preview, while the analytical core is exercised
-through `pipeline.core.analyze_core` and the development validation command.
+through `pipeline.core.analyze_core`. Use `pipeline.full.analyze_all` or
+`run_all.py` for the complete workflow, including gaps and questions.
 
 ## Week 1–3 verification
 

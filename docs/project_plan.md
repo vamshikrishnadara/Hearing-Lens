@@ -18,7 +18,7 @@ chat or this snapshot. Calendar weeks run Monday-Sunday, with planned work and
 weekly reports Monday-Friday. Assess weekly completion at its Friday deadline;
 future tasks inside the current week are scheduled, not overdue.
 
-## Current position — Wednesday October 7, Week 4
+## Current position — Thursday October 8, Week 4
 
 The foundation, three local corpus types, theme pipeline, sentiment/emotion,
 period aggregation, and timeline are implemented. The required theme notebook
@@ -38,9 +38,13 @@ hand-check remains pending. Question detection, its tests and a blind 200-senten
 review were built and all four October 6 commits are pushed. No human question
 labels have been supplied. October 7 adds question grouping, frequency/protected
 subgroup-spread ranking, supplied-response matching and top-three priorities.
-All 222 tests pass and three-corpus development checks passed. Today's four
-commits are local and await individual push approval. Full-pipeline integration
-remains scheduled for October 8; required validation and closeout target October 9.
+All four October 7 commits are pushed and verified at `8770837`. October 8
+connects all modules through an in-memory API and `run_all.py`, with explicit local
+exports. All 243 tests and repeated structural checks on three corpora pass.
+The expanded CFPB repeat takes 34.11 seconds, exceeding the 30-second target;
+refinement and required human validation remain on the October 9 closeout list.
+Today's work is organized into two commits. The first, `1fe9ce5`, is pushed;
+the combined command, validation and documentation commit awaits push approval.
 The independent top-three review is prepared but has no human picks.
 The Week 4 target is Friday October 9. Continuing Week 4 development does not
 mark the earlier human validation complete.

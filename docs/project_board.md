@@ -1,4 +1,4 @@
-# Hearing Lens working board — October 7, 2026
+# Hearing Lens working board — October 8, 2026
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
@@ -18,7 +18,11 @@ to continue, according to the fellow's report of Benjamin's instruction.
   all four October 6 commits are pushed.
 - Question grouping, frequency/protected subgroup-spread ranking, optional response
   matching, potentially unanswered priorities and independent review comparison.
-  All 222 tests and three-corpus development checks pass; October 7 commits are local.
+  All four October 7 commits are pushed.
+- Complete in-memory workflow and local command with JSON/offline chart exports,
+  canonical-date mapping, preserved text codes and overwrite protection. All 243
+  tests and repeated three-corpus structural checks pass. October 8 has two commits:
+  the first is pushed; the combined second commit awaits approval.
 
 ## Earlier verification and closeout still open
 
@@ -33,15 +37,16 @@ to continue, according to the fellow's report of Benjamin's instruction.
 
 ## Current week: October 5-9 (Week 4)
 
-Monday's gaps and Tuesday's detector/review preparation are built and pushed.
-Wednesday's grouping/ranking/response matching are built and tested locally,
-awaiting individual push approvals. Human spreadsheet review, 200 question labels
-and independent top-three picks are still pending. Full-pipeline integration is
-scheduled Thursday, followed by validation and required fixes Friday.
-Recompute the current date/week each session; this is an October 7 snapshot.
+Monday-Wednesday features are built and pushed. Thursday's complete command is
+built and tested. The first commit is pushed; the combined second commit still
+requires approval before pushing. The expanded
+CFPB repeat run is 34.11 seconds, above the 30-second target. Performance refinement,
+human spreadsheet review, 200 question labels and independent top-three picks
+remain for Friday's validation deadline. No human accuracy or acceptance is claimed.
+Recompute the current date/week each session; this is an October 8 snapshot.
 
 Week 4: gap spreadsheet hand-check, question mining and human question evaluation,
-then complete command-line pipeline. Gap calculations are built; dashboard work
+and full-pipeline validation. Gap calculations and the command are built; dashboard work
 remains scheduled for Week 5.
 Week 5: connect analysis to the five-panel dashboard and deploy.
 Week 6: PDF/DOCX community brief, methods page, and pilot preparation.

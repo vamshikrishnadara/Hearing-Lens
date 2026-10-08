@@ -1,6 +1,6 @@
 # Daily delivery schedule
 
-Last status update: October 7, 2026 (Wednesday). This date records the snapshot;
+Last status update: October 8, 2026 (Thursday). This date records the snapshot;
 recalculate the current week from the live session date at every new work session.
 
 ## Planning basis
@@ -38,20 +38,21 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Current position and carryover - October 7
+## Current position and carryover - October 8
 
-Today is Wednesday, October 7, in Week 4. Its planned work is due by Friday
-October 9. Thursday-Friday work is scheduled, not overdue. Do not say Week 4
-is complete yet.
+Today is Thursday, October 8, in Week 4, with the weekly target on Friday
+October 9. All four October 7 commits are pushed and verified at `8770837`.
+The full command-line workflow is now built and tested locally: 243 tests pass,
+all three corpora pass structural checks, and repeated JSON results are identical.
+The expanded CFPB workflow repeats in 34.11 seconds, above the 30-second target;
+record this performance refinement alongside Friday's validation work. Today's
+work has two commits: `1fe9ce5` is pushed, and the combined remaining commit
+awaits approval.
 
-Monday's gap-calculation module is implemented, tested and pushed. The full
-suite now passes 222 tests. October 6 added an independent spreadsheet formula
-comparison of eight fictional gap rows, question detection and a blind 200-sentence
-review with save/resume controls and a guarded evaluator. All four October 6
-commits are pushed. October 7 grouping/ranking/response matching and top-three
-selection are built and tested locally; today's four pushes await individual
-approval. Human spreadsheet review, question labels and top-three review remain
-pending. The full-pipeline command is still scheduled for Thursday.
+The eight-row spreadsheet check, 200 question labels and independent top-three
+review still require genuine human input. No question recall/false-positive rate
+or human acceptance can be claimed yet. Full-pipeline integration is implemented;
+these validation requirements remain open.
 
 Keep earlier carryover separate: human theme/quote review; 60 sentiment/emotion
 labels and the resulting agreement/remediation; an undecided license; and
@@ -72,9 +73,9 @@ tasks and human validation are not complete.
 | --- | --- |
 | Mon Oct 5 | DONE: representation calculations, supplied-reference validation, gaps/ratios, and small-group suppression; tested and pushed. |
 | Tue Oct 6 | BUILT AND PUSHED: eight-row spreadsheet formula comparison, question detection, 200-sentence blind review and evaluator; 190 tests passed. Human arithmetic check and labels pending. |
-| Wed Oct 7 | BUILT LOCALLY: question grouping, frequency/protected subgroup-spread ranking, optional supplied-response matching, top-three priorities and reviewer comparison; 222 tests and three-corpus checks pass. Pushes await approval; human top-three review pending. |
-| Thu Oct 8 | Chain modules into one command; validate complete outputs, missing-field behavior, question recall and false positives. |
-| Fri Oct 9 | Close required failures, demonstrate Gate 2, update methodology/status and prepare the weekly public update. |
+| Wed Oct 7 | BUILT AND PUSHED: grouping, protected ranking, supplied-response matching and top-three priorities; 222 tests and three-corpus checks pass. Human top-three review pending. |
+| Thu Oct 8 | BUILT LOCALLY: one command for all modules, protected local exports and missing-field behavior; 243 tests and repeated three-corpus structural checks pass. CFPB repeat 34.11s exceeds 30s target; human question accuracy remains unmeasured. First commit pushed; combined second commit awaits approval. |
+| Fri Oct 9 | Address CFPB full-run performance, complete genuine human validation, close required failures, demonstrate the full pipeline, update methodology/status and prepare the weekly public update. |
 
 Human dependency before Friday: complete the spreadsheet hand-check and the
 200-sentence review, resolve uncertain labels, then measure question performance.

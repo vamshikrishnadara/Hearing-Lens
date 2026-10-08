@@ -452,7 +452,38 @@ PDF evidence, the review packet and workbook remain outside the repository.
 - Prepared independent top-three review material and an evaluator requiring real
   reviewer input or explanations. No human selections have been supplied.
 
-Four focused commits are prepared locally; no October 7 push is authorized yet.
+All four October 7 commits were individually approved, pushed and verified on
+GitHub at `8770837`.
 Thursday's full-pipeline integration and Friday's validation remain scheduled.
 Human spreadsheet, question-detection, top-three and earlier theme/affect reviews
 remain pending. Personal evidence and detailed review outputs remain local.
+
+
+## October 8 2026
+
+**Task:** Connect all analytical modules and deliver one complete local command.
+**Activity:** Analyze Open-Ended Responses.
+
+- Added `analyze_all` to return themes, affect, timeline, gaps and questions in one
+  consistent cleaned-row space. Canonical mapped dates now reach the timeline.
+- Added `run_all.py` for CSV/XLSX input, optional mapping/reference/response inputs,
+  shared privacy limits, strict JSON and self-contained timeline chart exports.
+  Existing output folders are preserved; a hash manifest is written only last.
+- Preserved textual group/ID codes such as 001 and literal NA during CLI loading;
+  recorded blank-row removal, deduplication and row-cap notices.
+- All 243 tests passed, including 21 new integration/export/error-path checks.
+  Ran the complete command body twice on all three corpora with actual local
+  models; structural checks passed and repeated JSON results were identical.
+- Repeat analysis times: fictional 7.38s, CFPB 34.11s, federal 25.20s. The expanded
+  CFPB run exceeds the 30-second target and remains a performance refinement item.
+- Ran the fresh CLI on 24 fictional rows without optional fields; verified the
+  single-period timeline, unavailable gaps and unverified response status.
+- Updated technical usage/methods and the current schedule. Human spreadsheet,
+  question/top-three and earlier theme/affect reviews remain pending; no invented
+  labels or acceptance rates. Dashboard/deployment work remains Week 5.
+
+At the fellow's request, today's work is organized into two commits total.
+Integration and mapped dates were pushed and verified at `1fe9ce5`. The remaining
+command/exports, reproducible validation and documentation are combined into one
+local commit awaiting approval before pushing. Personal PDF evidence and detailed
+outputs remain outside Git.
