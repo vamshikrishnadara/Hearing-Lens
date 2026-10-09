@@ -4,11 +4,13 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Workbook, SpreadsheetFile } from '@oai/artifact-tool';
 
-const [inputPath, destination] = process.argv.slice(2);
-if (!inputPath || !destination) throw Error('Usage: build_gap_spreadsheet.mjs input.json output-folder');
+const [inputPath, destination, preparedDate='2026-10-06'] = process.argv.slice(2);
+if (!inputPath || !destination) throw Error('Usage: build_gap_spreadsheet.mjs input.json output-folder [YYYY-MM-DD]');
+if (!/^\d{4}-\d{2}-\d{2}$/.test(preparedDate) || !Number.isFinite(Date.parse(preparedDate)) ||
+    new Date(preparedDate).toISOString().slice(0,10)!==preparedDate) throw Error('Use a valid preparation date.');
 const input = JSON.parse(await fs.readFile(inputPath, 'utf8'));
 await fs.mkdir(destination, {recursive:true});
-const outputPath = path.join(destination, 'Hearing_Lens_Gap_Check_2026-10-06.xlsx');
+const outputPath = path.join(destination, `Hearing_Lens_Gap_Check_${preparedDate}.xlsx`);
 try { await fs.access(outputPath); throw Error('Output exists; preserve the reviewed workbook.'); }
 catch(error) { if(error.code !== 'ENOENT') throw error; }
 const wb = Workbook.create();
@@ -23,7 +25,7 @@ check.getRange('H1:H36').format.columnWidth=25;
 check.getRange('I1:I36').format.columnWidth=14;
 check.getRange('A2').values=[['Representation-gap calculation check']];
 check.getRange('A2').format.font={size:16,bold:true};
-check.getRange('A3').values=[['Fictional 1,000-comment sample. Prepared October 6, 2026.']];
+check.getRange('A3').values=[[`Fictional 1,000-comment sample. Prepared ${preparedDate}.`]];
 check.getRange('A4').values=[['Formula check completed by software. Human hand-check remains pending.']];
 check.getRange('A4').format.font={color:'#8A4B08'};
 check.getRange('A6:I6').values=[['Group','Count','Known rows','Reference','Participation','Gap (pp)','Ratio','Flag','Check']];
