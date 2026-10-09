@@ -35,6 +35,7 @@ This repository contains the upload-and-preview foundation and a complete local 
 - Computes representation gaps from supplied categories and explicit baselines, with small-group suppression and missing-data notices. See the [gap guide](docs/representation_gaps.md).
 - Groups and ranks question candidates, compares supplied responses and selects potentially unanswered priorities with explicit review notices.
 - Runs all modules from one command with local JSON results and offline timeline charts. See the [complete pipeline guide](docs/full_pipeline.md).
+- Provides [fictional-only workflow checks](docs/fictional_validation.md) for repeatability, missing fields, cleaning and small-group handling.
 
 Name detection is an initial implementation with measured misses and false
 positives; it does not guarantee that a comment is anonymous. The analytical workflow is not yet connected to the upload interface. Community brief exports and the final dashboard panels remain unfinished.
