@@ -1,6 +1,6 @@
 # Daily delivery schedule
 
-Last status update: October 8, 2026 (Thursday). This date records the snapshot;
+Last status update: October 9, 2026 (Friday). This date records the snapshot;
 recalculate the current week from the live session date at every new work session.
 
 ## Planning basis
@@ -38,7 +38,28 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Current position and carryover - October 8
+## Current position and carryover - October 9
+
+Friday's implemented work is fictional-only workflow validation and preparation
+of blank human-review materials. Five scenarios passed twice, with matching JSON
+and verified exports. The fictional 1,000-row benchmark measured 19.96/7.48 seconds;
+188 targeted tests passed. The eight-group workbook matches the pipeline in software.
+Both October 8 commits are pushed at `e38f416`; today's five commits require separate
+push approvals. This update supersedes the October 8 snapshot and Friday plan below.
+
+Do not describe Week 4 as fully validated: the 200 question labels, independent
+top-three choices and arithmetic hand-check remain pending, along with earlier
+theme/affect review. The new packet is fictional and contains repeated wording;
+it does not establish real-submission accuracy or close earlier performance findings.
+No further tests on other datasets are scheduled under the current data preference.
+Pilot-partner confirmation and actual publication have not been verified.
+
+Week 5 begins Monday October 12 with upload-to-analysis and dashboard integration.
+Carryover validation stays explicitly pending while implementation continues.
+The planned working handoff remains Friday October 30; later scheduled work is
+not yet overdue.
+
+## Historical position and carryover - October 8
 
 Today is Thursday, October 8, in Week 4, with the weekly target on Friday
 October 9. All four October 7 commits are pushed and verified at `8770837`.

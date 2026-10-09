@@ -1,10 +1,26 @@
-# Hearing Lens working board — October 8, 2026
+# Hearing Lens working board — October 9, 2026
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
 to continue, according to the fellow's report of Benjamin's instruction.
 
-## Built
+## Current update — October 9
+
+- Both October 8 commits are pushed and verified at `e38f416`.
+- Five fictional workflow scenarios pass twice with identical JSON and verified
+  exports; the 1,000-row benchmark runs in 19.96/7.48 seconds. 188 selected tests pass.
+- Blank fictional question and top-three review material is prepared. All eight
+  spreadsheet calculations agree with the pipeline; human review is still pending.
+- Week 4 implementation is built, but human validation remains incomplete.
+  Earlier theme/affect review, real-submission accuracy, publication and pilot
+  confirmation are not completed by these fictional checks.
+- Five October 9 local commits await individual push approvals. Week 5 dashboard
+  implementation starts October 12; working handoff remains October 30.
+
+The sections below preserve the October 8 snapshot. This current update supersedes
+its push status and next-day work plan; earlier measurements remain historical.
+
+## Built — October 8 snapshot
 
 - Repository, local environment, CSV/XLSX loader, mapping, schema, and wireframe.
 - Three development corpus types with dictionaries, provenance, and fixed samples.
