@@ -1,6 +1,6 @@
 # Daily delivery schedule
 
-Last status update: October 9, 2026 (Friday). This date records the snapshot;
+Last status update: October 10, 2026 (Saturday). This date records the snapshot;
 recalculate the current week from the live session date at every new work session.
 
 ## Planning basis
@@ -38,18 +38,21 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Current position and carryover - October 9
+## Current position and carryover - October 10
 
 Friday's implemented work is fictional-only workflow validation and preparation
 of blank human-review materials. Five scenarios passed twice, with matching JSON
 and verified exports. The fictional 1,000-row benchmark measured 19.96/7.48 seconds;
 188 targeted tests passed. The eight-group workbook matches the pipeline in software.
-Both October 8 commits are pushed at `e38f416`; today's five commits require separate
-push approvals. This update supersedes the October 8 snapshot and Friday plan below.
+All five October 9 commits are pushed at `6249eb7`. This update supersedes the
+October 8 snapshot and Friday plan below.
 
-Do not describe Week 4 as fully validated: the 200 question labels, independent
-top-three choices and arithmetic hand-check remain pending, along with earlier
-theme/affect review. The new packet is fictional and contains repeated wording;
+On Saturday October 10, the reviewer completed all 200 fictional question labels,
+independent top-three choices and the eight-group arithmetic hand-check. Initial
+recall was 90.48% with 0% false positives; after two reviewer corrections the
+adjudicated result is 100%/0%. Priority ordering matches, and manual calculations
+were confirmed with a supplied workbook. Earlier theme/affect review remains
+incomplete. The packet is fictional and contains repeated wording;
 it does not establish real-submission accuracy or close earlier performance findings.
 No further tests on other datasets are scheduled under the current data preference.
 Pilot-partner confirmation and actual publication have not been verified.
@@ -60,6 +63,9 @@ The planned working handoff remains Friday October 30; later scheduled work is
 not yet overdue.
 
 ## Historical position and carryover - October 8
+
+The statuses in this snapshot describe October 8, before the three fictional
+reviews were completed October 10 and the five October 9 commits were pushed.
 
 Today is Thursday, October 8, in Week 4, with the weekly target on Friday
 October 9. All four October 7 commits are pushed and verified at `8770837`.
@@ -97,11 +103,11 @@ tasks and human validation are not complete.
 | Wed Oct 7 | BUILT AND PUSHED: grouping, protected ranking, supplied-response matching and top-three priorities; 222 tests and three-corpus checks pass. Human top-three review pending. |
 | Thu Oct 8 | BUILT LOCALLY: one command for all modules, protected local exports and missing-field behavior; 243 tests and repeated three-corpus structural checks pass. CFPB repeat 34.11s exceeds 30s target; human question accuracy remains unmeasured. First commit pushed; combined second commit awaits approval. |
 | Fri Oct 9 | Address CFPB full-run performance, complete genuine human validation, close required failures, demonstrate the full pipeline, update methodology/status and prepare the weekly public update. |
+| Sat Oct 10 (additional work requested by reviewer) | COMPLETED: fictional question-label review, independent priority selection and eight-group manual calculation check. Earlier theme/affect review remains incomplete. |
 
-Human dependency before Friday: complete the spreadsheet hand-check and the
-200-sentence review, resolve uncertain labels, then measure question performance.
-Also supply independent top-three picks and explain differences if needed. These
-human checks are now the main dependency for Friday's validation deadline.
+Friday's human-review dependency was closed for the fictional packet on Saturday
+October 10: all 200 labels were scored, two labels were subsequently clarified,
+the independent top-three order matched, and all eight manual gap checks were confirmed.
 The earlier 60-comment affect/theme review is separate carryover. Automated work
 cannot close these human requirements.
 

@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository contains the upload-and-preview foundation and a complete local command-line workflow for themes, sentiment, emotion, timelines, representation gaps and questions. Human validation remains incomplete; see the methodology for technical limitations.
+This repository contains the upload-and-preview foundation and a complete local command-line workflow for themes, sentiment, emotion, timelines, representation gaps and questions. Human question-label, priority and gap-calculation reviews are complete for the fictional sample as of October 10. Theme/quote and sentiment/emotion review remain incomplete; see the methodology for technical limitations.
 
 ## Project principles
 

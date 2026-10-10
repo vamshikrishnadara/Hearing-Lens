@@ -171,6 +171,9 @@ python -m scripts.evaluate_question_priorities \
 The evaluator checks the exact review source, response, unique known IDs, reviewer
 name and explicit completion. A different selection or ordering needs a short
 explanation for each differing question. Identity/judgments are self-reported,
-not authenticated. The packet currently has no human selections; acceptance is
-pending. This is separate from the 200-sentence detector labels, spreadsheet
-hand-check, earlier 60-comment labels and human theme/quote review.
+not authenticated. **Human priority review completed on October 10, 2026 for the
+fictional sample.** The reviewer selected `q004`, `q001`, `q003` in that order
+before being shown the system's selections; the evaluator confirmed an exact
+match. Task instructions were clarified without supplying the choices. The
+fictional question-label review and eight-group manual calculation check are
+also complete. Earlier sentiment/emotion and theme/quote reviews remain incomplete.

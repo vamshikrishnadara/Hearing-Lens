@@ -18,7 +18,7 @@ chat or this snapshot. Calendar weeks run Monday-Sunday, with planned work and
 weekly reports Monday-Friday. Assess weekly completion at its Friday deadline;
 future tasks inside the current week are scheduled, not overdue.
 
-## Current position — Friday October 9, Week 4
+## Current position — Saturday October 10, Week 4
 
 The complete local command is implemented. Both October 8 commits are pushed,
 ending at `e38f416`. October 9 adds a fictional-only workflow validator: all five
@@ -26,17 +26,23 @@ scenarios passed twice with identical JSON, and the 1,000-comment benchmark
 measured 19.96 seconds initially and 7.48 seconds on repeat. All 188 selected
 regression tests passed. This does not change earlier measured results.
 
-A new blank fictional question/priority packet and an eight-group calculation
-workbook are prepared. Human question labels, priority choices, arithmetic checks
-and earlier theme/affect review remain pending. Fictional examples do not prove
-real-submission accuracy. No newly collected dataset is required for this work.
+Human review of the fictional question labels, priority choices and all eight
+gap calculations was completed October 10. Initial question recall was 90.48%
+with 0% false positives; two reviewer-authorized corrections after clarification
+produce an adjudicated 100%/0% result. Independent priorities match the system;
+the manual calculation check is confirmed by the reviewer with a supplied workbook.
+Earlier theme/affect review remains incomplete. Fictional examples do not prove
+real-submission accuracy. No newly collected dataset was used for this work.
 
-Week 4 implementation is built; required human validation is incomplete at the
-Friday target. Pilot-partner confirmation and publication remain unverified.
-October 9 work is split into five local commits; each push requires approval.
+Week 4 implementation and these three fictional reviews are complete. Broader
+validation, pilot-partner confirmation and publication are not thereby completed.
+All five October 9 commits are pushed and verified, ending at `6249eb7`.
 Week 5 dashboard work starts Monday October 12. Planned handoff remains October 30.
 
 ## Historical snapshot — Thursday October 8, Week 4
+
+The review and push statuses below describe October 8 only. The current section
+above records the later completed fictional reviews and verified pushes.
 
 The foundation, three local corpus types, theme pipeline, sentiment/emotion,
 period aggregation, and timeline are implemented. The required theme notebook

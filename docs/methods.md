@@ -59,14 +59,20 @@ needed. See [gap methods and limits](representation_gaps.md).
 
 Question detection is implemented as of October 6. English spaCy sentence
 splitting and terminal-question-mark/initial-wh-word/auxiliary rules identify
-candidates in redacted text. The 200-sentence blind review is prepared, with
-zero completed human labels and no recall or false-positive claim. See
+candidates in redacted text. Human review of the 200-sentence fictional packet
+was completed October 10: initial recall 90.48%, false-positive rate 0%. Two
+reviewer corrections after assistant clarification yield an adjudicated 100%
+recall and 0% false-positive rate; original labels/results are retained. The
+200 occurrences contain only 48 distinct wordings, limiting generalization. See
 [question rules and evaluation](question_detection.md). Grouping, frequency and
 protected subgroup-spread ranking, and supplied-response matching are implemented
 as of October 7. Outputs say potentially unanswered; semantic similarity does not
-prove that a response answers a question. The independent top-three review is
-pending. See [question mining and development checks](question_mining.md).
-Full-pipeline integration, product brief export and deployment remain unfinished.
+prove that a response answers a question. The independent fictional top-three
+review was completed October 10, with `q004`, `q001`, `q003` matching the system.
+The reviewer also confirmed all eight manual gap calculations and supplied a
+workbook. See [question mining and development checks](question_mining.md) and
+[gap review](gap_spreadsheet_check.md). Full-pipeline integration is implemented;
+product brief export and deployment remain unfinished.
 
 ## Current development evidence
 
@@ -89,4 +95,5 @@ It is not connected to the production upload handler.
 [Three-corpus integration checks](full_pipeline_validation_2026-10-08.md) pass for
 structure, source integrity and repeatability, with 243 automated tests passing.
 Expanded CFPB repeat analysis is 34.11 seconds, above the 30-second target. Human
-quality/accuracy checks remain pending; automated completion does not replace them.
+theme/affect review remains incomplete. Fictional question, priority and manual
+gap reviews were completed October 10; they do not establish real-submission accuracy.

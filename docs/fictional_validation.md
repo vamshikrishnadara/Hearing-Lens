@@ -52,8 +52,10 @@ blank answers, progress counts, reviewer requirements, download, resume, invalid
 import preservation and reset. This is a selected regression run, not a claim
 that every repository test was rerun.
 
-The run's `fictional-validation.json` records source hashes, individual checks,
-timing scope and pending human validation. Detailed outputs belong outside Git.
+The run's `fictional-validation.json` records source hashes, individual checks
+and timing scope. Its original October 9 human-status snapshot predates the
+completed October 10 fictional question, priority and gap-calculation reviews.
+Earlier theme/affect validation remains incomplete. Detailed outputs belong outside Git.
 
 For blank human labels, independent priorities and the calculation workbook,
 see the [fictional review instructions](fictional_review.md).

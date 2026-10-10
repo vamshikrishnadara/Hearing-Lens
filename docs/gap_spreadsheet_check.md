@@ -41,6 +41,10 @@ package, the inputs and published formulas can be checked in a spreadsheet
 application. Existing input/output files are preserved; choose a new destination.
 The saved workbook and inspection files remain local outside Git.
 
-**Human review remains pending.** Creating and automatically recalculating this
-workbook does not complete the brief's hand-computed spreadsheet check. The
-reviewer/date fields are blank. A person still needs to check the arithmetic.
+**Human review completed on October 10, 2026 for the fictional sample.** The
+reviewer reported checking all eight groups manually with a calculator and
+finding matching counts, flags, gaps and ratios. A Numbers workbook was supplied
+and its embedded preview shows all eight rows marked Match. The manual check is
+recorded from the reviewer's explicit confirmation; it is separate from the
+software formula checks above. Native Numbers recalculation and the reviewer/date
+cells were not independently inspected. This does not establish real-population accuracy.

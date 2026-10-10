@@ -1,24 +1,27 @@
-# Hearing Lens working board — October 9, 2026
+# Hearing Lens working board — October 10, 2026
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
 to continue, according to the fellow's report of Benjamin's instruction.
 
-## Current update — October 9
+## Current update — October 10
 
 - Both October 8 commits are pushed and verified at `e38f416`.
 - Five fictional workflow scenarios pass twice with identical JSON and verified
   exports; the 1,000-row benchmark runs in 19.96/7.48 seconds. 188 selected tests pass.
-- Blank fictional question and top-three review material is prepared. All eight
-  spreadsheet calculations agree with the pipeline; human review is still pending.
-- Week 4 implementation is built, but human validation remains incomplete.
+- Human review completed October 10 for all 200 fictional question labels,
+  independent top-three priorities and all eight manual gap calculations.
+  Initial question recall was 90.48%, false-positive rate 0%; the adjudicated
+  result after two reviewer corrections is 100%/0%. The ordered priorities match;
+  the calculator check is reviewer-confirmed with a supplied workbook.
+- Week 4 implementation and these three fictional reviews are complete.
   Earlier theme/affect review, real-submission accuracy, publication and pilot
   confirmation are not completed by these fictional checks.
-- Five October 9 local commits await individual push approvals. Week 5 dashboard
+- All five October 9 commits are pushed at `6249eb7`. Week 5 dashboard
   implementation starts October 12; working handoff remains October 30.
 
 The sections below preserve the October 8 snapshot. This current update supersedes
-its push status and next-day work plan; earlier measurements remain historical.
+its push/review status and next-day work plan; earlier measurements remain historical.
 
 ## Built — October 8 snapshot
 
@@ -51,7 +54,7 @@ its push status and next-day work plan; earlier measurements remain historical.
 - Code license: undecided, deferred; does not block development.
 - Weekly public posts: drafts prepared; publication not claimed.
 
-## Current week: October 5-9 (Week 4)
+## Historical Week 4 snapshot: October 8
 
 Monday-Wednesday features are built and pushed. Thursday's complete command is
 built and tested. The first commit is pushed; the combined second commit still

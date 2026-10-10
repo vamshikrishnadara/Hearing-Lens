@@ -112,9 +112,10 @@ No groups in this fixture need suppression. Separate regression cases verify
 missing data, zero baselines, valid threshold boundaries, CSV group codes and
 malformed references. The complete suite passed 173 tests, including 23 new ones.
 
-This is an independent code calculation, not the brief's human hand-computed
-spreadsheet check. An independent formula workbook was prepared and automatically
-verified on October 6; its [method and remaining human check](gap_spreadsheet_check.md)
-are documented separately. Question detection is now implemented, while
-its 200-sentence human evaluation and full-pipeline integration remain Week 4
-work. Earlier theme and 60-comment affect human reviews remain pending.
+The calculations above were checked by code. **The separate human hand-check
+was completed on October 10, 2026 for all eight fictional groups**, based on the
+reviewer's calculator checks and supplied workbook. See the
+[spreadsheet method and completed review](gap_spreadsheet_check.md). The fictional
+200-sentence question review and independent priority review are also complete;
+full-pipeline integration is implemented. Earlier theme and sentiment/emotion
+human reviews remain incomplete.

@@ -60,10 +60,15 @@ or population distribution was inferred.
 - Source integrity and repeatability do not establish theme coherence or affect
   correctness. Earlier human theme/quote review and 60 sentiment/emotion labels
   remain pending.
-- The eight-row gap spreadsheet has not received its required human hand-check.
-- All 200 human question labels and independent top-three choices are still
-  pending. Recall of at least 80% and false-positive rate below 10% cannot be
-  claimed without those labels. No acceptance rates were manufactured.
+- Subsequent review update, October 10: the human hand-check is complete for
+  all eight fictional gap rows, based on the reviewer's calculator verification
+  and supplied workbook.
+- The fictional 200-sentence question review and independent top-three review
+  were completed October 10. Initial recall 90.48% and false-positive rate 0%
+  meet the numerical targets. Two reviewer corrections after clarification yield
+  an adjudicated 100%/0%; the original score is retained. Priority choices match
+  the system in order. These later fictional results do not change this report's
+  earlier measurements or establish real-submission accuracy.
 - Question groups can be singletons; a cosine response match is not proof of an
   adequate answer. Long input truncation and English-model limits still apply.
 - Public sample provenance is checked before validation. Their detailed text,
