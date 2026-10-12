@@ -1,9 +1,10 @@
-"""Week 1 upload and column-mapping interface for Hearing Lens."""
+"""Upload, mapping and session-only Themes dashboard for Hearing Lens."""
 
 from __future__ import annotations
 
 import streamlit as st
 
+from app.dashboard import analyze_dashboard, clear_workspace, render_themes, workspace_for
 from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_columns
 from pipeline.redact import RedactionError, build_safe_display_frame
 
@@ -11,7 +12,7 @@ from pipeline.redact import RedactionError, build_safe_display_frame
 st.set_page_config(page_title="Hearing Lens", layout="wide")
 st.title("Hearing Lens")
 st.write(
-    "Upload a public-comment or community-survey export, then identify the column "
+    "Upload a community-feedback or survey export, then identify the column "
     "that contains each response. Files are processed in memory for this session."
 )
 st.warning(
@@ -21,19 +22,23 @@ st.warning(
 
 uploaded = st.file_uploader("Upload a CSV or XLSX file", type=["csv", "xlsx"])
 
-if uploaded is not None:
+if uploaded is None:
+    clear_workspace()
+else:
     selected_sheet = None
     if uploaded.name.lower().endswith(".xlsx"):
         try:
             sheets = list_excel_sheets(uploaded)
             selected_sheet = st.selectbox("Workbook sheet", sheets)
         except IngestError as exc:
+            clear_workspace()
             st.error(str(exc))
             st.stop()
 
     try:
-        loaded = load_table(uploaded, sheet_name=selected_sheet)
+        loaded = load_table(uploaded, sheet_name=selected_sheet, preserve_text=True)
     except IngestError as exc:
+        clear_workspace()
         st.error(str(exc))
         st.stop()
 
@@ -69,42 +74,51 @@ if uploaded is not None:
         help="Examples include ward, ZIP, role, language, tenure, or school.",
     )
 
+    mapping = dict(
+        comment_column=comment_column,
+        date_or_hearing_column=None if date_choice == "Not provided" else date_choice,
+        respondent_id_column=None if respondent_choice == "Not provided" else respondent_choice,
+        subgroup_columns=subgroup_columns,
+    )
+    workspace = workspace_for(uploaded, selected_sheet, mapping)
     if st.button("Validate mapping", type="primary"):
+        clear_workspace()
+        workspace = workspace_for(uploaded, selected_sheet, mapping)
         try:
-            mapped = map_columns(
-                loaded.frame,
-                comment_column=comment_column,
-                date_or_hearing_column=(
-                    None if date_choice == "Not provided" else date_choice
-                ),
-                respondent_id_column=(
-                    None if respondent_choice == "Not provided" else respondent_choice
-                ),
-                subgroup_columns=subgroup_columns,
-            )
+            mapped = map_columns(loaded.frame, **mapping)
             with st.spinner("Checking comments for names and contact details..."):
                 safe_preview = build_safe_display_frame(mapped.frame)
         except (IngestError, RedactionError) as exc:
             st.error(str(exc))
         else:
-            st.success(f"{len(mapped.frame):,} usable comments are ready for analysis.")
-            if mapped.empty_comments_removed:
-                st.info(
-                    f"Removed {mapped.empty_comments_removed:,} rows with empty comments."
-                )
-            if mapped.duplicate_respondents_removed:
-                st.info(
-                    "Removed "
-                    f"{mapped.duplicate_respondents_removed:,} repeated respondent IDs."
-                )
-            redaction_total = sum(safe_preview.entity_counts.values())
-            if redaction_total:
-                st.info(
-                    f"Redacted {redaction_total:,} name, contact, or address matches "
-                    "across the usable comments."
-                )
-            st.caption(
-                "First 20 usable comments after automatic redaction. Respondent IDs "
-                "and other mapped fields are excluded from this preview."
-            )
-            st.dataframe(safe_preview.frame.head(20), use_container_width=True)
+            workspace['mapped'] = mapped
+            workspace['preview'] = safe_preview
+
+    if workspace['mapped'] is not None:
+        mapped, safe_preview = workspace['mapped'], workspace['preview']
+        st.success(f"{len(mapped.frame):,} usable comments are ready for analysis.")
+        if mapped.empty_comments_removed:
+            st.info(f"Removed {mapped.empty_comments_removed:,} rows with empty comments.")
+        if mapped.duplicate_respondents_removed:
+            st.info(f"Removed {mapped.duplicate_respondents_removed:,} repeated respondent IDs.")
+        redaction_total = sum(safe_preview.entity_counts.values())
+        if redaction_total:
+            st.info(f"Redacted {redaction_total:,} name, contact, or address matches across the usable comments.")
+        st.caption("First 20 usable comments after automatic redaction. Respondent IDs and other mapped fields are excluded from this preview.")
+        st.dataframe(safe_preview.frame.head(20), use_container_width=True)
+        st.caption("Run analysis to view themes. The first run may take longer while local models load. Other dashboard panels are still being built.")
+        if st.button("Analyze comments", type="primary"):
+            workspace['result'] = None
+            workspace['revision'] += 1
+            workspace['quote_revisions'] = {}
+            for key in list(st.session_state):
+                if key.startswith('hl_review_'):
+                    del st.session_state[key]
+            try:
+                with st.spinner("Analyzing comments and preparing themes..."):
+                    workspace['result'] = analyze_dashboard(mapped.frame)
+            except Exception:
+                # Model exceptions can include source cells. Never display or log them.
+                st.error("Analysis could not finish. Check that the local analysis models are installed, then try again. No partial results are shown.")
+        if workspace['result'] is not None:
+            render_themes(workspace)
