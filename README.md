@@ -2,7 +2,7 @@
 
 Hearing Lens is a privacy-conscious analyzer for public comments, community survey responses, and meeting sign-up exports. The planned application accepts CSV or XLSX files, lets a user map their columns, and produces transparent summaries of themes, sentiment, representation gaps, timelines, and unanswered questions.
 
-This repository contains the upload-and-preview foundation and a complete local command-line workflow for themes, sentiment, emotion, timelines, representation gaps and questions. Human question-label, priority and gap-calculation reviews are complete for the fictional sample as of October 10. Theme/quote and sentiment/emotion review remain incomplete; see the methodology for technical limitations.
+This repository contains an upload-to-analysis interface with a Themes panel and a complete local command-line workflow for themes, sentiment, emotion, timelines, representation gaps and questions. Human question-label, priority and gap-calculation reviews are complete for the fictional sample as of October 10. Theme/quote and sentiment/emotion review remain incomplete; see the methodology for technical limitations.
 
 ## Project principles
 
@@ -15,6 +15,9 @@ This repository contains the upload-and-preview foundation and a complete local 
 ## Current functionality
 
 - Accepts CSV and XLSX files.
+- Runs the complete analysis from validated uploads and displays theme labels, counts, shares and redacted supporting quotes.
+- Allows swapping eligible quotes and marking each theme reviewed within the current session.
+- Clears previous results and review choices when the file, workbook sheet or column mapping changes.
 - Lists workbook sheets and allows sheet selection.
 - Enforces a configurable row limit.
 - Supports mapping the required comment column and optional date, respondent ID, and subgroup columns.
@@ -38,7 +41,7 @@ This repository contains the upload-and-preview foundation and a complete local 
 - Provides [fictional-only workflow checks](docs/fictional_validation.md) for repeatability, missing fields, cleaning and small-group handling.
 
 Name detection is an initial implementation with measured misses and false
-positives; it does not guarantee that a comment is anonymous. The analytical workflow is not yet connected to the upload interface. Community brief exports and the final dashboard panels remain unfinished.
+positives; it does not guarantee that a comment is anonymous. The analytical workflow is connected to the upload interface through the Themes panel. The other dashboard panels, app downloads, community brief exports and deployment remain unfinished.
 Representation gaps and question mining are available through the local workflow, with dashboard integration pending.
 All three development corpus types are available locally. Numerical theme checks pass on the main samples; human validation and qualitative review remain pending. The original short/repetitive stress sample still exposes quote shortages.
 

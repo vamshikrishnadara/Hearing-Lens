@@ -1,8 +1,8 @@
-# Upload and preview user guide
+# Upload and Themes dashboard user guide
 
 This guide covers the current development preview. Use fictional test data:
 automatic redaction can miss identifiers and remove ordinary words incorrectly.
-Theme, sentiment, representation, and timeline analysis are not available yet.
+The app runs the complete analysis and displays the Themes panel. Sentiment, emotion, representation, timeline and question dashboard views are still being built.
 
 ## 1. Start the app
 
@@ -23,7 +23,7 @@ CSV files. For an XLSX workbook, select the intended **Workbook sheet**; the
 first sheet is selected initially.
 
 For a first walkthrough, use the repository's fictional sample:
-[synthetic_chicago_hearing.csv](../data/samples/synthetic_chicago_hearing.csv).
+[synthetic_theme_benchmark.csv](../data/samples/synthetic_theme_benchmark.csv).
 
 The current app loads at most the first 5,000 data rows, before removing empty
 comments or repeated IDs. A notice appears when additional rows are omitted.
@@ -49,7 +49,7 @@ other header names must be selected manually when they are not the first column.
 For your own fictional file, select the corresponding headers. Leave optional
 date and ID fields at **Not provided** when absent, and leave subgroup fields
 empty if unused. Each source column can be mapped only once. Date values are
-retained as supplied; mapping a date does not create a timeline.
+retained as supplied; the analysis uses dates or hearing labels when available. CSV text codes such as `00123` retain their leading zeros.
 
 ## 4. Validate and inspect
 
@@ -70,4 +70,39 @@ The app blocks the preview if name detection fails. See the
 [redaction limitations](redaction_design.md) for current measurements.
 
 After changing a file, sheet, or mapping, click **Validate mapping** again.
-The current workflow ends at the preview; full analytical reports are planned.
+Old results and review choices are cleared automatically when the file contents,
+workbook sheet or selected columns change. Removing the upload also clears them.
+
+## 5. Run analysis and view themes
+
+Click **Analyze comments** after validating the mapping. Install the local models
+using the [analytical-core setup](analytical_core.md) before running analysis.
+The first run can take longer while models load. Analysis runs only when clicked;
+changing a review choice does not rerun the models.
+
+The Themes panel shows the number of analyzed comments, theme groups and
+ungrouped comments. Each theme includes its label, count, percentage and up to
+three supporting quotes. Percentages use the theme-analysis comment total,
+including ungrouped comments; excluded comments are reported separately.
+Shortages and analytical warnings remain visible. No missing quotes are invented.
+The displayed source number refers to the cleaned table, not an original sheet
+row number or respondent ID. Quotes may be sentence excerpts.
+
+If analysis fails, no old or partial analysis is displayed. Check model setup
+and try again. Uploads and analytical results remain in session memory; this
+interface does not write them to files or a shared result cache. Other analytical
+modules run internally but their dashboard panels are not yet available.
+
+## 6. Review supporting quotes
+
+Read each theme label and selected quote for relevance and visible identifiers.
+When alternatives are available, select one to preview its redacted text, then
+click **Use this quote**. Only candidates from that theme can be chosen. The
+replaced quote becomes an alternative, so the choice is reversible.
+
+Use the checkbox to mark a theme and its selected quotes reviewed. Swapping a
+quote resets that theme's checkbox; other themes keep their review choices.
+Running analysis again resets all choices. Choices last only in the current
+session and are not exported or saved as project human-validation evidence.
+They are not a guarantee of anonymity. The separate human-validation exercise
+still requires its own completed review records.

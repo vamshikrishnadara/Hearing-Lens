@@ -1,10 +1,32 @@
-# Hearing Lens working board — October 10, 2026
+# Hearing Lens working board — October 12, 2026
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
 to continue, according to the fellow's report of Benjamin's instruction.
 
-## Current update — October 10
+## Current position - Monday October 12, Week 5
+
+The upload interface now runs the complete in-memory analysis after mapping
+validation and displays a Themes panel with counts, shares, redacted quotes,
+eligible alternative selection and session-only review controls. Changing file
+contents, sheet or mappings clears previous results and choices; failed runs
+show no stale or partial analysis. Quote changes reset the affected theme's review.
+
+50 targeted tests and six subtests pass. A real-model app check on the fictional
+1,000-comment benchmark returned six themes, three quotes and three alternatives
+per theme, with 44 ungrouped comments; analysis-button-to-display took 17.90s
+locally. These are local checks, not deployment acceptance or human validation.
+
+Monday's planned dashboard integration and Themes controls are implemented.
+Tuesday: sentiment/emotion and Timeline panels. Wednesday: representation and
+Questions panels, labeled download and full-flow handling. Thursday-Friday:
+deployment, performance and usability checks. The weekly target is October 16;
+planned working handoff remains October 30. Earlier theme/quote and 60-comment
+sentiment/emotion human validation remains separate, unfinished carryover.
+The three fictional question, priority and calculation reviews completed on
+October 10 remain complete. No new human review completion is inferred here.
+
+## Historical update — October 10
 
 - Both October 8 commits are pushed and verified at `e38f416`.
 - Five fictional workflow scenarios pass twice with identical JSON and verified

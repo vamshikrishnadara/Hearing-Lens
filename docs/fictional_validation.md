@@ -59,3 +59,28 @@ Earlier theme/affect validation remains incomplete. Detailed outputs belong outs
 
 For blank human labels, independent priorities and the calculation workbook,
 see the [fictional review instructions](fictional_review.md).
+
+## Upload-to-Themes app check - October 12, 2026
+
+The real Streamlit app was executed with its in-process AppTest runner and the
+1,000-comment fictional theme benchmark, with network model access disabled.
+Actual installed local models ran through the complete analytical pipeline;
+no analytical outputs were mocked in this check. Date and ID fields were mapped.
+The UI showed six themes, three quotes and three alternatives per theme, and
+44 ungrouped comments. Clicking Analyze to returning the rendered app took
+17.90 seconds locally. This includes the analysis-button run and UI construction,
+excludes the earlier preview step, and is not a deployment or browser-latency test.
+A review tick survived a normal UI rerun without rerunning analysis.
+
+50 targeted tests and six subtests passed across dashboard, upload/mapping,
+redaction UI, ingestion, pipeline orchestration and theme-backend checks.
+Dashboard lifecycle tests use small fictional inputs and mocked expensive
+inference to isolate upload replacement/removal, sheet and mapping changes,
+failed validation and analysis, retry, session isolation, preserved text codes,
+quote swapping, review reset and empty/shortage states. The real-model check
+above separately exercises the connected workflow. Browser visual inspection
+and the deployed 2,000-row benchmark are not claimed by these tests.
+
+Only the Themes panel is connected to the app display at this stage. Other
+panels, downloads and deployment remain Week 5 work. Session review ticks do not
+complete the earlier independent theme and sentiment/emotion validation.

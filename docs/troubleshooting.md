@@ -49,8 +49,18 @@ Record a fictional example of the problem and consult the
 [measured limitations](redaction_design.md). Do not use real personal data in
 an issue, screenshot, or example file.
 
-Theme summaries, sentiment, representation charts, timelines, and full report
-exports are planned features. Their absence is expected in this version.
+The Themes panel appears after **Validate mapping** and **Analyze comments**.
+If analysis cannot finish, install the models listed in the
+[analytical-core guide](analytical_core.md), restart the app and retry.
+Error details containing uploaded text are not shown. Old analysis is cleared
+before retrying, so a failed run cannot leave stale findings on screen.
+
+If results disappear after a file, sheet or mapping change, validate the new
+mapping and analyze again. If quote alternatives are absent, the theme did not
+produce additional eligible candidates. Review checkboxes are session-only;
+replacing a quote resets the affected theme's review confirmation.
+
+Other dashboard panels and app downloads are still being built.
 
 ## Record a reproducible issue
 

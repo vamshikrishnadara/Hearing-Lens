@@ -1,6 +1,6 @@
 # Daily delivery schedule
 
-Last status update: October 10, 2026 (Saturday). This date records the snapshot;
+Last status update: October 12, 2026 (Monday). This date records the snapshot;
 recalculate the current week from the live session date at every new work session.
 
 ## Planning basis
@@ -38,7 +38,29 @@ weekly deliverables and quality requirements remain applicable.
 7. End each day with completed/remaining/blocked status against the weekly target.
    Record implementation, verification, and supervisor approval separately.
 
-## Current position and carryover - October 10
+## Current position - Monday October 12, Week 5
+
+The upload interface now runs the complete in-memory analysis after mapping
+validation and displays a Themes panel with counts, shares, redacted quotes,
+eligible alternative selection and session-only review controls. Changing file
+contents, sheet or mappings clears previous results and choices; failed runs
+show no stale or partial analysis. Quote changes reset the affected theme's review.
+
+50 targeted tests and six subtests pass. A real-model app check on the fictional
+1,000-comment benchmark returned six themes, three quotes and three alternatives
+per theme, with 44 ungrouped comments; analysis-button-to-display took 17.90s
+locally. These are local checks, not deployment acceptance or human validation.
+
+Monday's planned dashboard integration and Themes controls are implemented.
+Tuesday: sentiment/emotion and Timeline panels. Wednesday: representation and
+Questions panels, labeled download and full-flow handling. Thursday-Friday:
+deployment, performance and usability checks. The weekly target is October 16;
+planned working handoff remains October 30. Earlier theme/quote and 60-comment
+sentiment/emotion human validation remains separate, unfinished carryover.
+The three fictional question, priority and calculation reviews completed on
+October 10 remain complete. No new human review completion is inferred here.
+
+## Historical position and carryover - October 10
 
 Friday's implemented work is fictional-only workflow validation and preparation
 of blank human-review materials. Five scenarios passed twice, with matching JSON
@@ -120,7 +142,7 @@ brief's risk mitigation requests, and arrange Week 7 dates early.
 
 | Day | Planned outcome |
 | --- | --- |
-| Mon Oct 12 | Connect upload/mapping to analysis; Themes panel and quote-review controls. |
+| Mon Oct 12 | IMPLEMENTED AND TESTED LOCALLY: upload-to-analysis, Themes panel and session-only quote-review controls; 50 tests and six subtests pass, plus a real-model fictional app check. |
 | Tue Oct 13 | Sentiment/emotion and Timeline panels with appropriate empty states. |
 | Wed Oct 14 | Representation and Questions panels, labeled CSV download, and full-flow error handling. |
 | Thu Oct 15 | Deploy the complete app; check memory, model reuse, privacy, all three corpora, and the 2,000-row performance target. |
