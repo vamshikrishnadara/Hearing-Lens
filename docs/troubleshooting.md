@@ -49,7 +49,8 @@ Record a fictional example of the problem and consult the
 [measured limitations](redaction_design.md). Do not use real personal data in
 an issue, screenshot, or example file.
 
-The Themes panel appears after **Validate mapping** and **Analyze comments**.
+The Themes, Sentiment and emotion, and Timeline tabs appear after
+**Validate mapping** and **Analyze comments**.
 If analysis cannot finish, install the models listed in the
 [analytical-core guide](analytical_core.md), restart the app and retry.
 Error details containing uploaded text are not shown. Old analysis is cleared
@@ -60,7 +61,10 @@ mapping and analyze again. If quote alternatives are absent, the theme did not
 produce additional eligible candidates. Review checkboxes are session-only;
 replacing a quote resets the affected theme's review confirmation.
 
-Other analytical outputs are available through the complete local command.
+Representation and question outputs are available through the complete local
+command. If sentiment or emotion charts are absent, check the scored/excluded
+counts. A single-period timeline means no date/hearing field was mapped;
+uncertain dates become categorical hearing labels rather than being discarded.
 
 ## Record a reproducible issue
 

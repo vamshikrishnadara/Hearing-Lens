@@ -25,8 +25,9 @@ figures = timeline_figures(result["timeline"])
 
 This returns themes, per-row affect, affect aggregated by theme, and period
 summaries/volumes. It does not write data or contact inference services. The
-Streamlit interface displays themes and supporting quotes; complete outputs are
-available through the library and command-line workflow.
+Streamlit interface displays themes, sentiment/emotion summaries and timelines;
+complete outputs are available
+through the library and command-line workflow.
 
 ## Themes and quotes
 

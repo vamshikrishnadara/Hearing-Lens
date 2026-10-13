@@ -1,10 +1,10 @@
-"""Upload, mapping and session-only Themes dashboard for Hearing Lens."""
+"""Upload, mapping and session-only analytical dashboard for Hearing Lens."""
 
 from __future__ import annotations
 
 import streamlit as st
 
-from app.dashboard import analyze_dashboard, clear_workspace, render_themes, workspace_for
+from app.dashboard import analyze_dashboard, clear_workspace, render_dashboard, workspace_for
 from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_columns
 from pipeline.redact import RedactionError, build_safe_display_frame
 
@@ -106,7 +106,7 @@ else:
             st.info(f"Redacted {redaction_total:,} name, contact, or address matches across the usable comments.")
         st.caption("First 20 usable comments after automatic redaction. Respondent IDs and other mapped fields are excluded from this preview.")
         st.dataframe(safe_preview.frame.head(20), use_container_width=True)
-        st.caption("Run analysis to view themes. The first run may take longer while local models load. Other dashboard panels are still being built.")
+        st.caption("Run analysis to view themes, sentiment, emotion and timelines. The first run may take longer while local models load.")
         if st.button("Analyze comments", type="primary"):
             workspace['result'] = None
             workspace['revision'] += 1
@@ -121,4 +121,4 @@ else:
                 # Model exceptions can include source cells. Never display or log them.
                 st.error("Analysis could not finish. Check that the local analysis models are installed, then try again. No partial results are shown.")
         if workspace['result'] is not None:
-            render_themes(workspace)
+            render_dashboard(workspace)

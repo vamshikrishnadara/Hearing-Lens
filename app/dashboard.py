@@ -56,7 +56,7 @@ def render_themes(workspace):
     if not themes:
         st.info('No themes were found. Try a file with more substantive comments.')
         return
-    st.caption('Quote choices and review ticks last for this session only. They do not complete the separate project validation reviews.')
+    st.caption('Quote choices and review ticks last for this session only. They are not a measure of model accuracy.')
     for theme in themes:
         theme_id = theme['theme_id']
         quote_revision = workspace['quote_revisions'].get(theme_id, 0)
@@ -93,3 +93,15 @@ def render_themes(workspace):
                 st.caption('No additional eligible quotes are available for swapping.')
             st.checkbox('I reviewed this theme and its selected quotes for relevance and visible identifiers.',
                         key=f'{base}_confirmed')
+
+
+def render_dashboard(workspace):
+    from app.affect_panel import render_affect
+    from app.timeline_panel import render_timeline
+    tabs = st.tabs(['Themes', 'Sentiment and emotion', 'Timeline'])
+    with tabs[0]:
+        render_themes(workspace)
+    with tabs[1]:
+        render_affect(workspace['result'])
+    with tabs[2]:
+        render_timeline(workspace['result'])

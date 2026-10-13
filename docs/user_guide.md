@@ -2,8 +2,9 @@
 
 This guide covers the current development preview. Use fictional test data:
 automatic redaction can miss identifiers and remove ordinary words incorrectly.
-The app runs the complete analysis and displays the Themes panel. Other analytical
-outputs are available through the complete local command.
+The app runs the complete analysis and displays Themes, Sentiment and emotion,
+and Timeline tabs. Representation and question outputs are available through the
+complete local command.
 
 ## 1. Start the app
 
@@ -92,7 +93,7 @@ row number or respondent ID. Quotes may be sentence excerpts.
 If analysis fails, no old or partial analysis is displayed. Check model setup
 and try again. Uploads and analytical results remain in session memory; this
 interface does not write them to files or a shared result cache. Other analytical
-modules run internally; their outputs are available from
+modules run internally; representation and question outputs are available from
 the complete local command.
 
 ## 6. Review supporting quotes
@@ -106,3 +107,39 @@ Use the checkbox to mark a theme and its selected quotes reviewed. Swapping a
 quote resets that theme's checkbox; other themes keep their review choices.
 Running analysis again resets all choices. Choices last only in the current
 session. They are not a guarantee of anonymity or a measure of model accuracy.
+
+
+## 7. Explore sentiment and emotion
+
+The **Sentiment and emotion** tab displays overall model-label counts and
+percentages, followed by a summary for each theme. Percentages use scored
+comments only. Excluded-language and empty inputs are counted separately and
+are never assigned a substitute neutral label. Long-input truncation is reported.
+
+The mean sentiment score averages positive minus negative model probability
+and ranges from -1 to +1. Emotion ties remain explicit instead of choosing a
+winner arbitrarily. A theme with no scored comments shows unavailable values.
+These model estimates describe expressed tone; they do not measure agreement
+with a proposal or infer a person's characteristics.
+
+If no comments can be scored, the tab explains the exclusion and does not draw
+zero-valued sentiment or emotion charts. Each displayed distribution has a
+numeric table with the same denominator.
+
+## 8. Explore the timeline
+
+The **Timeline** tab shows mean sentiment and stacked theme counts by period,
+with period and theme-count tables beneath the charts. Dates use UTC calendar
+days. Periods without scored comments leave gaps in the dated sentiment line.
+Comments with missing dates remain in the tables and volume chart, but cannot
+be positioned on the dated trend.
+
+When the mapped values are hearing labels or cannot all be parsed as dates,
+they appear as categories in input order with a bar chart. No chronological
+trend is inferred from these labels. With no mapped date/hearing field, a single
+summary appears with an explanation that it cannot show change over time.
+
+Theme volumes count assigned comments, including ungrouped comments. They can
+differ from the period's total comments if text was excluded from theme analysis.
+Changing tabs or reviewing quotes reuses the current analysis rather than running
+models again. Changing the input or mapping clears every results tab.
