@@ -1,12 +1,13 @@
-# Upload and Themes dashboard user guide
+# Upload and analysis dashboard user guide
 
 This guide covers the current development preview. Use fictional test data:
 automatic redaction can miss identifiers and remove ordinary words incorrectly.
-The app runs the complete analysis and displays the Themes panel. Sentiment, emotion, representation, timeline and question dashboard views are still being built.
+The app runs the complete analysis and displays the Themes panel. Other analytical
+outputs are available through the complete local command.
 
 ## 1. Start the app
 
-Complete the [README setup](../README.md#local-setup), including the English
+Complete the [README setup](../README.md#install-and-run), including the English
 name-detection model. In the same Python environment, from the repository root:
 
 ```sh
@@ -91,7 +92,8 @@ row number or respondent ID. Quotes may be sentence excerpts.
 If analysis fails, no old or partial analysis is displayed. Check model setup
 and try again. Uploads and analytical results remain in session memory; this
 interface does not write them to files or a shared result cache. Other analytical
-modules run internally but their dashboard panels are not yet available.
+modules run internally; their outputs are available from
+the complete local command.
 
 ## 6. Review supporting quotes
 
@@ -103,6 +105,4 @@ replaced quote becomes an alternative, so the choice is reversible.
 Use the checkbox to mark a theme and its selected quotes reviewed. Swapping a
 quote resets that theme's checkbox; other themes keep their review choices.
 Running analysis again resets all choices. Choices last only in the current
-session and are not exported or saved as project human-validation evidence.
-They are not a guarantee of anonymity. The separate human-validation exercise
-still requires its own completed review records.
+session. They are not a guarantee of anonymity or a measure of model accuracy.

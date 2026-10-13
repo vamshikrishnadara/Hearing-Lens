@@ -68,7 +68,7 @@ It still substantially over-splits the three planted categories, and no group
 has three eligible quotes (the merged group has two). Manual three remains the
 better match on this fixture. The ARI increase is development-fixture agreement,
 not accuracy or proof of improved public-data quality. No new public-corpus human
-coding or supervisor sign-off is claimed.
+coding is claimed.
 
 All four comparisons preserved analyzed row positions. Each row was assigned
 once; counts and shares matched assignments; each quote belonged to its final

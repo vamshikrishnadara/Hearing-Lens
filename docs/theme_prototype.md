@@ -12,7 +12,7 @@ Use fictional data. Theme quality and privacy review are not complete.
 
 ## Setup and run
 
-Complete the [README setup](../README.md#local-setup), then run from the repository
+Complete the [README setup](../README.md#install-and-run), then run from the repository
 root in the same environment:
 
 ```sh
@@ -110,7 +110,7 @@ and language detection are not implemented yet. English is assumed. Long input
 sentences (or whole comments in baseline mode) may be truncated at the embedding
 model's context limit, even though the full
 redacted comment remains available for quote length checks. These limitations
-need to be addressed before calling the Week 2 milestone complete. Small-cluster
+are limitations of this baseline. Small-cluster
 merging is now opt-in and experimental; its threshold has not been calibrated,
 it may still combine different meanings, and small groups can remain. Labels,
 counts, shares, and quote candidates are recalculated from final memberships.
@@ -189,26 +189,4 @@ company-focused labels, and quote shortages remain; cleaner labels alone do not
 establish theme quality. No browser test was needed for this library change.
 
 Reproduce with `python -m scripts.validate_cfpb_themes --sample-dir
-data/public_samples/cfpb_2017` after preparing the sample. Local September 28
-evidence includes `cfpb-keyword-validation.json`, `keyword-comparison.json`, and
-`keyword-automated-tests.txt`. The earlier `cfpb-theme-validation.json` is the
-same-day baseline after the unit-redaction fix and before this keyword cleanup.
-
-## Next work
-
-Improve grouping coherence and keyword labels before dashboard integration.
-The [September 24 comparison](theme_grouping_review_2026-09-24.md) records a
-modest development-sample improvement, not completion of that work.
-Evaluate the brief's BERTopic approach and review three themes per required
-corpus. A [first small CFPB run](cfpb_validation_2026-09-25.md) now includes
-inspection of three groups; broader review and the federal corpus are still
-outstanding. This does not satisfy full validation on all three corpora. No
-browser test was performed because no interface behavior changed.
-
-Reproducible JSON and test output are saved locally in
-`daily-evidence/2026-09-23/`. The initial exploratory `theme-results.json` there
-predates the contact-boilerplate/deduplication refinement; `theme-validation.json`
-is the final validation report for this version.
-
-Implementation references: [Sentence Transformers model API](https://www.sbert.net/docs/package_reference/sentence_transformer/model.html)
-and [scikit-learn K-means](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html).
+data/public_samples/cfpb_2017` after preparing the sample. The keyword comparison uses the same-day baseline after the unit-redaction fix.

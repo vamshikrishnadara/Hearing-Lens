@@ -67,7 +67,7 @@ All 12 satisfy the existing 12-60-word filter; the number of initially eligible
 comments remains 19. The measured run took 6.615 seconds including model loading,
 excluding imports and review-packet preparation; it is not a speed comparison.
 
-## Boundaries and next work
+## Scope limits
 
 - Multi-letter-only identifiers such as `Unit PH`, named units, and compact
   letter-first forms such as `AptB` are outside this rule. Do not claim universal
@@ -77,13 +77,10 @@ excluding imports and review-packet preparation; it is not a speed comparison.
   This pattern has no full address-context classifier.
 - Public source masking prevents a reliable estimate of redaction recall.
   Name-detection gaps and broader address/phone formats remain.
-- Source-placeholder keywords, quote handling for long comments, tiny clusters,
-  the federal corpus, and the remaining analytical-core requirements are pending.
-  Today's change does not complete the theme milestone or a supervisor gate.
 - No interface behavior was added and no browser test was run. Automated preview
   checks exercised the changed redaction path.
 
-## Reproduce and evidence
+## Reproduction
 
 ```sh
 python -m scripts.validate_unit_redaction
@@ -97,8 +94,3 @@ The unit validation command prints fictional cases and public aggregate counts;
 it never prints public narratives or complaint IDs. The known-word list is for
 evaluation only, not an exception list in the pipeline. See the
 [CFPB source guide](cfpb_source.md) to recreate the public sample.
-
-Local evidence is in `daily-evidence/2026-09-28/`: `unit-before.json`,
-`unit-after.json`, `replay_original_unit_rule.py`, `person-after.json`,
-`cfpb-theme-validation.json`, `automated-tests.txt`, and the daily PDF.
-Detailed public review text stays local. No new dependencies or models were added.

@@ -6,7 +6,7 @@ Use fictional files while troubleshooting. Start with the
 ## The app will not start
 
 Run commands from the repository root, in the Python environment used for the
-[README setup](../README.md#local-setup).
+[README setup](../README.md#install-and-run).
 
 | Symptom | What to do |
 | --- | --- |
@@ -60,7 +60,7 @@ mapping and analyze again. If quote alternatives are absent, the theme did not
 produce additional eligible candidates. Review checkboxes are session-only;
 replacing a quote resets the affected theme's review confirmation.
 
-Other dashboard panels and app downloads are still being built.
+Other analytical outputs are available through the complete local command.
 
 ## Record a reproducible issue
 

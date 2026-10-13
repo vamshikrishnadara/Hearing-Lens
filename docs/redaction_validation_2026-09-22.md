@@ -56,6 +56,3 @@ The original misses involving `Anne-Marie O'Neill` and `Elena` remain. An unusua
 name at the start of the exempted phrase could be retained; the heuristic is not
 proof that the text is anonymous. Continue using fictional data and reviewing
 output before sharing it.
-
-Before/after JSON reports, the automated-test output, and the daily evidence PDF
-are kept locally in `daily-evidence/2026-09-22/`, outside the repository.

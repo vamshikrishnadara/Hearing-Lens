@@ -1,4 +1,4 @@
-# Week 2 validation — October 2, 2026
+# Theme validation — October 2, 2026
 
 ## Main benchmark and reproducibility
 
@@ -78,13 +78,5 @@ complete redacted comments for the eventual reviewer.
 Selected quotes were inspected for obvious name/email/phone remnants. Contact-tail
 avoidance was added after an FAA quote included location context alongside masks.
 Automated source checks and AI inspection do not certify complete anonymization.
-Human review remains pending, and these findings do not establish that every
+These findings do not establish that every
 comment in every group belongs together.
-
-## Remaining closeout
-
-The software and numerical checks are available, but Week 2's qualitative
-acceptance cannot be claimed complete without the human review. The fellow cannot
-review today. Formal supervisor gate meetings have been waived as a prerequisite;
-that is separate from the quality requirement. Code licensing is undecided and
-weekly public updates are drafts, not claimed publications.

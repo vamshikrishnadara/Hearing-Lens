@@ -8,7 +8,7 @@ addresses the ordinary-word issue below. This report retains the original result
 Ran the existing sentence-weighted MiniLM/K-means prototype, with six requested
 themes, on the [100-narrative public sample](cfpb_source.md). No theme, keyword,
 redaction, or quote-selection code changed today. This checks transfer to public
-text; it is not a completed quality benchmark or supervisor gate approval.
+text; it is not a completed quality benchmark .
 
 After preparing the sample and installing the models from the README:
 
@@ -54,7 +54,7 @@ Existing pipeline tests, including the real local model check, still pass.
 Assistant-assisted inspection covered the first five input positions in each
 of the three largest groups (15 full redacted narratives), plus all 10 selected
 candidate quotes. This selection is deterministic, but not random or exhaustive.
-These observations are not independent human coding or supervisor sign-off.
+These observations are not independent human coding .
 No consumer text or public complaint IDs are reproduced in this report.
 
 | Group and generated label | Review findings |
@@ -90,20 +90,3 @@ emails, phone numbers, or full street addresses. Organization names, state codes
 and financial details remain, as do the source's masks. This limited check is not
 a privacy guarantee; source masking prevents a reliable measurement of our
 redaction recall. False positives in the longer review text are confirmed.
-
-## Remaining scope and evidence
-
-This is the first small public corpus run. The federal public-comment corpus,
-expanded CFPB review, BERTopic path, silhouette-selected small-file clustering,
-KeyBERT/MMR labels, quote review, language handling, and dashboard integration
-remain unfinished. No browser test was performed because the interface did not
-change. Keep working against the existing conditional end-of-Week-7 plan.
-
-Local evidence in `daily-evidence/2026-09-25/`: `public-sample/cfpb_sample.csv`,
-`public-sample/cfpb_manifest.json`, `cfpb-theme-validation.json`,
-`automated-tests.txt`, and the daily PDF. Detailed JSON contains redacted text
-for local review; only aggregate findings and fictional tests go into Git.
-
-Model: MiniLM revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`.
-Environment: Sentence Transformers 5.7.0, scikit-learn 1.9.1, PyTorch 2.14.0,
-spaCy 3.8.16. No new dependencies were installed.

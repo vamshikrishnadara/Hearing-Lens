@@ -4,7 +4,7 @@ The weekly requirements in the project brief control daily work. Use the working
 kickoff of September 14, 2026: target delivery by Friday October 30 (end of the
 Week 7 working days); Week 7 ends November 1. November 2–8 is buffer only.
 
-The fellow reported that Benjamin agreed to proceed as intended without formal
+The fellow reported that the supervisor agreed to proceed as intended without formal
 gate approvals for now. Continue building and validating; do not wait for a gate
 meeting. Human validation and genuine pilot participation are still distinct from
 automated checks. The fellow's separate preference for approving GitHub pushes

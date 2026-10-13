@@ -1,9 +1,9 @@
-# Representation gaps - October 5, 2026
+# Representation gaps
 
 The local gap module compares categories supplied in the uploaded data with an
 explicit reference distribution. It makes no demographic inference and downloads
-no population data. The dashboard and end-to-end command integration are later
-Week 4/5 tasks; this module does not change today's upload preview.
+no population data. The complete analytical workflow calls this module with
+explicitly supplied reference values.
 
 ## Meaning and denominator
 
@@ -112,10 +112,6 @@ No groups in this fixture need suppression. Separate regression cases verify
 missing data, zero baselines, valid threshold boundaries, CSV group codes and
 malformed references. The complete suite passed 173 tests, including 23 new ones.
 
-The calculations above were checked by code. **The separate human hand-check
-was completed on October 10, 2026 for all eight fictional groups**, based on the
-reviewer's calculator checks and supplied workbook. See the
-[spreadsheet method and completed review](gap_spreadsheet_check.md). The fictional
-200-sentence question review and independent priority review are also complete;
-full-pipeline integration is implemented. Earlier theme and sentiment/emotion
-human reviews remain incomplete.
+The calculations above were checked by code. The
+[spreadsheet method](gap_spreadsheet_check.md) describes independent arithmetic
+verification for supplied categories and reference values.

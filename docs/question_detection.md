@@ -1,6 +1,6 @@
 # Question detection and validation
 
-`pipeline/questions.py` implements the detection stage of Week 4. Its October 7
+`pipeline/questions.py` implements the question-detection stage. Its October 7
 `mine_questions` API also supports [grouping, ranking, response matching and
 potentially unanswered priorities](question_mining.md). The detection API and
 frozen 200-sentence review remain unchanged. The upload UI and full-pipeline
@@ -101,16 +101,6 @@ rate must be strictly below 10%. Both classes and 200 resolved labels are needed
 for acceptance. Partial metrics are provisional. Empty denominators remain
 unavailable. Blank or unsure labels cannot produce an acceptance pass.
 
-**Human question review completed on October 10, 2026 for the fictional sample.**
-All 200 labels were supplied, with no blanks or unsure answers. Initial scoring
-found 19 true positives, two false negatives, 179 true negatives and zero false
-positives: 90.48% recall and 0% false-positive rate, meeting the numerical targets.
-The reviewer subsequently changed two service-request labels from Yes to No after
-assistant clarification. The adjudicated result is 19 true positives and 181 true
-negatives (100% recall, 0% false-positive rate); this is not a new independent
-blind evaluation. Both submissions and scores are preserved locally. The packet
-contains 200 occurrences but only 48 distinct wordings, so results are limited
-to this fictional development sample. Earlier sentiment/emotion review remains incomplete.
 
 ## Development checks
 

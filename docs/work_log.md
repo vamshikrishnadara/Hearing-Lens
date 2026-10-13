@@ -1,12 +1,12 @@
 # Hearing Lens Work Log
 
-This log records real project outputs and plans. It is not a payroll record. Actual hours should be entered by Vamshi from time personally spent working, reviewing, testing, meeting, or completing related project activity. Planned time must not be presented as completed time.
+This log records real project outputs and plans. It is not a payroll record. Actual hours should be entered by the contributor from time personally spent working, reviewing, testing, meeting, or completing related project activity. Planned time must not be presented as completed time.
 
 ## September 14 2026
 
 **Reporting week:** September 8 through September 14
-**Status:** Foundation package prepared; Vamshi review and validation pending
-**Actual time:** To be entered by Vamshi
+**Status:** Foundation package prepared; contributor review and validation pending
+**Actual time:** To be entered by the contributor
 
 ### Completed outputs
 
@@ -48,7 +48,7 @@ This is a planning allocation, not a statement that ten hours were completed.
 | Review outputs, record decisions, and prepare status | 1.0 hour | Updated log and backlog |
 | **Total planned** | **10.0 hours** | |
 
-### Review checklist for Vamshi
+### Review checklist for the contributor
 
 - Read the schema and confirm the field names make sense.
 - Run the tests and save the result.
@@ -59,9 +59,9 @@ This is a planning allocation, not a statement that ten hours were completed.
 ## September 15 2026
 
 **Reporting week:** September 15 through September 21
-**Status:** Development checkpoint complete; Vamshi review pending
+**Status:** Development checkpoint complete; contributor review pending
 **Daily session limit:** 5 hours
-**Actual time:** To be entered by Vamshi
+**Actual time:** To be entered by the contributor
 
 ### Completed outputs
 
@@ -98,8 +98,8 @@ This is a planning allocation, not a statement that ten hours were completed.
 ## September 17 2026
 
 **Focused task:** Add and test personal-name redaction in the existing preview.
-**Status:** Initial implementation and local verification complete; Vamshi approved publication in focused commits.
-**Actual time:** Recorded separately by Vamshi in Jibble; no hours inferred here.
+**Status:** Initial implementation and local verification complete; the contributor approved publication in focused commits.
+**Actual time:** Recorded separately by the contributor in Jibble; no hours inferred here.
 
 ### Completed outputs
 
@@ -122,12 +122,12 @@ This is a planning allocation, not a statement that ten hours were completed.
 
 Names are not always detected, and ordinary words can be removed incorrectly. The recorded misses include a hyphenated/apostrophized full name and a contextual first name. Continue using fictional data; full privacy validation and broader location coverage are unfinished. The validation fixtures were used during development and are not an independent benchmark.
 
-The daily evidence record and detailed JSON report are saved locally outside the repository. Vamshi approved committing and pushing today's work in separate, focused steps.
+The daily evidence record and detailed JSON report are saved locally outside the repository. The contributor approved committing and pushing today's work in separate, focused steps.
 
 ## September 18 2026
 
 **Scope:** Three small documentation tasks, each in a separate local commit.
-**Actual time:** Recorded separately by Vamshi in Jibble; no hours inferred here.
+**Actual time:** Recorded separately by the contributor in Jibble; no hours inferred here.
 
 ### Task 1 - Upload and preview user guide
 
@@ -149,13 +149,13 @@ The daily evidence record and detailed JSON report are saved locally outside the
 - Covered normal upload, preview boundaries, optional mappings, duplicate mapping, sheet switching, empty comments, header-only input, and the 20-row display limit.
 - The checklist is unexecuted; its unchecked boxes are not evidence that browser tests passed today.
 - Today's verification checks documentation against source, the fixture's expected cleaning counts, relative file links, and whitespace. No application code was changed.
-- Daily PDF evidence is stored locally outside the repository. Today's three commits require Vamshi's approval before pushing.
+- Daily PDF evidence is stored locally outside the repository. Today's three commits require the contributor's approval before pushing.
 
 ## September 19 2026
 
 **Focused task:** Select the comment column automatically when the exact
 `comment_text` header is available, while keeping manual selection available.
-**Actual time:** Recorded separately by Vamshi in Jibble; the planned two-hour
+**Actual time:** Recorded separately by the contributor in Jibble; the planned two-hour
 session is not a claim of hours worked.
 
 ### Completed outputs
@@ -174,7 +174,7 @@ session is not a claim of hours worked.
 - Existing redaction limitations remain; this task makes no claim of improved name detection or anonymity.
 
 Implementation, tests, and documentation are kept in one focused local commit.
-Push requires Vamshi's approval. A short daily evidence PDF is saved locally
+Push requires the contributor's approval. A short daily evidence PDF is saved locally
 outside the repository.
 
 ## September 21 2026
@@ -192,7 +192,7 @@ outside the repository.
 
 Changes are separated into three local documentation commits: the checklist
 correction, browser test report, and this daily work-log update. Each push
-requires Vamshi's approval. Actual time is maintained separately in Jibble.
+requires the contributor's approval. Actual time is maintained separately in Jibble.
 
 ## September 22 2026
 
@@ -368,7 +368,7 @@ requires approval. Personal daily evidence remains outside the repository.
 - Prepared 60 blind review rows and a local review page. The fellow cannot review
   today; zero human labels, no agreement claim, and human theme review pending.
 - Updated the board, weekly plan, source notes, public-update drafts, and license
-  decision record. Benjamin's formal gate approval is no longer a prerequisite,
+  decision record. The supervisor's formal gate approval is no longer a prerequisite,
   as reported by the fellow. No license was selected or public post claimed.
 
 See the [core validation report](core_validation_2026-10-02.md) and

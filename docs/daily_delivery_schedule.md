@@ -7,7 +7,7 @@ recalculate the current week from the live session date at every new work sessio
 
 Source: the official Hearing Lens Project Brief, Sections 6, 13, and 15.
 September 14 is the working start date supplied by the fellow; the brief leaves
-formal kickoff agreement to Benjamin. Dates below use that assumption. Work is
+formal kickoff agreement to the supervisor. Dates below use that assumption. Work is
 planned Monday-Friday. Weekly calendar ranges end Sunday, but delivery should
 be ready for the Friday check-in; no weekend work is assumed.
 
@@ -31,7 +31,7 @@ weekly deliverables and quality requirements remain applicable.
 5. When required work and validation finish early, use remaining time for bugs,
    clarity, robustness, and review within the approved scope. Stretch features
    remain frozen until core deliverables are complete. Formal gate meetings are
-   not a prerequisite under Benjamin's reported instruction.
+   not a prerequisite under the supervisor's reported instruction.
 6. Organize meaningful commits around changes, not a daily quota. Ask the fellow
    before each push. Personal daily evidence is separate from product exports
    and never substitutes for a project deliverable.
@@ -106,7 +106,7 @@ these validation requirements remain open.
 Keep earlier carryover separate: human theme/quote review; 60 sentiment/emotion
 labels and the resulting agreement/remediation; an undecided license; and
 unverified publication of required updates. No formal gate approval is needed
-to continue under Benjamin's reported instruction. Do not mark these items
+to continue under the supervisor's reported instruction. Do not mark these items
 complete because the calendar advances, and do not treat future Week 4 tasks as
 those earlier outstanding items.
 
@@ -187,7 +187,7 @@ Do not mark launch complete merely because this date has arrived.
 The original brief uses gates as milestone demonstrations: scope/schema at the
 end of Week 1, analytical core at the end of Week 3, full pipeline at the end of
 Week 4, pilot readiness at the end of Week 6, and launch at the end of Week 7.
-Benjamin's formal gate approvals are not required to proceed, per the fellow's
+the supervisor's formal gate approvals are not required to proceed, per the fellow's
 reported instruction. Genuine validation, user testing and pilot participation
 are still required. GitHub push approval is a separate user preference.
 

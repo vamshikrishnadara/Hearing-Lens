@@ -1,6 +1,6 @@
 # Week 1–3 delivery status — October 2, 2026
 
-The fellow reported that Benjamin agreed to continuing as intended and does not
+The fellow reported that the supervisor agreed to continuing as intended and does not
 require formal approval meetings for now. **Gate approval is not a blocker.**
 This changes the review process, not the need for genuine validation results.
 The original brief's gates remain useful milestones, not claims of formal sign-off.

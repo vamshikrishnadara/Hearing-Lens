@@ -14,3 +14,9 @@ model_cache/
 *.log
 data/validation/*.csv
 data/validation/*.json
+
+# Keep local analysis and review outputs outside version control.
+local-analysis/
+personal-records/
+daily-evidence/
+weekly-updates/

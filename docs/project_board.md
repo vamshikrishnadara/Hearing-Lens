@@ -2,7 +2,7 @@
 
 This simple repository board tracks delivery against the brief. It does not claim
 that a hosted GitHub Project exists. Formal gate meetings are no longer required
-to continue, according to the fellow's report of Benjamin's instruction.
+to continue, according to the fellow's report of the supervisor's instruction.
 
 ## Current position - Monday October 12, Week 5
 

@@ -1,6 +1,6 @@
 # Upload and preview browser test results - September 21, 2026
 
-Executed by Codex for Vamshi Krishna Dara using the Codex in-app browser against
+Executed using the Codex in-app browser against
 the local app at `http://127.0.0.1:8501`. Application revision: `2b22f2e`.
 These are actual browser interactions with fictional uploads, not only source
 inspection or Streamlit's in-process runner.
@@ -15,8 +15,6 @@ inspection or Streamlit's in-process runner.
   a header-only CSV, and the repository's 1,000-row fictional sample.
 - The XLSX fixture was generated with pandas/openpyxl, rather than manually
   saved in a spreadsheet application; its values match the checklist.
-- Fixtures, browser-state captures, screenshots, and daily PDF evidence are
-  stored locally outside the repository in `daily-evidence/2026-09-21/`.
 
 ## Results
 
@@ -61,5 +59,4 @@ identified within this checklist's scope.
 
 Investigate the known name-detector misses and false positives as a separate
 task. The full automated suite was not rerun for this documentation-only change;
-the last recorded suite result is 39 passing tests on September 19. Actual work
-hours are recorded separately in Jibble.
+the last recorded suite result is 39 passing tests on September 19.

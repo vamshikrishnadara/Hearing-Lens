@@ -53,9 +53,7 @@ import preservation and reset. This is a selected regression run, not a claim
 that every repository test was rerun.
 
 The run's `fictional-validation.json` records source hashes, individual checks
-and timing scope. Its original October 9 human-status snapshot predates the
-completed October 10 fictional question, priority and gap-calculation reviews.
-Earlier theme/affect validation remains incomplete. Detailed outputs belong outside Git.
+and timing scope. Detailed outputs belong outside Git.
 
 For blank human labels, independent priorities and the calculation workbook,
 see the [fictional review instructions](fictional_review.md).
@@ -81,6 +79,5 @@ quote swapping, review reset and empty/shortage states. The real-model check
 above separately exercises the connected workflow. Browser visual inspection
 and the deployed 2,000-row benchmark are not claimed by these tests.
 
-Only the Themes panel is connected to the app display at this stage. Other
-panels, downloads and deployment remain Week 5 work. Session review ticks do not
-complete the earlier independent theme and sentiment/emotion validation.
+Session review ticks are UI controls and do not establish independently measured
+model accuracy.

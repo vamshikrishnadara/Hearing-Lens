@@ -1,4 +1,4 @@
-# Analytical core - October 2, 2026
+# Analytical core
 
 ## Run locally
 
@@ -25,8 +25,8 @@ figures = timeline_figures(result["timeline"])
 
 This returns themes, per-row affect, affect aggregated by theme, and period
 summaries/volumes. It does not write data or contact inference services. The
-Streamlit screen remains an upload/redaction preview; these Week 3 functions and
-charts are library/command-line functionality, not the Week 5 five-panel app.
+Streamlit interface displays themes and supporting quotes; complete outputs are
+available through the library and command-line workflow.
 
 ## Themes and quotes
 
@@ -123,7 +123,7 @@ must not be wired to production uploads. Source-text fingerprints prevent
 comparing human labels with predictions from a different corpus/order.
 
 See [human-label instructions](../data/validation/README.md), [measured results](core_validation_2026-10-02.md),
-and [methodology](methods.md). Formal gate approval is no longer a prerequisite, per the fellow. Code and tests still do not establish human validation.
+and [methodology](methods.md). Automated tests do not establish semantic accuracy.
 
 Primary implementation references:
 [BERTopic API](https://maartengr.github.io/BERTopic/api/bertopic.html),

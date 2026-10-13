@@ -89,21 +89,8 @@ loads model resources and the later run is warm, so this is **not a fair speed
 comparison**. A separate fresh-process weighted run took 3.737 seconds including
 model loading, excluding imports/setup. No production-performance claim is made.
 
-No interface changes or browser tests were performed. K-means still assigns all
-comments, with no outlier detector. Public-corpus evaluation, the brief's BERTopic
-path, tiny-cluster merging, language handling, quote review, and dashboard
-integration remain unfinished. Continue Week 2 work within the existing delivery
-plan; this change does not complete or approve a supervisor review gate.
-
-## Local evidence
-
-`daily-evidence/2026-09-24/` (beside the repository) contains:
-
-- `theme-before.json` and `theme-after.json`: original and updated validation runs.
-- `theme-comparison.json`: side-by-side comparison on both fixed fixtures.
-- `exploration.json` and `explore_grouping.py`: the limited exploratory comparison.
-- `automated-tests.txt`: the full 62-test result.
-- Daily evidence PDF: a short shareable record of completed work and limitations.
+No interface changes or browser tests were performed. The measured K-means
+baseline assigns every comment and does not detect outliers.
 
 Versions remain Sentence Transformers 5.7.0, scikit-learn 1.9.1, PyTorch 2.14.0,
 and spaCy 3.8.16. MiniLM revision:

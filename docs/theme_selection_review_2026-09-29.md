@@ -58,7 +58,7 @@ selecting six does not establish good topic separation or semantic accuracy.
 The manual result's complete themes (including labels, shares, and redacted
 quotes), assignments, and removal/exclusion counts exactly match September 28.
 There is no hand-coded theme truth for the CFPB sample and no new human review
-or supervisor sign-off is claimed. Existing mixed groups and quote gaps remain.
+ is claimed. Existing mixed groups and quote gaps remain.
 
 The fictional fixture has three planted topics and introduction/no-introduction
 pairs. Its true count is below the brief's automatic minimum. Automatic mode

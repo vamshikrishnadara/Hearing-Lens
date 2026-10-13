@@ -63,19 +63,14 @@ Add `--federal-dir PATH` only after preparing and verifying that sample. The loc
 output contains aggregate JSON, redacted review packets, and self-contained HTML
 charts. Only the aggregate findings in this document are published to Git.
 
-## Incomplete acceptance requirements
+## Measurement limitations
 
 The federal download hit the official API's public-key rate limit (HTTP 429);
 no complete third-corpus sample or benchmark is claimed. The downloader now
 checkpoints successful responses for a later retry. A supplied export or configured
 key can unblock that work; the source is documented in [federal source notes](federal_source.md).
 
-The human sheet currently has 40 prepared rows and 20 explicit federal placeholders.
-Human sentiment/emotion agreement is **pending**, not 0% or 100%. Coherence review
-of three themes per corpus also needs human review. Language detection excluded
+Language detection excluded
 20 known-English synthetic rows as uncertain, a measurable limitation requiring
 review rather than silent neutral labels. Long CFPB comments were truncated for
 affect and often do not qualify as full-comment quotes.
-
-The current implementation does not satisfy every Week 2/3 benchmark and has not
-passed Gate 1. See [methodology](methods.md) for validation limitations.

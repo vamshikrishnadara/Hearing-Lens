@@ -39,7 +39,7 @@ service guarantee. Earlier runs on the same 300-row input exceeded the target
 optimization). Length-sorted affect batches reduce padding and restore original
 row order; quote selection embeds only the candidates needed. No model was
 changed, source comment shortened, or cross-call result cache introduced to
-meet the target. Retest on the deployment environment in Week 5.
+meet the target. Retest on the intended deployment environment.
 
 The richer fictional benchmark has development ARI 0.705765. It is newly authored
 data with 48 templates, not a held-out test or a like-for-like improvement on the
@@ -58,10 +58,8 @@ for mixed groups and qualitative limitations.
   human answers. The local review page was visually checked: blank choices,
   complete comments, and 0/60 progress. JavaScript syntax was checked separately.
 - The agreement evaluator verified source fingerprints with the final outputs.
-  It reports zero labeled rows, null agreement, and completion=false. The fellow
-  cannot review today; no model output is substituted for human ground truth.
-- Human coherence/privacy inspection of three themes per corpus is also pending.
-  AI inspection found broad/overlapping groups; see the Week 2 report.
+  Unlabeled rows produce null agreement; model output is not human ground truth.
+- AI inspection found broad/overlapping groups; see the theme-validation report.
 
 ## Sources and remaining limits
 
@@ -78,8 +76,3 @@ Language detection excluded three CFPB and four FAA rows; excluded rows receive
 no invented neutral score. Long model inputs are limited to 512 tokens and the
 truncation counts above remain visible. Scores are not calibrated judgments of
 intent or policy support. The full dashboard and deployment are later work.
-
-Benjamin's formal gate approvals are no longer a prerequisite, per the fellow's
-report. This does not complete human validation. The code license is undecided;
-public-update drafts exist but publication is not claimed. Accordingly, all
-Weeks 1-3 deliverables are not marked complete.

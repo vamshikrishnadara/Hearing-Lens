@@ -51,8 +51,7 @@ python -m scripts.prepare_cfpb_sample --archive data/public_samples/cfpb_archive
 existing sample or manifest. No network request occurs inside the Python utility.
 It copies public source narrative text as supplied, apart from trimming outer
 whitespace; redaction is applied during validation, not silently to the archive.
-For today's run, the sample and manifest were saved outside the repository in
-`daily-evidence/2026-09-25/public-sample/`.
+
 
 ## Expanded benchmark, October 2
 

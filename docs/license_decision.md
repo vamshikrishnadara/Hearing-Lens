@@ -1,6 +1,6 @@
 # Code license decision
 
-The fellow reported that Benjamin has not specified a code license. No LICENSE
+The fellow reported that the supervisor has not specified a code license. No LICENSE
 file has been added, and the repository must not be described as MIT-licensed.
 This open decision does not block local development, testing, or validation.
 

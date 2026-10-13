@@ -28,4 +28,4 @@ federal public comments. The three-corpus notebook records measured results.
 Human validation remains a separate step before reporting agreement rates.
 Next comes representation-gap analysis and identifying unanswered questions.
 
-Suggested tags for each: Chicago Education Advocacy Cooperative; Benjamin Drury.
+Suggested tags for each: Chicago Education Advocacy Cooperative; the supervisor.
