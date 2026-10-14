@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import streamlit as st
 
+from app.analysis_options import render_analysis_options, invalidate_options
 from app.dashboard import analyze_dashboard, clear_workspace, render_dashboard, workspace_for
 from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_columns
 from pipeline.redact import RedactionError, build_safe_display_frame
@@ -106,8 +107,10 @@ else:
             st.info(f"Redacted {redaction_total:,} name, contact, or address matches across the usable comments.")
         st.caption("First 20 usable comments after automatic redaction. Respondent IDs and other mapped fields are excluded from this preview.")
         st.dataframe(safe_preview.frame.head(20), use_container_width=True)
-        st.caption("Run analysis to view themes, sentiment, emotion and timelines. The first run may take longer while local models load.")
-        if st.button("Analyze comments", type="primary"):
+        st.caption("Run analysis to view themes, sentiment, emotion, timelines, representation and question priorities. The first run may take longer while local models load.")
+        references, response, option_signature, options_valid = render_analysis_options(mapped.frame)
+        invalidate_options(workspace, option_signature)
+        if st.button("Analyze comments", type="primary", disabled=not options_valid):
             workspace['result'] = None
             workspace['revision'] += 1
             workspace['quote_revisions'] = {}
@@ -116,7 +119,8 @@ else:
                     del st.session_state[key]
             try:
                 with st.spinner("Analyzing comments and preparing themes..."):
-                    workspace['result'] = analyze_dashboard(mapped.frame)
+                    workspace['result'] = (analyze_dashboard(mapped.frame, references=references, response=response)
+                                           if references or response else analyze_dashboard(mapped.frame))
             except Exception:
                 # Model exceptions can include source cells. Never display or log them.
                 st.error("Analysis could not finish. Check that the local analysis models are installed, then try again. No partial results are shown.")

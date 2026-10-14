@@ -11,7 +11,8 @@ It accepts CSV and Excel files and runs natural-language processing models local
 - Local sentiment and emotion classification with date or hearing-level summaries.
 - Representation-gap calculations using supplied categories and reference values.
 - Question detection, grouping, prioritization and optional response matching.
-- A Streamlit interface for themes, sentiment/emotion distributions and timelines, with quote alternatives and session review controls.
+- Five Streamlit panels: Themes, Sentiment and emotion, Timeline, Representation, and Questions.
+- Optional reference shares and response text, plus a redacted labeled CSV download.
 - A command-line workflow that exports structured JSON and offline timeline charts.
 
 ## Pipeline
@@ -55,8 +56,9 @@ python -m streamlit run app/streamlit_app.py
 
 On Windows, activate the environment with `.venv\Scripts\activate`.
 In the app, upload a file, map the comment column, validate the mapping and choose
-**Analyze comments**. Use the Themes, Sentiment and emotion, and Timeline tabs
-to explore results. The command below exports the combined analytical outputs.
+**Analyze comments**. Explore the five result tabs and use **Download labeled CSV**
+for comment-level labels. Optional reference shares and response text can be supplied
+after validating the mapping. The command below exports combined analytical outputs.
 
 ## Run the complete pipeline
 

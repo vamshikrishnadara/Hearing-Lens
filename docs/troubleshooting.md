@@ -49,7 +49,7 @@ Record a fictional example of the problem and consult the
 [measured limitations](redaction_design.md). Do not use real personal data in
 an issue, screenshot, or example file.
 
-The Themes, Sentiment and emotion, and Timeline tabs appear after
+The five analytical tabs appear after
 **Validate mapping** and **Analyze comments**.
 If analysis cannot finish, install the models listed in the
 [analytical-core guide](analytical_core.md), restart the app and retry.
@@ -61,8 +61,7 @@ mapping and analyze again. If quote alternatives are absent, the theme did not
 produce additional eligible candidates. Review checkboxes are session-only;
 replacing a quote resets the affected theme's review confirmation.
 
-Representation and question outputs are available through the complete local
-command. If sentiment or emotion charts are absent, check the scored/excluded
+If sentiment or emotion charts are absent, check the scored/excluded
 counts. A single-period timeline means no date/hearing field was mapped;
 uncertain dates become categorical hearing labels rather than being discarded.
 
@@ -71,3 +70,20 @@ uncertain dates become categorical hearing labels rather than being discarded.
 Include the app revision, file type, sheet name if relevant, selected mappings,
 steps taken, expected result, and actual message or behavior. Attach only a
 small fictional example. Do not copy real uploaded comments into issue reports.
+
+## Optional inputs and downloads
+
+If Analyze comments is disabled, correct the enabled reference or select
+No reference. The CSV needs group/share headers, unique categories and shares
+totalling 100%; use 0.6 or 60%, not 60. A blank reference is not a valid baseline.
+No subgroup fields means the Representation tab explains how to map them.
+Suppressed counts intentionally remain blank and cannot be restored by a download.
+
+Response text changes clear previous results. Re-run analysis before downloading.
+An absent response leaves question priorities unverified; a possible match still
+needs inspection. Shorten responses over 1,000 usable sentences if analysis fails.
+
+If a labeled download cannot be prepared, validate the input and analyze again.
+No partial CSV is offered. Downloaded comments are automatically redacted but
+should still be inspected before sharing. Leading apostrophes on formula-like
+text are deliberate spreadsheet protection.

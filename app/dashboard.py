@@ -13,7 +13,7 @@ REVIEW_PREFIX = 'hl_review_'
 def clear_workspace():
     st.session_state.pop(STATE_KEY, None)
     for key in list(st.session_state):
-        if key.startswith(REVIEW_PREFIX):
+        if key.startswith((REVIEW_PREFIX, 'hl_option_')):
             del st.session_state[key]
 
 
@@ -29,12 +29,12 @@ def workspace_for(upload, sheet, mapping):
     return current
 
 
-def analyze_dashboard(frame):
+def analyze_dashboard(frame, *, references=None, response=None):
     # Only models are shared by the analytical modules. Never cache these results.
     import torch
     from pipeline.full import analyze_all
     torch.set_num_threads(4)
-    return analyze_all(frame)
+    return analyze_all(frame, references=references, agency_response=response)
 
 
 def render_themes(workspace):
@@ -98,10 +98,19 @@ def render_themes(workspace):
 def render_dashboard(workspace):
     from app.affect_panel import render_affect
     from app.timeline_panel import render_timeline
-    tabs = st.tabs(['Themes', 'Sentiment and emotion', 'Timeline'])
+    from app.representation_panel import render_representation
+    from app.questions_panel import render_questions
+    from app.downloads import render_download
+    tabs = st.tabs(['Themes', 'Sentiment and emotion', 'Timeline', 'Representation', 'Questions'])
     with tabs[0]:
         render_themes(workspace)
     with tabs[1]:
         render_affect(workspace['result'])
     with tabs[2]:
         render_timeline(workspace['result'])
+
+    with tabs[3]:
+        render_representation(workspace['result'])
+    with tabs[4]:
+        render_questions(workspace['result'])
+    render_download(workspace)

@@ -2,9 +2,8 @@
 
 This guide covers the current development preview. Use fictional test data:
 automatic redaction can miss identifiers and remove ordinary words incorrectly.
-The app runs the complete analysis and displays Themes, Sentiment and emotion,
-and Timeline tabs. Representation and question outputs are available through the
-complete local command.
+The app displays Themes, Sentiment and emotion, Timeline, Representation and
+Questions tabs, with an in-memory labeled CSV download.
 
 ## 1. Start the app
 
@@ -92,9 +91,8 @@ row number or respondent ID. Quotes may be sentence excerpts.
 
 If analysis fails, no old or partial analysis is displayed. Check model setup
 and try again. Uploads and analytical results remain in session memory; this
-interface does not write them to files or a shared result cache. Other analytical
-modules run internally; representation and question outputs are available from
-the complete local command.
+interface does not write them to files or a shared result cache. The download
+button offers an explicit export to your own device.
 
 ## 6. Review supporting quotes
 
@@ -143,3 +141,77 @@ Theme volumes count assigned comments, including ungrouped comments. They can
 differ from the period's total comments if text was excluded from theme analysis.
 Changing tabs or reviewing quotes reuses the current analysis rather than running
 models again. Changing the input or mapping clears every results tab.
+
+## 9. Add optional references and response text
+
+After validating the mapping, expand **Optional reference values and response
+text**. For each mapped subgroup, choose **No reference**, **Enter reference**
+or **Upload reference CSV**. A reference uses `group,share` column headers,
+with one category and share per row. For example, a fictional reference is:
+
+```csv
+group,share
+Example A,60%
+Example B,40%
+```
+
+Shares must total 100%. Use proportions such as `0.6` or explicit percentages
+such as `60%`; bare `60` is invalid. Category labels must be unique ignoring
+case and surrounding spaces. The uploaded reference has a 5,000-group limit.
+Only supply reference values appropriate to your comment categories and context;
+the app does not select or retrieve a population baseline. Invalid or missing
+entries in an enabled reference block analysis until corrected or set to
+**No reference**. CSV category codes retain leading zeros.
+
+Paste an optional response in **Response text (optional)**. The limit is
+100,000 characters and 1,000 usable sentences. Text is redacted before matching.
+Response similarity only suggests a passage to inspect; it is not proof that
+the question was answered. No response means unverified follow-up priorities.
+
+Changing a reference or response clears results and downloads immediately.
+Click **Analyze comments** to use the new inputs. Changing the main input or
+column mapping also clears optional inputs; validate and enter them again.
+
+## 10. Read representation results
+
+Each field has a category table with counts, participation shares, supplied
+reference shares, gaps in percentage points, ratios and status. Shares use
+known category values; missing-value coverage is shown separately. Without a
+reference, the panel shows counts and shares only. Unmatched categories have
+no gap or ratio; a zero reference has no ratio.
+
+Groups with fewer than 10 comments have counts and derived figures suppressed.
+An additional group can be hidden to prevent recovering a small count by
+subtraction. Suppressed values remain blank, not zero. Supplied labels and
+reference percentages stay visible. Do not map identifiers as subgroup fields.
+Counts describe comments, not necessarily unique people.
+
+## 11. Read questions and possible responses
+
+The **Questions** tab shows up to three suggested follow-up priorities, a ranked
+summary and expandable groups. Each group displays the actual representative
+question, supporting-comment count and response comparison status. Possible
+response passages are shown next to their question wording for inspection.
+No match, partial match and possible match are distinct from a verified answer.
+
+Ranking uses supporting-comment frequency, then visible subgroup spread and
+a wording tie-break. Visible field/category pairs are not a count of people;
+small or missing categories can make spread a lower bound. An empty candidate
+list does not establish that all concerns or requests have been answered.
+
+## 12. Download labeled comments
+
+Use **Download labeled CSV** below the panels. Each row corresponds to the
+cleaned input order and includes a comment number, redacted comment text, theme
+ID/label/status, sentiment, emotion, score, affect status/truncation, question
+count and question-group IDs. Excluded scores stay blank. Theme ID `0` means
+ungrouped; a blank ID with `excluded` status means no theme assignment.
+
+Respondent IDs, dates and subgroup values are not included. Row numbers refer
+to the cleaned table, not original spreadsheet rows. This export contains
+comment labels, not quote selections or review checkbox state. Automatic
+redaction can miss identifying details; inspect the CSV before sharing it.
+Formula-like text is prefixed with an apostrophe to reduce spreadsheet formula
+execution. Numeric negative sentiment scores remain numeric. UTF-8 with a BOM
+supports common spreadsheet readers. Generation occurs in memory, and failures
+do not offer a partial file.

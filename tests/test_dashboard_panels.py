@@ -123,7 +123,7 @@ def test_app_shows_three_tabs_correct_counts_and_numeric_tables():
     value=fixture()
     with patch('streamlit.file_uploader',return_value=uploaded()),patch('app.dashboard.analyze_dashboard',return_value=value) as model:
         app=render(value)
-        assert [tab.label for tab in app.tabs]==['Themes','Sentiment and emotion','Timeline']
+        assert [tab.label for tab in app.tabs]==['Themes','Sentiment and emotion','Timeline','Representation','Questions']
         metrics={m.label:m.value for m in app.metric}
         assert metrics['Comments scored']=='4' and metrics['Comments excluded']=='1'
         assert metrics['Long comments truncated']=='1'
