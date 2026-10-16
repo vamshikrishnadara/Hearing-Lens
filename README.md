@@ -60,6 +60,12 @@ In the app, upload a file, map the comment column, validate the mapping and choo
 for comment-level labels. Optional reference shares and response text can be supplied
 after validating the mapping. The command below exports combined analytical outputs.
 
+## Hosting
+
+A Streamlit Community Cloud entrypoint prepares pinned models at startup and uses
+CPU-only dependencies. See [deployment instructions](docs/deployment.md) for setup,
+resource limits and browser checks. Use fictional data for the development preview.
+
 ## Run the complete pipeline
 
 ```sh
