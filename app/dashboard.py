@@ -31,10 +31,8 @@ def workspace_for(upload, sheet, mapping):
 
 def analyze_dashboard(frame, *, references=None, response=None):
     # Only models are shared by the analytical modules. Never cache these results.
-    import torch
-    from pipeline.full import analyze_all
-    torch.set_num_threads(4)
-    return analyze_all(frame, references=references, agency_response=response)
+    from app.runtime import run_analysis
+    return run_analysis(frame, references=references, response=response)
 
 
 def render_themes(workspace):
