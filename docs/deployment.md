@@ -45,7 +45,10 @@ small demonstration, not high-traffic service capacity.
 The cloud entrypoint defaults to two PyTorch CPU threads. `HEARING_LENS_THREADS` can
 select 1–4 threads; the local entrypoint defaults to four. Uploads are limited to
 10 MB at the Streamlit boundary. Existing pipeline row/text limits still apply.
-CORS and XSRF protections remain enabled; usage telemetry is disabled.
+CORS and XSRF protections remain enabled; usage telemetry is disabled. Source
+watching is disabled to avoid scanning lazy model-library modules and importing
+unrelated optional dependencies. Restart the local server after code changes;
+Community Cloud redeploys from the configured GitHub branch.
 
 Model preparation errors hide the upload controls and show a fixed message.
 Check network access, dependency installation and storage if startup fails. An
