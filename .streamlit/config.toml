@@ -1,0 +1,8 @@
+[server]
+maxUploadSize = 10
+# Keep request protections enabled on public deployments.
+enableXsrfProtection = true
+enableCORS = true
+
+[browser]
+gatherUsageStats = false
