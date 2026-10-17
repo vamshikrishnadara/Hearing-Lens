@@ -1,7 +1,7 @@
 # Community Cloud uses this file beside cloud_app.py before the root requirements.
---extra-index-url https://download.pytorch.org/whl/cpu
+# Scope the CPU wheel to PyTorch; resolve all other packages from PyPI.
 -r ../requirements.txt
-torch==2.14.0+cpu
+torch @ https://download-r2.pytorch.org/whl/cpu/torch-2.14.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl
 streamlit==1.64.0
 transformers==5.17.0
 huggingface-hub==1.32.0

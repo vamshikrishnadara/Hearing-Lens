@@ -23,7 +23,10 @@ the root requirements and spaCy model, run:
 python -m streamlit run deployment/cloud_app.py
 ```
 
-`deployment/requirements.txt` targets Linux CPU hosting. Use the root requirements
+`deployment/requirements.txt` targets Python 3.12 on Linux x86-64 CPU hosting.
+PyTorch is installed from its official CPU wheel URL; other packages resolve
+from PyPI. Do not add the PyTorch wheel server as a global extra index: uv
+can select unrelated packages from that server and reject valid PyPI versions. Use the root requirements
 for local macOS/Windows setup. Cloud dependency installation must be checked in
 the hosting build logs; a local run is not a Linux build verification.
 
