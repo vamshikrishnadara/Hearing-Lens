@@ -18,6 +18,7 @@ class RoutingTests(unittest.TestCase):
             density.assert_not_called()
             density.return_value=(np.array([0]*149+[-1]),{'selected_count':1,'fallback_reason':None,'skipped_counts':[]})
             result=self.analyze(150,backend='auto',theme_count='auto')
+            self.assertIsNone(density.call_args.kwargs['target_topics'])
         self.assertEqual(result['outlier_count'],1)
         self.assertEqual(result['assignments'][-1],{'row_position':149,'theme_id':0})
         self.assertEqual(result['themes'][0]['count'],149)
@@ -63,6 +64,30 @@ class BackendDetailsTests(unittest.TestCase):
         with self.assertRaises(ValueError):swap_quote(original,1,0,99)
 
 class DensityRefinementTests(unittest.TestCase):
+    def test_automatic_density_preserves_natural_groups_below_cap(self):
+        vectors=np.eye(12);texts=[f'comment {i}' for i in range(12)]
+        fake=MagicMock();fake.topics_=list(range(11))+[-1]
+        fake.fit_transform.return_value=(fake.topics_,None)
+        with patch('bertopic.BERTopic',return_value=fake),patch('pipeline.topic_backend.refine_assignments',side_effect=lambda v,l:l):
+            labels,meta=cluster_bertopic(texts,vectors,object(),target_topics=None)
+        fake.reduce_topics.assert_not_called()
+        self.assertEqual(len(set(labels)-{-1}),11)
+        self.assertEqual(int((labels==-1).sum()),1)
+        self.assertFalse(meta['topics_reduced'])
+
+    def test_automatic_density_caps_excess_topics_without_counting_noise(self):
+        vectors=np.eye(18);texts=[f'comment {i}' for i in range(18)]
+        fake=MagicMock();fake.topics_=list(range(17))+[-1]
+        fake.fit_transform.return_value=(fake.topics_,None)
+        def reduced(*args,**kwargs):fake.topics_=list(range(15))+[0,1,-1]
+        fake.reduce_topics.side_effect=reduced
+        with patch('bertopic.BERTopic',return_value=fake),patch('pipeline.topic_backend.refine_assignments',side_effect=lambda v,l:l):
+            labels,meta=cluster_bertopic(texts,vectors,object(),target_topics=None)
+        self.assertEqual(fake.reduce_topics.call_args.kwargs['nr_topics'],16)
+        self.assertEqual(len(set(labels)-{-1}),15)
+        self.assertEqual(int((labels==-1).sum()),1)
+        self.assertTrue(meta['topics_reduced'])
+
     def test_original_noise_stays_noise_and_clear_geometry_corrects_assignment(self):
         from pipeline.topic_backend import refine_assignments
         vectors=np.array([[1.,0.]]*5+[[0.,1.]]*5+[[1.,0.],[1.,0.]])

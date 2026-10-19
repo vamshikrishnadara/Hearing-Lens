@@ -30,6 +30,9 @@ def refine_assignments(vectors, labels, minimum_similarity=.45, minimum_margin=.
 
 
 def cluster_bertopic(texts, vectors, embedding_model, target_topics=6):
+    # Automatic selection keeps natural density topics within the supported
+    # maximum. Manual requests retain their explicit reduction target.
+    reduction_limit = 15 if target_topics is None else target_topics
     from bertopic import BERTopic
     from umap import UMAP
     from hdbscan import HDBSCAN
@@ -53,9 +56,9 @@ def cluster_bertopic(texts, vectors, embedding_model, target_topics=6):
     )
     initial, _ = model.fit_transform(unique_texts, embeddings=vectors[unique_rows])
     initial_count = len(set(initial) - {-1})
-    if initial_count > target_topics:
+    if initial_count > reduction_limit:
         # BERTopic's requested count includes its -1 bucket; our target does not.
-        model.reduce_topics(unique_texts, nr_topics=target_topics + int(-1 in initial))
+        model.reduce_topics(unique_texts, nr_topics=reduction_limit + int(-1 in initial))
     labels = np.asarray(model.topics_, dtype=int)[inverse]
     before_refinement = labels.copy()
     labels = refine_assignments(vectors, labels)
@@ -64,6 +67,7 @@ def cluster_bertopic(texts, vectors, embedding_model, target_topics=6):
     return labels, {'mode': 'density', 'selected_count': len(set(labels) - {-1}),
         'metric': None, 'candidate_scores': [], 'skipped_counts': [], 'fallback_reason': None,
         'distinct_vectors_fitted': len(unique_rows), 'initial_density_topics': initial_count,
+        'reduction_limit': reduction_limit, 'topics_reduced': initial_count > reduction_limit,
         'refinement_reassigned': int(((labels != before_refinement) & (labels != -1)).sum()),
         'refinement_abstained': int(((labels == -1) & (before_refinement != -1)).sum()),
         'refinement_minimum_similarity': .45, 'refinement_minimum_margin': .03}

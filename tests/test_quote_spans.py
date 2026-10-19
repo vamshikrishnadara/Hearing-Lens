@@ -7,6 +7,24 @@ from pipeline.themes import analyze_themes, ThemeError
 from pipeline.redact import redact_text
 
 class QuoteSpanTests(unittest.TestCase):
+    def test_duplicate_best_span_falls_back_to_distinct_source_excerpt(self):
+        first='The library needs additional books and longer opening hours so children can study after school with help from trained staff.'
+        second='Families have asked for a quiet reading room where students can concentrate on their homework without noise from nearby group activities.'
+        extra='Weekend workshops would give parents practical ways to support children with reading at home and help them find suitable books together.'
+        shared=first+' '+second
+        texts=[shared,shared+' '+extra,shared]
+        def embed(spans):
+            return np.array([[1.,0.] if s==shared else [.8,.6] for s in spans])
+        with patch('pipeline.themes._theme_vectors',return_value=np.tile([1.,0.],(3,1))),patch('pipeline.themes._embed',side_effect=embed):
+            result=analyze_themes(pd.DataFrame({'comment_text':texts}),theme_count=1,quote_mode='sentences')
+        quotes=result['themes'][0]['quotes']
+        self.assertEqual(len(quotes),2)
+        self.assertEqual(quotes[0]['text'],shared)
+        self.assertIn(extra,quotes[1]['text'])
+        self.assertEqual(quotes[1]['row_position'],1)
+        self.assertTrue(all(valid_source_quote(q,texts[q['row_position']]) for q in quotes))
+        self.assertFalse(nearly_identical(quotes[0]['text'],quotes[1]['text']))
+
     def test_long_comment_yields_contiguous_complete_sentence_without_rewriting(self):
         sentence='The buses arrive late every morning and our children repeatedly miss their first lesson.'
         text=' '.join([sentence]*6)

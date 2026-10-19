@@ -35,8 +35,7 @@ The core routes by original input size: K-means below 150 rows, BERTopic at 150
 or more. K-means uses the existing silhouette-selected 4-12 range and explicit
 small-input fallback. BERTopic uses supplied local normalized embeddings, UMAP
 (seed 42, cosine, random initialization, one worker), HDBSCAN, and c-TF-IDF.
-It fits each distinct embedding vector once, then restores all original rows and counts. UMAP uses up to 10 neighbors; HDBSCAN minimum group size is 3–20 based on distinct inputs, with min_samples=1. It reduces density topics toward six by default; this is a fixed reduction
-target, not a silhouette-selected count. HDBSCAN can yield fewer topics or all
+It fits each distinct embedding vector once, then restores all original rows and counts. UMAP uses up to 10 neighbors; HDBSCAN minimum group size is 3–20 based on distinct inputs, with min_samples=1. Automatic mode preserves naturally detected density topics up to 15 and reduces only when that maximum is exceeded. It does not force a six-topic reduction or use silhouette selection on this path. HDBSCAN can yield fewer topics or all
 outliers; no invented groups or forced outlier assignments are used to pass a
 benchmark. Requests for manual counts in the BERTopic path are reduction targets;
 use `backend="kmeans"` for manual K-means behavior. Core automatic K-means remains
@@ -62,7 +61,14 @@ The core returns up to three selected quotes plus up to three eligible alternati
 from that same theme. It returns a copy and cannot inject arbitrary unredacted
 text. The core uses contiguous complete-sentence excerpts when needed, with offsets into the redacted original and an explicit is_excerpt flag. Quotes remain 12–60 words, and contact-bearing sentences are avoided. Similar wording is deduplicated; semantic similarity alone is not proof that two quotes repeat the same statement. The legacy full-comment mode is retained. Excerpt embeddings are computed only for rows reached in nearest-first selection. The library supports
 review; the user-facing swap control remains dashboard work. Quote shortages
-are reported rather than padded with duplicates or invented wording.
+are reported rather than padded with duplicates or invented wording. If the
+highest-ranked excerpt repeats an already selected quote, selection tries the
+remaining eligible excerpts from that source in similarity order before moving
+on. Each source row contributes at most one quote to the candidate pool.
+Preserving finer density groups can leave fewer than three distinct eligible
+quotes in a group. The shortage warning remains visible; groups are not merged
+solely to fill quote slots. More groups or more quotes do not establish better
+semantic quality, and changed groupings need fresh inspection.
 
 ## Sentiment, emotion, language, and aggregation
 
@@ -79,7 +85,12 @@ threshold. Non-English and uncertain rows are excluded from affect and counted,
 not given neutral labels. Very short/mixed text and names can mislead detection.
 This is not demographic inference and does not use supplied subgroup fields.
 Theme analysis still includes such rows and warns that its models are English-only.
-That limitation must remain visible during review.
+That limitation must remain visible during review. Mixed praise and criticism,
+requests phrased as questions, and implied dissatisfaction can disagree with
+human judgments even when inference and label mapping work correctly. A
+successful inference run does not establish classification accuracy. Evaluate
+model changes on a separate labeled sample; do not adjust labels or tune a
+decision threshold solely to pass the same review sample.
 
 Sentiment is negative/neutral/positive; emotion is anger, disgust, fear, joy,
 neutral, sadness, or surprise. Aggregates count winning labels and divide by

@@ -233,7 +233,7 @@ def analyze_themes(
         try:
             from pipeline.topic_backend import cluster_bertopic
             labels, selection = cluster_bertopic(texts, vectors, _get_embedding_model(),
-                target_topics=6 if theme_count == "auto" else theme_count)
+                target_topics=None if theme_count == "auto" else theme_count)
         except Exception:
             raise ThemeError("BERTopic clustering failed; check dependencies and available resources. No theme results were produced.") from None
         notes[0] = "Experimental BERTopic themes; unmatched comments remain explicit outliers."
@@ -303,14 +303,23 @@ def analyze_themes(
             if not spans:
                 continue
             if len(spans) == 1:
-                start, end = spans[0]
+                ranked_spans = spans
             else:
                 span_vectors = _embed([quotes[index][a:b] for a, b in spans])
-                start, end = spans[int(np.argmax(span_vectors @ center))]
+                scores = span_vectors @ center
+                ranked_spans = [spans[i] for i in sorted(range(len(spans)),
+                    key=lambda i: (-float(scores[i]), i))]
+            # A duplicate best excerpt should not hide a distinct, eligible
+            # passage from the same source. Keep one quote per source row.
+            candidate = next(((a, b) for a, b in ranked_spans
+                if quote_mode != 'sentences' or not any(
+                    nearly_identical(_analysis_text(quotes[index][a:b]), _analysis_text(q['text']))
+                    for q in selected)), None)
+            if candidate is None:
+                continue
+            start, end = candidate
             quote = quotes[index][start:end]
             normalized = texts[index].casefold()
-            if quote_mode == 'sentences' and any(nearly_identical(_analysis_text(quote), _analysis_text(q['text'])) for q in selected):
-                continue
             if quote_mode == 'full_comment' and any(
                 SequenceMatcher(None, normalized, texts[old].casefold()).ratio() >= 0.85
                 or normalized in texts[old].casefold() or texts[old].casefold() in normalized
