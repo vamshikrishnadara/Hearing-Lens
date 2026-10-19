@@ -99,6 +99,7 @@ def render_dashboard(workspace):
     from app.representation_panel import render_representation
     from app.questions_panel import render_questions
     from app.downloads import render_download
+    from app.brief_download import render_brief_download
     tabs = st.tabs(['Themes', 'Sentiment and emotion', 'Timeline', 'Representation', 'Questions'])
     with tabs[0]:
         render_themes(workspace)
@@ -112,3 +113,4 @@ def render_dashboard(workspace):
     with tabs[4]:
         render_questions(workspace['result'])
     render_download(workspace)
+    render_brief_download(workspace)

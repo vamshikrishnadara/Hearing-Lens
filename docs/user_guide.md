@@ -215,3 +215,13 @@ Formula-like text is prefixed with an apostrophe to reduce spreadsheet formula
 execution. Numeric negative sentiment scores remain numeric. UTF-8 with a BOM
 supports common spreadsheet readers. Generation occurs in memory, and failures
 do not offer a partial file.
+
+## 13. Prepare a community Word brief
+
+Below the dashboard, select **Prepare Word brief**, then **Download Word brief**.
+The one-page summary includes leading themes with quote excerpts, sentiment,
+available time and representation comparisons, and follow-up questions. It uses
+the current selected quotes. Changed inputs or quote selections remove the old
+download; prepare it again to include the changes. Read the document before
+sharing, especially shortened passages and possible identifiers. See the
+[brief guide](community_brief.md) for selection rules and limitations.
