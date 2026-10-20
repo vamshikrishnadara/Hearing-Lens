@@ -15,6 +15,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from pipeline.redact import build_safe_display_frame
 from pipeline.theme_merging import merge_small_groups, MIN_THEME_SIZE
 from pipeline.quotes import quote_spans, nearly_identical
+from pipeline.progress import notify
 
 
 class ThemeError(ValueError):
@@ -170,6 +171,7 @@ def analyze_themes(
     keyword_method: str = "tfidf",
     quote_pool_size: int = 3,
     quote_mode: str = "full_comment",
+    progress=None,
 ) -> dict:
     """Analyze up to 5,000 English comments in memory; never write uploads.
 
@@ -208,6 +210,7 @@ def analyze_themes(
     if not positions:
         raise ThemeError("No nonempty comments are available for theme analysis.")
     # Redact before deriving labels/quotes. Never use subgroup or validation labels.
+    notify(progress, 'redaction')
     safe = build_safe_display_frame(pd.DataFrame({"comment_text": raw.iloc[positions].tolist()}))
     quotes = safe.frame["comment_text"].tolist()
     texts = [_analysis_text(text) for text in quotes]
@@ -226,9 +229,11 @@ def analyze_themes(
         notes.append(f"Excluded {len(excluded_positions)} comments with no analyzable text after redaction.")
     if np.median([len(text.split()) for text in texts]) < 8:
         notes.append("Median comment length is under eight words; theme quality may be poor.")
+    notify(progress, 'embeddings')
     vectors = _theme_vectors(texts, embedding_mode)
     if embedding_mode == "sentence_weighted":
         notes.append("Sentence weighting is experimental: repeated substantive statements can also be downweighted.")
+    notify(progress, 'clustering')
     if actual_backend == "bertopic":
         try:
             from pipeline.topic_backend import cluster_bertopic
@@ -278,6 +283,7 @@ def analyze_themes(
             notes.append(f"Small-theme merging reduced {merging['initial_count']} initial themes to {len(groups)}; requested counts and selection scores describe the pre-merge groups.")
         if merging["retained_small_theme_ids"]:
             notes.append(f"Retained {len(merging['retained_small_theme_ids'])} small themes without a qualifying merge partner; no comments were discarded.")
+    notify(progress, 'keywords')
     if keyword_method == "keybert":
         try:
             from pipeline.topic_backend import keybert_keywords
@@ -286,6 +292,7 @@ def analyze_themes(
             raise ThemeError("Keyword labeling failed; no theme results were produced.") from None
     else:
         keywords = _keywords(texts, groups)
+    notify(progress, 'quotes')
     themes, assignments = [], []
     # Enumerate spans cheaply. Encode only rows reached by nearest-first selection;
     # encoding every sentence in every comment wastes most work after slots fill.

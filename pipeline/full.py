@@ -4,6 +4,7 @@ import pandas as pd
 from pipeline.core import analyze_core
 from pipeline.gaps import analyze_gaps
 from pipeline.questions import mine_questions
+from pipeline.progress import notify
 
 
 class PipelineError(ValueError):
@@ -11,7 +12,7 @@ class PipelineError(ValueError):
 
 
 def analyze_all(frame, *, references=None, agency_response=None,
-                minimum_group_size=10, theme_count='auto', backend='auto'):
+                minimum_group_size=10, theme_count='auto', backend='auto', progress=None):
     """Analyze the output of ingest.map_columns in a common row-position space.
 
     References use mapped subgroup__ names. Missing optional inputs retain each
@@ -25,11 +26,15 @@ def analyze_all(frame, *, references=None, agency_response=None,
     if any(not isinstance(v, str) or not v.strip() for v in frame.comment_text):
         raise PipelineError('Map and clean comment text before running the complete pipeline.')
     # Validate categorical inputs before starting expensive model work.
+    notify(progress, 'representation')
     gaps = analyze_gaps(frame, references=references, minimum_group_size=minimum_group_size)
     core = analyze_core(frame, period_column='date_or_hearing' if 'date_or_hearing' in frame else None,
-                        theme_count=theme_count, backend=backend)
+                        theme_count=theme_count, backend=backend,
+                        **({'progress': progress} if progress is not None else {}))
+    notify(progress, 'questions')
     questions = mine_questions(frame, agency_response=agency_response,
                                minimum_group_size=minimum_group_size)
+    notify(progress, 'complete')
     return {'schema_version': '1.0', 'input_rows': len(frame), **core,
             'gaps': gaps, 'questions': questions,
             'notice': 'Automated analysis, not human-validated findings. Review themes, quotes, '

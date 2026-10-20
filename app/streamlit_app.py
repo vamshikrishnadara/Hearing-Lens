@@ -8,6 +8,8 @@ from app.analysis_options import render_analysis_options, invalidate_options
 from app.dashboard import analyze_dashboard, clear_workspace, render_dashboard, workspace_for
 from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_columns
 from pipeline.redact import RedactionError, build_safe_display_frame
+from pipeline.progress import STAGES
+from app.runtime import AnalysisBusyError
 
 
 st.set_page_config(page_title="Hearing Lens", layout="wide")
@@ -118,12 +120,20 @@ else:
             for key in list(st.session_state):
                 if key.startswith('hl_review_'):
                     del st.session_state[key]
-            try:
-                with st.spinner("Analyzing comments and preparing themes..."):
-                    workspace['result'] = (analyze_dashboard(mapped.frame, references=references, response=response)
-                                           if references or response else analyze_dashboard(mapped.frame))
-            except Exception:
-                # Model exceptions can include source cells. Never display or log them.
-                st.error("Analysis could not finish. Check that the local analysis models are installed, then try again. No partial results are shown.")
+            with st.status('Starting analysis...', expanded=False) as status:
+                def show_stage(stage):
+                    status.update(label=STAGES[stage] + '...')
+                try:
+                    workspace['result'] = analyze_dashboard(mapped.frame, references=references,
+                                                           response=response, progress=show_stage)
+                except AnalysisBusyError as exc:
+                    status.update(label='Analysis not started: another run is still active', state='error')
+                    st.info(str(exc))
+                except Exception:
+                    # Model exceptions can include source cells. Never display or log them.
+                    status.update(label='Analysis could not finish', state='error')
+                    st.error('Analysis could not finish. Check the analysis stage timings in the app logs before retrying. No partial results are shown.')
+                else:
+                    status.update(label='Analysis complete', state='complete')
         if workspace['result'] is not None:
             render_dashboard(workspace)

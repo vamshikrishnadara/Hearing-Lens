@@ -6,6 +6,7 @@ import re
 
 import numpy as np
 import pandas as pd
+from pipeline.progress import notify
 
 SENTIMENTS = ('negative', 'neutral', 'positive')
 EMOTIONS = ('anger', 'disgust', 'fear', 'joy', 'neutral', 'sadness', 'surprise')
@@ -73,11 +74,12 @@ def _predict(texts, kind):
     return scores, truncated
 
 
-def analyze_affect(frame):
+def analyze_affect(frame, *, progress=None):
     if 'comment_text' not in frame or len(frame) > 5000:
         raise AffectError('Affect analysis requires comment_text and at most 5,000 rows.')
     texts = frame.comment_text.fillna('').astype(str).str.strip().tolist()
     rows, unique = [], {}
+    notify(progress, 'language')
     try:
         for position, text in enumerate(texts):
             language = detect_language(text) if text else 'unknown'
@@ -89,7 +91,9 @@ def analyze_affect(frame):
                 unique.setdefault(normalized, []).append(position)
         if unique:
             inputs = list(unique)
+            notify(progress, 'sentiment')
             sentiment, sentiment_cut = _predict(inputs, 'sentiment')
+            notify(progress, 'emotion')
             emotion, emotion_cut = _predict(inputs, 'emotion')
             if not len(sentiment) == len(emotion) == len(sentiment_cut) == len(emotion_cut) == len(inputs):
                 raise AffectError('Affect inference returned incomplete results.')

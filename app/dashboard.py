@@ -29,10 +29,10 @@ def workspace_for(upload, sheet, mapping):
     return current
 
 
-def analyze_dashboard(frame, *, references=None, response=None):
+def analyze_dashboard(frame, *, references=None, response=None, progress=None):
     # Only models are shared by the analytical modules. Never cache these results.
     from app.runtime import run_analysis
-    return run_analysis(frame, references=references, response=response)
+    return run_analysis(frame, references=references, response=response, progress=progress)
 
 
 def render_themes(workspace):

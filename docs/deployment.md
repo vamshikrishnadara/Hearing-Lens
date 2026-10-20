@@ -41,8 +41,10 @@ verification; use a fresh cache if model files may have been modified.
 
 Models are shared within one process; analytical inputs and results are not
 cached across sessions. Analysis requests run one at a time to avoid concurrent
-model loading and multiplying inference memory. Waiting users will see the
-analysis spinner until the preceding request finishes. This is suitable for a
+model loading and multiplying inference memory. Waiting users see a queue
+message for up to 30 seconds; if the lock remains occupied, the new request ends
+without starting inference. This does not cancel or time-limit the active job.
+Closing a browser tab does not reliably establish that active work stopped. This is suitable for a
 small demonstration, not high-traffic service capacity.
 
 The cloud entrypoint defaults to two PyTorch CPU threads. `HEARING_LENS_THREADS` can
@@ -58,6 +60,14 @@ Check network access, dependency installation and storage if startup fails. An
 inference failure hides partial results. Restarting a process discards in-memory
 sessions. Hosting providers may independently retain infrastructure logs; do not
 upload confidential material to this development preview.
+
+The analysis status displays the current stage. The `hearing_lens.analysis`
+logger emits fixed stage names and elapsed seconds, with a failure marker if a
+run raises an exception. These messages contain no uploaded text, filenames,
+IDs, subgroup labels or exception messages. An initial run can include model
+loading and clustering-library compilation; use the timings to distinguish that
+from inference or queue waiting. A slow hosted run is not diagnosed merely
+because the same file runs quickly on a local computer.
 
 ## Performance and workflow checks
 

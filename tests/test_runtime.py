@@ -19,6 +19,7 @@ def test_analysis_sessions_serialize_and_release_after_failure():
             assert release.wait(5)
             raise ValueError('test failure')
         second.set()
+        kwargs.pop('progress')('complete')
         return {'input': frame, **kwargs}
     with patch('pipeline.full.analyze_all', side_effect=analyze), patch('torch.set_num_threads'):
         with ThreadPoolExecutor(2) as pool:
@@ -31,5 +32,32 @@ def test_analysis_sessions_serialize_and_release_after_failure():
                 first.result(timeout=5)
             assert following.result(timeout=5) == {
                 'input': 'second', 'references': None, 'agency_response': 'answer'}
+
+
+def test_busy_timeout_starts_no_second_job_and_keeps_lock_owned_by_first():
+    from app.runtime import _ANALYSIS_LOCK, AnalysisBusyError
+    stages = []
+    assert _ANALYSIS_LOCK.acquire(timeout=1)
+    try:
+        with patch('app.runtime.QUEUE_TIMEOUT_SECONDS', .01), patch('pipeline.full.analyze_all') as run:
+            with pytest.raises(AnalysisBusyError):run_analysis('SECRET', progress=stages.append)
+        run.assert_not_called()
+        assert stages == ['waiting'] and _ANALYSIS_LOCK.locked()
+    finally:
+        _ANALYSIS_LOCK.release()
+
+
+def test_failure_logs_stage_timing_without_input_or_exception(caplog):
+    def analyze(frame, **kwargs):
+        kwargs['progress']('clustering')
+        raise RuntimeError('SECRET UPLOADED TEXT')
+    stages=[]
+    with patch('pipeline.full.analyze_all', side_effect=analyze),patch('torch.set_num_threads'):
+        with pytest.raises(RuntimeError):run_analysis('SECRET INPUT',progress=stages.append)
+    assert stages==['waiting','initializing','clustering']
+    assert 'stage=clustering event=failed' in caplog.text
+    assert 'seconds=' in caplog.text and 'SECRET' not in caplog.text
+    from app.runtime import _ANALYSIS_LOCK
+    assert not _ANALYSIS_LOCK.locked()
 
 

@@ -47,7 +47,7 @@ def ready(app):
 def model():
     # Only replace costly model inference; exercise real loading, mapping,
     # preview redaction, Streamlit session state and quote-swap validation.
-    with patch('app.dashboard.analyze_dashboard', side_effect=lambda frame: deepcopy(result())) as mock:
+    with patch('app.dashboard.analyze_dashboard', side_effect=lambda frame, **kwargs: deepcopy(result())) as mock:
         yield mock
 
 
@@ -67,7 +67,7 @@ def test_analysis_waits_for_button_and_preserves_results_on_review_rerun(model):
 
 def test_swap_preserves_original_model_result_and_resets_confirmation(model):
     original = result()
-    model.side_effect = lambda frame: deepcopy(original)
+    model.side_effect = lambda frame, **kwargs: deepcopy(original)
     with patch('streamlit.file_uploader', return_value=upload()):
         app = ready(AppTest.from_file(str(APP), default_timeout=30))
         app.checkbox[0].check().run()
@@ -143,7 +143,7 @@ def test_failure_hides_old_results_and_raw_error_then_allows_retry(model):
         assert app.session_state[STATE_KEY]['result'] is None
         assert len(app.error) == 1
         assert 'secret' not in app.error[0].value
-        model.side_effect = lambda frame: deepcopy(result())
+        model.side_effect = lambda frame, **kwargs: deepcopy(result())
         button(app, 'Analyze comments').click().run()
         assert app.metric and not app.error
 
@@ -177,7 +177,7 @@ def test_empty_themes_and_quote_shortages_are_explicit(model):
     value = result()
     value['themes']['themes'] = []
     value['themes']['outlier_count'] = 1
-    model.side_effect = lambda frame: deepcopy(value)
+    model.side_effect = lambda frame, **kwargs: deepcopy(value)
     with patch('streamlit.file_uploader', return_value=upload()):
         app = ready(AppTest.from_file(str(APP), default_timeout=30))
         assert any('No themes were found' in m.value for m in app.info)
@@ -195,7 +195,7 @@ def test_swapping_one_theme_keeps_other_theme_review(model):
     other = deepcopy(value['themes']['themes'][0])
     other['theme_id'] = 2
     value['themes']['themes'].append(other)
-    model.side_effect = lambda frame: deepcopy(value)
+    model.side_effect = lambda frame, **kwargs: deepcopy(value)
     with patch('streamlit.file_uploader', return_value=upload()):
         app = ready(AppTest.from_file(str(APP), default_timeout=30))
         app.checkbox[0].check().run()
