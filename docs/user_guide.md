@@ -216,12 +216,20 @@ execution. Numeric negative sentiment scores remain numeric. UTF-8 with a BOM
 supports common spreadsheet readers. Generation occurs in memory, and failures
 do not offer a partial file.
 
-## 13. Prepare a community Word brief
+## 13. Prepare a community Word or PDF brief
 
 Below the dashboard, select **Prepare Word brief**, then **Download Word brief**.
+For a fixed-layout copy, select **Prepare PDF brief**, then **Download PDF brief**.
 The one-page summary includes leading themes with quote excerpts, sentiment,
 available time and representation comparisons, and follow-up questions. It uses
 the current selected quotes. Changed inputs or quote selections remove the old
 download; prepare it again to include the changes. Read the document before
 sharing, especially shortened passages and possible identifiers. See the
 [brief guide](community_brief.md) for selection rules and limitations.
+
+During analysis, the status shows the active stage, such as grouping themes or
+analyzing sentiment. If another run is active, the app waits up to 30 seconds
+before asking you to try later; it does not start a second job in parallel.
+That queue timeout does not limit how long the active analysis can run. If a
+stage remains busy, check the app logs for its timings before restarting or
+retrying. A closed browser tab alone does not confirm that server work stopped.

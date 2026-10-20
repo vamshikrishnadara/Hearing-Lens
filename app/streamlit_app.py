@@ -115,6 +115,7 @@ else:
         if st.button("Analyze comments", type="primary", disabled=not options_valid):
             workspace['result'] = None
             workspace.pop('brief_docx', None)
+            workspace.pop('brief_pdf', None)
             workspace['revision'] += 1
             workspace['quote_revisions'] = {}
             for key in list(st.session_state):

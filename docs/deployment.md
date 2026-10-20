@@ -69,6 +69,9 @@ loading and clustering-library compilation; use the timings to distinguish that
 from inference or queue waiting. A slow hosted run is not diagnosed merely
 because the same file runs quickly on a local computer.
 
+Word and PDF export libraries are included in the root requirements. PDF uses
+ReportLab's bundled fonts and needs no extra operating-system converter.
+
 ## Performance and workflow checks
 
 Generate a reproducible 2,000-comment fictional CSV and exercise the real models:
