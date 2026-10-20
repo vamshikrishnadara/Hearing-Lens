@@ -4,6 +4,9 @@ from datetime import date
 from io import BytesIO
 import math
 import unicodedata
+from threading import Lock
+
+_PDF_FONT_LOCK = Lock()
 
 
 class BriefError(ValueError):
@@ -168,13 +171,38 @@ def build_brief(result):
         raise BriefError('The analysis is incomplete; no brief was generated.') from None
 
 
+def _comment_count(count):
+    return f'{count:,} comment' + ('' if count == 1 else 's')
+
+
+def brief_paragraphs(brief):
+    """Shared prose for Word and PDF; each row is (style, prefix, text)."""
+    rows = [('Title', '', brief['title']), ('Normal', '', brief['summary']),
+            ('Heading 1', '', 'Leading themes and quote excerpts'),
+            ('Normal', '', brief['theme_note'])]
+    for theme in brief['themes']:
+        prefix = f'{theme["label"]} - {_comment_count(theme["count"])} ({theme["share"]:.1%}). '
+        text = f'Excerpt: "{theme["quote"]}"' if theme['quote'] else 'No quote available.'
+        rows.append(('Normal', prefix, text))
+    if not brief['themes']:
+        rows.append(('Normal', '', 'No themes were identified.'))
+    rows.extend([('Heading 1', '', 'Sentiment and change over time'),
+                 ('Normal', '', brief['sentiment'] + ' ' + brief['timeline']),
+                 ('Heading 1', '', 'Representation'), ('Normal', '', brief['representation']),
+                 ('Heading 1', '', 'Priority questions for follow up'),
+                 ('Normal', '', brief['question_note'])])
+    rows.extend(('Normal', '', f'{i}. {q["text"]} ({_comment_count(q["count"])})')
+                for i, q in enumerate(brief['questions'], 1))
+    rows.append(('Method', '', brief['method']))
+    return rows
+
+
 def docx_bytes(brief):
     """Render the bounded brief as an editable, in-memory Word document."""
     from docx import Document
     from docx.oxml.ns import qn
     from docx.shared import Inches, Pt, RGBColor
     document = Document()
-    # Some packaged Word templates attach a decorative rule to Title.
     for style in document.styles:
         for border in list(style.element.iter(qn('w:pBdr'))):
             border.getparent().remove(border)
@@ -191,27 +219,13 @@ def docx_bytes(brief):
         style.paragraph_format.space_after = Pt(3)
         style.paragraph_format.space_before = Pt(0 if name != 'Heading 1' else 5)
     document.styles['Heading 1'].font.bold = True
-    document.add_paragraph(brief['title'], 'Title')
-    document.add_paragraph(brief['summary'])
-    document.add_paragraph('Leading themes and quote excerpts', 'Heading 1')
-    document.add_paragraph(brief['theme_note'])
-    for theme in brief['themes']:
-        p = document.add_paragraph()
-        p.add_run(f'{theme["label"]} - {theme["count"]:,} comments ({theme["share"]:.1%}). ').bold = True
-        p.add_run(f'Excerpt: "{theme["quote"]}"' if theme['quote'] else 'No quote available.')
-    if not brief['themes']:
-        document.add_paragraph('No themes were identified.')
-    document.add_paragraph('Sentiment and change over time', 'Heading 1')
-    document.add_paragraph(brief['sentiment'] + ' ' + brief['timeline'])
-    document.add_paragraph('Representation', 'Heading 1')
-    document.add_paragraph(brief['representation'])
-    document.add_paragraph('Priority questions for follow up', 'Heading 1')
-    document.add_paragraph(brief['question_note'])
-    for index, question in enumerate(brief['questions'], 1):
-        document.add_paragraph(f'{index}. {question["text"]} ({question["count"]:,} comments)')
-    p = document.add_paragraph(brief['method'])
-    p.paragraph_format.space_before = Pt(5)
-    # The method footnote is intentionally kept at the required 11-point size.
+    for style, prefix, text in brief_paragraphs(brief):
+        p = document.add_paragraph(style='Normal' if style == 'Method' else style)
+        if prefix:
+            p.add_run(prefix).bold = True
+        p.add_run(text)
+        if style == 'Method':
+            p.paragraph_format.space_before = Pt(5)
     document.core_properties.author = ''
     document.core_properties.last_modified_by = ''
     document.core_properties.title = brief['title']
@@ -222,5 +236,48 @@ def docx_bytes(brief):
     return output.getvalue()
 
 
+def pdf_bytes(brief):
+    """Render one page in memory, with embedded fonts and no external renderer."""
+    from pathlib import Path
+    from xml.sax.saxutils import escape
+    import reportlab
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+    from reportlab.lib.styles import ParagraphStyle
+    from reportlab.platypus import SimpleDocTemplate, Paragraph
+    # These redistributable font files ship with ReportLab on each platform.
+    # Register font resources only; never cache a brief or uploaded content.
+    font_root = Path(reportlab.__file__).parent / 'fonts'
+    with _PDF_FONT_LOCK:
+        for name, filename in [('HLVera', 'Vera.ttf'), ('HLVeraBold', 'VeraBd.ttf')]:
+            if name not in pdfmetrics.getRegisteredFontNames():
+                pdfmetrics.registerFont(TTFont(name, str(font_root / filename)))
+        pdfmetrics.registerFontFamily('HLVera', normal='HLVera', bold='HLVeraBold')
+    paragraphs = brief_paragraphs(brief)
+    for style, prefix, text in paragraphs:
+        for font, value in [('HLVeraBold', prefix), ('HLVeraBold' if style == 'Heading 1' else 'HLVera', text)]:
+            glyphs = pdfmetrics.getFont(font).face.charToGlyph
+            if any(ord(c) not in glyphs for c in value if not c.isspace()):
+                raise BriefError('The PDF font cannot display some characters. Download the Word brief instead.')
+    styles = {name: ParagraphStyle(name, fontName='HLVeraBold' if name == 'Heading 1' else 'HLVera',
+        fontSize=16 if name == 'Title' else 11, leading=19 if name == 'Title' else 13,
+        spaceAfter=3, spaceBefore=5 if name in ('Heading 1', 'Method') else 0,
+        keepWithNext=name in ('Title', 'Heading 1')) for name in ('Title', 'Normal', 'Heading 1', 'Method')}
+    story = [Paragraph(('<b>' + escape(prefix) + '</b>' if prefix else '') + escape(text), styles[style])
+             for style, prefix, text in paragraphs]
+    output = BytesIO()
+    doc = SimpleDocTemplate(output, pagesize=(612, 792), topMargin=39.6, bottomMargin=39.6,
+                           leftMargin=46.8, rightMargin=46.8, title=brief['title'], author='',
+                           subject='Community feedback analysis', creator='Hearing Lens')
+    doc.build(story)
+    if doc.page != 1:
+        raise BriefError('The PDF brief could not fit on one page. Download the Word brief instead.')
+    return output.getvalue()
+
+
 def community_docx(result):
     return docx_bytes(build_brief(result))
+
+
+def community_pdf(result):
+    return pdf_bytes(build_brief(result))
