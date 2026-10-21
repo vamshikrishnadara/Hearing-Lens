@@ -29,8 +29,25 @@ def test_actual_counts_denominators_and_dated_comparison():
     assert '+0.20 on 2026-10-01 to -0.40 on 2026-10-02' in brief['timeline']
     assert '6 undated comments excluded' in brief['timeline']
     assert 'not confirmed unanswered' in brief['question_note']
-    assert 'No usable reference' in brief['representation']
+    assert 'Group fields are present' in brief['representation']
+    assert 'expected group shares' in brief['representation']
+    assert 'answer text' in brief['question_note']
     assert r == before
+
+
+@pytest.mark.parametrize('counts,outliers,excluded', [([5, 4, 3, 2], 6, 10), ([10, 10, 10], 0, 0), ([], 20, 10)])
+def test_brief_accounts_for_unshown_themes_separately_from_ungrouped(counts, outliers, excluded):
+    r = result()
+    r['themes'].update(analyzed_comments=30-excluded, outlier_count=outliers,
+                       themes=[{'theme_id': i+1, 'count': n, 'label': f'Theme {i+1}', 'quotes': []}
+                               for i, n in enumerate(counts)])
+    b = build_brief(r)
+    shown = sum(t['count'] for t in b['themes'])
+    other = sum(counts) - shown
+    assert shown + other + outliers + excluded == 30
+    assert f'({shown} comments)' in b['theme_note']
+    assert f'{other} comments in other themes' in b['theme_note']
+    assert f'{outliers} ungrouped, {excluded} excluded from themes' in b['theme_note']
 
 
 def test_unscored_missing_dates_and_no_questions_do_not_invent_findings():

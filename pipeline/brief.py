@@ -80,7 +80,8 @@ def _representation_text(gaps):
     valid = {f['field'] for f in fields if f.get('reference_status') == 'valid'
              and f.get('status') == 'comparison'}
     if not valid:
-        return 'No usable reference comparison; the data cannot establish who was underrepresented.'
+        return ('Group fields are present, but no usable expected group shares are available '
+                'for comparison. Underrepresentation cannot be established.')
     candidates = [r for r in gaps.get('rows', [])
                   if r.get('field') in valid and not r.get('suppressed', True)
                   and r.get('flag') == 'underrepresented'
@@ -147,7 +148,8 @@ def build_brief(result):
         if not groups:
             question_note = 'No question candidates detected; concerns may still be present.'
         elif questions.get('response_status') != 'available':
-            question_note = 'No usable response supplied; these are not confirmed unanswered questions.'
+            question_note = ('No usable answer text was supplied for comparison with these questions; '
+                             'they are not confirmed unanswered.')
         elif not chosen:
             question_note = 'All groups have possible response matches; this does not confirm answers.'
         else:
@@ -155,15 +157,17 @@ def build_brief(result):
         return {'title': 'Community feedback brief',
                 'summary': f'{size:,} cleaned comments analyzed to support discussion. '
                            'Counts describe comments, not necessarily unique people.',
-                'theme_note': f'Top {len(selected)} of {len(themes)} themes by comment count; '
-                              f'{ungrouped:,} ungrouped, {size - analyzed:,} excluded. '
+                'theme_note': f'Top {len(selected)} of {len(themes)} themes shown '
+                              f'({sum(t["count"] for t in selected):,} comments); '
+                              f'{sum(counts) - sum(t["count"] for t in selected):,} comments in other themes. '
+                              f'{ungrouped:,} ungrouped, {size - analyzed:,} excluded from themes. '
                               'Shares use theme-analyzed comments.',
                 'themes': selected, 'sentiment': sentiment,
                 'timeline': _timeline_text(result.get('timeline')),
                 'representation': _representation_text(result.get('gaps', {})),
                 'questions': chosen, 'question_note': question_note,
                 'method': 'Method: embedding-based themes, English sentiment models and question rules. '
-                          'Up to three themes, one quote excerpt each, and three questions shown; "..." marks shortened text. '
+                          'Selected quote excerpts and up to three questions shown; "..." marks shortened text. '
                           'Automated findings need review. Redaction can miss identifiers.'}
     except BriefError:
         raise
@@ -216,7 +220,7 @@ def docx_bytes(brief):
         style.font.size = Pt(11 if name != 'Title' else 16)
         style.font.color.rgb = RGBColor(0, 0, 0)
         style.paragraph_format.line_spacing = 1.0
-        style.paragraph_format.space_after = Pt(3)
+        style.paragraph_format.space_after = Pt(2)
         style.paragraph_format.space_before = Pt(0 if name != 'Heading 1' else 5)
     document.styles['Heading 1'].font.bold = True
     for style, prefix, text in brief_paragraphs(brief):
