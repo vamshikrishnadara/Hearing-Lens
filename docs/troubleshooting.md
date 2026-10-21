@@ -18,6 +18,14 @@ Run commands from the repository root, in the Python environment used for the
 Do not disable the name check to obtain a preview. The app deliberately stops
 display generation when the check cannot run.
 
+## The hosted page says the app is sleeping
+
+A page saying **This app has gone to sleep due to inactivity** is a hosting sleep
+screen, not an analysis result. Select **Yes, get this app back up!** once and
+allow startup to finish. Initial startup may also prepare model files. If the
+page changes to an error, record that message and check the hosting logs.
+Waking the upload screen does not establish that a previous slow analysis is fixed.
+
 ## The file will not load
 
 | Message or symptom | What to check |
@@ -64,6 +72,45 @@ replacing a quote resets the affected theme's review confirmation.
 If sentiment or emotion charts are absent, check the scored/excluded
 counts. A single-period timeline means no date/hearing field was mapped;
 uncertain dates become categorical hearing labels rather than being discarded.
+
+## Analysis is slow or does not finish
+
+1. Note the exact status, such as **Grouping related comments into themes** or
+   **Analyzing sentiment**. Do not repeatedly click Analyze or open parallel runs.
+2. If the message says another analysis is active, the new request waits at most
+   30 seconds before returning. It does not cancel the earlier job. Closing a
+   browser tab alone does not establish that server computation stopped.
+3. The app operator can open **Manage app** and inspect console logs. Find
+   `hearing_lens.analysis` lines: `event=started`, `event=finished seconds=...`
+   and `event=failed`. A started stage without a finish locates the wait; it
+   does not by itself distinguish computation, throttling, memory pressure or
+   interruption. Use host resource/error messages to investigate the cause.
+4. If startup or dependency installation failed, resolve that error before a
+   new upload. A working upload page alone does not validate model inference.
+   The cloud deployment uses Python 3.12 and `deployment/cloud_app.py`.
+5. After resolving an error or restarting an unresponsive app, begin with
+   20-60 fictional comments. Verify results and downloads before trying larger
+   input. Restarting loses session inputs/results; retain the original file.
+
+First runs can load models and compile clustering routines. Local performance
+is not a hosted speed guarantee. A throttle message concerns the host's resource
+allocation; copying the same file into several sessions can add more work.
+Record only stage names, elapsed times, safe error details and fictional inputs.
+Never publish uploaded text, access tokens or session cookies in an issue.
+
+## Word or PDF download is missing
+
+Reports appear only after successful analysis. Scroll below the five panels,
+select **Prepare Word brief** or **Prepare PDF brief**, and then the matching
+**Download** button. The first click prepares the file; it does not save it to
+your computer. Changing inputs or selected quotes clears previous downloads.
+Prepare them again from the new results.
+
+If PDF reports unsupported characters or cannot fit one page, use the editable
+Word format and check its layout. PDF errors do not indicate that a previous
+analysis was wrong. A generic preparation error requires operator investigation;
+no partial file is offered. If the PDF controls are absent entirely, check that
+the deployed app has the revision containing them and that its rebuild succeeded.
 
 ## Record a reproducible issue
 

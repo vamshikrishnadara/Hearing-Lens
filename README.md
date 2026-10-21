@@ -13,6 +13,7 @@ It accepts CSV and Excel files and runs natural-language processing models local
 - Question detection, grouping, prioritization and optional response matching.
 - Five Streamlit panels: Themes, Sentiment and emotion, Timeline, Representation, and Questions.
 - Optional reference shares and response text, plus a redacted labeled CSV download.
+- One-page Word and PDF briefs with selected quotes and concise findings.
 - A command-line workflow that exports structured JSON and offline timeline charts.
 
 ## Pipeline
@@ -22,7 +23,8 @@ CSV / XLSX
     -> Column mapping and cleaning
     -> Redaction and local text analysis
     -> Themes | Sentiment & emotion | Timeline | Representation | Questions
-    -> Streamlit analysis views or local JSON / HTML exports
+    -> Streamlit views, labeled CSV, Word / PDF briefs
+    -> Optional command-line JSON / HTML exports
 ```
 
 Theme analysis uses MiniLM embeddings, BERTopic for larger inputs and K-means for
@@ -32,7 +34,7 @@ characteristics are never inferred from names or comment text.
 
 ## Requirements
 
-- Python 3.11 or later
+- Python 3.12 recommended (the cloud deployment requires Python 3.12)
 - Python packages in `requirements.txt`
 - Local spaCy, embedding, sentiment and emotion model files
 - Internet access for initial package and model installation
@@ -57,8 +59,11 @@ python -m streamlit run app/streamlit_app.py
 On Windows, activate the environment with `.venv\Scripts\activate`.
 In the app, upload a file, map the comment column, validate the mapping and choose
 **Analyze comments**. Explore the five result tabs and use **Download labeled CSV**
-for comment-level labels. Optional reference shares and response text can be supplied
-after validating the mapping. The command below exports combined analytical outputs.
+for comment-level labels. Below the panels, choose **Prepare Word brief** or
+**Prepare PDF brief**, then use the corresponding download button. Optional reference shares and response text can be supplied
+after validating the mapping. Choose **Methodology and limitations** in the
+sidebar for model details and measured validation. The command below exports
+combined analytical outputs.
 
 ## Hosting
 
@@ -115,6 +120,8 @@ python -m pytest -q
 
 - [Input schema](docs/schema.md)
 - [Methodology](docs/methods.md)
+- [Validation and measured limitations](docs/validation.md)
+- [Word and PDF briefs](docs/community_brief.md)
 - [App usage](docs/user_guide.md)
 - [Command-line reference](docs/full_pipeline.md)
 - [Troubleshooting](docs/troubleshooting.md)

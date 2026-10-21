@@ -29,6 +29,17 @@ st.warning(
     "miss names and other identifiers; review the text before sharing it."
 )
 
+with st.expander("How to use Hearing Lens"):
+    st.markdown(
+        "1. Start with a small fictional CSV or Excel file. Select the column containing comments. "
+        "Dates, IDs and subgroup fields are optional.\n"
+        "2. Select **Validate mapping** and check the usable count and redacted preview.\n"
+        "3. Select **Analyze comments** once. The status shows the current step; avoid starting repeated runs while it is busy.\n"
+        "4. Explore the five result tabs and check the quotes and any warnings.\n"
+        "5. Download labeled CSV, or select **Prepare Word brief** or **Prepare PDF brief** below the results, then download."
+    )
+    st.caption("Counts describe comments, not necessarily people. Model labels and possible response matches need checking. Changing inputs clears earlier results and downloads.")
+
 uploaded = st.file_uploader("Upload a CSV or XLSX file", type=["csv", "xlsx"])
 
 if uploaded is None:

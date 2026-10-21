@@ -3,7 +3,7 @@
 This guide covers the current development preview. Use fictional test data:
 automatic redaction can miss identifiers and remove ordinary words incorrectly.
 The app displays Themes, Sentiment and emotion, Timeline, Representation and
-Questions tabs, with an in-memory labeled CSV download.
+Questions tabs, with labeled CSV, Word and PDF downloads.
 
 ## 1. Start the app
 
@@ -23,7 +23,9 @@ headers in the first row and a comment in each following row. Prefer UTF-8 for
 CSV files. For an XLSX workbook, select the intended **Workbook sheet**; the
 first sheet is selected initially.
 
-For a first walkthrough, use the repository's fictional sample:
+For a first walkthrough, use a small fictional file with 20-60 comments.
+Confirm the workflow before attempting a large file. For a larger local check,
+the repository includes:
 [synthetic_theme_benchmark.csv](../data/samples/synthetic_theme_benchmark.csv).
 
 The current app loads at most the first 5,000 data rows, before removing empty
@@ -89,8 +91,9 @@ Shortages and analytical warnings remain visible. No missing quotes are invented
 The displayed source number refers to the cleaned table, not an original sheet
 row number or respondent ID. Quotes may be sentence excerpts.
 
-If analysis fails, no old or partial analysis is displayed. Check model setup
-and try again. Uploads and analytical results remain in session memory; this
+If analysis fails, no old or partial analysis is displayed. Note the last
+analysis stage and use the [troubleshooting guide](troubleshooting.md#analysis-is-slow-or-does-not-finish)
+before retrying. Uploads and analytical results remain in session memory; this
 interface does not write them to files or a shared result cache. The download
 button offers an explicit export to your own device.
 
@@ -233,3 +236,11 @@ before asking you to try later; it does not start a second job in parallel.
 That queue timeout does not limit how long the active analysis can run. If a
 stage remains busy, check the app logs for its timings before restarting or
 retrying. A closed browser tab alone does not confirm that server work stopped.
+
+## 14. Read methodology and validation
+
+In the sidebar, change **View** to **Methodology and limitations**. This page
+explains models, denominators, measured validation and interpretation limits.
+Choose **Analyze feedback** to return. Switching views does not start analysis
+or discard the current workspace. The **How to use Hearing Lens** expander on
+the upload page provides a short walkthrough.
