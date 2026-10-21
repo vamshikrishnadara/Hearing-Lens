@@ -61,3 +61,25 @@ def test_failure_logs_stage_timing_without_input_or_exception(caplog):
     assert not _ANALYSIS_LOCK.locked()
 
 
+
+
+def test_stage_timings_reach_console_without_root_logging_configuration():
+    import subprocess
+    import sys
+    from pathlib import Path
+    script = """
+import logging
+assert not logging.getLogger().handlers
+from app.runtime import AnalysisProgress
+progress = AnalysisProgress()
+progress('waiting')
+progress('initializing')
+progress.failed()
+"""
+    run = subprocess.run([sys.executable, '-c', script],
+                         cwd=Path(__file__).resolve().parents[1],
+                         capture_output=True, text=True, check=True)
+    assert run.stderr.count('stage=waiting event=started') == 1
+    assert 'stage=waiting event=finished seconds=' in run.stderr
+    assert 'stage=initializing event=failed seconds=' in run.stderr
+    assert not run.stdout

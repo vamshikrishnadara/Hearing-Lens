@@ -4,9 +4,12 @@ import logging
 from threading import Lock
 from time import monotonic
 from pipeline.progress import STAGES, notify
+from streamlit.logger import get_logger
 
 _ANALYSIS_LOCK = Lock()
-_LOG = logging.getLogger('hearing_lens.analysis')
+# Streamlit configures console handlers separately from Python's root logger.
+# Use its handler so INFO stage timings reach hosting logs without basicConfig.
+_LOG = get_logger('hearing_lens.analysis')
 _LOG.setLevel(logging.INFO)
 QUEUE_TIMEOUT_SECONDS = 30
 
