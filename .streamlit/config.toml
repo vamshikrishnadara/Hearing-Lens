@@ -8,3 +8,7 @@ enableCORS = true
 
 [browser]
 gatherUsageStats = false
+
+[client]
+# Both entrypoints use the same explicit view switch in app/streamlit_app.py.
+showSidebarNavigation = false

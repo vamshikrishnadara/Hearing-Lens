@@ -1,67 +1,133 @@
 # Methodology
 
-Hearing Lens summarizes supplied comment text using local natural-language
-processing models. It does not infer demographic traits or treat a comment
-sample as a representative measure of community opinion.
+Hearing Lens summarizes community feedback supplied as CSV or XLSX. It supports
+exploration and discussion, not automatic decisions about people. Analysis runs
+with local model weights; comments are not sent to an external inference API.
 
-## Input and cleaning
+## Input, cleaning and denominators
 
-CSV and XLSX columns are mapped to a common schema. Empty comments are removed;
-when respondent IDs are supplied, duplicate nonempty IDs keep the first usable
-comment. Dates and subgroup values remain supplied metadata. The application
-processes uploads in session memory; the separate command-line tool explicitly
-exports requested results.
+The app reads at most the first 5,000 rows and warns when additional rows are
+omitted. Uploads are limited to 10 MB. The comment column is required; dates,
+respondent IDs and subgroup fields are optional. Blank comments are removed.
+With an ID column, duplicate nonblank IDs keep the first usable comment; missing
+IDs are retained. Without reliable IDs, counts describe comments, not people.
 
-## Redaction and themes
+| Measure | Denominator / treatment |
+| --- | --- |
+| Theme share | All theme-analyzed comments, including outliers; excluded text is reported separately |
+| Sentiment and emotion percentages | Scored English comments only; excluded rows are not treated as neutral |
+| Mean sentiment | Mean of P(positive) minus P(negative) over scored rows; no scores gives a missing value |
+| Subgroup participation | Cleaned rows with a known value for that field, including suppressed and unmatched categories |
+| Question frequency | Distinct source comments supporting a question group, not repeated question sentences |
 
-Names, contact details and address patterns are redacted before displayed labels
-and quotes are derived. MiniLM embeddings represent comment meaning. The core
-uses K-means below 150 rows and BERTopic for larger inputs, with explicit outliers.
-KeyBERT/MMR supplies keyword labels. Theme shares include ungrouped comments in
-the denominator.
+Input order supplies internal row positions. Respondent IDs are used for optional
+cleaning but are excluded from the displayed comment preview and labeled export.
 
-Supporting quotes are original redacted comments or contiguous sentence excerpts
-with source positions. Length and duplicate filters limit each theme to suitable
-distinct quotes. Eligible alternatives can replace a selected quote. Missing
-quotes are never invented. A quote illustrates a theme; it does not imply that
-all members of the group share the same position.
+## Models and reproducibility
+
+| Component | Model / implementation | Role |
+| --- | --- | --- |
+| Name detection | spaCy `en_core_web_sm` plus rules | Redaction of detected names, contacts and address patterns |
+| Semantic embeddings | `sentence-transformers/all-MiniLM-L6-v2` | Themes, quote ranking and question similarity |
+| Sentiment | `cardiffnlp/twitter-roberta-base-sentiment-latest` | Negative, neutral and positive labels |
+| Emotion | `j-hartmann/emotion-english-distilroberta-base` | Anger, disgust, fear, joy, neutral, sadness and surprise |
+| Language | `langid`, normalized score threshold 0.8 | Eligibility for English affect scoring |
+
+Immutable analytical model revisions and required files are defined in
+[`scripts/model_setup.py`](../scripts/model_setup.py). Installation records model
+provenance locally. File-presence checks do not verify cryptographic integrity.
+Record the code revision, package versions, model revisions, input fingerprint
+and settings with an evaluation. Seeded clustering improves repeatability but
+does not guarantee identical behavior across library or hardware changes.
+
+## Redaction, themes and supporting quotes
+
+Redaction precedes theme labels, displayed quotes and question text. Sentiment
+and emotion use the mapped comment text locally. Automatic redaction can miss
+identifiers or replace ordinary words; inspect excerpts before sharing them.
+
+The core chooses K-means for fewer than 150 input rows and BERTopic at 150 or
+more. K-means selects among 4-12 candidate groups where the data support it.
+BERTopic uses normalized MiniLM vectors, UMAP with seed 42, HDBSCAN and c-TF-IDF.
+It fits distinct vectors once and restores all original rows and counts.
+Automatic density grouping preserves natural topics up to 15; larger counts
+are reduced. Manual density counts are reduction targets, not guarantees.
+
+A conservative refinement can move assigned comments in the original embedding
+space when similarity is at least 0.45 and the winning margin is at least 0.03.
+Original outliers stay outliers. Qualifying small themes may merge; changes are
+recorded. These development settings have not established general accuracy.
+
+KeyBERT supplies 1-3-word labels with MMR diversity 0.5. Candidate phrases come
+from within individual redacted comments. Theme ID 0 denotes ungrouped comments;
+ordinary themes start at 1. Counts, excluded rows and outliers remain visible.
+
+Quotes are original redacted text or contiguous sentence excerpts with source
+positions. Candidates must satisfy length and duplication filters. The dashboard
+offers up to three selected quotes and eligible alternatives from the same theme.
+If fewer are suitable, it shows the shortage rather than inventing text. A quote
+illustrates a theme; it does not establish that every comment shares its meaning.
 
 ## Sentiment, emotion and time
 
-English transformer models classify negative, neutral or positive sentiment and
-seven emotion categories. Aggregates use scored rows, with exclusions and
-truncation counts shown separately. Mean sentiment is the average of positive
-minus negative model probability. These scores are not calibrated certainty or
-an assessment of a person's intent.
+Affect models use CPU inference, batches of up to 32 and a 512-token limit.
+Truncated rows are flagged. Non-English or uncertain-language rows are excluded
+from affect scoring and counted explicitly. Theme analysis can still include
+these rows, although its model is also English-oriented. Exact duplicate inputs
+are reused within a call; user text and predictions are not globally cached.
 
-Dates are grouped by UTC calendar day when all nonempty values parse. Otherwise,
-the supplied column becomes categorical hearing labels. With no period field,
-the output contains a single period. Missing and unscored values are explicit.
+Scores are model outputs, not calibrated certainty or an assessment of intent.
+Mixed praise and criticism, implied dissatisfaction, sarcasm and short questions
+can disagree with human interpretation. Emotion ties remain explicit.
+
+When every nonblank period value parses as a date, the timeline uses UTC calendar
+days (month-first for ambiguous dates). Otherwise it uses supplied categorical
+labels in input order. Missing periods remain visible. Without a period column,
+there is one aggregate period. Charts do not bridge missing sentiment scores.
 
 ## Representation and questions
 
-Participation shares are compared with reference distributions supplied by the
-user. Small groups and complementary cells are suppressed to reduce disclosure.
-No baseline or personal characteristic is inferred from comment text.
+Representation compares supplied categories against an explicit reference.
+Gap = participation percentage minus reference percentage. Ratio = participation
+share / reference share. Ratios below 0.75 or above 1.25 are flagged; exact boundary
+values are within range. A zero reference has no defined ratio. Small groups and
+complementary cells are suppressed; hidden cells remain in the denominator.
+No demographic trait or baseline is inferred from names or comment text.
 
-Question rules identify candidate sentences, semantic grouping combines related
-questions, and ranking uses frequency and visible subgroup spread. Optional
-response matching identifies possible matches; similarity alone cannot prove
-that a question has been answered. Outputs therefore describe potentially
-unanswered priorities.
+Question rules detect candidate sentences with a question mark or initial
+interrogative/auxiliary. Semantic clustering combines related candidates; ranking
+uses frequency and visible subgroup spread. Optional response matching finds
+possible passages. Similarity does not establish an answer, and missing response
+text does not prove that a question went unanswered. Rhetorical questions and
+ordinary statements can trigger the rules.
 
-## Interpretation limits
+## Reports and data handling
 
-- Automatic redaction can miss identifiers or remove ordinary wording.
-- Sarcasm, mixed tone and domain-specific language can confuse classifiers.
-- Language detection may exclude short or mixed-language comments; long inputs
-  are subject to model context limits.
-- Theme membership depends on the input and settings; related wording does not
-  guarantee a shared concern or viewpoint.
-- Repeated fictional examples support software checks, not population claims or
-  independent real-world accuracy estimates.
-- Automated consistency checks do not establish semantic accuracy. Evaluate
-  predictions against independently supplied judgments before relying on them.
+Word and PDF briefs share the same bounded prose: at most three leading themes,
+one excerpt each, sentiment, first/last scored-date comparison, up to two visible
+representation gaps and three question priorities. Ellipses mark shortened text.
+The full dashboard and labeled CSV provide more detail. PDF generation checks a
+single page, uses embedded fonts and keeps body text at 11 points. Unsupported
+characters or overflow produce an error with Word as an alternative.
 
-See the [analytical core](analytical_core.md), [representation calculations](representation_gaps.md)
-and [question methods](question_mining.md) for implementation details.
+Uploads, results and generated downloads remain in the app session. Changed
+inputs or quotes invalidate prior downloads. Only model resources are shared.
+Analysis jobs serialize within a process; a new request waits at most 30 seconds
+for the current job. This is not a timeout for the active analysis. The separate
+command-line tool writes exports only to its explicitly selected destination.
+
+## Validation and use limits
+
+Read the [validation summary](validation.md) for measured results and scope.
+Fictional fixtures exercise software behavior; their repeated authored patterns
+do not establish accuracy on real community responses. Human agreement on a
+small development sample is also not a representative accuracy estimate.
+
+Check source excerpts, excluded rows, quote shortages, reference suitability and
+possible response matches before using findings. Review charts and reports as
+descriptive aids. The app does not establish representative participation,
+causation, policy support, individual intent or complete anonymization.
+
+For detailed algorithms, see the [analytical core](analytical_core.md),
+[representation calculations](representation_gaps.md), [question methods](question_mining.md)
+and [brief selection rules](community_brief.md).

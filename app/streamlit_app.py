@@ -13,6 +13,12 @@ from app.runtime import AnalysisBusyError
 
 
 st.set_page_config(page_title="Hearing Lens", layout="wide")
+view = st.sidebar.radio('View', ['Analyze feedback', 'Methodology and limitations'], key='hl_view')
+if view == 'Methodology and limitations':
+    from app.pages.methodology import render_methodology
+    render_methodology()
+    st.stop()
+
 st.title("Hearing Lens")
 st.write(
     "Upload a community-feedback or survey export, then identify the column "

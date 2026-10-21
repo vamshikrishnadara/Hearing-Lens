@@ -8,7 +8,7 @@ Install the repository requirements, the existing spaCy model, and local weights
 python -m pip install -r requirements.txt
 python -m scripts.setup_theme_model
 python -m scripts.setup_affect_models
-python -m unittest discover -s tests -v
+python -m pytest -q
 ```
 
 The affect setup downloads only model/tokenizer resources, records resolved
@@ -59,8 +59,8 @@ K-means/TF-IDF for prior comparison scripts; choose the core for the new routing
 The core returns up to three selected quotes plus up to three eligible alternatives.
 `pipeline.quote_review.swap_quote()` can replace a slot only with an alternative
 from that same theme. It returns a copy and cannot inject arbitrary unredacted
-text. The core uses contiguous complete-sentence excerpts when needed, with offsets into the redacted original and an explicit is_excerpt flag. Quotes remain 12–60 words, and contact-bearing sentences are avoided. Similar wording is deduplicated; semantic similarity alone is not proof that two quotes repeat the same statement. The legacy full-comment mode is retained. Excerpt embeddings are computed only for rows reached in nearest-first selection. The library supports
-review; the user-facing swap control remains dashboard work. Quote shortages
+text. The core uses contiguous complete-sentence excerpts when needed, with offsets into the redacted original and an explicit is_excerpt flag. Quotes remain 12–60 words, and contact-bearing sentences are avoided. Similar wording is deduplicated; semantic similarity alone is not proof that two quotes repeat the same statement. The legacy full-comment mode is retained. Excerpt embeddings are computed only for rows reached in nearest-first selection. The dashboard supports reviewing selected excerpts and replacing them with
+eligible alternatives from the same theme. Quote shortages
 are reported rather than padded with duplicates or invented wording. If the
 highest-ranked excerpt repeats an already selected quote, selection tries the
 remaining eligible excerpts from that source in similarity order before moving

@@ -1,6 +1,16 @@
 from pathlib import Path
 from unittest.mock import patch
 from streamlit.testing.v1 import AppTest
+import pytest
+import streamlit as st
+
+
+@pytest.fixture(autouse=True)
+def clear_startup_cache():
+    # Success from a previous app test must not bypass a simulated setup failure.
+    st.cache_resource.clear()
+    yield
+    st.cache_resource.clear()
 
 
 def test_cloud_setup_failure_hides_upload_and_exception_details():
