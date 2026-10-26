@@ -59,8 +59,13 @@ def run_analysis(frame, *, references=None, response=None, progress=None):
         report('initializing')
         import torch
         from pipeline.full import analyze_all
+        from threadpoolctl import threadpool_limits
         torch.set_num_threads(analysis_threads())
-        return analyze_all(frame, references=references, agency_response=response, progress=report)
+        # PyTorch's limit does not cover the separate OpenMP/BLAS pools used by
+        # NumPy and scikit-learn. Discover these after importing the pipeline.
+        # Changes are process-wide: hold the analysis lock until restoration.
+        with threadpool_limits(limits=analysis_threads()):
+            return analyze_all(frame, references=references, agency_response=response, progress=report)
     except BaseException:
         report.failed()
         raise

@@ -83,3 +83,33 @@ progress.failed()
     assert 'stage=waiting event=finished seconds=' in run.stderr
     assert 'stage=initializing event=failed seconds=' in run.stderr
     assert not run.stdout
+
+@pytest.mark.parametrize('fails', [False, True])
+def test_numerical_pools_are_bounded_during_analysis_and_restored(fails, monkeypatch):
+    import numpy as np
+    from sklearn.cluster import KMeans
+    from threadpoolctl import threadpool_info, threadpool_limits
+    from app.runtime import _ANALYSIS_LOCK
+    monkeypatch.setenv('HEARING_LENS_THREADS', '1')
+    # Load the numerical libraries before the runtime discovers their pools.
+    KMeans(n_clusters=2, n_init=1, random_state=42).fit(np.array([[0.], [1.], [9.], [10.]]))
+    def analyze(frame, **kwargs):
+        assert _ANALYSIS_LOCK.locked()
+        pools = threadpool_info()
+        assert pools, 'Expected an OpenMP or BLAS library in the supported test runtime'
+        assert all(pool['num_threads'] == 1 for pool in pools)
+        if fails:
+            raise RuntimeError('failure inside bounded analysis')
+        kwargs['progress']('complete')
+        return {'input_rows': 4}
+    with threadpool_limits(limits=3):
+        before = {p['filepath']: p['num_threads'] for p in threadpool_info()}
+        with patch('pipeline.full.analyze_all', side_effect=analyze), patch('torch.set_num_threads'):
+            if fails:
+                with pytest.raises(RuntimeError):
+                    run_analysis('fixture')
+            else:
+                assert run_analysis('fixture') == {'input_rows': 4}
+        after = {p['filepath']: p['num_threads'] for p in threadpool_info()}
+        assert after == before
+        assert not _ANALYSIS_LOCK.locked()

@@ -47,8 +47,11 @@ without starting inference. This does not cancel or time-limit the active job.
 Closing a browser tab does not reliably establish that active work stopped. This is suitable for a
 small demonstration, not high-traffic service capacity.
 
-The cloud entrypoint defaults to two PyTorch CPU threads. `HEARING_LENS_THREADS` can
-select 1–4 threads; the local entrypoint defaults to four. Uploads are limited to
+The cloud entrypoint defaults to two CPU threads. `HEARING_LENS_THREADS` can
+select 1–4 threads; the local entrypoint defaults to four. During analysis this
+limit covers PyTorch and the loaded OpenMP/BLAS pools used by numerical libraries.
+Pool limits are restored before releasing the shared analysis lock. This bounds
+parallel numerical work; it is not a hosted speed or memory guarantee. Uploads are limited to
 10 MB at the Streamlit boundary. Existing pipeline row/text limits still apply.
 CORS and XSRF protections remain enabled; usage telemetry is disabled. Source
 watching is disabled to avoid scanning lazy model-library modules and importing
