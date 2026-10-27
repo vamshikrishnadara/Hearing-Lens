@@ -15,6 +15,28 @@ measure the actual deployed app before relying on it for a session.
    analytical models; this may take several minutes.
 5. Open the generated app URL and verify the workflow with fictional feedback.
 
+The free deployment is a small-sample demo: at most **60 cleaned comments** and
+**24,000 comment characters** per file. The row and text checks run after mapping
+and before redaction/inference; a second check protects the analysis runtime.
+An oversized upload gets a clear message before a job is started. Comments are
+never sampled or silently discarded to meet these limits. These conservative
+limits are not a latency guarantee: free hosting can still throttle small jobs.
+
+For larger files, install the local requirements/models and run:
+
+```sh
+python -m scripts.start_local
+```
+
+This starts the full dashboard at `http://127.0.0.1:8501`, bound to the local
+computer only. Keep the terminal open and press Ctrl+C to stop. Use `--port 8502`
+if 8501 is occupied. The launcher explicitly selects local mode, retains the
+pipeline's 5,000-row/text limits, and runs the same models, grouping and exports.
+No paid service or upload to the public site is needed. Do not split a full file
+just to bypass the demo cap: themes and representation comparisons would change.
+The free demo does not support 2,000-comment analyses. Use the local dashboard
+for that workload; local timings do not establish hosted capacity.
+
 The normal local entrypoint remains `app/streamlit_app.py`; it expects models to
 be installed already. To exercise the cloud entrypoint locally after installing
 the root requirements and spaCy model, run:
@@ -52,7 +74,9 @@ select 1–4 threads; the local entrypoint defaults to four. During analysis thi
 limit covers PyTorch and the loaded OpenMP/BLAS pools used by numerical libraries.
 Pool limits are restored before releasing the shared analysis lock. This bounds
 parallel numerical work; it is not a hosted speed or memory guarantee. Uploads are limited to
-10 MB at the Streamlit boundary. Existing pipeline row/text limits still apply.
+10 MB at the Streamlit boundary. The cloud entrypoint sets
+`HEARING_LENS_DEPLOYMENT=community_cloud` to activate the demo admission limits;
+the local launcher selects `local`. Existing pipeline row/text limits still apply.
 CORS and XSRF protections remain enabled; usage telemetry is disabled. Source
 watching is disabled to avoid scanning lazy model-library modules and importing
 unrelated optional dependencies. Restart the local server after code changes;
@@ -82,7 +106,7 @@ Generate a reproducible 2,000-comment fictional CSV and exercise the real models
 ```sh
 python -m pip install -r requirements-dev.txt
 python -m scripts.benchmark_dashboard \
-  --entrypoint deployment/cloud_app.py \
+  --entrypoint app/streamlit_app.py \
   --output ../local-analysis/dashboard-benchmark.json \
   --fixture-output ../local-analysis/fictional-2000.csv
 ```
@@ -94,11 +118,14 @@ completion and exported row count. Model/package installation and first page loa
 are outside the timed validation-to-render interval. Run in a fresh process for
 cold model loading. Machine load, architecture and host throttling affect results.
 
-AppTest is not browser or hosted acceptance. On the public URL, separately check:
+AppTest is not browser or hosted acceptance. Use the complete 2,000-row fixture
+locally. The cloud entrypoint rejects it by design. For cloud startup testing,
+pass `--entrypoint deployment/cloud_app.py --rows 60`; use at most 24,000 comment
+characters. On the public URL, separately check:
 
-- Upload the generated CSV, map comments, dates, IDs and role, then validate.
-- Time analysis through display of all five panels; target under three minutes
-  for 2,000 comments after startup. Also record validation time separately.
+- Upload a permitted small fictional CSV, map comments, dates, IDs and role, then validate.
+- Time analysis through display of all five panels and record validation time separately.
+- Upload an oversized fixture and confirm it is rejected before analysis starts.
 - Download the labeled CSV and check row count and exclusion of identifiers.
 - Try missing optional date/subgroup/reference/response inputs; inspect the
   explanatory states, then change uploads and confirm old results disappear.

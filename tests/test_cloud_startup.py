@@ -6,7 +6,8 @@ import streamlit as st
 
 
 @pytest.fixture(autouse=True)
-def clear_startup_cache():
+def clear_startup_cache(monkeypatch):
+    monkeypatch.setenv("HEARING_LENS_DEPLOYMENT", "local")
     # Success from a previous app test must not bypass a simulated setup failure.
     st.cache_resource.clear()
     yield

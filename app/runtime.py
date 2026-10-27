@@ -4,6 +4,7 @@ import logging
 from threading import Lock
 from time import monotonic
 from pipeline.progress import STAGES, notify
+from app.limits import check_analysis_size
 from streamlit.logger import get_logger
 
 _ANALYSIS_LOCK = Lock()
@@ -48,6 +49,7 @@ def analysis_threads():
 
 
 def run_analysis(frame, *, references=None, response=None, progress=None):
+    check_analysis_size(frame)
     report = AnalysisProgress(progress)
     report('waiting')
     # Concurrent sessions must not load duplicate model instances or multiply

@@ -5,6 +5,7 @@ import runpy
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+os.environ['HEARING_LENS_DEPLOYMENT'] = 'community_cloud'
 os.environ.setdefault('HEARING_LENS_THREADS', '2')
 os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
 

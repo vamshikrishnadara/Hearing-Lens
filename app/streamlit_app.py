@@ -10,6 +10,7 @@ from pipeline.ingest import IngestError, list_excel_sheets, load_table, map_colu
 from pipeline.redact import RedactionError, build_safe_display_frame
 from pipeline.progress import STAGES
 from app.runtime import AnalysisBusyError
+from app.limits import AnalysisLimitError, check_analysis_size, is_cloud_demo
 
 
 st.set_page_config(page_title="Hearing Lens", layout="wide")
@@ -28,6 +29,11 @@ st.warning(
     "Development preview: use fictional test data. Automatic redaction can "
     "miss names and other identifiers; review the text before sharing it."
 )
+
+if is_cloud_demo():
+    st.info("Free demo: up to 60 cleaned comments and 24,000 comment characters. "
+            "For larger files, use the local dashboard with the same analysis and downloads. "
+            "Small runs can still slow down when the free host is busy.")
 
 with st.expander("How to use Hearing Lens"):
     st.markdown(
@@ -106,9 +112,10 @@ else:
         workspace = workspace_for(uploaded, selected_sheet, mapping)
         try:
             mapped = map_columns(loaded.frame, **mapping)
+            check_analysis_size(mapped.frame)
             with st.spinner("Checking comments for names and contact details..."):
                 safe_preview = build_safe_display_frame(mapped.frame)
-        except (IngestError, RedactionError) as exc:
+        except (IngestError, RedactionError, AnalysisLimitError) as exc:
             st.error(str(exc))
         else:
             workspace['mapped'] = mapped
@@ -144,6 +151,9 @@ else:
                 try:
                     workspace['result'] = analyze_dashboard(mapped.frame, references=references,
                                                            response=response, progress=show_stage)
+                except AnalysisLimitError as exc:
+                    status.update(label='File exceeds the free demo limit', state='error')
+                    st.info(str(exc))
                 except AnalysisBusyError as exc:
                     status.update(label='Analysis not started: another run is still active', state='error')
                     st.info(str(exc))

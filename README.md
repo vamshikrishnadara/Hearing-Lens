@@ -53,7 +53,7 @@ python -m pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 python -m scripts.setup_theme_model
 python -m scripts.setup_affect_models
-python -m streamlit run app/streamlit_app.py
+python -m scripts.start_local
 ```
 
 On Windows, activate the environment with `.venv\Scripts\activate`.
@@ -68,7 +68,12 @@ combined analytical outputs.
 ## Hosting
 
 A Streamlit Community Cloud entrypoint prepares pinned models at startup and uses
-CPU-only dependencies. See [deployment instructions](docs/deployment.md) for setup,
+CPU-only dependencies. The free demo accepts at most 60 cleaned comments and
+24,000 comment characters. For larger files, run `python -m scripts.start_local`
+on your computer; the same dashboard processes the complete file within the
+pipeline limits (up to 5,000 rows), without sampling. This binds only to your
+computer at `127.0.0.1`, not your network. Keep the terminal open while using it.
+If port 8501 is occupied, choose another with `--port 8502`. See [deployment instructions](docs/deployment.md) for setup,
 resource limits and browser checks. Use fictional data for the development preview.
 
 ## Run the complete pipeline
