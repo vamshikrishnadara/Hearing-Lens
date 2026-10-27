@@ -51,7 +51,12 @@ def test_cloud_rejects_before_redaction_and_hides_analysis_control():
         app = AppTest.from_file(Path(__file__).resolve().parents[1] / 'app/streamlit_app.py').run()
         next(b for b in app.button if b.label == 'Validate mapping').click().run()
     assert not app.exception
-    assert 'No analysis was started' in app.error[0].value
+    assert not app.error
+    assert any('No analysis was started' in w.value for w in app.warning)
+    assert any('61 cleaned comments' in w.value for w in app.warning)
+    assert any('Analyze this file on your computer' == h.value for h in app.subheader)
+    assert app.code[0].value == 'python -m scripts.start_local'
+    assert any('local installation instructions' in m.value for m in app.markdown)
     assert not any(b.label == 'Analyze comments' for b in app.button)
     redact.assert_not_called()
 
@@ -65,3 +70,4 @@ def test_cloud_limit_applies_after_empty_row_cleaning():
     assert not app.exception and not app.error
     assert any(b.label == 'Analyze comments' for b in app.button)
     assert '60 usable' in app.success[0].value
+    assert not any(h.value == 'Analyze this file on your computer' for h in app.subheader)

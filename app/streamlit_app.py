@@ -11,6 +11,7 @@ from pipeline.redact import RedactionError, build_safe_display_frame
 from pipeline.progress import STAGES
 from app.runtime import AnalysisBusyError
 from app.limits import AnalysisLimitError, check_analysis_size, is_cloud_demo
+from app.local_guidance import render_local_guidance
 
 
 st.set_page_config(page_title="Hearing Lens", layout="wide")
@@ -115,7 +116,10 @@ else:
             check_analysis_size(mapped.frame)
             with st.spinner("Checking comments for names and contact details..."):
                 safe_preview = build_safe_display_frame(mapped.frame)
-        except (IngestError, RedactionError, AnalysisLimitError) as exc:
+        except AnalysisLimitError as exc:
+            st.warning(str(exc))
+            render_local_guidance()
+        except (IngestError, RedactionError) as exc:
             st.error(str(exc))
         else:
             workspace['mapped'] = mapped
@@ -153,7 +157,8 @@ else:
                                                            response=response, progress=show_stage)
                 except AnalysisLimitError as exc:
                     status.update(label='File exceeds the free demo limit', state='error')
-                    st.info(str(exc))
+                    st.warning(str(exc))
+                    render_local_guidance()
                 except AnalysisBusyError as exc:
                     status.update(label='Analysis not started: another run is still active', state='error')
                     st.info(str(exc))
