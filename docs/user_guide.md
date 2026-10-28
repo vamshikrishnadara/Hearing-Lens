@@ -11,10 +11,15 @@ Complete the [README setup](../README.md#install-and-run), including the English
 name-detection model. In the same Python environment, from the repository root:
 
 ```sh
-python -m streamlit run app/streamlit_app.py
+python -m scripts.start_local
 ```
 
 Open the local address printed in the terminal. Keep that terminal running.
+The launcher binds to this computer only. Use `--port 8502` if port 8501 is busy.
+The free online demo permits at most 60 cleaned comments and 24,000 comment
+characters. Oversized files are blocked before analysis and show local setup
+instructions. For complete larger files, use the local dashboard; independently
+analyzed small parts are not equivalent to a whole-file analysis.
 
 ## 2. Choose a file
 

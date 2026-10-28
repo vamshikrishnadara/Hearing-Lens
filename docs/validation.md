@@ -73,10 +73,10 @@ Use Python 3.12, install requirements and models as described in the
 [README](../README.md#install-and-run), then run:
 
 ```sh
-python -m pytest -q
 python -m pip install -r requirements-dev.txt
+python -m pytest -q
 python -m scripts.benchmark_dashboard \
-  --entrypoint deployment/cloud_app.py --rows 300 --repeats 2 \
+  --entrypoint app/streamlit_app.py --rows 300 --repeats 2 \
   --output ../local-analysis/app-check.json \
   --fixture-output ../local-analysis/fictional-check.csv
 ```
@@ -86,6 +86,9 @@ above, so it is a new measurement rather than a reproduction of those exact
 timings. It exercises all five panels and labeled-CSV row accounting. Model
 preparation uses pinned files and requires network access only if missing.
 AppTest executes the app in process; it is not a browser or Linux cloud build.
+To check the cloud entrypoint locally, use `--entrypoint deployment/cloud_app.py
+--rows 60`. Its admission cap is 60 cleaned comments and 24,000 comment characters;
+the larger workload above must use the local entrypoint.
 
 Record the code, package/model versions, fixture fingerprint, timing boundaries
 and errors with any comparison. Use the [deployment checks](deployment.md#performance-and-workflow-checks)

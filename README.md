@@ -44,21 +44,35 @@ KeyBERT, scikit-learn, PyTorch and Plotly.
 
 ## Install and run
 
-From the repository root:
+1. Download or clone the repository and open a terminal in its root folder.
+2. Create and activate a Python environment:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
+   On Windows, activate with `.venv\Scripts\activate` instead.
+
+3. Install the packages and local models (internet needed for this step):
+
+```sh
 python -m pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 python -m scripts.setup_theme_model
 python -m scripts.setup_affect_models
+```
+
+4. Start the local dashboard and keep the terminal open:
+
+```sh
 python -m scripts.start_local
 ```
 
-On Windows, activate the environment with `.venv\Scripts\activate`.
-In the app, upload a file, map the comment column, validate the mapping and choose
-**Analyze comments**. Explore the five result tabs and use **Download labeled CSV**
+5. Open `http://127.0.0.1:8501`, upload a fictional CSV/XLSX, map the comment
+   column, choose **Validate mapping**, then **Analyze comments**.
+
+Explore the five result tabs and use **Download labeled CSV**
 for comment-level labels. Below the panels, choose **Prepare Word brief** or
 **Prepare PDF brief**, then use the corresponding download button. Optional reference shares and response text can be supplied
 after validating the mapping. Choose **Methodology and limitations** in the
@@ -128,5 +142,8 @@ python -m pytest -q
 - [Validation and measured limitations](docs/validation.md)
 - [Word and PDF briefs](docs/community_brief.md)
 - [App usage](docs/user_guide.md)
+- [Accessibility and readable results](docs/accessibility.md)
+- [Facilitator runbook](docs/facilitator_runbook.md)
+- [Four-minute demonstration guide](docs/demo_walkthrough.md)
 - [Command-line reference](docs/full_pipeline.md)
 - [Troubleshooting](docs/troubleshooting.md)
