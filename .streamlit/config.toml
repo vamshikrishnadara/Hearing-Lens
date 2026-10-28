@@ -12,3 +12,11 @@ gatherUsageStats = false
 [client]
 # Both entrypoints use the same explicit view switch in app/streamlit_app.py.
 showSidebarNavigation = false
+
+[theme]
+# White button labels on the default coral miss the normal-text contrast target.
+base = "light"
+primaryColor = "#15607a"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f4f7"
+textColor = "#182b3a"
