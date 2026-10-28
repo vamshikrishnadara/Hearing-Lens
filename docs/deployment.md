@@ -131,8 +131,8 @@ characters. On the public URL, separately check:
   explanatory states, then change uploads and confirm old results disappear.
 - Open an independent browser session and confirm it cannot see the first
   session's input or results. Check resource limits with two active sessions.
-- Ask someone unfamiliar with the interface to complete upload-to-results and
-  download without coaching; record actual time and fix confusing steps.
+- Check the complete upload-to-results and download flow against the user
+  guide; record actual time and fix unclear instructions.
 
 If the host runs out of memory or exceeds the performance target, the hosted
 check has not passed. A local timing cannot establish free-host feasibility.

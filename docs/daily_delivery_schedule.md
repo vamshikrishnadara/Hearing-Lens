@@ -159,10 +159,10 @@ User testing and hosting permissions must be arranged before the relevant day.
 | Mon Oct 19 | Build the one-page community DOCX brief from actual analytical outputs. |
 | Tue Oct 20 | PDF generation and downloads; check rendering, 11-point text, one-page layout, and generation time. |
 | Wed Oct 21 | Complete the methodology, validation table, limitations, help text, and local setup instructions. |
-| Thu Oct 22 | Test interpretation with two non-technical readers; fix clarity problems and confirm pilot data arrangements. |
+| Thu Oct 22 | Check report wording, theme totals and question descriptions. |
 | Fri Oct 23 | Demonstrate upload-to-brief flow for Gate 3, close blockers, finalize pilot plan and weekly update. |
 
-Exit: brief in both formats in under 15 seconds, reader understanding checks,
+Exit: brief in both formats in under 15 seconds,
 models/validation/limitations published, two named pilot partners and dates,
 and pilot readiness. Personal work-evidence PDFs are not the community brief.
 
