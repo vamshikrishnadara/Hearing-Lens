@@ -23,7 +23,7 @@ def render_brief_download(workspace):
         st.download_button('Download Word brief', data=workspace['brief_docx'],
                            file_name='hearing_lens_community_brief.docx',
                            mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                           key='hl_word_download')
+                           key='hl_word_download', on_click='ignore')
     if st.button('Prepare PDF brief', key='hl_prepare_pdf'):
         workspace.pop('brief_pdf', None)
         try:
@@ -36,4 +36,4 @@ def render_brief_download(workspace):
     if workspace.get('brief_pdf'):
         st.download_button('Download PDF brief', data=workspace['brief_pdf'],
                            file_name='hearing_lens_community_brief.pdf', mime='application/pdf',
-                           key='hl_pdf_download')
+                           key='hl_pdf_download', on_click='ignore')

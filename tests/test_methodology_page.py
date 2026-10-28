@@ -11,7 +11,10 @@ from tests.test_brief import result
 
 
 @pytest.mark.parametrize('entrypoint', [APP, APP.parents[1] / 'deployment/cloud_app.py'])
-def test_methodology_view_preserves_results_and_does_not_run_analysis(entrypoint):
+def test_methodology_view_preserves_results_and_does_not_run_analysis(entrypoint, monkeypatch):
+    # The cloud entrypoint changes process-wide deployment mode. Restore it
+    # after this test so later local-runtime checks do not inherit the demo cap.
+    monkeypatch.setenv('HEARING_LENS_DEPLOYMENT', 'local')
     with patch('scripts.model_setup.install_all'), patch('streamlit.file_uploader', return_value=upload()), \
             patch('app.dashboard.analyze_dashboard', return_value=result()) as analyze:
         app = ready(AppTest.from_file(str(entrypoint), default_timeout=30))

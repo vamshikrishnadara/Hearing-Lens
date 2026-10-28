@@ -44,3 +44,17 @@ def test_pdf_failure_discards_old_pdf_but_word_remains_available():
         assert 'brief_docx' in app.session_state[STATE_KEY]
         assert len(app.get('download_button'))==2
         assert not app.exception and all('SECRET' not in e.value for e in app.error)
+
+
+def test_prepared_downloads_do_not_request_a_dashboard_rerun():
+    with patch('streamlit.file_uploader', return_value=upload()), patch('app.dashboard.analyze_dashboard', return_value=result()) as analyze:
+        app = ready(AppTest.from_file(str(APP), default_timeout=30))
+        widget(app, 'button', 'Prepare Word brief').click().run()
+        widget(app, 'button', 'Prepare PDF brief').click().run()
+        buttons = app.get('download_button')
+        assert len(buttons) == 3
+        assert all(b.proto.ignore_rerun for b in buttons)
+        assert analyze.call_count == 1
+        # A separate input change must still discard every old download.
+        widget(app, 'text_area', 'Response text (optional)').input('Different response.').run()
+        assert not app.get('download_button')

@@ -54,5 +54,5 @@ def render_download(workspace):
         st.error('Labeled results could not be prepared. Validate the input and run analysis again; no partial file is offered.')
         return
     st.download_button('Download labeled CSV', data=data, file_name='hearing_lens_labeled_comments.csv',
-                       mime='text/csv', key='hl_labeled_download')
+                       mime='text/csv', key='hl_labeled_download', on_click='ignore')
     st.caption('Spreadsheet formula-like text is prefixed with an apostrophe. Downloads are generated in memory for this session.')
