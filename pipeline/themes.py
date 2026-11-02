@@ -305,9 +305,12 @@ def analyze_themes(
         nearest = sorted(members, key=lambda i: (-float(vectors[i] @ center), positions[i]))
         selected = []
         selected_indices = []
+        without_excerpt = 0
+        similar_sources = 0
         for index in nearest:
             spans = spans_by_row[index]
             if not spans:
+                without_excerpt += 1
                 continue
             if len(spans) == 1:
                 ranked_spans = spans
@@ -323,6 +326,7 @@ def analyze_themes(
                     nearly_identical(_analysis_text(quotes[index][a:b]), _analysis_text(q['text']))
                     for q in selected)), None)
             if candidate is None:
+                similar_sources += 1
                 continue
             start, end = candidate
             quote = quotes[index][start:end]
@@ -333,6 +337,7 @@ def analyze_themes(
                 or float(vectors[index] @ vectors[old]) >= 0.97
                 for old in selected_indices
             ):
+                similar_sources += 1
                 continue
             selected.append({"row_position": positions[index], "text": quote,
                 **({'source_start': start, 'source_end': end,
@@ -347,6 +352,14 @@ def analyze_themes(
             "theme_id": theme_id, "label": " / ".join(words[:3]) or f"Theme {theme_id}",
             "keywords": words, "count": len(members), "share": len(members) / len(texts),
             "quotes": selected[:3],
+            # A shortfall means the entire theme was scanned, not just the
+            # candidate pool. These counts explain selection without dropping rows.
+            **({"quote_shortfall": {
+                "requested": 3, "selected": len(selected),
+                "source_comments": len(members),
+                "without_eligible_excerpt": without_excerpt,
+                "similar_to_selected": similar_sources,
+            }} if len(selected) < 3 else {}),
             **({"quote_alternatives": selected[3:]} if quote_pool_size > 3 else {}),
         })
         assignments.extend({"row_position": positions[i], "theme_id": theme_id} for i in members)

@@ -93,6 +93,10 @@ ungrouped comments. Each theme includes its label, count, percentage and up to
 three supporting quotes. Percentages use the theme-analysis comment total,
 including ungrouped comments; excluded comments are reported separately.
 Shortages and analytical warnings remain visible. No missing quotes are invented.
+When fewer than three quotes are selected, the panel explains how many comments
+had no suitable excerpt and how many repeated or closely resembled a selected
+quote. Every comment still contributes to its theme count. A large theme can
+have only one or two distinct quotes when many submissions repeat the same text.
 The displayed source number refers to the cleaned table, not an original sheet
 row number or respondent ID. Quotes may be sentence excerpts.
 

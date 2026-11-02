@@ -65,6 +65,24 @@ def test_analysis_waits_for_button_and_preserves_results_on_review_rerun(model):
         assert not app.exception
 
 
+def test_quote_shortfall_explains_counts_without_dropping_theme_comments(model):
+    original = result()
+    original['themes']['analyzed_comments'] = 6
+    original['themes']['themes'][0]['count'] = 6
+    original['themes']['themes'][0]['quote_shortfall'] = {
+        'requested': 3, 'selected': 1, 'source_comments': 6,
+        'similar_to_selected': 3, 'without_eligible_excerpt': 2}
+    model.side_effect = lambda frame, **kwargs: deepcopy(original)
+    with patch('streamlit.file_uploader', return_value=upload()):
+        app = ready(AppTest.from_file(str(APP), default_timeout=30))
+        captions = [c.value for c in app.caption]
+        assert any('Comments checked in this theme: 6' in c and '1 selected for quotes' in c
+                   and '3 repeated or too similar' in c and '2 without a suitable' in c for c in captions)
+        assert any('All comments remain in the theme total' in c for c in captions)
+        assert app.metric[0].value == '6'
+        assert model.call_count == 1
+
+
 def test_swap_preserves_original_model_result_and_resets_confirmation(model):
     original = result()
     model.side_effect = lambda frame, **kwargs: deepcopy(original)

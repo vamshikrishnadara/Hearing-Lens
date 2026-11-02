@@ -7,6 +7,20 @@ from pipeline.themes import analyze_themes, ThemeError
 from pipeline.redact import redact_text
 
 class QuoteSpanTests(unittest.TestCase):
+    def test_shortfall_accounts_for_repeated_and_ineligible_sources_without_losing_rows(self):
+        first = 'Our library needs more books and longer opening hours for students after school.'
+        second = 'Children currently share outdated textbooks because our school cannot afford enough copies for everyone.'
+        texts = [first, first, second, 'More books.', ' '.join(['word'] * 61)]
+        with patch('pipeline.themes._theme_vectors', return_value=np.tile([1., 0.], (5, 1))):
+            result = analyze_themes(pd.DataFrame({'comment_text': texts}), theme_count=1, quote_mode='sentences')
+        theme = result['themes'][0]
+        self.assertEqual(theme['quote_shortfall'], {
+            'requested': 3, 'selected': 2, 'source_comments': 5,
+            'without_eligible_excerpt': 2, 'similar_to_selected': 1})
+        self.assertEqual(theme['count'], 5)
+        self.assertEqual(len(result['assignments']), 5)
+        self.assertEqual([q['text'] for q in theme['quotes']], [first, second])
+
     def test_duplicate_best_span_falls_back_to_distinct_source_excerpt(self):
         first='The library needs additional books and longer opening hours so children can study after school with help from trained staff.'
         second='Families have asked for a quiet reading room where students can concentrate on their homework without noise from nearby group activities.'
@@ -58,6 +72,7 @@ class QuoteSpanTests(unittest.TestCase):
         with patch('pipeline.themes._theme_vectors',return_value=np.tile([1.,0.],(3,1))):
             result=analyze_themes(pd.DataFrame({'comment_text':texts}),theme_count=1,quote_mode='sentences')
         self.assertEqual(len(result['themes'][0]['quotes']),3)
+        self.assertNotIn('quote_shortfall', result['themes'][0])
         self.assertTrue(all(valid_source_quote(q,texts[q['row_position']]) for q in result['themes'][0]['quotes']))
 
     def test_repeated_text_is_still_deduplicated(self):

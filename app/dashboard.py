@@ -65,6 +65,20 @@ def render_themes(workspace):
             st.caption(f'{theme["count"]:,} comments | {theme["share"]:.1%} of analyzed comments')
             if len(theme['quotes']) < 3:
                 st.info('Fewer than three suitable distinct quotes are available for this theme.')
+                coverage = theme.get('quote_shortfall')
+                if coverage:
+                    reasons = []
+                    if coverage['similar_to_selected']:
+                        reasons.append(f"{coverage['similar_to_selected']:,} repeated or too similar to selected quotes")
+                    if coverage['without_eligible_excerpt']:
+                        reasons.append(f"{coverage['without_eligible_excerpt']:,} without a suitable 12–60-word excerpt")
+                    detail = '; '.join(reasons)
+                    st.caption(
+                        f"Comments checked in this theme: {coverage['source_comments']:,}; "
+                        f"{coverage['selected']} selected for quotes"
+                        + (f"; {detail}. " if detail else '. ')
+                        + 'All comments remain in the theme total. Quotes are not padded to reach three.'
+                    )
             alternatives = theme.get('quote_alternatives', [])
             for slot, quote in enumerate(theme['quotes']):
                 st.markdown(f'**Supporting quote {slot + 1}**')
