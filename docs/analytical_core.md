@@ -100,6 +100,14 @@ null values, not fabricated zero/neutral results. Tied dominant emotions are
 reported as ties. These scores are not calibrated probabilities or evidence of
 a respondent's intent, support for a proposal, or personal characteristics.
 
+The dashboard and labeled CSV expose the existing three sentiment scores and
+the difference between the largest two (`sentiment_score_gap`, 0–1 in CSV).
+This is an inspection aid, not an accuracy estimate, abstention threshold or
+new classifier. Small gaps indicate close model scores; large gaps do not
+establish correctness. No extra inference is performed and no labels or
+aggregate denominators are changed. Older results lacking detailed scores
+retain their labels and show unavailable details rather than fabricated zeros.
+
 Pinned local revisions measured on October 1:
 
 - Cardiff: `3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7`.

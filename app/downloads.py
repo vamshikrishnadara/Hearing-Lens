@@ -1,6 +1,7 @@
 """In-memory labeled exports with redacted text and no identifying metadata."""
 import pandas as pd
 import streamlit as st
+from pipeline.affect import SENTIMENTS, sentiment_score_details
 
 
 def spreadsheet_safe(value):
@@ -28,6 +29,7 @@ def labeled_csv(result, redacted_frame):
     rows = []
     for i, text in enumerate(redacted_frame.comment_text):
         a = affect[i]
+        details = sentiment_score_details(a)
         theme_id = assignments.get(i)
         rows.append({'cleaned_comment_number': i + 1, 'redacted_comment': text,
                      'theme_id': theme_id, 'theme_label': themes.get(theme_id, ''),
@@ -35,7 +37,9 @@ def labeled_csv(result, redacted_frame):
                      'sentiment': a.get('sentiment', ''), 'emotion': a.get('emotion', ''),
                      'sentiment_score': a.get('sentiment_score'), 'affect_status': a['status'],
                      'affect_truncated': a.get('truncated', False),
-                     'question_count': counts[i], 'question_group_ids': ';'.join(sorted(groups.get(i, [])))})
+                     'question_count': counts[i], 'question_group_ids': ';'.join(sorted(groups.get(i, []))),
+                     **{f'sentiment_{label}_probability': details[label] if details else None for label in SENTIMENTS},
+                     'sentiment_score_gap': details['gap'] if details else None})
     table = pd.DataFrame(rows)
     table['theme_id'] = table['theme_id'].astype('Int64')
     return table.map(spreadsheet_safe).to_csv(index=False).encode('utf-8-sig')
@@ -56,3 +60,4 @@ def render_download(workspace):
     st.download_button('Download labeled CSV', data=data, file_name='hearing_lens_labeled_comments.csv',
                        mime='text/csv', key='hl_labeled_download', on_click='ignore')
     st.caption('Spreadsheet formula-like text is prefixed with an apostrophe. Downloads are generated in memory for this session.')
+    st.caption('Sentiment class scores and the top-two score gap use a 0–1 scale in the CSV. They are model scores, not calibrated certainty; unavailable scores stay blank.')

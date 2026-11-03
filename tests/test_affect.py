@@ -3,7 +3,30 @@ from unittest.mock import patch, MagicMock
 import numpy as np
 import pandas as pd
 import torch
-from pipeline.affect import AffectError, analyze_affect, aggregate_affect, SENTIMENTS, EMOTIONS, _predict, _get_classifier, detect_language, MODEL_ROOT
+from pipeline.affect import AffectError, analyze_affect, aggregate_affect, sentiment_score_details, SENTIMENTS, EMOTIONS, _predict, _get_classifier, detect_language, MODEL_ROOT
+
+
+class SentimentDetailsTests(unittest.TestCase):
+    def test_gap_uses_top_two_scores_not_sentiment_polarity(self):
+        row = {'status': 'scored', 'sentiment_probabilities': {'negative': .49, 'neutral': .5, 'positive': .01}}
+        before = repr(row)
+        with patch('pipeline.affect._predict', side_effect=AssertionError('No inference')):
+            details = sentiment_score_details(row)
+        self.assertAlmostEqual(details['gap'], .01)
+        self.assertEqual(details['negative'], .49)
+        self.assertEqual(repr(row), before)
+        row['sentiment_probabilities'] = {'negative': .5, 'neutral': .5, 'positive': 0.}
+        self.assertEqual(sentiment_score_details(row)['gap'], 0.)
+
+    def test_unavailable_or_invalid_scores_are_not_fabricated(self):
+        for scores in [None, {}, {'negative': .5}, {'negative': .5, 'neutral': .6, 'positive': 0.},
+                       {'negative': float('nan'), 'neutral': .5, 'positive': .5},
+                       {'negative': -1., 'neutral': 1., 'positive': 1.},
+                       {'negative': 'bad', 'neutral': .5, 'positive': .5}]:
+            with self.subTest(scores=scores):
+                self.assertIsNone(sentiment_score_details({'status': 'scored', 'sentiment_probabilities': scores}))
+        self.assertIsNone(sentiment_score_details({'status': 'excluded_language',
+            'sentiment_probabilities': {'negative': 0., 'neutral': 1., 'positive': 0.}}))
 
 def predict(texts, kind):
     labels = SENTIMENTS if kind == 'sentiment' else EMOTIONS

@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from pipeline.affect import SENTIMENTS, EMOTIONS, aggregate_affect
+from pipeline.affect import SENTIMENTS, EMOTIONS, aggregate_affect, sentiment_score_details
 
 
 def overall_affect(result):
@@ -37,6 +37,25 @@ def theme_affect_table(result):
             row[f'{label.capitalize()} (%)'] = None if share is None else round(share * 100, 2)
         rows.append(row)
     return pd.DataFrame(rows)
+
+
+def sentiment_details_table(result):
+    """Link scores to CSV comment numbers without displaying source text."""
+    rows = []
+    for row in result['affect']['rows']:
+        scores = sentiment_score_details(row)
+        if scores is None:
+            continue
+        rows.append({'Cleaned comment number': row['row_position'] + 1,
+                     'Model label': row['sentiment'].capitalize(),
+                     **{f'{label.capitalize()} score (%)': scores[label] * 100 for label in SENTIMENTS},
+                     'Top-two gap (percentage points)': scores['gap'] * 100})
+    if not rows:
+        return pd.DataFrame()
+    # Sort unrounded values so close decisions retain their actual order.
+    return (pd.DataFrame(rows).sort_values(
+        ['Top-two gap (percentage points)', 'Cleaned comment number'])
+        .reset_index(drop=True).round(2))
 
 
 def distribution_chart(table, title):
@@ -76,6 +95,17 @@ def render_affect(result):
                 st.plotly_chart(distribution_chart(table, title), use_container_width=True,
                                 key=f'hl_affect_{kind}', config={'displaylogo': False})
                 st.dataframe(table, hide_index=True, use_container_width=True)
+        with st.expander('Inspect sentiment scores'):
+            st.caption('The closest decisions appear first. The gap is the largest minus the second-largest model score; a small gap means the model scores are close. A large gap does not prove the label is correct. Mixed praise and criticism can be difficult to classify.')
+            details = sentiment_details_table(result)
+            if details.empty:
+                st.info('Per-comment sentiment scores are unavailable for this result. Missing scores are not zero.')
+            else:
+                st.caption('Match cleaned comment numbers to the labeled CSV to read the redacted text. Scores are not calibrated certainty. This table does not change labels, counts or reports.')
+                st.dataframe(details, hide_index=True, use_container_width=True)
+                unavailable = summary['scored_comments'] - len(details)
+                if unavailable:
+                    st.info(f'{unavailable:,} scored comments have no usable detailed scores in this result and are omitted from this table; they remain in the totals.')
     table = theme_affect_table(result)
     if not table.empty:
         st.subheader('Tone by theme')

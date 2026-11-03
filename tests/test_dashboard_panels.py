@@ -8,7 +8,7 @@ import json
 import pandas as pd
 import pytest
 from streamlit.testing.v1 import AppTest
-from app.affect_panel import overall_affect,label_table,theme_affect_table
+from app.affect_panel import overall_affect,label_table,theme_affect_table,sentiment_details_table
 from app.timeline_panel import dashboard_timeline_figures,period_table,volume_table
 from pipeline.affect import aggregate_affect
 from pipeline.timeline import build_timeline
@@ -55,6 +55,36 @@ def test_overall_denominators_and_theme_exclusions():
 def test_tied_emotions_are_not_arbitrarily_selected():
     value=fixture();value['affect_by_theme']=aggregate_affect(value['affect']['rows'],{0:1,1:1})
     assert theme_affect_table(value).iloc[0]['Most frequent emotion']=='anger, joy (tie)'
+
+
+def test_sentiment_details_preserve_row_links_totals_and_privacy():
+    value=fixture()
+    value['affect']['rows'][0]['sentiment_probabilities']={'negative':.02,'neutral':.08,'positive':.9}
+    value['affect']['rows'][1]['sentiment_probabilities']={'negative':.5,'neutral':.49,'positive':.01}
+    value['affect']['rows'][2]['sentiment_probabilities']={'negative':.5,'neutral':.5,'positive':0.}
+    value['affect']['rows'][0]['comment_text']='PRIVATE TEXT'
+    before=deepcopy(value)
+    table=sentiment_details_table(value)
+    assert table['Cleaned comment number'].tolist()==[3,2,1]
+    assert table['Top-two gap (percentage points)'].tolist()==[0.,1.,82.]
+    assert table['Negative score (%)'].tolist()==[50.,50.,2.]
+    assert 'PRIVATE TEXT' not in table.to_string()
+    assert overall_affect(value)['scored_comments']==4
+    assert value==before
+
+
+def test_app_score_inspection_reuses_results_and_explains_missing_details():
+    value=fixture()
+    value['affect']['rows'][1]['sentiment_probabilities']={'negative':.5,'neutral':.49,'positive':.01}
+    with patch('streamlit.file_uploader',return_value=uploaded()),patch('app.dashboard.analyze_dashboard',return_value=value) as model:
+        app=render(value)
+        assert any(e.label=='Inspect sentiment scores' for e in app.expander)
+        assert any('3 scored comments have no usable detailed scores' in m.value for m in app.info)
+        assert any('A large gap does not prove' in m.value for m in app.caption)
+        assert any('Cleaned comment number' in d.value for d in app.dataframe)
+        app.checkbox[0].check().run()
+        assert model.call_count==1
+        assert not app.exception
 
 
 def test_all_excluded_returns_null_shares_and_no_mean():

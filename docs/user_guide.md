@@ -132,6 +132,16 @@ winner arbitrarily. A theme with no scored comments shows unavailable values.
 These model estimates describe expressed tone; they do not measure agreement
 with a proposal or infer a person's characteristics.
 
+Expand **Inspect sentiment scores** to see each scored comment's negative,
+neutral and positive model scores. The smallest difference between the two
+highest scores appears first. This can help locate close decisions, but even
+a large gap can accompany an incorrect label. Scores are not calibrated
+certainty, and mixed praise and criticism may be difficult to classify.
+Match **Cleaned comment number** to the labeled CSV to inspect the redacted
+text. The table displays percentages and the gap in percentage points. It does
+not change labels, counts or reports. Missing detailed scores are omitted from
+this table, with an explanatory count, without removing comments from totals.
+
 If no comments can be scored, the tab explains the exclusion and does not draw
 zero-valued sentiment or emotion charts. Each displayed distribution has a
 numeric table with the same denominator.
@@ -218,6 +228,14 @@ cleaned input order and includes a comment number, redacted comment text, theme
 ID/label/status, sentiment, emotion, score, affect status/truncation, question
 count and question-group IDs. Excluded scores stay blank. Theme ID `0` means
 ungrouped; a blank ID with `excluded` status means no theme assignment.
+
+Four additional columns contain `sentiment_negative_probability`,
+`sentiment_neutral_probability`, `sentiment_positive_probability` and
+`sentiment_score_gap`. All use the 0–1 scale, unlike the percentage display in
+the dashboard. The gap is the highest minus the second-highest class score,
+not the positive-minus-negative `sentiment_score`. Missing or unusable detailed
+scores remain blank; they are not replaced with zero. Sorting a copy by the gap
+can help inspect close decisions without changing the original comment order.
 
 Respondent IDs, dates and subgroup values are not included. Row numbers refer
 to the cleaned table, not original spreadsheet rows. This export contains

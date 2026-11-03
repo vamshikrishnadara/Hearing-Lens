@@ -126,6 +126,25 @@ def analyze_affect(frame, *, progress=None):
             'Probabilities are model scores, not calibrated certainty. Text beyond 512 tokens is truncated.']}
 
 
+def sentiment_score_details(row):
+    """Expose existing model scores; missing/invalid scores are not zero certainty.
+
+    The gap is the largest minus second-largest score, not calibrated confidence
+    or a correctness test. This helper does not run inference or change labels.
+    """
+    scores = row.get('sentiment_probabilities')
+    if row.get('status') != 'scored' or not isinstance(scores, dict) or set(scores) != set(SENTIMENTS):
+        return None
+    try:
+        values = np.asarray([scores[label] for label in SENTIMENTS], dtype=float)
+        if not np.isfinite(values).all() or (values < 0).any() or (values > 1).any() or not np.isclose(values.sum(), 1):
+            return None
+    except (TypeError, ValueError):
+        return None
+    ordered = np.sort(values)
+    return {**dict(zip(SENTIMENTS, values.tolist())), 'gap': float(ordered[-1] - ordered[-2])}
+
+
 def aggregate_affect(rows, group_by_row):
     """Aggregate label proportions using scored rows as the denominator."""
     groups = {}

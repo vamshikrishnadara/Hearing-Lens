@@ -111,6 +111,25 @@ def test_export_refuses_mismatched_rows_or_nonredacted_schema():
     with pytest.raises(ValueError):labeled_csv(r,pd.DataFrame({'comment_text':['ok']}))
 
 
+def test_export_sentiment_scores_join_by_position_keep_blanks_and_original_order():
+    r=sample_result(3)
+    r['affect']['rows'][0]['sentiment_probabilities']={'negative':.49,'neutral':.5,'positive':.01}
+    r['affect']['rows'][0]['sentiment']='neutral'
+    r['affect']['rows'][1]={'row_position':1,'status':'excluded_language'}
+    r['affect']['rows'].reverse()
+    before=deepcopy(r)
+    table=pd.read_csv(BytesIO(labeled_csv(r,pd.DataFrame({'comment_text':['First.','Second.','Third.']}))))
+    assert table.cleaned_comment_number.tolist()==[1,2,3]
+    assert table.sentiment_negative_probability.iloc[0]==.49
+    assert table.sentiment_neutral_probability.iloc[0]==.5
+    assert table.sentiment_positive_probability.iloc[0]==.01
+    assert table.sentiment_score_gap.iloc[0]==pytest.approx(.01)
+    columns=[f'sentiment_{s}_probability' for s in ('negative','neutral','positive')]+['sentiment_score_gap']
+    assert table.loc[1:,columns].isna().all().all()
+    assert table.sentiment.iloc[0]=='neutral' and table.sentiment.iloc[2]=='positive'
+    assert r==before
+
+
 def test_all_panels_download_and_no_response_notice_without_extra_inference():
     with patch('streamlit.file_uploader',return_value=upload()), patch('app.dashboard.analyze_dashboard',return_value=sample_result()) as run:
         app=ready(AppTest.from_file(str(APP),default_timeout=30))
