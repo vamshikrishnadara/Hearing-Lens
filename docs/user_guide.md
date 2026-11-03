@@ -142,6 +142,9 @@ text. The table displays percentages and the gap in percentage points. It does
 not change labels, counts or reports. Missing detailed scores are omitted from
 this table, with an explanatory count, without removing comments from totals.
 
+For a step-by-step check with fictional examples and score arithmetic, see
+[Checking sentiment results](sentiment_checks.md).
+
 If no comments can be scored, the tab explains the exclusion and does not draw
 zero-valued sentiment or emotion charts. Each displayed distribution has a
 numeric table with the same denominator.
