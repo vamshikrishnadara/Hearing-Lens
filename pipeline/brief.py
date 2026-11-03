@@ -133,6 +133,9 @@ def build_brief(result):
             sentiment = ', '.join(f'{labels[label] / len(scored):.0%} {label}'
                                   for label in ('negative', 'neutral', 'positive'))
             sentiment += f' among {len(scored):,} scored comments; {size - len(scored):,} unscored.'
+            truncated = sum(row.get('truncated', False) is True for row in scored)
+            if truncated:
+                sentiment += f' Sentiment/emotion inputs shortened for {_comment_count(truncated)}.'
         else:
             sentiment = 'No sentiment scores available; unscored comments are not neutral.'
         questions = result['questions']
@@ -158,8 +161,8 @@ def build_brief(result):
                 'summary': f'{size:,} cleaned comments analyzed to support discussion. '
                            'Counts describe comments, not necessarily unique people.',
                 'theme_note': f'Top {len(selected)} of {len(themes)} themes shown '
-                              f'({sum(t["count"] for t in selected):,} comments); '
-                              f'{sum(counts) - sum(t["count"] for t in selected):,} comments in other themes. '
+                              f'({_comment_count(sum(t["count"] for t in selected))}); '
+                              f'{_comment_count(sum(counts) - sum(t["count"] for t in selected))} in other themes. '
                               f'{ungrouped:,} ungrouped, {size - analyzed:,} excluded from themes. '
                               'Shares use theme-analyzed comments.',
                 'themes': selected, 'sentiment': sentiment,

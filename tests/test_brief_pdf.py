@@ -73,3 +73,34 @@ def test_pdf_rejects_unsupported_glyphs_and_overflow_instead_of_returning_bad_fi
 def test_pdf_invalid_analysis_has_no_partial_output():
     data=result();data['input_rows']=4999
     with pytest.raises(BriefError):community_pdf(data)
+
+
+@pytest.mark.parametrize('count', [1, 3])
+def test_word_pdf_disclose_shortened_model_inputs_without_losing_comments(count):
+    data=result()
+    # Use row flags, not a stale total. Excluded rows are not model inputs.
+    data['affect']['truncated_count']=999
+    data['affect']['rows'][0]['truncated']=True
+    for row in data['affect']['rows'][1:count+1]:
+        row['truncated']=True
+    before=deepcopy(data)
+    expected=f'Sentiment/emotion inputs shortened for {count} comment' + ('.' if count==1 else 's.')
+    brief=build_brief(data)
+    assert expected in brief['sentiment']
+    assert '29 scored comments; 1 unscored' in brief['sentiment']
+    word=Document(BytesIO(community_docx(data)))
+    pdf=PdfReader(BytesIO(community_pdf(data)))
+    assert len(pdf.pages)==1
+    text=compact(' '.join(p.text for p in word.paragraphs))
+    assert text==compact(pdf.pages[0].extract_text())
+    assert expected in text and '999' not in text
+    assert data==before
+
+
+def test_brief_without_truncation_keeps_existing_sentiment_wording():
+    data=result()
+    expected=build_brief(data)['sentiment']
+    assert 'shortened' not in expected
+    for row in data['affect']['rows']:
+        row.pop('truncated',None)
+    assert build_brief(data)['sentiment']==expected

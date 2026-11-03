@@ -20,7 +20,11 @@ shortened passage. The document reports counts of cleaned comments, not a count
 of unique people or evidence of population-wide opinion.
 
 Sentiment percentages use scored comments only. No scores are substituted for
-excluded rows. The dated comparison uses the first and last dates with valid
+excluded rows. When scored comments have truncated sentiment/emotion model
+inputs, both formats disclose the number of affected comments. This counts
+comments once even if both models shortened them; it does not remove them from
+the sentiment totals. Check the full redacted text in the labeled CSV because
+the model may not have seen the ending. The dated comparison uses the first and last dates with valid
 scores; undated rows are disclosed and excluded. Hearing labels alone do not
 establish chronology. Missing references disable representation claims. Hidden
 groups and unmatched categories are not reconstructed or reported as gaps.

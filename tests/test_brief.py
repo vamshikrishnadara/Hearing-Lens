@@ -63,6 +63,17 @@ def test_unscored_missing_dates_and_no_questions_do_not_invent_findings():
     assert 'concerns may still be present' in b['question_note']
 
 
+def test_theme_summary_uses_singular_for_one_shown_or_unshown_comment():
+    r=result()
+    r['themes'].update(analyzed_comments=1,outlier_count=0,
+                       themes=[{'theme_id':1,'count':1,'label':'Access','quotes':[]}])
+    assert '(1 comment); 0 comments in other themes' in build_brief(r)['theme_note']
+    r['themes'].update(analyzed_comments=30,outlier_count=0,
+                       themes=[{'theme_id':i+1,'count':n,'label':'Access','quotes':[]}
+                               for i,n in enumerate([10,10,9,1])])
+    assert '(29 comments); 1 comment in other themes' in build_brief(r)['theme_note']
+
+
 def test_all_matched_does_not_claim_all_questions_answered():
     r = result()
     r['questions'].update(response_status='available', top_unanswered=[])
