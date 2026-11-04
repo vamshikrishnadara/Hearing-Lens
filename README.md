@@ -68,11 +68,16 @@ python -m scripts.model_setup
    use these pins. If an existing cache has a different recorded revision, setup
    stops; see [setup troubleshooting](docs/troubleshooting.md#model-setup-reports-a-different-revision).
 
-4. Start the local dashboard and keep the terminal open:
+4. Check the installation, then start the local dashboard and keep the terminal open:
 
 ```sh
+python -m scripts.check_setup
 python -m scripts.start_local
 ```
+
+   If the check reports a problem, follow its repair instructions before starting.
+   It checks package versions, model source records and required files without
+   downloading or changing anything. A pass is a setup check, not an analysis test.
 
 5. Open `http://127.0.0.1:8501`, upload a fictional CSV/XLSX, map the comment
    column, choose **Validate mapping**, then **Analyze comments**.

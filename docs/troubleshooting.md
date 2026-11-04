@@ -18,6 +18,15 @@ Run commands from the repository root, in the Python environment used for the
 Do not disable the name check to obtain a preview. The app deliberately stops
 display generation when the check cannot run.
 
+## Check the local installation
+
+From the repository root, with the Python environment activated, run
+`python -m scripts.check_setup`. It reports missing or incompatible packages,
+missing model files and unexpected model revisions, with repair instructions.
+It does not download files, change the cache or load analytical models. A
+successful check does not establish inference speed or model accuracy; follow
+it with a small fictional upload and check the results and downloads.
+
 ## Model setup reports a different revision
 
 Local and cloud setup use the fixed model revisions in `scripts/model_setup.py`.
