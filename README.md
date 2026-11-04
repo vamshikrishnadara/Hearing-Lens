@@ -59,9 +59,14 @@ source .venv/bin/activate
 ```sh
 python -m pip install -r requirements.txt
 python -m spacy download en_core_web_sm
-python -m scripts.setup_theme_model
-python -m scripts.setup_affect_models
+python -m scripts.model_setup
 ```
+
+   Model setup installs the same pinned analytical model revisions used by the
+   hosted app and reuses complete matching installations. The older
+   `scripts.setup_theme_model` and `scripts.setup_affect_models` commands also
+   use these pins. If an existing cache has a different recorded revision, setup
+   stops; see [setup troubleshooting](docs/troubleshooting.md#model-setup-reports-a-different-revision).
 
 4. Start the local dashboard and keep the terminal open:
 

@@ -18,6 +18,19 @@ Run commands from the repository root, in the Python environment used for the
 Do not disable the name check to obtain a preview. The app deliberately stops
 display generation when the check cannot run.
 
+## Model setup reports a different revision
+
+Local and cloud setup use the fixed model revisions in `scripts/model_setup.py`.
+Older setup commands may have downloaded a different upstream version. Setup
+stops rather than mixing or silently replacing model versions.
+
+Stop the local app. Keep the existing `model_cache` folder as a backup outside
+the checkout, then run `python -m scripts.model_setup` from the project root
+to install a fresh matching cache. This downloads model files and requires
+internet access. Do not remove uploads, reports or other project files.
+Restart the app after setup finishes. Results from another model revision are
+not automatically comparable with the published measurements.
+
 ## The hosted page says the app is sleeping
 
 A page saying **This app has gone to sleep due to inactivity** is a hosting sleep
@@ -89,8 +102,10 @@ uncertain dates become categorical hearing labels rather than being discarded.
    new upload. A working upload page alone does not validate model inference.
    The cloud deployment uses Python 3.12 and `deployment/cloud_app.py`.
 5. After resolving an error or restarting an unresponsive app, begin with
-   20-60 fictional comments. Verify results and downloads before trying larger
-   input. Restarting loses session inputs/results; retain the original file.
+   20-60 fictional comments within the 24,000-character demo limit. Verify
+   results and downloads. Use the local dashboard for larger input; the hosted
+   demo does not accept it. Restarting loses session inputs/results; retain the
+   original file.
 
 First runs can load models and compile clustering routines. Local performance
 is not a hosted speed guarantee. A throttle message concerns the host's resource
