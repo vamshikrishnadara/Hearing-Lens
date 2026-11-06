@@ -62,7 +62,9 @@ python -m spacy download en_core_web_sm
 python -m scripts.model_setup
 ```
 
-   Model setup installs the same pinned analytical model revisions used by the
+   The requirements fix the evaluated analysis-library versions so fresh
+   installations use the same grouping and inference stack. Model setup installs
+   the same pinned analytical model revisions used by the
    hosted app and reuses complete matching installations. The older
    `scripts.setup_theme_model` and `scripts.setup_affect_models` commands also
    use these pins. If an existing cache has a different recorded revision, setup
@@ -141,7 +143,11 @@ run_all.py       Complete local analysis command
 
 ## Tests
 
+With the project environment activated, install the development dependencies
+before running the tests. These include the PDF reader used to verify exports.
+
 ```sh
+python -m pip install -r requirements-dev.txt
 python -m pytest -q
 ```
 

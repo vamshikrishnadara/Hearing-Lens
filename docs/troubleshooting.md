@@ -40,6 +40,19 @@ internet access. Do not remove uploads, reports or other project files.
 Restart the app after setup finishes. Results from another model revision are
 not automatically comparable with the published measurements.
 
+## The same file produces different themes after reinstalling
+
+Grouping can change when numerical or clustering libraries are upgraded, even
+with the same input and model files. Activate the project environment and run
+`python -m pip install -r requirements.txt`, followed by
+`python -m scripts.check_setup`. The requirements pin the evaluated analysis
+stack. Restart the app and rerun the complete file. Keep exports from different
+environments separately, since theme numbers and question groups can differ.
+
+Package pins reduce version drift. Hardware, operating systems and numerical
+libraries can still affect results. Verify outputs on the intended platform
+before relying on exact reproduction.
+
 ## The hosted page says the app is sleeping
 
 A page saying **This app has gone to sleep due to inactivity** is a hosting sleep
