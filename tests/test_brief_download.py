@@ -54,7 +54,10 @@ def test_changed_session_inputs_cannot_offer_a_previous_brief(change):
         else:
             run.side_effect = RuntimeError('PRIVATE INPUT')
             widget(app, 'button', 'Analyze comments').click().run()
-        assert not app.exception and not app.get('download_button')
+        assert not app.exception
+        # Removing an upload restores the public sample, never a previous result.
+        expected = ['Download sample CSV'] if change == 'removed_upload' else []
+        assert [item.label for item in app.get('download_button')] == expected
         if STATE_KEY in app.session_state:
             assert 'brief_docx' not in app.session_state[STATE_KEY]
         assert all('PRIVATE INPUT' not in e.value for e in app.error)

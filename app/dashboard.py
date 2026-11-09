@@ -49,17 +49,21 @@ def render_themes(workspace):
     if excluded:
         st.info(f'{excluded} comments had no usable text for theme analysis after cleaning and redaction.')
     st.caption('Theme percentages use comments analyzed for themes, including ungrouped comments, as the denominator.')
-    for warning in core.get('warnings', []):
-        st.warning(warning)
+    warnings = core.get('warnings', [])
+    if warnings:
+        st.caption(f'{len(warnings)} analysis notes cover grouping limitations and quote availability. Read them before sharing.')
+        with st.expander(f'Analysis notes ({len(warnings)})'):
+            for warning in warnings:
+                st.warning(warning)
     if not themes:
         st.info('No themes were found. Try a file with more substantive comments.')
         return
     st.caption('Quote choices and review ticks last for this session only. They are not a measure of model accuracy.')
-    for theme in themes:
+    for theme_index, theme in enumerate(themes):
         theme_id = theme['theme_id']
         quote_revision = workspace['quote_revisions'].get(theme_id, 0)
         base = f'{REVIEW_PREFIX}{workspace["revision"]}_{theme_id}_{quote_revision}'
-        with st.container(border=True):
+        with st.expander(f'Theme {theme_id} · {theme["count"]:,} comments · {theme["share"]:.0%}', expanded=theme_index == 0):
             st.subheader(f'Theme {theme_id}')
             st.text(theme['label'])
             st.caption(f'{theme["count"]:,} comments | {theme["share"]:.1%} of analyzed comments')
@@ -114,6 +118,9 @@ def render_dashboard(workspace):
     from app.questions_panel import render_questions
     from app.downloads import render_download
     from app.brief_download import render_brief_download
+    st.divider()
+    st.header('Your feedback, at a glance')
+    st.caption('Explore the views below. Findings describe the uploaded comments; review them before sharing.')
     tabs = st.tabs(['Themes', 'Sentiment and emotion', 'Timeline', 'Representation', 'Questions'])
     with tabs[0]:
         render_themes(workspace)
@@ -126,5 +133,13 @@ def render_dashboard(workspace):
         render_representation(workspace['result'])
     with tabs[4]:
         render_questions(workspace['result'])
-    render_download(workspace)
-    render_brief_download(workspace)
+    st.divider()
+    st.header('Take your findings with you')
+    st.caption('Download the detailed results or a concise brief for your next discussion.')
+    csv_column, brief_column = st.columns([1, 1], gap='large')
+    with csv_column:
+        with st.container(border=True):
+            render_download(workspace)
+    with brief_column:
+        with st.container(border=True):
+            render_brief_download(workspace)

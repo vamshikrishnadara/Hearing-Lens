@@ -12,45 +12,38 @@ from pipeline.progress import STAGES
 from app.runtime import AnalysisBusyError
 from app.limits import AnalysisLimitError, check_analysis_size, is_cloud_demo
 from app.local_guidance import render_local_guidance
+from app.presentation import apply_style, render_sidebar, render_intro, render_steps, render_empty_state
 
 
-st.set_page_config(page_title="Hearing Lens", layout="wide")
-view = st.sidebar.radio('View', ['Analyze feedback', 'Methodology and limitations'], key='hl_view')
+st.set_page_config(page_title="Hearing Lens", page_icon="◉", layout="wide")
+apply_style()
+view = render_sidebar(is_cloud_demo())
 if view == 'Methodology and limitations':
     from app.pages.methodology import render_methodology
     render_methodology()
     st.stop()
 
-st.title("Hearing Lens")
-st.write(
-    "Upload a community-feedback or survey export, then identify the column "
-    "that contains each response. Files are processed in memory for this session."
-)
-st.warning(
-    "Development preview: use fictional test data. Automatic redaction can "
-    "miss names and other identifiers; review the text before sharing it."
-)
-
-if is_cloud_demo():
-    st.info("Free demo: up to 60 cleaned comments and 24,000 comment characters. "
-            "For larger files, use the local dashboard with the same analysis and downloads. "
-            "Small runs can still slow down when the free host is busy.")
+render_intro()
+render_steps()
 
 with st.expander("How to use Hearing Lens"):
     st.markdown(
-        "1. Start with a small fictional CSV or Excel file. Select the column containing comments. "
-        "Dates, IDs and subgroup fields are optional.\n"
-        "2. Select **Validate mapping** and check the usable count and redacted preview.\n"
-        "3. Select **Analyze comments** once. The status shows the current step; avoid starting repeated runs while it is busy.\n"
-        "4. Explore the five result tabs and check the quotes and any warnings.\n"
-        "5. Download labeled CSV, or select **Prepare Word brief** or **Prepare PDF brief** below the results, then download."
+        "1. **Upload** a fictional CSV or Excel file and choose your comment column.\n"
+        "2. **Check** the redacted preview, then select **Analyze comments** once.\n"
+        "3. **Explore** themes, tone, timeline, representation and questions.\n"
+        "4. **Download** labeled comments or prepare a Word or PDF brief."
     )
-    st.caption("Counts describe comments, not necessarily people. Model labels and possible response matches need checking. Changing inputs clears earlier results and downloads.")
+    st.caption("Dates, IDs and subgroup fields are optional. Counts describe comments, not necessarily people. Changing inputs clears earlier results and downloads.")
 
+st.subheader("1. Add your feedback")
+st.caption("One response per row. CSV or Excel · up to 10 MB per file.")
+if is_cloud_demo():
+    st.info("Free demo: up to 60 cleaned comments and 24,000 comment characters. Use the local dashboard for larger files.")
 uploaded = st.file_uploader("Upload a CSV or XLSX file", type=["csv", "xlsx"])
 
 if uploaded is None:
     clear_workspace()
+    render_empty_state()
 else:
     selected_sheet = None
     if uploaded.name.lower().endswith(".xlsx"):
@@ -73,7 +66,8 @@ else:
         st.warning(warning)
 
     columns = [str(column) for column in loaded.frame.columns]
-    st.subheader("Map your columns")
+    st.subheader("2. Choose your columns")
+    st.caption("Select the text to analyze. Add optional details only when you need comparisons.")
     comment_column = st.selectbox(
         "Comment text",
         columns,
@@ -86,8 +80,11 @@ else:
     )
 
     optional_columns = ["Not provided", *columns]
-    date_choice = st.selectbox("Date or hearing label", optional_columns)
-    respondent_choice = st.selectbox("Respondent ID", optional_columns)
+    date_col, respondent_col = st.columns(2)
+    with date_col:
+        date_choice = st.selectbox("Date or hearing label", optional_columns)
+    with respondent_col:
+        respondent_choice = st.selectbox("Respondent ID", optional_columns)
 
     already_selected = {comment_column, date_choice, respondent_choice}
     subgroup_options = [
@@ -135,9 +132,11 @@ else:
         redaction_total = sum(safe_preview.entity_counts.values())
         if redaction_total:
             st.info(f"Redacted {redaction_total:,} name, contact, or address matches across the usable comments.")
-        st.caption("First 20 usable comments after automatic redaction. Respondent IDs and other mapped fields are excluded from this preview.")
-        st.dataframe(safe_preview.frame.head(20), use_container_width=True)
-        st.caption("Run analysis to view themes, sentiment, emotion, timelines, representation and question priorities. The first run may take longer while local models load.")
+        with st.expander("Preview cleaned comments", expanded=workspace['result'] is None):
+            st.caption("First 20 usable comments after automatic redaction. Respondent IDs and other mapped fields are excluded from this preview.")
+            st.dataframe(safe_preview.frame.head(20), use_container_width=True, hide_index=True)
+        st.subheader("3. Explore your feedback")
+        st.caption("Analyze once, then explore all five views. The first run may take longer while models load.")
         references, response, option_signature, options_valid = render_analysis_options(mapped.frame)
         invalidate_options(workspace, option_signature)
         if st.button("Analyze comments", type="primary", disabled=not options_valid):
@@ -165,7 +164,7 @@ else:
                 except Exception:
                     # Model exceptions can include source cells. Never display or log them.
                     status.update(label='Analysis could not finish', state='error')
-                    st.error('Analysis could not finish. Check the analysis stage timings in the app logs before retrying. No partial results are shown.')
+                    st.error('Analysis could not finish. Try again once, or use the local dashboard if the problem continues. No partial results are shown.')
                 else:
                     status.update(label='Analysis complete', state='complete')
         if workspace['result'] is not None:

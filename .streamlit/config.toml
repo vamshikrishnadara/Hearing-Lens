@@ -17,6 +17,6 @@ showSidebarNavigation = false
 # White button labels on the default coral miss the normal-text contrast target.
 base = "light"
 primaryColor = "#15607a"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f0f4f7"
+backgroundColor = "#f6f8fa"
+secondaryBackgroundColor = "#edf3f4"
 textColor = "#182b3a"
