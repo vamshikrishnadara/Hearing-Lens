@@ -32,24 +32,33 @@ def dashboard_timeline_figures(timeline):
     else:
         sentiment.add_trace(go.Bar(x=labels, y=values, marker_color='#276582',
                             hovertemplate='%{x}: %{y:.3f}<extra></extra>'))
-    sentiment.update_layout(title='Mean sentiment by period', xaxis_title='Date (UTC)' if dated else 'Period',
+    sentiment.update_layout(title=dict(text='Mean sentiment by period', y=.88, yanchor='top'), xaxis_title='Date (UTC)' if dated else 'Period',
                             xaxis_type='date' if dated else 'category',
-                            yaxis_title='Mean P(positive) minus P(negative)', yaxis_range=[-1, 1], height=370)
+                            yaxis_title='Mean sentiment', yaxis_range=[-1, 1], height=370,
+                            margin=dict(l=55, r=20, t=90, b=65), font=dict(size=13))
     volume = go.Figure()
     for theme in sorted({r['theme_id'] for r in timeline['theme_volumes']}):
         rows = [r for r in timeline['theme_volumes'] if r['theme_id'] == theme]
         volume.add_trace(go.Bar(x=[escape(str(r['period'])) for r in rows], y=[r['count'] for r in rows],
                                name='Ungrouped' if theme == 0 else f'Theme {theme}',
                                hovertemplate='%{x}: %{y} comments<extra>%{fullData.name}</extra>'))
-    volume.update_layout(title='Theme volume by period', barmode='stack', xaxis_title='Period',
+    volume.update_layout(title=dict(text='Theme volume by period', y=.88, yanchor='top'), barmode='stack', xaxis_title='Period',
                          xaxis=dict(type='category', categoryorder='array',
                                     categoryarray=[escape(str(p['group'])) for p in periods]),
-                         yaxis_title='Comments assigned to themes', yaxis=dict(rangemode='tozero', tickformat=',d'), height=370)
+                         yaxis_title='Comments assigned to themes',
+                         yaxis=dict(rangemode='tozero', tickformat=',d',
+                                    dtick=1 if max((p['total_comments'] for p in periods), default=0) <= 5 else None), height=370)
+    legend_rows = (len(volume.data) + 2) // 3
+    volume.update_layout(
+        legend=dict(orientation='h', yanchor='top', y=-.3, xanchor='left', x=0),
+        margin=dict(l=55, r=20, t=90, b=90 + 22 * legend_rows),
+        height=390 + 22 * legend_rows, font=dict(size=13))
     return {'sentiment': sentiment, 'theme_volume': volume}
 
 
 def render_timeline(result):
     st.header('Timeline')
+    st.caption('See how comment volume and expressed tone vary across the supplied periods. Mean sentiment ranges from −1 (more negative) to +1 (more positive).')
     timeline = result.get('timeline')
     if not timeline or not timeline['periods']:
         st.info('No timeline periods are available for this run.')

@@ -59,10 +59,19 @@ def sentiment_details_table(result):
 
 
 def distribution_chart(table, title):
-    fig = go.Figure(go.Bar(x=table['Label'].tolist(), y=table['Comments'].tolist(),
-                          marker_color='#276582', hovertemplate='%{x}: %{y} comments<extra></extra>'))
-    fig.update_layout(title=title, xaxis_title='Model label', yaxis_title='Scored comments',
-                      yaxis=dict(rangemode='tozero', tickformat=',d'), height=320)
+    counts = table['Comments'].tolist()
+    labels = table['Label'].tolist()
+    fig = go.Figure(go.Bar(
+        x=counts, y=labels, orientation='h', marker_color='#276582',
+        text=counts, textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}: %{x} comments<extra></extra>'))
+    fig.update_layout(
+        title=dict(text=title, font=dict(size=17), x=0, xanchor='left', y=.88, yanchor='top'),
+        xaxis=dict(title='Scored comments', range=[0, max(max(counts, default=0) * 1.2, 1)],
+                   tickformat=',d', dtick=1 if max(counts, default=0) <= 5 else None),
+        yaxis=dict(title=None, categoryorder='array', categoryarray=labels, autorange='reversed', automargin=True),
+        height=390, margin=dict(l=85, r=35, t=90, b=50),
+        font=dict(size=13), bargap=.35)
     return fig
 
 
@@ -82,8 +91,11 @@ def render_affect(result):
     cols[1].metric('Comments excluded', summary['excluded_comments'])
     cols[2].metric('Long comments truncated', affect['truncated_count'])
     st.caption('Percentages use scored comments only. Excluded comments receive no substitute neutral label. Long inputs may be shortened to the model context limit.')
-    for warning in affect.get('warnings', []):
-        st.warning(warning)
+    warnings = affect.get('warnings', [])
+    if warnings:
+        with st.expander('How to interpret these estimates'):
+            for warning in warnings:
+                st.warning(warning)
     if not summary['scored_comments']:
         st.info('No comments received sentiment or emotion scores. Check the language and text quality; unavailable scores are not zero or neutral.')
     else:
@@ -94,7 +106,8 @@ def render_affect(result):
             with column:
                 st.plotly_chart(distribution_chart(table, title), use_container_width=True,
                                 key=f'hl_affect_{kind}', config={'displaylogo': False})
-                st.dataframe(table, hide_index=True, use_container_width=True)
+                with st.expander(f'View {kind} counts and percentages'):
+                    st.dataframe(table, hide_index=True, use_container_width=True)
         with st.expander('Inspect sentiment scores'):
             st.caption('The closest decisions appear first. The gap is the largest minus the second-largest model score; a small gap means the model scores are close. A large gap does not prove the label is correct. Mixed praise and criticism can be difficult to classify.')
             details = sentiment_details_table(result)

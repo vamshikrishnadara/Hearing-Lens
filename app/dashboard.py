@@ -1,6 +1,7 @@
 """Session-only dashboard controls; no uploaded data is cached or written to disk."""
 from hashlib import sha256
 import json
+import re
 
 import streamlit as st
 
@@ -35,6 +36,17 @@ def analyze_dashboard(frame, *, references=None, response=None, progress=None):
     return run_analysis(frame, references=references, response=response, progress=progress)
 
 
+def theme_heading(theme):
+    """Keep generated labels readable without interpreting them as Markdown."""
+    label = ' '.join(str(theme['label']).split())
+    if len(label) > 76:
+        label = label[:73].rstrip() + '…'
+    label = re.sub(r'([\\`*_{}\[\]()<>#+.!|~-])', r'\\\1', label)
+    count = theme['count']
+    noun = 'comment' if count == 1 else 'comments'
+    return f'Theme {theme["theme_id"]} · {label} · {count:,} {noun}'
+
+
 def render_themes(workspace):
     result = workspace['result']
     core = result['themes']
@@ -63,7 +75,7 @@ def render_themes(workspace):
         theme_id = theme['theme_id']
         quote_revision = workspace['quote_revisions'].get(theme_id, 0)
         base = f'{REVIEW_PREFIX}{workspace["revision"]}_{theme_id}_{quote_revision}'
-        with st.expander(f'Theme {theme_id} · {theme["count"]:,} comments · {theme["share"]:.0%}', expanded=theme_index == 0):
+        with st.expander(theme_heading(theme), expanded=theme_index == 0):
             st.subheader(f'Theme {theme_id}')
             st.text(theme['label'])
             st.caption(f'{theme["count"]:,} comments | {theme["share"]:.1%} of analyzed comments')

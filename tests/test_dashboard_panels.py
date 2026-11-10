@@ -236,3 +236,27 @@ def test_one_date_is_explained_without_inventing_additional_periods():
         assert any('Only one dated period' in m.value for m in app.info)
         chart=next(p for p in plots(app) if p['layout']['title']['text']=='Mean sentiment by period')
         assert chart['data'][0]['x']==['2026-10-12']
+
+
+def test_horizontal_distributions_preserve_counts_labels_and_zero_categories():
+    from app.affect_panel import distribution_chart
+    table = label_table(overall_affect(fixture()), 'emotion')
+    before = table.copy(deep=True)
+    chart = distribution_chart(table, 'Emotion distribution')
+    trace = chart.data[0]
+    assert trace.orientation == 'h'
+    assert dict(zip(trace.y, trace.x)) == dict(zip(table.Label, table.Comments))
+    assert list(trace.text) == [str(n) for n in table.Comments]
+    assert 0 in trace.x
+    assert sum(trace.x) == 4
+    pd.testing.assert_frame_equal(table, before)
+
+
+def test_theme_heading_displays_topic_without_interpreting_links():
+    from app.dashboard import theme_heading
+    theme = {'theme_id': 3, 'count': 1, 'label': '[topic](https://example.invalid) / <b>rooms</b>'}
+    original = deepcopy(theme)
+    heading = theme_heading(theme)
+    assert 'Theme 3' in heading and '1 comment' in heading
+    assert '\\[topic\\]\\(' in heading and '\\<b\\>' in heading
+    assert theme == original
