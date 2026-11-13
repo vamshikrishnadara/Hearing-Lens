@@ -28,7 +28,7 @@ render_steps()
 
 with st.expander("How to use Hearing Lens"):
     st.markdown(
-        "1. **Upload** a fictional CSV or Excel file and choose your comment column.\n"
+        "1. **Upload** a CSV or Excel file containing feedback or survey responses and choose your comment column.\n"
         "2. **Check** the redacted preview, then select **Analyze comments** once.\n"
         "3. **Explore** themes, tone, timeline, representation and questions.\n"
         "4. **Download** labeled comments or prepare a Word or PDF brief."

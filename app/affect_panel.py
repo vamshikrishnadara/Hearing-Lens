@@ -62,7 +62,7 @@ def distribution_chart(table, title):
     counts = table['Comments'].tolist()
     labels = table['Label'].tolist()
     fig = go.Figure(go.Bar(
-        x=counts, y=labels, orientation='h', marker_color='#276582',
+        x=counts, y=labels, orientation='h', marker_color='#55bda6',
         text=counts, textposition='outside', cliponaxis=False,
         hovertemplate='%{y}: %{x} comments<extra></extra>'))
     fig.update_layout(

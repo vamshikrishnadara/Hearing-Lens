@@ -28,9 +28,9 @@ def dashboard_timeline_figures(timeline):
     sentiment = go.Figure()
     if dated:
         sentiment.add_trace(go.Scatter(x=labels, y=values, mode='lines+markers', connectgaps=False,
-                            hovertemplate='%{x}: %{y:.3f}<extra></extra>', line_color='#276582'))
+                            hovertemplate='%{x}: %{y:.3f}<extra></extra>', line_color='#55bda6'))
     else:
-        sentiment.add_trace(go.Bar(x=labels, y=values, marker_color='#276582',
+        sentiment.add_trace(go.Bar(x=labels, y=values, marker_color='#55bda6',
                             hovertemplate='%{x}: %{y:.3f}<extra></extra>'))
     sentiment.update_layout(title=dict(text='Mean sentiment by period', y=.88, yanchor='top'), xaxis_title='Date (UTC)' if dated else 'Period',
                             xaxis_type='date' if dated else 'category',

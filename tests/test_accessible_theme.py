@@ -1,4 +1,4 @@
-"""Contrast checks for the configured light theme, not a complete WCAG audit."""
+"""Contrast checks for the configured dark theme, not a complete WCAG audit."""
 from pathlib import Path
 import tomllib
 
@@ -16,8 +16,10 @@ def contrast(a, b):
 def test_body_links_and_white_button_labels_meet_normal_text_contrast():
     config = Path(__file__).resolve().parents[1] / '.streamlit/config.toml'
     theme = tomllib.loads(config.read_text())['theme']
-    assert theme['base'] == 'light'
+    assert theme['base'] == 'dark'
     for background in ('backgroundColor', 'secondaryBackgroundColor'):
         assert contrast(theme['textColor'], theme[background]) >= 4.5
-        assert contrast(theme['primaryColor'], theme[background]) >= 4.5
+        assert contrast(theme['linkColor'], theme[background]) >= 4.5
+        assert contrast(theme['primaryColor'], theme[background]) >= 3
+        assert contrast('#55bda6', theme[background]) >= 3
     assert contrast('#ffffff', theme['primaryColor']) >= 4.5

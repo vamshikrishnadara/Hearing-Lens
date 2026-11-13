@@ -5,21 +5,21 @@ import streamlit as st
 STYLE = '''<style>
 /* Scope custom presentation to the app; keep native controls and focus behavior. */
 [data-testid="stMainBlockContainer"] {max-width: 1240px; padding-top: 4.5rem; padding-bottom: 4rem;}
-[data-testid="stSidebar"] {border-right: 1px solid #dce6e8;}
+[data-testid="stSidebar"] {border-right: 1px solid rgba(135, 166, 188, .22);}
 h1, h2, h3 {letter-spacing: -.025em;}
 h2 {font-size: 1.65rem !important;}
 h3 {font-size: 1.2rem !important;}
-[data-testid="stFileUploader"] {border: 1px dashed #9db4bd; border-radius: 16px; padding: 1.1rem;}
-[data-testid="stMetric"] {border: 1px solid #dce6e8; border-radius: 14px; padding: 1rem;}
+[data-testid="stFileUploader"] {border: 1px dashed #608a96; border-radius: 16px; padding: 1.1rem; background: rgba(63, 145, 143, .06);}
+[data-testid="stMetric"] {border: 1px solid rgba(135, 166, 188, .25); border-radius: 14px; padding: 1rem; background: rgba(63, 145, 143, .06);}
 [data-testid="stVerticalBlockBorderWrapper"] {border-radius: 16px;}
-[data-baseweb="tab-list"] {gap: .3rem; border-bottom: 1px solid #dce6e8;}
+[data-baseweb="tab-list"] {gap: .3rem; border-bottom: 1px solid rgba(135, 166, 188, .25);}
 [data-baseweb="tab"] {padding: .65rem 1rem; border-radius: 8px 8px 0 0;}
 [data-baseweb="tab"][aria-selected="true"] {background: rgba(64, 140, 148, .14);}
 [data-testid="stButton"] button, [data-testid="stDownloadButton"] button {border-radius: 9px; min-height: 2.7rem; font-weight: 600;}
 .hl-brand {font-weight: 750; font-size: 1.4rem; color: inherit; letter-spacing: -.04em; margin-bottom: .25rem;}
-.hl-brand span {color: #15607a; margin-right: .4rem;}
+.hl-brand span {color: #72dfc5; margin-right: .4rem;}
 .hl-tagline {font-size: .86rem; color: inherit; opacity: .85; margin: 0 0 1.7rem;}
-.hl-hero {display: grid; grid-template-columns: 1fr 230px; align-items: center; gap: 2rem; background: #102f40; border-radius: 22px; padding: 2.6rem 2.8rem; margin-bottom: 1.1rem; color: #fff; overflow: hidden;}
+.hl-hero {display: grid; grid-template-columns: 1fr 230px; align-items: center; gap: 2rem; background: radial-gradient(ellipse at top right, #184c51 0%, transparent 65%), linear-gradient(135deg, #102337, #122d3c); border: 1px solid #315366; border-radius: 22px; padding: 2.6rem 2.8rem; margin-bottom: 1.1rem; color: #fff; overflow: hidden; box-shadow: 0 18px 50px rgba(0, 0, 0, .14);}
 .hl-eyebrow {font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #a9ded7; margin-bottom: .8rem;}
 .hl-hero h1 {color: #fff; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.12; font-weight: 700; margin: 0 0 1rem; padding: 0; letter-spacing: -.045em;}
 .hl-hero p {color: #d5e4eb; font-size: 1rem; line-height: 1.65; max-width: 570px; margin: 0;}
@@ -31,8 +31,8 @@ h3 {font-size: 1.2rem !important;}
 .hl-art i:nth-child(3), .hl-art i:nth-child(5) {height: 92px;}
 .hl-art i:nth-child(4) {height: 126px; background: #e5f5ef;}
 .hl-steps {display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: .2rem 0 .6rem;}
-.hl-step {display: flex; gap: .7rem; align-items: center; padding: 1rem 0;}
-.hl-step b {display: inline-flex; flex-shrink: 0; width: 30px; height: 30px; justify-content: center; align-items: center; border: 1px solid #aec6cb; border-radius: 50%; color: inherit; font-size: .8rem;}
+.hl-step {display: flex; gap: .7rem; align-items: center; padding: 1rem .7rem; border: 1px solid rgba(135, 166, 188, .2); border-radius: 12px;}
+.hl-step b {display: inline-flex; flex-shrink: 0; width: 30px; height: 30px; justify-content: center; align-items: center; border: 1px solid #608a96; border-radius: 50%; color: inherit; font-size: .8rem;}
 .hl-step strong {display: block; color: inherit; font-size: .9rem;}
 .hl-step small {display: block; color: inherit; opacity: .85; font-size: .8rem;}
 .hl-empty {padding: 1.2rem 0 .4rem; color: inherit; opacity: .85; font-size: .9rem;}
@@ -41,7 +41,7 @@ h3 {font-size: 1.2rem !important;}
  .hl-hero {grid-template-columns: 1fr; padding: 1.8rem 1.4rem; border-radius: 16px;}
  .hl-art {display: none;}
  .hl-steps {gap: .3rem;}
- .hl-step {align-items: flex-start; gap: .4rem;}
+ .hl-step {align-items: flex-start; gap: .4rem; padding: .7rem .4rem;}
  .hl-step small {display: none;}
  .hl-step strong {font-size: .8rem; padding-top: .3rem;}
  [data-baseweb="tab"] {padding: .5rem .65rem;}
@@ -81,7 +81,7 @@ def render_intro():
 <p>Find the themes, understand the tone, and bring the important questions into focus.</p></div>
 <div class="hl-art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </section>''', unsafe_allow_html=True)
-    st.caption('Use fictional data in this preview. Automatic redaction can miss identifiers; check the text before sharing.')
+    st.caption('Upload community feedback or survey responses you have permission to use. Remove sensitive information before uploading; automatic redaction can miss identifiers. Review results before sharing.')
 
 
 def render_steps():

@@ -14,9 +14,12 @@ gatherUsageStats = false
 showSidebarNavigation = false
 
 [theme]
-# White button labels on the default coral miss the normal-text contrast target.
-base = "light"
-primaryColor = "#15607a"
-backgroundColor = "#f6f8fa"
-secondaryBackgroundColor = "#edf3f4"
-textColor = "#182b3a"
+# Deep navy surfaces, readable teal links, and white text on primary buttons.
+base = "dark"
+primaryColor = "#26796d"
+backgroundColor = "#0b1220"
+secondaryBackgroundColor = "#131f30"
+textColor = "#e6edf5"
+linkColor = "#72dfc5"
+borderColor = "#34465a"
+chartCategoricalColors = ["#72dfc5", "#83b7ff", "#d3a4f5", "#ffc58a", "#f390a6", "#b9d879", "#82d5ec"]
